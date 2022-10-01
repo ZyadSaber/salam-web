@@ -1,10 +1,11 @@
 import { memo } from 'react';
+import Welcome from './Pages/WelcomePage/component'
 
 function App() {
 
   return (
     <div className="App">
-      <h1>hello world</h1>
+      <Welcome />
     </div>
   );
 }
