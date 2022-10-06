@@ -5,7 +5,15 @@
             "id": 1,
             "username": "admin",
             "email": "admin@gmail.com",
-            "password": "admin"
+            "password": "admin",
+            "role": "admin"
+        },
+        {
+            "id": 2,
+            "username": "user",
+            "email": "user@gmail.com",
+            "password": "user",
+            "role": "user"
         }
         ]
     },

@@ -1,15 +1,39 @@
-import  { memo } from 'react';
-import './Style.css'
+import { memo, useState, useCallback, useEffect } from 'react';
+import './Style.css';
+import useCheckUser from './useCheckUser';
 
 const SignInPage = () => {
+
+    const [userName, setUserName] = useState("");
+    const [pasword, setPassword] = useState("")
+    const { authorization } = useCheckUser(userName, pasword)
+
+    const changeUserName = useCallback((event: { target: { value: string } }) => {
+        setUserName(event.target.value);
+    }, []);
+    const changePassword = useCallback((event: { target: { value: string } }) => {
+        setPassword(event.target.value);
+    }, [])
+
+    const handleLogIn = () => {
+        console.log(authorization)
+    }
+
+    useEffect(() => {
+        if (window.localStorage.getItem('user') !== null) console.log("ff")
+        // window.localStorage.getItem('data') !== null ? setData(JSON.parse(localStorage.getItem('data') || "")) : setData([]);
+    }, []);
+
+
+
     return (
         <div className="card">
             <div className="card-body">
                 <h1>Welcome ...</h1>
-                <input type="text" placeholder="User Name" />
-                <input type="password" placeholder="Password" />
+                <input type="text" placeholder="User Name" value={userName} onChange={changeUserName} />
+                <input type="password" placeholder="Password" value={pasword} onChange={changePassword} />
                 <div className="btns">
-                    <button>Log In</button>
+                    <button onClick={handleLogIn}>Log In</button>
                     <button>Exit</button>
                 </div>
             </div>
