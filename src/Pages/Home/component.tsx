@@ -1,9 +1,15 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
+import Header from '../../components/Header/component'
+import Footer from '../../components/Footer/component'
 
 const Home = () => {
     return (
         <>
-            <h1>Welcome Page</h1>
+            <div className="Home">
+                <Header />
+                <h1>Welcome Page</h1>
+                <Footer />
+            </div>
         </>
     )
 };

@@ -3,7 +3,9 @@ import useFetch from '../../hooks/useFetch';
 
 const useCheckUser = (userName: string, password: string) => {
     const { data } = useFetch("http://localhost:8000/users")
-    const [users, setUsers] = useState({})
+    const [user, setUser] = useState({
+
+    })
     const [ authorization, setAuthorization ] = useState<boolean>(false)
 
 
@@ -11,9 +13,14 @@ const useCheckUser = (userName: string, password: string) => {
      for (let i=0; i < data.length ; i++) {
         if (data[i].username === userName && data[i].password === password) {
             setAuthorization(true)
+            setUser({
+                username: data[i].username,
+                role: data[i].role,
+            })
+            window.localStorage.setItem('user', JSON.stringify(user))
         }
     }
-   }, [data, password, userName])
+   }, [data, password, user, userName])
 
 
       return{authorization}

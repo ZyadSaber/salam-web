@@ -16,28 +16,31 @@ const SignInPage = () => {
     }, [])
 
     const handleLogIn = () => {
-        console.log(authorization)
+        if (authorization) window.location.assign("http://localhost:3000/home")
     }
 
-    useEffect(() => {
-        if (window.localStorage.getItem('user') !== null) console.log("ff")
-        // window.localStorage.getItem('data') !== null ? setData(JSON.parse(localStorage.getItem('data') || "")) : setData([]);
-    }, []);
+    const handleLogOut = () => {
+        window.close()
+    }
 
 
 
     return (
-        <div className="card">
-            <div className="card-body">
-                <h1>Welcome ...</h1>
-                <input type="text" placeholder="User Name" value={userName} onChange={changeUserName} />
-                <input type="password" placeholder="Password" value={pasword} onChange={changePassword} />
-                <div className="btns">
-                    <button onClick={handleLogIn}>Log In</button>
-                    <button>Exit</button>
+        <>
+            <div className="sign_in">
+                <div className="card">
+                    <div className="card-body">
+                        <h1>Welcome ...</h1>
+                        <input type="text" placeholder="User Name" value={userName} onChange={changeUserName} />
+                        <input type="password" placeholder="Password" value={pasword} onChange={changePassword} />
+                        <div className="btns">
+                            <button onClick={handleLogIn}>Log In</button>
+                            <button onClick={handleLogOut}>Exit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 };
 

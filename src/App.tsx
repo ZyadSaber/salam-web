@@ -1,7 +1,5 @@
 import React, { memo } from 'react';
 import SignInPage from './Pages/SignInPage/component';
-import Footer from './components/Footer/component';
-import Header from './components/Header/component';
 import Customers from './Pages/Customers/component';
 import Home from './Pages/Home/component';
 import './style.css'
@@ -12,7 +10,6 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* <Header /> */}
       <Router>
         <Switch>
           <Route exact path="/" component={SignInPage} />
@@ -20,7 +17,6 @@ const App = () => {
           <Route path="/home" component={Home} />
         </Switch>
       </Router>
-      {/* <Footer /> */}
     </div>
   );
 }
