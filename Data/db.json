@@ -3,7 +3,7 @@
         "data": [
             {
             "id": 1,
-            "username": "admin",
+            "username": "Admin",
             "email": "admin@gmail.com",
             "password": "admin",
             "role": "admin"
