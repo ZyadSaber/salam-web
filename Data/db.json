@@ -6,20 +6,117 @@
             "username": "Admin",
             "email": "admin@gmail.com",
             "password": "admin",
-            "role": "admin"
+            "role": {
+                "basicData":{
+                    "hidden":false,
+                    "customers":false,
+                    "suppliers":false,
+                    "items":false
+                },
+                "invoices":{
+                    "supplierInvoices":false,
+                    "customerInvoices":false,
+                    "invoicesSearch":false,
+                    "hidden":false
+                },
+                "employees":{
+                    "employeeAttendance":false,
+                    "employeeLeaving":false,
+                    "employeeSalary":false,
+                    "employeeData":false,
+                    "hidden":false
+                },
+                "accountSummary":{
+                    "customersSummary":false,
+                    "suppliersSummary":false,
+                    "itemsSummary":false,
+                    "hidden":false
+                },
+                "accountTotals":{
+                    "dailyTotals":false,
+                    "monthlyTotals":false,
+                    "yearlyTotals":false,
+                    "expensesTotals":false,
+                    "hidden":false
+                },
+                "administration":{
+                    "users":false,
+                    "hidden":false
+                }
+            }
         },
         {
             "id": 2,
             "username": "user",
             "email": "user@gmail.com",
             "password": "user",
-            "role": "user"
+            "role": {
+                "basicData":{
+                    "hidden":false,
+                    "customers":false,
+                    "suppliers":true,
+                    "items":false
+                },
+                "invoices":{
+                    "supplierInvoices":false,
+                    "customerInvoices":false,
+                    "invoicesSearch":false,
+                    "hidden":true
+                },
+                "employees":{
+                    "employeeAttendance":false,
+                    "employeeLeaving":false,
+                    "employeeSalary":false,
+                    "employeeData":false,
+                    "hidden":true
+                },
+                "accountSummary":{
+                    "customersSummary":true,
+                    "suppliersSummary":true,
+                    "itemsSummary":true,
+                    "hidden":true
+                },
+                "accountTotals":{
+                    "dailyTotals":true,
+                    "monthlyTotals":true,
+                    "yearlyTotals":true,
+                    "expensesTotals":true,
+                    "hidden":true
+                },
+                "administration":{
+                    "users":true,
+                    "hidden":true
+                }
+            }
         }
         ]
     },
     "customers": {
         "data": [
-        
+            {
+                "id": 1,
+                "name": "Customer 1",
+                "email": "customer1@gmail.com",
+                "phone": "0123456789",
+                "mobile": "00000000000",
+                "Address": "ahmed street"
+            },
+            {
+                "id": 2,
+                "name": "Customer 2",
+                "email": "customer1@gmail.com",
+                "phone": "0123456789",
+                "mobile": "00000000000",
+                "Address": "ahmed street"
+            },
+            {
+                "id": 3,
+                "name": "Customer 3",
+                "email": "customer1@gmail.com",
+                "phone": "0123456789",
+                "mobile": "00000000000",
+                "Address": "ahmed street"
+            }
         ]
     }
 }

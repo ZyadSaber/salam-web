@@ -3,23 +3,14 @@
   display: flex;
   justify-content: space-between;
   padding: 15px 5px;
+  height: 7vh;
 }
 .header .control {
   display: flex;
   justify-content: space-between;
   margin-right: 30px;
 }
-.header .control button {
-  border: 0;
-  width: 80px;
-  border-radius: 11px;
-  text-decoration: none;
-  border: none;
-  border-radius: 22px;
-  font-size: 17px;
-}
 .header .control p {
-  width: 60px;
   margin-right: 23px;
   color: white;
   font-size: 17px;
