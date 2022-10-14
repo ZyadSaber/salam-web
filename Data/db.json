@@ -91,20 +91,30 @@
   ],
   "customers": [
     {
-      "name": "adfdas",
+      "name": "Zyad Ahmed",
+      "email": "zyad.2002.best@gmail.com",
+      "phone": "+201021020169",
+      "mobile": "12129999",
+      "address": "27th Ahmed EL-Rashidy street, flat 18    floor 6",
+      "id": 13
+    },
+    {
+      "name": "asdf",
+      "email": "asdf",
+      "phone": "+201021020169",
+      "address": "27th Ahmed EL-Rashidy street, flat 18    floor 6",
+      "id": 15,
+      "mobile": "6786778"
+    }
+  ],
+  "suppliers": [
+    {
+      "name": "supplier one",
       "email": "sdfsadf",
       "phone": "dsafasdf",
       "mobile": "asdfasf",
       "address": "sadfasdf",
-      "id": 12
-    },
-    {
-      "name": "Zyad Ahmed",
-      "email": "zyad.2002.best@gmail.com",
-      "phone": "+201021020169",
-      "mobile": "1212",
-      "address": "27th Ahmed EL-Rashidy street, flat 18    floor 6",
-      "id": 13
+      "id": 1
     }
   ]
 }

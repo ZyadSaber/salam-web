@@ -1,8 +1,9 @@
-.Table table {
-  width: 100%;
-  table-layout: fixed;
+.customers {
+  height: 80vh;
+  padding: 15px;
+  margin-top: 30px;
 }
-.Table h1 {
+.customers h1 {
   font-size: 30px;
   color: #fff;
   text-transform: uppercase;
@@ -10,16 +11,26 @@
   text-align: center;
   margin-bottom: 15px;
 }
-.Table .tbl-header {
+.customers table {
+  width: 100%;
+  table-layout: fixed;
+}
+.tableTools {
+  margin-bottom: 10px;
+}
+.tableTools {
+  display: flex;
+}
+.tbl-header {
   background-color: rgba(255, 255, 255, 0.3);
 }
-.Table .tbl-content {
+.tbl-content {
   height: 300px;
   overflow-x: auto;
   margin-top: 0px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-.Table th {
+.customers th {
   padding: 20px 15px;
   text-align: left;
   font-weight: 500;
@@ -28,7 +39,7 @@
   text-transform: uppercase;
   border-left: solid 1px rgba(255, 255, 255, 0.1);
 }
-.Table td {
+.customers td {
   padding: 15px;
   text-align: left;
   vertical-align: middle;
@@ -38,24 +49,14 @@
   border-bottom: solid 1px rgba(255, 255, 255, 0.1);
   border-left: solid 1px rgba(255, 255, 255, 0.1);
 }
+
 .customers .btns {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0 13px;
 }
-.Table .selected {
-  background-color: red;
-}
 
-.Table .TableTools button {
-  width: 40px;
-  color: white;
-  text-align: center;
-  color: #fff;
-  font-size: 20px;
-  height: 20px;
-}
-
+/* demo styles */
 section {
   margin: 50px;
 }
@@ -67,20 +68,4 @@ section {
 }
 ::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-
-.Table .TableTools button {
-  background: rgb(31, 103, 145);
-  border: none;
-  justify-content: center;
-  text-align: center;
-  height: 35px;
-  width: 35px;
-  margin: 7px 5px;
-  border-radius: 44px;
-  cursor: pointer;
-}
-.Table .TableTools {
-  display: flex;
-  justify-content: center;
 }

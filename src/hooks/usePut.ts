@@ -18,7 +18,6 @@ const usePut = (link) => {
 useEffect(()=>{
     if(link && row){
     putData(row, url)
-    console.log(row)
     }
 }, [link, row, putData, url])
 

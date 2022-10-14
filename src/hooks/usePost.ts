@@ -17,7 +17,6 @@ const usePost = (link) => {
 useEffect(()=>{
     if(link && row){
     postData(row, url)
-    console.log(success)
     }
 }, [link, row, postData, url, success])
 

@@ -7,9 +7,12 @@ import useFetch from '../../hooks/useFetch';
 import Button from "../../components/button/button";
 import usePost from "../../hooks/usePost";
 import ModalView from "./Partials/ModalView";
+import FormView from "./Partials/FormView";
 import useDelete from "../../hooks/useDelete";
 import usePut from "../../hooks/usePut";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import Table from "../../components/TableView/Table";
+import useTableControlsButtons from "../../components/TableView/hooks/useTableControlsButtons"
 
 interface customerType {
     id?: number;
@@ -20,18 +23,9 @@ interface customerType {
     address?: string
 }
 
-type modeType = "n" | "d" | "u" | ""
-
 const Customers = () => {
-    const [customer, setCustomer] = useState<customerType>({
-        name: "",
-        email: "",
-        phone: "",
-        mobile: "",
-        address: ""
-    })
-    const [modal, setModal] = useState(false)
-    const [mode, setMode] = useState<modeType>("")
+    //@ts-ignore
+    const { setSelectedRow, onDelete, onSaveAndInsertion, setMode, selectedRow, response, modal, setModal } = useTableControlsButtons("customers")
     const [search, setSearch] = useState("");
     const [mainTableData, setMainTableData] = useState<customerType[]>([
         {
@@ -44,65 +38,31 @@ const Customers = () => {
     ])
 
     const { hidden } = useCheckUser()
-    const { data, setRun } = useFetch("http://localhost:8000/customers")
-    const { success, setRow } = usePost("customers")
-    const { success: deletesuccess, setRow: rowToDelete, setId: idToDelete } = useDelete("customers")
-    const { success: editSuccess, setRow: rowToEdit, setId: idToEdit } = usePut("customers")
+    const { data } = useFetch("http://localhost:8000/customers")
 
     useEffect(() => {
         setMainTableData(data)
-    }, [data])
+    }, [data, response])
 
     const handleAdd = useCallback(() => {
         setMode("n")
         setModal(true)
-        setCustomer({
-            name: "",
-            email: "",
-            phone: "",
-            mobile: "",
-            address: ""
-        })
-    }, [])
-    const handleSave = useCallback(() => {
-        if (mode === "n") {
-            setRow(customer)
-            setModal(false)
-            setCustomer({ name: "" })
-            setMode("")
-            setRun(true)
-            setMainTableData(data)
-        } else if (mode === "u") {
-            rowToEdit(customer)
-            idToEdit(customer.id)
-            setModal(false)
-            setCustomer({ name: "" })
-            setMode("")
-            setRun(true)
-            setMainTableData(data)
-        }
-    }, [customer, data, idToEdit, mode, rowToEdit, setRow, setRun])
+        setSelectedRow({})
+    }, [setMode, setModal, setSelectedRow])
+
     const handleCloseModal = useCallback(() => {
         setModal(false)
-        setCustomer({ name: "" })
+        setSelectedRow({})
         setMode("")
         setMainTableData(data)
-    }, [data])
+    }, [setModal, setSelectedRow, setMode, data])
 
-    const handleDelete = useCallback((customerToDelete: customerType) => () => {
-        rowToDelete(customerToDelete)
-        idToDelete(customerToDelete.id)
-        setRun(true)
-        setMainTableData(data)
-    }, [data, idToDelete, rowToDelete, setRun])
-
-    const handleEdit = useCallback((customerToEdit: customerType) => () => {
-        setCustomer(customerToEdit)
+    const handleEdit = useCallback(() => {
         setMode("u")
         setModal(true)
-    }, [])
+    }, [setModal, setMode])
 
-
+    const handleSelect = useCallback((selected: customerType) => () => { setSelectedRow(selected) }, [setSelectedRow])
 
     const handleSearchMethod = useCallback(() => {
         setMainTableData(data.filter((item: customerType) => {
@@ -111,84 +71,55 @@ const Customers = () => {
         }))
     }, [data, search])
 
+    const columns = [
+        { title: "Name" },
+        { title: "Email" },
+        { title: "Phone" },
+        { title: "Mobile" },
+        { title: "Address" },
+    ]
+
 
     return (
         <>
             <Header />
+
             <div className="customers" hidden={hidden}>
-                <section>
-                    <div className="head">
-                        <h1>Customers Data</h1>
-                        <div className="tableTools">
+                <Table
+                    title={"Customers Data"}
+                    columns={columns}
+                    Form={<FormView
+                        setValue={setSearch}
+                        onSearch={handleSearchMethod}
+                    />}
+                    hideTools={false}
+                    canEdit={true}
+                    canAdd={true}
+                    canDelete={true}
+                    onAdd={handleAdd}
+                    onEdit={handleEdit}
+                    onDelete={onDelete}
+                >
+                    {mainTableData.map((customer: customerType) => {
+                        return (
+                            <>
+                                <td onClick={handleSelect(customer)}>{customer.name}</td>
+                                <td onClick={handleSelect(customer)}>{customer.email}</td>
+                                <td onClick={handleSelect(customer)}>{customer.phone}</td>
+                                <td onClick={handleSelect(customer)}>{customer.mobile}</td>
+                                <td onClick={handleSelect(customer)}>{customer.address}</td>
 
-                            <div className="search">
-                                <SearchBar
-                                    placeholder={"Customer Name"}
-                                    setValue={setSearch}
-                                    onSearch={handleSearchMethod}
-                                />
-                                <Button
-                                    label="Add"
-                                    onClick={handleAdd}
-                                    margin={"0 0 0 15px"}
-                                    height={"40px"}
-                                    width={"15vh"}
-                                />
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="tbl-header">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Mobile</th>
-                                    <th>Address</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div className="tbl-content">
-                        <table>
-                            <tbody>
-                                {mainTableData.map((customer: customerType) => {
-                                    return (
-                                        <tr key={customer.id} >
-                                            <td>{customer.name}</td>
-                                            <td>{customer.email}</td>
-                                            <td>{customer.phone}</td>
-                                            <td>{customer.mobile}</td>
-                                            <td>{customer.address}</td>
-                                            <td>
-                                                <div className="btns">
-                                                    <Button
-                                                        label="Edit"
-                                                        onClick={handleEdit(customer)}
-                                                    />
-                                                    <Button
-                                                        label="Delete"
-                                                        onClick={handleDelete(customer)}
-                                                    />
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
+                            </>
+                        )
+                    })}
+                </Table>
 
                 <ModalView
                     visable={modal}
-                    onOK={handleSave}
+                    onOK={onSaveAndInsertion}
                     onClose={handleCloseModal}
-                    setCustomer={setCustomer}
-                    customer={customer}
+                    setCustomer={setSelectedRow}
+                    customer={selectedRow}
                 />
             </div>
             <Footer />

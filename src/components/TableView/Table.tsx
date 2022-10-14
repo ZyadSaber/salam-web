@@ -1,57 +1,89 @@
-import { memo } from 'react';
+import { memo, useState, useMemo, useCallback, useEffect } from 'react';
 import "./style.css";
-import Button from "../../components/button/button"
+import Button from "../button/button";
 
 interface TableProps {
     key?: string | number;
-    dataSource: any[];
+    dataSource?: any[];
     columns: column[];
     title?: string;
-    hideEdit?: boolean;
-    hideAdd?: boolean;
-    hideDelete?: boolean;
+    canEdit?: boolean;
+    canAdd?: boolean;
+    canDelete?: boolean;
     hideTools?: boolean;
     onAdd?: () => void;
     onEdit?: () => void | any;
     onDelete?: () => void;
+    children?: any;
+    Form?: any;
+    actionColumn?: boolean;
+    onAction?: () => void;
+    actionLabel?: string
 }
 
 interface column {
     title: string,
     width?: number,
-    dataIndex: string,
+    dataIndex?: string,
 }
 
 const Table = ({
-    dataSource,
+    // dataSource,
+    // key,
     columns,
-    key,
     title,
     hideTools = true,
-    hideEdit = true,
-    hideAdd = true,
-    hideDelete = true,
+    canEdit = false,
+    canAdd = false,
+    canDelete = false,
     onAdd,
     onEdit,
-    onDelete
-
+    onDelete,
+    children,
+    Form,
+    actionColumn = false,
+    onAction,
+    actionLabel = ""
 }: TableProps) => {
+
+    const [selectdRow, setSelectedRow] = useState({})
+
+    const handleSelectRow = useCallback((setSelectedDataRow: any) => () => {
+        setSelectedRow(setSelectedDataRow)
+    }, [])
+
     return (
         <>
             <div className="Table">
                 <section>
-                    <h1>{title}</h1>
+                    <div className="head">
+                        {Form}
+                    </div>
+                    <div className="tools" hidden={hideTools}>
+                        <div className="TableTools">
+                            <button disabled={!canAdd} onClick={onAdd} >
+                                <i className="fa-sharp fa-solid fa-plus"></i>
+                            </button>
+                            <button disabled={!canEdit} onClick={onEdit} >
+                                <i className="fa-sharp fa-solid fa-pen-clip"></i>
+                            </button>
+                            <button disabled={!canDelete} onClick={onDelete} >
+                                <i className="fa-sharp fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
                     <div className="tbl-header">
                         <table>
                             <thead>
                                 <tr>
-
                                     {columns.map((item: any) => {
                                         return (
-                                            <th>{item.title}</th>
+                                            <th>
+                                                {item.title}
+                                            </th>
                                         )
                                     })}
-                                    <th hidden={hideTools}>Actions</th>
+                                    <th hidden={!actionColumn}>Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -59,42 +91,28 @@ const Table = ({
                     <div className="tbl-content">
                         <table>
                             <tbody>
-                                {dataSource.map((item: any) => {
-                                    return (
-                                        <tr key={key}>
-                                            {/* {
-                                                columns.map((dataIndex) => {
-                                                    return (
-                                                        <td>
-                                                            {item.dataIndex.dataIndex}
-                                                        </td>
-                                                    )
-                                                })
-                                            } */}
-                                            <td hidden={hideTools}>
-                                                <div className="btns">
+                                {children.map(
+                                    //@ts-ignore
+                                    column => {
+                                        return (
+                                            <tr onClick={handleSelectRow(column.props.children)}>
+                                                {column.props.children}
+                                                <td hidden={!actionColumn}>
                                                     <Button
-                                                        label="Edit"
-                                                        hidden={hideEdit}
-                                                        onClick={onEdit}
+                                                        label={actionLabel}
+                                                        onClick={onAction}
                                                     />
-                                                    <Button
-                                                        label="Delete"
-                                                        hidden={hideDelete}
-                                                        onClick={onDelete}
-                                                    />
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                })}
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
                             </tbody>
                         </table>
                     </div>
                 </section>
-            </div>
+            </div >
         </>
     )
 }
 
-export default memo(Table);
+export default Table;
