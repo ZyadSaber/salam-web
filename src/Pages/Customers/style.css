@@ -15,12 +15,11 @@
   width: 100%;
   table-layout: fixed;
 }
-.customers .head button {
-  margin-left: 10px;
+.tableTools {
   margin-bottom: 10px;
-  width: 15vh;
-  height: 4vh;
-  font-size: 14px;
+}
+.tableTools {
+  display: flex;
 }
 .tbl-header {
   background-color: rgba(255, 255, 255, 0.3);

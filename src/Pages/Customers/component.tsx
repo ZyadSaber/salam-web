@@ -71,6 +71,7 @@ const Customers = () => {
             setCustomer({ name: "" })
             setMode("")
             setRun(true)
+            setMainTableData(data)
         } else if (mode === "u") {
             rowToEdit(customer)
             idToEdit(customer.id)
@@ -78,19 +79,22 @@ const Customers = () => {
             setCustomer({ name: "" })
             setMode("")
             setRun(true)
+            setMainTableData(data)
         }
-    }, [customer, idToEdit, mode, rowToEdit, setRow, setRun])
+    }, [customer, data, idToEdit, mode, rowToEdit, setRow, setRun])
     const handleCloseModal = useCallback(() => {
         setModal(false)
         setCustomer({ name: "" })
         setMode("")
-    }, [])
+        setMainTableData(data)
+    }, [data])
 
     const handleDelete = useCallback((customerToDelete: customerType) => () => {
         rowToDelete(customerToDelete)
         idToDelete(customerToDelete.id)
         setRun(true)
-    }, [idToDelete, rowToDelete, setRun])
+        setMainTableData(data)
+    }, [data, idToDelete, rowToDelete, setRun])
 
     const handleEdit = useCallback((customerToEdit: customerType) => () => {
         setCustomer(customerToEdit)
@@ -111,19 +115,28 @@ const Customers = () => {
     return (
         <>
             <Header />
-            <SearchBar
-                placeholder={"Customer Search"}
-                setValue={setSearch}
-                onSearch={handleSearchMethod}
-            />
             <div className="customers" hidden={hidden}>
                 <section>
                     <div className="head">
                         <h1>Customers Data</h1>
-                        <Button
-                            label="Add"
-                            onClick={handleAdd}
-                        />
+                        <div className="tableTools">
+
+                            <div className="search">
+                                <SearchBar
+                                    placeholder={"Customer Name"}
+                                    setValue={setSearch}
+                                    onSearch={handleSearchMethod}
+                                />
+                                <Button
+                                    label="Add"
+                                    onClick={handleAdd}
+                                    margin={"0 0 0 15px"}
+                                    height={"40px"}
+                                    width={"15vh"}
+                                />
+                            </div>
+                        </div>
+
                     </div>
                     <div className="tbl-header">
                         <table>

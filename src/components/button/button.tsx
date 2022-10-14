@@ -7,6 +7,9 @@ interface buttonProp {
     className?: string;
     disabled?: boolean;
     hidden?: boolean;
+    width?: string;
+    margin?: string;
+    height?: string
 }
 
 const Button = ({
@@ -14,11 +17,18 @@ const Button = ({
     onClick,
     disabled,
     className,
-    hidden
+    hidden,
+    margin,
+    width = "7vh",
+    height = "3vh"
 }: buttonProp) => {
     return (
         <>
-            <button className={`button ${className}`} onClick={onClick} disabled={disabled} hidden={hidden}>{label}</button>
+            <button className={`button ${className}`} style={{
+                width: `${width}`,
+                margin: `${margin}`,
+                height: `${height}`
+            }} onClick={onClick} disabled={disabled} hidden={hidden}>{label}</button>
         </>
     )
 }
