@@ -91,7 +91,7 @@
   ],
   "customers": [
     {
-      "name": "Zyad Ahmed",
+      "name": "Zyad ",
       "email": "zyad@a7a.com",
       "phone": "0114455626",
       "mobile": "225488599",
@@ -99,44 +99,12 @@
       "id": 5
     },
     {
-      "name": "Zzz",
-      "email": "test@gmail.com",
-      "phone": "8932084u2380",
-      "mobile": "923489340-9",
-      "address": "lp;okvj",
-      "id": 6
-    },
-    {
-      "name": "Zzz",
-      "email": "test@gmail.comedrfgf",
-      "phone": "8932084u2380",
-      "mobile": "923489340-9",
-      "address": "lp;okvj",
-      "id": 7
-    },
-    {
-      "name": "Zzz",
-      "email": "test@gmail.com",
-      "phone": "8932084u2380",
-      "mobile": "923489340-9",
-      "address": "lp;okvj",
-      "id": 8
-    },
-    {
-      "name": "asdf",
-      "email": "dsaf",
-      "phone": "sdfa",
-      "mobile": "sdf",
-      "address": "sdf",
-      "id": 9
-    },
-    {
-      "name": "dfgh",
-      "email": "gdfhrg",
-      "phone": "345345",
-      "mobile": "34534",
-      "address": "dfgsdfg",
-      "id": 10
+      "name": "adfdas",
+      "email": "sdfsadf",
+      "phone": "dsafasdf",
+      "mobile": "asdfasf",
+      "address": "sadfasdf",
+      "id": 12
     }
   ]
 }

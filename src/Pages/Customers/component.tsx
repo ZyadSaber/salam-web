@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import Header from '../../components/Header/component';
 import Footer from '../../components/Footer/component';
 import useCheckUser from '../../hooks/useCheckUser';
@@ -9,6 +9,7 @@ import usePost from "../../hooks/usePost";
 import ModalView from "./Partials/ModalView";
 import useDelete from "../../hooks/useDelete";
 import usePut from "../../hooks/usePut";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 interface customerType {
     id?: number;
@@ -31,12 +32,26 @@ const Customers = () => {
     })
     const [modal, setModal] = useState(false)
     const [mode, setMode] = useState<modeType>("")
+    const [search, setSearch] = useState("");
+    const [mainTableData, setMainTableData] = useState<customerType[]>([
+        {
+            name: "",
+            email: "",
+            phone: "",
+            mobile: "",
+            address: ""
+        }
+    ])
 
     const { hidden } = useCheckUser()
     const { data, setRun } = useFetch("http://localhost:8000/customers")
     const { success, setRow } = usePost("customers")
     const { success: deletesuccess, setRow: rowToDelete, setId: idToDelete } = useDelete("customers")
     const { success: editSuccess, setRow: rowToEdit, setId: idToEdit } = usePut("customers")
+
+    useEffect(() => {
+        setMainTableData(data)
+    }, [data])
 
     const handleAdd = useCallback(() => {
         setMode("n")
@@ -83,9 +98,24 @@ const Customers = () => {
         setModal(true)
     }, [])
 
+
+
+    const handleSearchMethod = useCallback(() => {
+        setMainTableData(data.filter((item: customerType) => {
+            if (search === "") return item;
+            else if (item.name.toLocaleLowerCase().includes(search.toLowerCase())) return item;
+        }))
+    }, [data, search])
+
+
     return (
         <>
             <Header />
+            <SearchBar
+                placeholder={"Customer Search"}
+                setValue={setSearch}
+                onSearch={handleSearchMethod}
+            />
             <div className="customers" hidden={hidden}>
                 <section>
                     <div className="head">
@@ -112,7 +142,7 @@ const Customers = () => {
                     <div className="tbl-content">
                         <table>
                             <tbody>
-                                {data.map((customer: customerType) => {
+                                {mainTableData.map((customer: customerType) => {
                                     return (
                                         <tr key={customer.id} >
                                             <td>{customer.name}</td>

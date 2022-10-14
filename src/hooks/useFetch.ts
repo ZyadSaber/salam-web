@@ -15,7 +15,7 @@ const getData = useCallback(async(link: string)=>{
       setRun(false)
       }, [getData, url, run]);
 
-      return{data, setRun}
+      return{data, setRun, setData}
 }
 
 export default useFetch
