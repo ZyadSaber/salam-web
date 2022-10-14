@@ -2,18 +2,20 @@ import { useState, useEffect, useCallback } from "react";
 
 const useFetch = (url : string) => {
     const [data, setData] = useState<any>([]);
+    const [run, setRun] = useState(false)
 
 const getData = useCallback(async(link: string)=>{
     const response=await fetch(link);
     const apiData=await response.json();  
-  setData([apiData][0].data);
+  setData(apiData);
 },[])
 
     useEffect(() => {
       getData(url)
-      }, [getData, url]);
+      setRun(false)
+      }, [getData, url, run]);
 
-      return{data}
+      return{data, setRun}
 }
 
 export default useFetch

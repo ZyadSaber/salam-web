@@ -17,10 +17,6 @@ const Header = () => {
         }
     }, [hidden])
 
-    console.log(role)
-    console.log(role.basicData.hidden)
-
-
     const handleLogButton = useCallback(() => {
         if (hidden) {
             window.location.assign("/")
