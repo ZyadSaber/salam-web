@@ -5,33 +5,33 @@ interface ModalViewProp {
     visable: boolean;
     onOK: () => void;
     onClose: () => void;
-    Supplier: any;
-    setSupplier: any
+    suppliers: any;
+    setSuppliers: any
 }
 
 const ModalView = ({
     visable,
     onOK,
     onClose,
-    setSupplier,
-    Supplier
+    setSuppliers,
+    suppliers
 }: ModalViewProp) => {
 
     const onChangeName = useCallback((event?: any) => {
-        setSupplier({ ...Supplier, name: event.target.value })
-    }, [Supplier, setSupplier]);
+        setSuppliers({ ...suppliers, name: event.target.value })
+    }, [suppliers, setSuppliers]);
     const onChangeEmail = useCallback((event?: any) => {
-        setSupplier({ ...Supplier, email: event.target.value })
-    }, [Supplier, setSupplier])
+        setSuppliers({ ...suppliers, email: event.target.value })
+    }, [suppliers, setSuppliers])
     const onChangePhone = useCallback((event?: any) => {
-        setSupplier({ ...Supplier, phone: event.target.value })
-    }, [Supplier, setSupplier])
+        setSuppliers({ ...suppliers, phone: event.target.value })
+    }, [suppliers, setSuppliers])
     const onChangeMobile = useCallback((event?: any) => {
-        setSupplier({ ...Supplier, mobile: event.target.value })
-    }, [Supplier, setSupplier])
+        setSuppliers({ ...suppliers, mobile: event.target.value })
+    }, [suppliers, setSuppliers])
     const onChangeAddress = useCallback((event?: any) => {
-        setSupplier({ ...Supplier, address: event.target.value })
-    }, [Supplier, setSupplier])
+        setSuppliers({ ...suppliers, address: event.target.value })
+    }, [suppliers, setSuppliers])
 
 
 
@@ -43,15 +43,15 @@ const ModalView = ({
             onClose={onClose}
         >
             <label htmlFor="">Name</label>
-            <input type="text" value={Supplier.name} onChange={onChangeName} />
+            <input type="text" value={suppliers.name} onChange={onChangeName} />
             <label htmlFor="">Email</label>
-            <input type="text" value={Supplier.email} onChange={onChangeEmail} />
+            <input type="text" value={suppliers.email} onChange={onChangeEmail} />
             <label htmlFor="">Phone</label>
-            <input type="text" value={Supplier.phone} onChange={onChangePhone} />
+            <input type="text" value={suppliers.phone} onChange={onChangePhone} />
             <label htmlFor="">Mobile</label>
-            <input type="text" value={Supplier.mobile} onChange={onChangeMobile} />
+            <input type="text" value={suppliers.mobile} onChange={onChangeMobile} />
             <label htmlFor="">Address</label>
-            <input type="text" value={Supplier.address} onChange={onChangeAddress} />
+            <input type="text" value={suppliers.address} onChange={onChangeAddress} />
         </Modal>
     )
 };

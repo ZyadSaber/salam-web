@@ -9,31 +9,28 @@ import FormView from "./Partials/FormView";
 import Table from "../../components/TableView/Table";
 import useTableControlsButtons from "../../components/TableView/hooks/useTableControlsButtons"
 
-interface customerType {
+interface ItemsType {
     id?: number;
-    name: string;
-    email?: string;
-    phone?: string;
-    mobile?: string;
-    address?: string
+    item_name: string;
+    unit?: string;
+    base_price?: string;
 }
 
-const Customers = () => {
+const Items = () => {
     //@ts-ignore
-    const { setSelectedRow, onDelete, onSaveAndInsertion, setMode, selectedRow, response, modal, setModal } = useTableControlsButtons("customers")
+    const { setSelectedRow, onDelete, onSaveAndInsertion, setMode, selectedRow, response, modal, setModal } = useTableControlsButtons("items")
     const [search, setSearch] = useState("");
-    const [mainTableData, setMainTableData] = useState<customerType[]>([
+    const [mainTableData, setMainTableData] = useState<ItemsType[]>([
         {
-            name: "",
-            email: "",
-            phone: "",
-            mobile: "",
-            address: ""
+            item_name: "",
+            unit: "",
+            base_price: "",
+            id: 0
         }
     ])
 
     const { hidden } = useCheckUser()
-    const { data } = useFetch("http://localhost:8000/customers")
+    const { data } = useFetch("http://localhost:8000/items")
 
     useEffect(() => {
         setMainTableData(data)
@@ -57,21 +54,19 @@ const Customers = () => {
         setModal(true)
     }, [setModal, setMode])
 
-    const handleSelect = useCallback((selected: customerType) => () => { setSelectedRow(selected) }, [setSelectedRow])
+    const handleSelect = useCallback((selected: ItemsType) => () => { setSelectedRow(selected) }, [setSelectedRow])
 
     const handleSearchMethod = useCallback(() => {
-        setMainTableData(data.filter((item: customerType) => {
+        setMainTableData(data.filter((item: ItemsType) => {
             if (search === "") return item;
-            else if (item.name.toLocaleLowerCase().includes(search.toLowerCase())) return item;
+            else if (item.item_name.toLocaleLowerCase().includes(search.toLowerCase())) return item;
         }))
     }, [data, search])
 
     const columns = [
-        { title: "Name" },
-        { title: "Email" },
-        { title: "Phone" },
-        { title: "Mobile" },
-        { title: "Address" },
+        { title: "Item Name" },
+        { title: "Unit" },
+        { title: "Base Price" },
     ]
 
 
@@ -79,9 +74,9 @@ const Customers = () => {
         <>
             <Header />
 
-            <div className="customers" hidden={hidden}>
+            <div className="Items" hidden={hidden}>
                 <Table
-                    title={"Customers Data"}
+                    title={"Items Data"}
                     columns={columns}
                     Form={<FormView
                         setValue={setSearch}
@@ -95,15 +90,12 @@ const Customers = () => {
                     onEdit={handleEdit}
                     onDelete={onDelete}
                 >
-                    {mainTableData.map((customer: customerType) => {
+                    {mainTableData.map((item: ItemsType) => {
                         return (
                             <>
-                                <td onClick={handleSelect(customer)}>{customer.name}</td>
-                                <td onClick={handleSelect(customer)}>{customer.email}</td>
-                                <td onClick={handleSelect(customer)}>{customer.phone}</td>
-                                <td onClick={handleSelect(customer)}>{customer.mobile}</td>
-                                <td onClick={handleSelect(customer)}>{customer.address}</td>
-
+                                <td onClick={handleSelect(item)}>{item.item_name}</td>
+                                <td onClick={handleSelect(item)}>{item.unit}</td>
+                                <td onClick={handleSelect(item)}>{item.base_price}</td>
                             </>
                         )
                     })}
@@ -113,8 +105,8 @@ const Customers = () => {
                     visable={modal}
                     onOK={onSaveAndInsertion}
                     onClose={handleCloseModal}
-                    setCustomer={setSelectedRow}
-                    customer={selectedRow}
+                    setItems={setSelectedRow}
+                    Items={selectedRow}
                 />
             </div>
             <Footer />
@@ -122,4 +114,4 @@ const Customers = () => {
     )
 };
 
-export default memo(Customers);
+export default memo(Items);

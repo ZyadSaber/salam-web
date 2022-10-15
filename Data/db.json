@@ -97,23 +97,23 @@
       "mobile": "12129999",
       "address": "27th Ahmed EL-Rashidy street, flat 18    floor 6",
       "id": 13
-    },
-    {
-      "name": "asdf",
-      "email": "asdf",
-      "phone": "+201021020169",
-      "address": "27th Ahmed EL-Rashidy street, flat 18    floor 6",
-      "id": 15,
-      "mobile": "6786778"
     }
   ],
   "suppliers": [
     {
-      "name": "supplier one",
-      "email": "sdfsadf",
-      "phone": "dsafasdf",
-      "mobile": "asdfasf",
-      "address": "sadfasdf",
+      "name": "bvcn",
+      "email": "cbvnvcn",
+      "phone": "vbncvn",
+      "mobile": "cvbn",
+      "address": "vbnc",
+      "id": 1
+    }
+  ],
+  "items": [
+    {
+      "item_name": "Bannar",
+      "unit": "cbvnvcn",
+      "base_price": "10",
       "id": 1
     }
   ]
