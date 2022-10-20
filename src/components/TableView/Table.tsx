@@ -1,4 +1,4 @@
-import { memo, useState, useMemo, useCallback, useEffect } from 'react';
+import React, { memo, useState, useMemo, useCallback, useEffect } from 'react';
 import "./style.css";
 import Button from "../button/button";
 

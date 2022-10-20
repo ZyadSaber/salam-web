@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import Header from '../../components/Header/component';
 import Footer from '../../components/Footer/component';
 import useCheckUser from '../../hooks/useCheckUser';
@@ -33,7 +33,8 @@ const Customers = () => {
     ])
 
     const { hidden } = useCheckUser()
-    const { data } = useFetch("http://localhost:8000/customers")
+    const { data } = useFetch("basicData/customers")
+
 
     useEffect(() => {
         setMainTableData(data)
@@ -75,51 +76,50 @@ const Customers = () => {
     ]
 
 
-    return (
-        <>
-            <Header />
+    return (<>
+        <Header />
 
-            <div className="customers" hidden={hidden}>
-                <Table
-                    title={"Customers Data"}
-                    columns={columns}
-                    Form={<FormView
-                        setValue={setSearch}
-                        onSearch={handleSearchMethod}
-                    />}
-                    hideTools={false}
-                    canEdit={true}
-                    canAdd={true}
-                    canDelete={true}
-                    onAdd={handleAdd}
-                    onEdit={handleEdit}
-                    onDelete={onDelete}
-                >
-                    {mainTableData.map((customer: customerType) => {
-                        return (
-                            <>
-                                <td onClick={handleSelect(customer)}>{customer.name}</td>
-                                <td onClick={handleSelect(customer)}>{customer.email}</td>
-                                <td onClick={handleSelect(customer)}>{customer.phone}</td>
-                                <td onClick={handleSelect(customer)}>{customer.mobile}</td>
-                                <td onClick={handleSelect(customer)}>{customer.address}</td>
+        <div className="customers" hidden={hidden}>
+            <Table
+                title={"Customers Data"}
+                columns={columns}
+                Form={<FormView
+                    setValue={setSearch}
+                    onSearch={handleSearchMethod}
+                />}
+                hideTools={false}
+                canEdit={true}
+                canAdd={true}
+                canDelete={true}
+                onAdd={handleAdd}
+                onEdit={handleEdit}
+                onDelete={onDelete}
+            >
+                {mainTableData.map((customer: customerType) => {
+                    return (
+                        <>
+                            <td onClick={handleSelect(customer)}>{customer.name}</td>
+                            <td onClick={handleSelect(customer)}>{customer.email}</td>
+                            <td onClick={handleSelect(customer)}>{customer.phone}</td>
+                            <td onClick={handleSelect(customer)}>{customer.mobile}</td>
+                            <td onClick={handleSelect(customer)}>{customer.address}</td>
 
-                            </>
-                        )
-                    })}
-                </Table>
+                        </>
+                    )
+                })}
+            </Table>
 
-                <ModalView
-                    visable={modal}
-                    onOK={onSaveAndInsertion}
-                    onClose={handleCloseModal}
-                    setCustomer={setSelectedRow}
-                    customer={selectedRow}
-                />
-            </div>
-            <Footer />
-        </>
-    )
+            <ModalView
+                visable={modal}
+                onOK={onSaveAndInsertion}
+                onClose={handleCloseModal}
+                setCustomer={setSelectedRow}
+                customer={selectedRow}
+            />
+        </div>
+        <Footer />
+    </>)
+
 };
 
 export default memo(Customers);
