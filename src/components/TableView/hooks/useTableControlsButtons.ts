@@ -4,7 +4,7 @@ import usePost from "../../../hooks/usePost";
 
 type modeType = "n" | "d" | "u" | ""
 
-const useTableControlsButtons = (api: string) => {
+const useTableControlsButtons = (api?: string) => {
 
     const [selectedRow, setSelectedRow] = useState<{id?:number}>({})
     const [mode, setMode] = useState<modeType>("")
@@ -13,7 +13,6 @@ const useTableControlsButtons = (api: string) => {
     const {  setRow: rowToAdd } = usePost(api)
     // const {  setRow: rowToEdit, setId: idToEdit } = usePut(api)
     // const { setRow: rowToDelete, setId: idToDelete } = useDelete(api)
-    const [modal, setModal] = useState(false)
 
 
     const onSaveAndInsertion = useCallback(()=>{
@@ -21,7 +20,6 @@ const useTableControlsButtons = (api: string) => {
             rowToAdd(selectedRow)
             setSelectedRow({})
             setMode("")
-            setModal(false)
         } else if (mode === "u") {
             const rowToEdit = (rowToEdit: any)=>{}
             const idToEdit = (idToEdit: any)=>{}
@@ -29,7 +27,6 @@ const useTableControlsButtons = (api: string) => {
             idToEdit(selectedRow.id)
             setSelectedRow({})
             setMode("")
-            setModal(false)
         }else if (mode === "d") {
 
         }
@@ -42,7 +39,7 @@ const useTableControlsButtons = (api: string) => {
     //     idToDelete(selectedRow.id)
     // },[idToDelete, rowToDelete, selectedRow])
 
-    return{setSelectedRow, onSaveAndInsertion, setMode, selectedRow, setModal, modal}
+    return{setSelectedRow, onSaveAndInsertion, setMode, selectedRow}
 
 }
 

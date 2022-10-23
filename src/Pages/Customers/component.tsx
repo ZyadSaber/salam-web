@@ -20,7 +20,7 @@ interface customerType {
 
 const Customers = () => {
     //@ts-ignore
-    const { setSelectedRow, onSaveAndInsertion, setMode, selectedRow, response, modal, setModal } = useTableControlsButtons("customers")
+    const { setSelectedRow, onSaveAndInsertion, setMode, selectedRow } = useTableControlsButtons("customers")
     const [search, setSearch] = useState("");
     const [mainTableData, setMainTableData] = useState<customerType[]>([
         {
@@ -58,7 +58,6 @@ const Customers = () => {
         setModal(true)
     }, [setModal, setMode])
     //@ts-ignore
-    const handleSelect = useCallback((selected: customerType) => () => { setSelectedRow(selected) }, [setSelectedRow])
 
     const handleSearchMethod = useCallback(() => {
         setMainTableData(data.filter((item: customerType) => {
@@ -68,11 +67,26 @@ const Customers = () => {
     }, [data, search])
 
     const columns = [
-        { title: "Name" },
-        { title: "Email" },
-        { title: "Phone" },
-        { title: "Mobile" },
-        { title: "Address" },
+        {
+            title: "Name",
+            dataIndex: "name"
+        },
+        {
+            title: "Email",
+            dataIndex: "email"
+        },
+        {
+            title: "Phone",
+            dataIndex: "phone"
+        },
+        {
+            title: "Mobile",
+            dataIndex: "mobile"
+        },
+        {
+            title: "Address",
+            dataIndex: "address"
+        },
     ]
 
     return (<>
@@ -82,10 +96,6 @@ const Customers = () => {
             <Table
                 title={"Customers Data"}
                 columns={columns}
-                Form={<FormView
-                    setValue={setSearch}
-                    onSearch={handleSearchMethod}
-                />}
                 hideTools={false}
                 canEdit={true}
                 canAdd={true}
@@ -94,20 +104,26 @@ const Customers = () => {
                 onEdit={handleEdit}
                 // onDelete={onDelete}
                 rowkey={"customer_id"}
+                dataSource={mainTableData}
             >
-                {mainTableData.map((customer: customerType) => {
-                    return (
-                        <>
-                            <td onClick={handleSelect(customer)}>{customer.name}</td>
-                            <td onClick={handleSelect(customer)}>{customer.email}</td>
-                            <td onClick={handleSelect(customer)}>{customer.phone}</td>
-                            <td onClick={handleSelect(customer)}>{customer.mobile}</td>
-                            <td onClick={handleSelect(customer)}>{customer.address}</td>
-                        </>
-                    )
-                })}
+                <FormView
+                    setValue={setSearch}
+                    onSearch={handleSearchMethod}
+                />
             </Table>
 
+            {/* <TableWithApi
+                tableTitle={"Customers Data"}
+                getApi={"basicData/customers"}
+                postApi={"items_dml"}
+                columns={columns}
+                rowKey={"customer_id"}
+                hideTools={false}
+                canEdit={true}
+                canAdd={true}
+                canDelete={true}
+                apiParameters={{ name: "zyad" }}
+            /> */}
             <ModalView
                 visable={modal}
                 onOK={onSaveAndInsertion}

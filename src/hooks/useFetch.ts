@@ -9,7 +9,6 @@ const getData = useCallback(async(link: string)=>{
     const response=await fetch(link, { mode: 'cors' });
     const apiData=await response.json();  
   setData(apiData);
-  console.log(apiData)
 },[])
 
     useEffect(() => {

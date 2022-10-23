@@ -28,8 +28,8 @@ interface column {
 }
 
 const Table = ({
-    // dataSource,
-    rowkey,
+    dataSource,
+    rowkey = "id",
     columns,
     title,
     hideTools = true,
@@ -40,13 +40,10 @@ const Table = ({
     onEdit,
     onDelete,
     children,
-    Form,
     actionColumn = false,
     onAction,
     actionLabel = ""
 }: TableProps) => {
-
-    const ll = "dd"
 
     const [selectdRow, setSelectedRow] = useState({})
 
@@ -59,7 +56,7 @@ const Table = ({
             <div className="Table">
                 <section>
                     <div className="head">
-                        {Form}
+                        {children}
                     </div>
                     <div className="tools" hidden={hideTools}>
                         <div className="TableTools">
@@ -94,21 +91,25 @@ const Table = ({
                     <div className="tbl-content">
                         <table>
                             <tbody>
-                                {children.map(
-                                    //@ts-ignore
-                                    column => {
-                                        return (
-                                            <tr onClick={handleSelectRow(column.props.children)}>
-                                                {column.props.children}
-                                                <td hidden={!actionColumn}>
-                                                    <Button
-                                                        label={actionLabel}
-                                                        onClick={onAction}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
+                                {dataSource?.map((item: any) => {
+                                    return (
+                                        <tr key={item[rowkey]}>
+                                            {columns.map((column: any) => {
+                                                return (
+                                                    <td>
+                                                        {item[column.dataIndex]}
+                                                    </td>
+                                                )
+                                            })}
+                                            <td hidden={!actionColumn}>
+                                                <Button
+                                                    label={actionLabel}
+                                                    onClick={onAction}
+                                                />
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </div>
