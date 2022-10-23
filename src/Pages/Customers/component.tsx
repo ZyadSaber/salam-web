@@ -66,6 +66,8 @@ const Customers = () => {
         }))
     }, [data, search])
 
+    console.log()
+
     return (<>
         <Header />
 
