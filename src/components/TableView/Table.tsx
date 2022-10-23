@@ -46,6 +46,8 @@ const Table = ({
     actionLabel = ""
 }: TableProps) => {
 
+    const ll = "dd"
+
     const [selectdRow, setSelectedRow] = useState({})
 
     const handleSelectRow = useCallback((setSelectedDataRow: any) => () => {
