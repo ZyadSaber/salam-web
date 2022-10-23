@@ -1,6 +1,5 @@
 import { useState, useCallback } from "react";
-import useDelete from "../../../hooks/useDelete";
-import usePut from "../../../hooks/usePut";
+import { isConstructorDeclaration } from "typescript";
 import usePost from "../../../hooks/usePost";
 
 type modeType = "n" | "d" | "u" | ""
@@ -12,8 +11,8 @@ const useTableControlsButtons = (api: string) => {
     const [response, setResponse] = useState(false)
 
     const {  setRow: rowToAdd } = usePost(api)
-    const {  setRow: rowToEdit, setId: idToEdit } = usePut(api)
-    const { setRow: rowToDelete, setId: idToDelete } = useDelete(api)
+    // const {  setRow: rowToEdit, setId: idToEdit } = usePut(api)
+    // const { setRow: rowToDelete, setId: idToDelete } = useDelete(api)
     const [modal, setModal] = useState(false)
 
 
@@ -24,19 +23,26 @@ const useTableControlsButtons = (api: string) => {
             setMode("")
             setModal(false)
         } else if (mode === "u") {
+            const rowToEdit = (rowToEdit: any)=>{}
+            const idToEdit = (idToEdit: any)=>{}
             rowToEdit(selectedRow)
             idToEdit(selectedRow.id)
             setSelectedRow({})
             setMode("")
             setModal(false)
-        }
-    },[idToEdit, mode, rowToAdd, rowToEdit, selectedRow])
-    const onDelete = useCallback(()=>{
-         rowToDelete(selectedRow)
-        idToDelete(selectedRow.id)
-    },[idToDelete, rowToDelete, selectedRow])
+        }else if (mode === "d") {
 
-    return{setSelectedRow, onDelete, onSaveAndInsertion, setMode, selectedRow, setModal, modal}
+        }
+    },[mode, rowToAdd, selectedRow])
+
+    // console.log(selectedRow)
+
+    // const onDelete = useCallback(()=>{
+    //      rowToDelete(selectedRow)
+    //     idToDelete(selectedRow.id)
+    // },[idToDelete, rowToDelete, selectedRow])
+
+    return{setSelectedRow, onSaveAndInsertion, setMode, selectedRow, setModal, modal}
 
 }
 

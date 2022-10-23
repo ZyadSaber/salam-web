@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import SignInPage from './Pages/SignInPage/component';
 import Customers from './Pages/Customers/component';
 import Home from './Pages/Home/component';

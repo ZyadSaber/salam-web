@@ -3,7 +3,7 @@ import "./style.css";
 import Button from "../button/button";
 
 interface TableProps {
-    key?: string | number;
+    rowkey?: string | number;
     dataSource?: any[];
     columns: column[];
     title?: string;
@@ -29,7 +29,7 @@ interface column {
 
 const Table = ({
     // dataSource,
-    // key,
+    rowkey,
     columns,
     title,
     hideTools = true,
@@ -79,6 +79,7 @@ const Table = ({
                                     {columns.map((item: any) => {
                                         return (
                                             <th>
+
                                                 {item.title}
                                             </th>
                                         )

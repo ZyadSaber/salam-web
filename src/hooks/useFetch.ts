@@ -6,7 +6,7 @@ const useFetch = (link : string) => {
     const [run, setRun] = useState(false)
 
 const getData = useCallback(async(link: string)=>{
-    const response=await fetch(link);
+    const response=await fetch(link, { mode: 'cors' });
     const apiData=await response.json();  
   setData(apiData);
   console.log(apiData)

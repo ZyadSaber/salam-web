@@ -10,7 +10,7 @@ import Table from "../../components/TableView/Table";
 import useTableControlsButtons from "../../components/TableView/hooks/useTableControlsButtons"
 
 interface customerType {
-    id?: number;
+    customer_id?: number;
     name: string;
     email?: string;
     phone?: string;
@@ -20,7 +20,7 @@ interface customerType {
 
 const Customers = () => {
     //@ts-ignore
-    const { setSelectedRow, onDelete, onSaveAndInsertion, setMode, selectedRow, response, modal, setModal } = useTableControlsButtons("customers")
+    const { setSelectedRow, onSaveAndInsertion, setMode, selectedRow, response, modal, setModal } = useTableControlsButtons("customers")
     const [search, setSearch] = useState("");
     const [mainTableData, setMainTableData] = useState<customerType[]>([
         {
@@ -57,7 +57,7 @@ const Customers = () => {
         setMode("u")
         setModal(true)
     }, [setModal, setMode])
-
+    //@ts-ignore
     const handleSelect = useCallback((selected: customerType) => () => { setSelectedRow(selected) }, [setSelectedRow])
 
     const handleSearchMethod = useCallback(() => {
@@ -74,7 +74,6 @@ const Customers = () => {
         { title: "Mobile" },
         { title: "Address" },
     ]
-
 
     return (<>
         <Header />
@@ -93,7 +92,8 @@ const Customers = () => {
                 canDelete={true}
                 onAdd={handleAdd}
                 onEdit={handleEdit}
-                onDelete={onDelete}
+                // onDelete={onDelete}
+                rowkey={"customer_id"}
             >
                 {mainTableData.map((customer: customerType) => {
                     return (
@@ -103,7 +103,6 @@ const Customers = () => {
                             <td onClick={handleSelect(customer)}>{customer.phone}</td>
                             <td onClick={handleSelect(customer)}>{customer.mobile}</td>
                             <td onClick={handleSelect(customer)}>{customer.address}</td>
-
                         </>
                     )
                 })}
