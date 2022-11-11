@@ -1,42 +1,26 @@
-import { useState, useCallback } from "react";
-import useDelete from "../../../hooks/useDelete";
-import usePut from "../../../hooks/usePut";
+import { useState, useCallback, useEffect } from "react";
 import usePost from "../../../hooks/usePost";
 
-type modeType = "n" | "d" | "u" | ""
+const useTableControlsButtons = (api?: string) => {
 
-const useTableControlsButtons = (api: string) => {
-
-    const [selectedRow, setSelectedRow] = useState<{id?:number}>({})
-    const [mode, setMode] = useState<modeType>("")
-    const [response, setResponse] = useState(false)
-
-    const {  setRow: rowToAdd } = usePost(api)
-    const {  setRow: rowToEdit, setId: idToEdit } = usePut(api)
-    const { setRow: rowToDelete, setId: idToDelete } = useDelete(api)
-    const [modal, setModal] = useState(false)
-
+    const [selectedRow, setSelectedRow] = useState<any>({})
+    const { setRow } = usePost(api)
 
     const onSaveAndInsertion = useCallback(()=>{
-        if (mode === "n") {
-            rowToAdd(selectedRow)
+        if (selectedRow?.query_status === "n") {
+            setRow(selectedRow)
             setSelectedRow({})
-            setMode("")
-            setModal(false)
-        } else if (mode === "u") {
-            rowToEdit(selectedRow)
-            idToEdit(selectedRow.id)
+        } else if (selectedRow?.query_status === "u") {
+            setRow(selectedRow)
             setSelectedRow({})
-            setMode("")
-            setModal(false)
-        }
-    },[idToEdit, mode, rowToAdd, rowToEdit, selectedRow])
-    const onDelete = useCallback(()=>{
-         rowToDelete(selectedRow)
-        idToDelete(selectedRow.id)
-    },[idToDelete, rowToDelete, selectedRow])
+        } else if (selectedRow?.query_status === "d") {
+            setRow(selectedRow)
+            setSelectedRow({})
+        } 
+        console.log("ff")
+    },[selectedRow, setRow])
 
-    return{setSelectedRow, onDelete, onSaveAndInsertion, setMode, selectedRow, setModal, modal}
+    return{setSelectedRow, onSaveAndInsertion, selectedRow}
 
 }
 

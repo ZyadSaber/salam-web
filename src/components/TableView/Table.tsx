@@ -3,7 +3,7 @@ import "./style.css";
 import Button from "../button/button";
 
 interface TableProps {
-    key?: string | number;
+    rowkey?: string | number;
     dataSource?: any[];
     columns: column[];
     title?: string;
@@ -18,7 +18,8 @@ interface TableProps {
     Form?: any;
     actionColumn?: boolean;
     onAction?: () => void;
-    actionLabel?: string
+    actionLabel?: string;
+    onSelectedRow?: any
 }
 
 interface column {
@@ -28,8 +29,8 @@ interface column {
 }
 
 const Table = ({
-    // dataSource,
-    // key,
+    dataSource,
+    rowkey = "id",
     columns,
     title,
     hideTools = true,
@@ -40,24 +41,27 @@ const Table = ({
     onEdit,
     onDelete,
     children,
-    Form,
     actionColumn = false,
     onAction,
-    actionLabel = ""
+    actionLabel = "",
+    onSelectedRow
 }: TableProps) => {
+    //@ts-ignore
+    const [rowSelected, setRowSelected] = useState()
 
-    const [selectdRow, setSelectedRow] = useState({})
-
-    const handleSelectRow = useCallback((setSelectedDataRow: any) => () => {
-        setSelectedRow(setSelectedDataRow)
-    }, [])
+    const handleSelectedRow = useCallback((item: any) => () => {
+        if (!!onSelectedRow) {
+            onSelectedRow(item)
+            setRowSelected(item)
+        }
+    }, [onSelectedRow])
 
     return (
         <>
             <div className="Table">
                 <section>
                     <div className="head">
-                        {Form}
+                        {children}
                     </div>
                     <div className="tools" hidden={hideTools}>
                         <div className="TableTools">
@@ -78,7 +82,7 @@ const Table = ({
                                 <tr>
                                     {columns.map((item: any) => {
                                         return (
-                                            <th>
+                                            <th style={{ width: `${item.width}%` }}>
                                                 {item.title}
                                             </th>
                                         )
@@ -91,21 +95,25 @@ const Table = ({
                     <div className="tbl-content">
                         <table>
                             <tbody>
-                                {children.map(
-                                    //@ts-ignore
-                                    column => {
-                                        return (
-                                            <tr onClick={handleSelectRow(column.props.children)}>
-                                                {column.props.children}
-                                                <td hidden={!actionColumn}>
-                                                    <Button
-                                                        label={actionLabel}
-                                                        onClick={onAction}
-                                                    />
-                                                </td>
-                                            </tr>
-                                        )
-                                    })}
+                                {dataSource?.map((item: any) => {
+                                    return (
+                                        <tr key={item[rowkey]} onClick={handleSelectedRow(item)}>
+                                            {columns.map((column: any) => {
+                                                return (
+                                                    <td className={`${rowSelected === item && "selectedRow"}`} style={{ width: `${column.width}%` }}>
+                                                        {item[column.dataIndex]}
+                                                    </td>
+                                                )
+                                            })}
+                                            <td hidden={!actionColumn}>
+                                                <Button
+                                                    label={actionLabel}
+                                                    onClick={onAction}
+                                                />
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
                             </tbody>
                         </table>
                     </div>

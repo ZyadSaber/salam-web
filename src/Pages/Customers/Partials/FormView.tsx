@@ -11,21 +11,19 @@ const FormView = ({
     onSearch
 }: FormViewProp) => {
     return (
-
-        <div className="Form">
-            <div className="head">
-
-                <div className="search">
-                    <SearchBar
-                        placeholder={"Customer Name"}
-                        setValue={setValue}
-                        onSearch={onSearch}
-                    />
+        <>
+            <div className="Form">
+                <div className="head">
+                    <div className="search">
+                        <SearchBar
+                            placeholder={"Customer Name"}
+                            setValue={setValue}
+                            onSearch={onSearch}
+                        />
+                    </div>
                 </div>
-
             </div>
-        </div>
-
+        </>
     )
 }
 
