@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { memo } from 'react';
+import SignInPage from './Pages/SignInPage/component';
+import Customers from './Pages/Customers/component';
+import Home from './Pages/Home/component';
+import Suppliers from './Pages/Suppliers/component';
+import Items from "./Pages/Items/component"
+import './style.css'
+//@ts-ignore
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
+const App = () => {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={SignInPage} />
+          <Route path="/customers" component={Customers} />
+          <Route path="/home" component={Home} />
+          <Route path="/suppliers" component={Suppliers} />
+          <Route path="/items" component={Items} />
+        </Switch>
+      </Router>
     </div>
   );
 }
 
-export default App;
+export default memo(App);
+
