@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import Modal from "../../../components/Modal/Modal";
 
 interface ModalViewProp {

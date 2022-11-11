@@ -1,4 +1,4 @@
-import { memo, useState, useCallback, useEffect } from 'react';
+import React, { memo, useState, useCallback, useEffect } from 'react';
 import './Style.css';
 import useCheckUser from './useCheckUser';
 

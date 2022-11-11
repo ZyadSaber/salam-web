@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import React,{ useState, useEffect, useCallback } from "react";
 
-const useFetch = (url : string) => {
+const useFetch = (link : string) => {
+  const url = `http://127.0.0.1:3001/api/v1/${link}`
     const [data, setData] = useState<any>([]);
     const [run, setRun] = useState(false)
 

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import Header from '../../components/Header/component';
 import Footer from '../../components/Footer/component';
 import useCheckUser from '../../hooks/useCheckUser';

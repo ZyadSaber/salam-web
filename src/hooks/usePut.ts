@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React,{ useState, useEffect, useCallback } from "react";
 
 //@ts-ignore
 const usePut = (link) => {
@@ -24,4 +24,4 @@ useEffect(()=>{
       return{success, setRow, setId}
 }
 
-export default usePut
+// export default usePut

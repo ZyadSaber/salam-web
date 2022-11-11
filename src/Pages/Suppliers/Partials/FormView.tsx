@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import SearchBar from "../../../components/SearchBar/SearchBar";
 
 interface FormViewProp {

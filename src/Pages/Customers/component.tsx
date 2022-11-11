@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import Header from '../../components/Header/component';
 import Footer from '../../components/Footer/component';
 import useCheckUser from '../../hooks/useCheckUser';
@@ -7,10 +7,11 @@ import useFetch from '../../hooks/useFetch';
 import ModalView from "./Partials/ModalView";
 import FormView from "./Partials/FormView";
 import Table from "../../components/TableView/Table";
-import useTableControlsButtons from "../../components/TableView/hooks/useTableControlsButtons"
+import useTableControlsButtons from "../../components/TableView/hooks/useTableControlsButtons";
+import { columns } from "./constants"
 
 interface customerType {
-    id?: number;
+    customer_id?: number;
     name: string;
     email?: string;
     phone?: string;
@@ -20,8 +21,9 @@ interface customerType {
 
 const Customers = () => {
     //@ts-ignore
-    const { setSelectedRow, onDelete, onSaveAndInsertion, setMode, selectedRow, response, modal, setModal } = useTableControlsButtons("customers")
+    const { setSelectedRow, onSaveAndInsertion, selectedRow, onDelete } = useTableControlsButtons("basicData/customers_dml")
     const [search, setSearch] = useState("");
+    const [modal, setModal] = useState(false);
     const [mainTableData, setMainTableData] = useState<customerType[]>([
         {
             name: "",
@@ -33,31 +35,26 @@ const Customers = () => {
     ])
 
     const { hidden } = useCheckUser()
-    const { data } = useFetch("http://localhost:8000/customers")
+    const { data } = useFetch("basicData/customers")
 
     useEffect(() => {
         setMainTableData(data)
-    }, [data, response])
+    }, [data])
 
     const handleAdd = useCallback(() => {
-        setMode("n")
         setModal(true)
-        setSelectedRow({})
-    }, [setMode, setModal, setSelectedRow])
+        setSelectedRow({ query_status: "n" })
+    }, [setSelectedRow])
 
     const handleCloseModal = useCallback(() => {
         setModal(false)
-        setSelectedRow({})
-        setMode("")
         setMainTableData(data)
-    }, [setModal, setSelectedRow, setMode, data])
+    }, [setModal, data])
 
     const handleEdit = useCallback(() => {
-        setMode("u")
         setModal(true)
-    }, [setModal, setMode])
-
-    const handleSelect = useCallback((selected: customerType) => () => { setSelectedRow(selected) }, [setSelectedRow])
+        setSelectedRow({ ...selectedRow, query_status: "u" })
+    }, [selectedRow, setSelectedRow])
 
     const handleSearchMethod = useCallback(() => {
         setMainTableData(data.filter((item: customerType) => {
@@ -66,60 +63,42 @@ const Customers = () => {
         }))
     }, [data, search])
 
-    const columns = [
-        { title: "Name" },
-        { title: "Email" },
-        { title: "Phone" },
-        { title: "Mobile" },
-        { title: "Address" },
-    ]
 
+    return (<>
+        <Header />
 
-    return (
-        <>
-            <Header />
-
-            <div className="customers" hidden={hidden}>
-                <Table
-                    title={"Customers Data"}
-                    columns={columns}
-                    Form={<FormView
-                        setValue={setSearch}
-                        onSearch={handleSearchMethod}
-                    />}
-                    hideTools={false}
-                    canEdit={true}
-                    canAdd={true}
-                    canDelete={true}
-                    onAdd={handleAdd}
-                    onEdit={handleEdit}
-                    onDelete={onDelete}
-                >
-                    {mainTableData.map((customer: customerType) => {
-                        return (
-                            <>
-                                <td onClick={handleSelect(customer)}>{customer.name}</td>
-                                <td onClick={handleSelect(customer)}>{customer.email}</td>
-                                <td onClick={handleSelect(customer)}>{customer.phone}</td>
-                                <td onClick={handleSelect(customer)}>{customer.mobile}</td>
-                                <td onClick={handleSelect(customer)}>{customer.address}</td>
-
-                            </>
-                        )
-                    })}
-                </Table>
-
-                <ModalView
-                    visable={modal}
-                    onOK={onSaveAndInsertion}
-                    onClose={handleCloseModal}
-                    setCustomer={setSelectedRow}
-                    customer={selectedRow}
+        <div className="customers" hidden={hidden}>
+            <Table
+                title={"Customers Data"}
+                columns={columns}
+                hideTools={true}
+                canEdit={true}
+                canAdd={true}
+                canDelete={true}
+                onAdd={handleAdd}
+                onEdit={handleEdit}
+                onDelete={onDelete}
+                rowkey={"customer_id"}
+                dataSource={mainTableData}
+                onSelectedRow={setSelectedRow}
+            >
+                <FormView
+                    setValue={setSearch}
+                    onSearch={handleSearchMethod}
                 />
-            </div>
-            <Footer />
-        </>
-    )
+            </Table>
+
+            <ModalView
+                visable={modal}
+                onOK={onSaveAndInsertion}
+                onClose={handleCloseModal}
+                setCustomer={setSelectedRow}
+                customer={selectedRow}
+            />
+        </div>
+        <Footer />
+    </>)
+
 };
 
 export default memo(Customers);

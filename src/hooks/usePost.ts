@@ -1,24 +1,23 @@
-import { useState, useEffect, useCallback } from "react";
+import React,{ useState, useEffect, useCallback } from "react";
 
 //@ts-ignore
-const usePost = (link) => {
-    const url = `http://localhost:8000/${link}`
+const usePost = (apiPost) => {
+    const url = `localhost:3001/api/v1/${apiPost}`
     const [success, setSuccess] = useState(false)
     const [row, setRow] = useState<{}>()
     const postData = useCallback(async (dataToPost: any, link: string) => {
-        await fetch(link, {
+        const post = await fetch(link, {
             method: "POST",
             headers: { "Content-type": "application/json; charset=UTF-8" },
             body: JSON.stringify(dataToPost)
         });
-        setSuccess(true)
     }, [])
 
 useEffect(()=>{
-    if(link && row){
+    if(apiPost && row){
     postData(row, url)
     }
-}, [link, row, postData, url, success])
+}, [row, postData, url, success, apiPost])
 
       return{success, setRow}
 }
