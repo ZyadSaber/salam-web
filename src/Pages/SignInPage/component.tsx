@@ -23,8 +23,6 @@ const SignInPage = () => {
         window.close()
     }
 
-
-
     return (
         <>
             <div className="sign_in">

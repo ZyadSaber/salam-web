@@ -3,7 +3,7 @@ import Button from "../button/button"
 import "./style.css";
 
 interface ModalProp {
-    visable: boolean,
+    visible?: boolean,
     children: any,
     label: string,
     onOK?: () => void,
@@ -13,14 +13,14 @@ interface ModalProp {
 const Modal = (
     {
         children,
-        visable = false,
+        visible = false,
         label,
         onClose,
         onOK
     }: ModalProp
 ) => {
 
-    if (visable) {
+    if (visible) {
         document.body.classList.add('active-modal')
     } else {
         document.body.classList.remove('active-modal')
@@ -30,7 +30,7 @@ const Modal = (
         <>
             <div
                 className="modal"
-                hidden={!visable}
+                hidden={!visible}
             >
                 <div className="overlay"></div>
                 <div className="modal-content">

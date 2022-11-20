@@ -32,7 +32,6 @@ const Table = ({
     dataSource,
     rowkey = "id",
     columns,
-    title,
     hideTools = true,
     canEdit = false,
     canAdd = false,
@@ -50,11 +49,10 @@ const Table = ({
     const [rowSelected, setRowSelected] = useState()
 
     const handleSelectedRow = useCallback((item: any) => () => {
-        if (!!onSelectedRow) {
-            onSelectedRow(item)
-            setRowSelected(item)
-        }
+        onSelectedRow(item)
+        setRowSelected(item)
     }, [onSelectedRow])
+
 
     return (
         <>

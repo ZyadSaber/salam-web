@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 import Modal from "../../../components/Modal/Modal";
 
 interface ModalViewProp {
-    visable: boolean;
+    visible: boolean;
     onOK: () => void;
     onClose: () => void;
     suppliers: any;
@@ -10,7 +10,7 @@ interface ModalViewProp {
 }
 
 const ModalView = ({
-    visable,
+    visible,
     onOK,
     onClose,
     setSuppliers,
@@ -37,7 +37,7 @@ const ModalView = ({
 
     return (
         <Modal
-            visable={visable}
+            visible={visible}
             label={"Details"}
             onOK={onOK}
             onClose={onClose}

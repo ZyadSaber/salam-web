@@ -5,7 +5,6 @@
 }
 
 .sign_in {
-  background: #0049b0;
   min-height: 100vh;
   padding: 25px;
   display: flex;
@@ -44,7 +43,7 @@ h1 {
   margin-top: 25px;
 }
 .card-body .btns button {
-  background: #0152cb;
+  background: #ddefe6;
   width: 44%;
   margin: 10px;
   font-size: 25px;

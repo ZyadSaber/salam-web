@@ -102,7 +102,7 @@ const Items = () => {
                 </Table>
 
                 <ModalView
-                    visable={modal}
+                    visible={modal}
                     onOK={onSaveAndInsertion}
                     onClose={handleCloseModal}
                     setItems={setSelectedRow}

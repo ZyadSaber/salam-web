@@ -109,7 +109,7 @@ const Suppliers = () => {
                 </Table>
 
                 <ModalView
-                    visable={modal}
+                    visible={modal}
                     onOK={onSaveAndInsertion}
                     onClose={handleCloseModal}
                     setSuppliers={setSelectedRow}

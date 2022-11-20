@@ -6,20 +6,12 @@ const useTableControlsButtons = (api?: string) => {
     const [selectedRow, setSelectedRow] = useState<any>({})
     const { setRow } = usePost(api)
 
-    const onSaveAndInsertion = useCallback(()=>{
-        if (selectedRow?.query_status === "n") {
-            setRow(selectedRow)
-            setSelectedRow({})
-        } else if (selectedRow?.query_status === "u") {
-            setRow(selectedRow)
-            setSelectedRow({})
-        } else if (selectedRow?.query_status === "d") {
-            setRow(selectedRow)
-            setSelectedRow({})
-        } 
-        console.log("ff")
-    },[selectedRow, setRow])
-
+    const onSaveAndInsertion = ()=>{
+        //@ts-ignore
+       if(selectedRow.query_status !== undefined){
+        setRow(selectedRow)
+       }
+    }
     return{setSelectedRow, onSaveAndInsertion, selectedRow}
 
 }

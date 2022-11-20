@@ -1,7 +1,7 @@
 import React,{ useState, useEffect, useCallback } from "react";
 
 const useFetch = (link : string) => {
-  const url = `http://127.0.0.1:3001/api/v1/${link}`
+  const url = `http://144.24.209.19:9090/api/v1/${link}`
     const [data, setData] = useState<any>([]);
     const [run, setRun] = useState(false)
 

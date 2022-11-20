@@ -1,102 +1,29 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import { memo } from 'react';
 import Header from '../../components/Header/component';
 import Footer from '../../components/Footer/component';
 import useCheckUser from '../../hooks/useCheckUser';
 import './style.css';
-import useFetch from '../../hooks/useFetch';
 import ModalView from "./Partials/ModalView";
-import FormView from "./Partials/FormView";
-import Table from "../../components/TableView/Table";
-import useTableControlsButtons from "../../components/TableView/hooks/useTableControlsButtons";
+// import FormView from "./Partials/FormView";
+import ApiTable from "../../components/TableView/ApiTable";
 import { columns } from "./constants"
 
-interface customerType {
-    customer_id?: number;
-    name: string;
-    email?: string;
-    phone?: string;
-    mobile?: string;
-    address?: string
-}
-
 const Customers = () => {
-    //@ts-ignore
-    const { setSelectedRow, onSaveAndInsertion, selectedRow } = useTableControlsButtons("basicData/customers_dml")
-    const [search, setSearch] = useState("");
-    const [modal, setModal] = useState(false);
-    const [mainTableData, setMainTableData] = useState<customerType[]>([
-        {
-            name: "",
-            email: "",
-            phone: "",
-            mobile: "",
-            address: ""
-        }
-    ])
-
     const { hidden } = useCheckUser()
-    const { data } = useFetch("basicData/customers")
-
-    useEffect(() => {
-        setMainTableData(data)
-    }, [data])
-
-    const handleAdd = useCallback(() => {
-        setSelectedRow({ query_status: "n" })
-        setModal(true)
-    }, [setSelectedRow])
-
-    const handleCloseModal = useCallback(() => {
-        setModal(false)
-        setMainTableData(data)
-    }, [setModal, data])
-
-    const handleEdit = useCallback(() => {
-        setModal(true)
-        setSelectedRow({ ...selectedRow, query_status: "u" })
-    }, [selectedRow, setSelectedRow])
-
-    const handleSearchMethod = useCallback(() => {
-        setMainTableData(data.filter((item: customerType) => {
-            if (search === "") return item;
-            else if (item.name.toLocaleLowerCase().includes(search.toLowerCase())) return item;
-        }))
-    }, [data, search])
-
 
     return (<>
         <Header />
-
         <div className="customers" hidden={hidden}>
-            <Table
-                title={"Customers Data"}
+            <ApiTable
+                api={"basicData/customers"}
+                postApi={"basicData/customers_dml"}
                 columns={columns}
                 hideTools={false}
                 canEdit={true}
                 canAdd={true}
                 canDelete={true}
-                onAdd={handleAdd}
-                onEdit={handleEdit}
-                onDelete={() => {
-                    setSelectedRow({ ...selectedRow, query_status: "d" })
-                    onSaveAndInsertion()
-                }}
-                rowkey={"customer_id"}
-                dataSource={mainTableData}
-                onSelectedRow={setSelectedRow}
-            >
-                <FormView
-                    setValue={setSearch}
-                    onSearch={handleSearchMethod}
-                />
-            </Table>
-
-            <ModalView
-                visable={modal}
-                onOK={onSaveAndInsertion}
-                onClose={handleCloseModal}
-                setCustomer={setSelectedRow}
-                customer={selectedRow}
+                rowKey={"customer_id"}
+                Modal={ModalView}
             />
         </div>
         <Footer />

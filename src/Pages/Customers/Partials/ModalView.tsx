@@ -2,56 +2,56 @@ import React, { memo, useCallback } from 'react';
 import Modal from "../../../components/Modal/Modal";
 
 interface ModalViewProp {
-    visable: boolean;
-    onOK: () => void;
-    onClose: () => void;
-    customer: any;
-    setCustomer: any
+    visible?: boolean;
+    onOK?: () => void;
+    onClose?: () => void;
+    selectedRow?: any;
+    setSelectedRow?: any
 }
 
 const ModalView = ({
-    visable,
+    visible: visible,
     onOK,
     onClose,
-    setCustomer,
-    customer
+    setSelectedRow,
+    selectedRow
 }: ModalViewProp) => {
 
     const onChangeName = useCallback((event?: any) => {
-        setCustomer({ ...customer, name: event.target.value })
-    }, [customer, setCustomer]);
+        setSelectedRow({ ...selectedRow, name: event.target.value })
+    }, [selectedRow, setSelectedRow]);
     const onChangeEmail = useCallback((event?: any) => {
-        setCustomer({ ...customer, email: event.target.value })
-    }, [customer, setCustomer])
+        setSelectedRow({ ...selectedRow, email: event.target.value })
+    }, [selectedRow, setSelectedRow])
     const onChangePhone = useCallback((event?: any) => {
-        setCustomer({ ...customer, phone: event.target.value })
-    }, [customer, setCustomer])
+        setSelectedRow({ ...selectedRow, phone: event.target.value })
+    }, [selectedRow, setSelectedRow])
     const onChangeMobile = useCallback((event?: any) => {
-        setCustomer({ ...customer, mobile: event.target.value })
-    }, [customer, setCustomer])
+        setSelectedRow({ ...selectedRow, mobile: event.target.value })
+    }, [selectedRow, setSelectedRow])
     const onChangeAddress = useCallback((event?: any) => {
-        setCustomer({ ...customer, address: event.target.value })
-    }, [customer, setCustomer])
+        setSelectedRow({ ...selectedRow, address: event.target.value })
+    }, [selectedRow, setSelectedRow])
 
 
 
     return (
         <Modal
-            visable={visable}
+            visible={visible}
             label={"Details"}
             onOK={onOK}
             onClose={onClose}
         >
             <label htmlFor="">Name</label>
-            <input type="text" value={customer.name} onChange={onChangeName} />
+            <input type="text" value={selectedRow.name} onChange={onChangeName} />
             <label htmlFor="">Email</label>
-            <input type="text" value={customer.email} onChange={onChangeEmail} />
+            <input type="text" value={selectedRow.email} onChange={onChangeEmail} />
             <label htmlFor="">Phone</label>
-            <input type="text" value={customer.phone} onChange={onChangePhone} />
+            <input type="text" value={selectedRow.phone} onChange={onChangePhone} />
             <label htmlFor="">Mobile</label>
-            <input type="text" value={customer.mobile} onChange={onChangeMobile} />
+            <input type="text" value={selectedRow.mobile} onChange={onChangeMobile} />
             <label htmlFor="">Address</label>
-            <input type="text" value={customer.address} onChange={onChangeAddress} />
+            <input type="text" value={selectedRow.address} onChange={onChangeAddress} />
         </Modal>
     )
 };
