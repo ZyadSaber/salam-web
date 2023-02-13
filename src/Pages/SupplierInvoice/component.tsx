@@ -10,7 +10,7 @@ import { itemsType, invoiceDtls } from "./interface"
 
 const SupplierInvoice = () => {
 
-    const { setRow } = usePost("invoices/supplier_invoice_dml")
+    const { setRow } = usePost({ api: "invoices/supplier_invoice_dml" })
 
     const [itemsType, setItemsType] = useState<invoiceDtls>({
         supplier_id: 0,

@@ -24,10 +24,11 @@ const Button = ({
 }: buttonProp) => {
     return (
         <>
-            <button className={`button btn btn-primary ${className}`} style={{
+            <button className={`button btn btn-primary ${className} `} style={{
                 width: `${width}`,
                 margin: `${margin}`,
-                height: `${height}`
+                height: `${height}`,
+                display: "inline-block"
             }} onClick={onClick} disabled={disabled} hidden={hidden}>{label}</button>
         </>
     )

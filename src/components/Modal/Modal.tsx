@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo } from 'react';
 import Button from "../button/button"
 
 interface ModalProp {
@@ -8,7 +8,9 @@ interface ModalProp {
     onOK?: () => void,
     onClose?: () => void,
     submitTitle?: string,
-    width?: string
+    width?: string;
+    hideSaveButton?: boolean;
+    hideCloseButton?: boolean;
 }
 
 const Modal = (
@@ -19,7 +21,9 @@ const Modal = (
         onClose,
         onOK,
         submitTitle = "Sumbit",
-        width = "50%"
+        width = "50%",
+        hideSaveButton = false,
+        hideCloseButton = false
     }: ModalProp
 ) => {
 
@@ -32,7 +36,7 @@ const Modal = (
                             <h1 className="modal-title fs-5" id="exampleModalLabel">{label}</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
                         </div>
-                        <div className="modal-body" style={{ padding: "5px 20px" }} >
+                        <div className="modal-body" style={{ padding: "5px 20px", display: "flex" }} >
                             {children}
                         </div>
                         <div className="modal-footer">
@@ -40,11 +44,13 @@ const Modal = (
                                 label={submitTitle}
                                 onClick={onOK}
                                 className="btn btn-primary"
+                                hidden={hideSaveButton}
                             />
                             <Button
                                 label='Close'
                                 onClick={onClose}
                                 className="btn btn-secondary"
+                                hidden={hideCloseButton}
                             />
                         </div>
                     </div>

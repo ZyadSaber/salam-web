@@ -8,7 +8,7 @@ import Table from "../../components/TableView/Table";
 import { columns } from "./constant"
 
 const CustomerInvoices = () => {
-    const { setRow } = usePost("invoices/customer_invoice_dml")
+    const { setRow } = usePost({ api: "invoices/customer_invoice_dml" })
 
     const [itemsType, setItemsType] = useState<invoiceDtls>({
         customer_id: 0,

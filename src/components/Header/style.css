@@ -21,6 +21,24 @@ nav ul label {
   -ms-border-radius: 7px;
   -o-border-radius: 7px;
 }
+.header .header-button {
+  border: none;
+  background: none;
+  font-size: 100%;
+  border-radius: 7px;
+  display: block;
+  line-height: 1.2em;
+  color: #111344;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+}
+li .header-button:hover {
+  text-decoration: none;
+  background: #595959;
+  border-radius: 0px 7px 7px 0;
+  background: rgba(0, 0, 0, 0.19999999999999996);
+}
 a {
   margin: 0;
   padding: 0;

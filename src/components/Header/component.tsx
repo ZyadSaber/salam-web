@@ -5,11 +5,15 @@ import useLoacalStorage from '../../hooks/useLocalStorage';
 //@ts-ignore
 import { Link } from 'react-router-dom';
 import Button from "../button/button";
+import Modal from '../Modal/Modal';
+import EmployeeAttendance from "../../Pages/employeeAttendance/component";
 
 const Header = () => {
     const [btn, setBtn] = useState("");
     const { hidden } = useCheckUser()
     const { displayName } = useLoacalStorage()
+    const [modalProps, setModalProps] = useState<any>({
+    })
 
     useEffect(() => {
         if (!hidden) {
@@ -28,8 +32,19 @@ const Header = () => {
         }
     }, [hidden])
 
+    const handleClickModal = (modal: string) => {
+        setModalProps({ [modal]: true })
+    }
+    const handleCloseModal = () => {
+        setModalProps({})
+    }
+
     return (
         <>
+            <EmployeeAttendance
+                visible={modalProps.employeeAttendance}
+                handleCloseModal={handleCloseModal}
+            />
             <nav className="header navbar navbar-expand-lg nav nav2">
                 <div className="container-fluid">
                     <div className="navbar-brand">
@@ -60,7 +75,7 @@ const Header = () => {
                                 <li >
                                     <label>Employees</label>
                                     <ul>
-                                        <li ><Link to="/employeeAttendance">Employee Attendance</Link></li>
+                                        <li ><button onClick={() => { handleClickModal("employeeAttendance") }} className='header-button'>Employee Attendance</button></li>
                                         <li ><Link to="/employeeLeaving">Employee leaving</Link></li>
                                         <li ><Link to="/employeeSalary">Employee Salary</Link></li>
                                         <li ><Link to="/employeeData">Employees Data</Link></li>

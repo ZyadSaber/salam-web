@@ -42,7 +42,7 @@ const ApiTable = ({
 }: ApiTableProps) => {
 
     const { data, refresh } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
-    const { setSelectedRow, onSaveAndInsertion, selectedRow, success } = useTableControlsButtons(postApi)
+    const { setSelectedRow, onSaveAndInsertion, selectedRow, success } = useTableControlsButtons({ api: postApi })
     const [rows, setRows] = useState({})
     const [modal, setModal] = useState(false)
     const handleAdd = useCallback(() => {
