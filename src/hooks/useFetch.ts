@@ -8,8 +8,8 @@ interface useFetchProp {
 }
 
 const useFetch = ({link, fetchOnFirstRun, refreshTimeout, params}: useFetchProp) => {
-  const url = `http://144.24.209.19:9090/api/v1/${link}`
-  // const url = `http://127.0.0.1:9090/api/v1/${link}`
+  // const url = `http://144.24.209.19:9090/api/v1/${link}`
+  const url = `http://127.0.0.1:9090/api/v1/${link}`
     const [data, setData] = useState<any>([]);
 const getData = useCallback(async(link: string)=>{
     const response=await fetch(link + "?" + new URLSearchParams(params));

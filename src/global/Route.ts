@@ -9,6 +9,7 @@ import PrintOptions from "../Pages/PrintOptions/component";
 import CustomerInvoices from "../Pages/CustomerInvoices/component";
 import InvoicesSearch from "../Pages/InvoicesSearch/component";
 import EmployeeAttendance from "../Pages/employeeAttendance/component";
+import EmpoloyeeSheet from "../Pages/employeeSheet/component";
 
 export const PageRoutes = [{
     Path: "customers",
@@ -53,5 +54,9 @@ export const PageRoutes = [{
 {
     Path: "employeeAttendance",
     Component: EmployeeAttendance
+},
+{
+    Path: "employeeSalary",
+    Component: EmpoloyeeSheet
 }
 ]

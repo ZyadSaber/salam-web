@@ -8,21 +8,21 @@ import usePost from "../../hooks/usePost";
 import Modal from "../../components/Modal/Modal";
 import Notification from "../../components/Notification/component"
 
-interface EmployeeAttendanceProps {
+interface EmployeeLeavingProps {
     visible: boolean;
     handleCloseModal: () => void;
 }
 
-const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendanceProps) => {
+const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) => {
     const initialValue = {
         date: "",
         employee_id: "",
         employee_time: "",
-        absent: "Y",
+        notes: "",
         query_status: "n"
     }
     const { onChange, state } = useFormManager({ initialValue: initialValue })
-    const { date, employee_id, real_time, absent, reason } = state
+    const { date, employee_id, real_time, notes } = state
 
     const { setRow, success } = usePost({
         api: ""
@@ -40,7 +40,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                 body={success}
             />
             <Modal
-                label="Employee Attendance"
+                label="Employee Leaving"
                 visible={visible}
                 onClose={handleCloseModal}
                 onOK={handleSaveButton}
@@ -68,22 +68,17 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                             name="real_time"
                             value={real_time}
                             onChange={onChange}
-                            Label="Attendance Time"
+                            Label="Leaving Time"
                             width="33%"
                         />
                     </div>
                     <div style={{ display: "flex" }}>
                         <TextArea
-                            name="reason"
-                            value={reason}
+                            name="notes"
+                            value={notes}
                             onChange={onChange}
-                            Label="Reason"
-                        />
-                        <CheckBox
-                            name="absent"
-                            label="Absent"
-                            value={absent}
-                            onChange={onChange}
+                            Label="Notes"
+                            width="100%"
                         />
                     </div>
                 </div>
@@ -92,4 +87,4 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
     )
 }
 
-export default memo(EmployeeAttendance)
+export default memo(EmployeeLeaving)

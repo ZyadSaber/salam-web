@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Button from "../button/button";
 import Modal from '../Modal/Modal';
 import EmployeeAttendance from "../../Pages/employeeAttendance/component";
+import EmployeeLeaving from "../../Pages/employeeLeaving/component"
 
 const Header = () => {
     const [btn, setBtn] = useState("");
@@ -45,6 +46,10 @@ const Header = () => {
                 visible={modalProps.employeeAttendance}
                 handleCloseModal={handleCloseModal}
             />
+            <EmployeeLeaving
+                visible={modalProps.employeeLeaving}
+                handleCloseModal={handleCloseModal}
+            />
             <nav className="header navbar navbar-expand-lg nav nav2">
                 <div className="container-fluid">
                     <div className="navbar-brand">
@@ -76,7 +81,7 @@ const Header = () => {
                                     <label>Employees</label>
                                     <ul>
                                         <li ><button onClick={() => { handleClickModal("employeeAttendance") }} className='header-button'>Employee Attendance</button></li>
-                                        <li ><Link to="/employeeLeaving">Employee leaving</Link></li>
+                                        <li ><button onClick={() => { handleClickModal("employeeLeaving") }} className='header-button'>Employee leaving</button></li>
                                         <li ><Link to="/employeeSalary">Employee Salary</Link></li>
                                         <li ><Link to="/employeeData">Employees Data</Link></li>
                                     </ul>

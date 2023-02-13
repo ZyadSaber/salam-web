@@ -36,7 +36,7 @@ const Modal = (
                             <h1 className="modal-title fs-5" id="exampleModalLabel">{label}</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={onClose}></button>
                         </div>
-                        <div className="modal-body" style={{ padding: "5px 20px", display: "flex" }} >
+                        <div className="modal-body" style={{ padding: "5px 20px" }} >
                             {children}
                         </div>
                         <div className="modal-footer">
