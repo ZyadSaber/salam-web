@@ -7,8 +7,8 @@ interface usePostProps{
 
 const usePost = ({api}: usePostProps) => {
 
-    const url = `http://144.24.209.19:9090/api/v1/${api}`
-    // const url = `http://127.0.0.1:9090/api/v1/${api}`
+    // const url = `http://144.24.209.19:9090/api/v1/${api}`
+    const url = `http://127.0.0.1:9090/api/v1/${api}`
     const [success, setSuccess] = useState()
     const { authorization } = useLoacalStorage()
     const postData = useCallback(async (dataToPost: any, link: string) => {
