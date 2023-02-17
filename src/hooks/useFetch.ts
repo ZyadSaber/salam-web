@@ -9,9 +9,10 @@ interface useFetchProp {
 
 const useFetch = ({link, fetchOnFirstRun, refreshTimeout, params}: useFetchProp) => {
   // const url = `http://144.24.209.19:9090/api/v1/${link}`
-  // const url = `http://127.0.0.1:9090/api/v1/${link}`
-  const url = `http://192.168.1.250:9090/api/v1/${link}`
+  const url = `http://127.0.0.1:9090/api/v1/${link}`
+  // const url = `http://192.168.1.250:9090/api/v1/${link}`
     const [data, setData] = useState<any>([]);
+    const [runFetch, setRunFetch] = useState(false);
 const getData = useCallback(async(link: string)=>{
     const response=await fetch(link + "?" + new URLSearchParams(params));
     const apiData=await response.json();  
@@ -20,18 +21,25 @@ const getData = useCallback(async(link: string)=>{
 
     useEffect(() => {
       if(fetchOnFirstRun){
-      getData(url)
+        setRunFetch(true)
+        getData(url)
       }
       }, [fetchOnFirstRun, getData, url, params]);
 
 
 
       const refresh = ()=>{
-      getData(url)
+          getData(url)
+      }
+
+      const handleTimeOUt = ()=>{
+        if(runFetch || fetchOnFirstRun){
+          refresh()
+        }
       }
       
-
-      // setInterval(refresh, 60000)
+      // setInterval(handleTimeOUt, 60000)
+      // setTimeout(handleTimeOUt, 60000)s
 
       return{data, refresh, setData}
 }

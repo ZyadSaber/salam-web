@@ -17,15 +17,15 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
     const initialValue = {
         date: "",
         employee_id: "",
-        employee_time: "",
-        absent: "Y",
-        query_status: "n"
+        absent: "N",
+        query_status: "n",
+        attendance_time: ""
     }
     const { onChange, state } = useFormManager({ initialValue: initialValue })
     const { date, employee_id, real_time, absent, reason } = state
 
     const { setRow, success } = usePost({
-        api: ""
+        api: "employeesData/employee_attendance_dml"
     })
 
     const handleSaveButton = () => {
@@ -65,7 +65,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                         />
                         <InputText
                             type="time"
-                            name="real_time"
+                            name="attendance_time"
                             value={real_time}
                             onChange={onChange}
                             Label="Attendance Time"
