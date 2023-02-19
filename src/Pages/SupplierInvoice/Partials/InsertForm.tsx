@@ -42,6 +42,7 @@ const InsertForm = ({
                         value={state.supplier_id}
                         Label="Supplier"
                         name="supplier_id"
+                        fetchOnFirstRun
                     />
                 </div>
                 <InputText
@@ -59,6 +60,7 @@ const InsertForm = ({
                 Label="Item"
                 name="item_id"
                 withLabel
+                fetchOnFirstRun
             />
             <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
 

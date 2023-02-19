@@ -30,6 +30,7 @@ const FormView = ({ changeSearchParams, searchParams }: any) => {
                         invoice_type: searchParams.invoice_type
                     }}
                     value={searchParams.name}
+                    fetchOnFirstRun
                 />
                 <InputText
                     name="date_from"

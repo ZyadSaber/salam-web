@@ -3,7 +3,6 @@ import InputText from "../../components/InputText/InputText";
 import SelectWithApi from "../../components/Select/SelectWithApi";
 import TextArea from "../../components/InputText/TextArea";
 import useFormManager from "../../hooks/useFormManager";
-import CheckBox from "../../components/checkBox/CheckBox";
 import usePost from "../../hooks/usePost";
 import Modal from "../../components/Modal/Modal";
 import Notification from "../../components/Notification/component"
@@ -22,10 +21,10 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
         query_status: "n"
     }
     const { onChange, state } = useFormManager({ initialValue: initialValue })
-    const { date, employee_id, real_time, notes } = state
+    const { date, employee_id, leaving_time, notes } = state
 
     const { setRow, success } = usePost({
-        api: ""
+        api: "employeesData/employee_leaving_dml"
     })
 
     const handleSaveButton = () => {
@@ -62,11 +61,12 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
                             value={employee_id}
                             Label="Employee"
                             width="33%"
+                            fetchOnFirstRun={visible}
                         />
                         <InputText
                             type="time"
-                            name="real_time"
-                            value={real_time}
+                            name="leaving_time"
+                            value={leaving_time}
                             onChange={onChange}
                             Label="Leaving Time"
                             width="33%"

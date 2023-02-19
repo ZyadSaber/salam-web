@@ -62,6 +62,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                             value={employee_id}
                             Label="Employee"
                             width="33%"
+                            fetchOnFirstRun={visible}
                         />
                         <InputText
                             type="time"

@@ -46,6 +46,7 @@ const InsertForm = ({
                         value={state.customer_id}
                         Label="customer"
                         name="customer_id"
+                        fetchOnFirstRun
                     />
                 </div>
                 <InputText
@@ -65,6 +66,7 @@ const InsertForm = ({
                         Label="Print Option"
                         name="print_id"
                         withLabel
+                        fetchOnFirstRun
                     />
                 </div>
                 <div>
@@ -75,6 +77,7 @@ const InsertForm = ({
                         Label="Item"
                         name="item_id"
                         withLabel
+                        fetchOnFirstRun
                     />
                 </div>
             </div>

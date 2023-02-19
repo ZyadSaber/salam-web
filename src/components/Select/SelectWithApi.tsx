@@ -12,7 +12,8 @@ interface SelectWithApiProps {
     withLabel?: boolean;
     margin?: number | string;
     padding?: number | string;
-    params?: any
+    params?: any;
+    fetchOnFirstRun?: boolean;
 }
 
 const SelectWithApi = ({
@@ -25,12 +26,13 @@ const SelectWithApi = ({
     withLabel = false,
     padding,
     margin,
-    params
+    params,
+    fetchOnFirstRun = false
 }: SelectWithApiProps) => {
 
     const { data } = useFetch({
         link: Api,
-        fetchOnFirstRun: true,
+        fetchOnFirstRun: fetchOnFirstRun,
         params: params
     })
 
