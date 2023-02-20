@@ -34,7 +34,7 @@ const InvoicesSearch = () => {
                 <ApiTable
                     columns={mainTableColumns}
                     //@ts-ignore
-                    api="invoices/get_invoice_master"
+                    api="QUERY_INVOICE_MASTER_TABLE_DATA"
                     rowKey="invoice_id"
                     width="35%"
                     fetchOnFirstRun
@@ -50,7 +50,7 @@ const InvoicesSearch = () => {
                 <div style={{ width: "65%" }}>
                     <ApiTable
                         columns={detailTableColumns}
-                        api="invoices/get_invoice_detail"
+                        api="QUERY_INVOICE_DETAIL_TABLE_DATA"
                         rowKey="item_id"
                         fetchOnFirstRun
                         params={{

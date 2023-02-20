@@ -4,7 +4,7 @@ import usePost from "../../../hooks/usePost";
 const useTableControlsButtons = ({api = ""}) => {
 
     const [selectedRow, setRows] = useState<any>({})
-    const { setRow, success } = usePost({api: api})
+    const { setRow, success } = usePost({link: api})
 
     const onSaveAndInsertion = ()=>{
         //@ts-ignore

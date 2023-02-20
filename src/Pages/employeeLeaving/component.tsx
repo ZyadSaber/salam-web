@@ -24,7 +24,7 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
     const { date, employee_id, leaving_time, notes } = state
 
     const { setRow, success } = usePost({
-        api: "employeesData/employee_leaving_dml"
+        link: "POST_EMPLOYEE_LEAVING"
     })
 
     const handleSaveButton = () => {

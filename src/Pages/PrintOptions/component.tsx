@@ -13,8 +13,8 @@ const PrintOptions = () => {
         <>
             <div className="Suppliers" hidden={hidden}>
                 <ApiTable
-                    api={"basicData/print_options"}
-                    postApi={"basicData/print_options_dml"}
+                    api={"QUERY_PRINT_OPTIONS_TABLE_DAT"}
+                    postApi={"POST_PRINT_OPTIONS_TABLE_DATA"}
                     columns={columns}
                     hideTools={false}
                     canEdit={true}

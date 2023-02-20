@@ -1,12 +1,8 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import Modal from "../../../components/Modal/Modal";
 import { ModalViewProp } from "../../../Types/general";
 import useFormManager from '../../../hooks/useFormManager';
 import InputText from '../../../components/InputText/InputText';
-
-interface dd {
-    name: string;
-}
 
 const ModalView = ({
     visible,

@@ -11,8 +11,8 @@ const Suppliers = () => {
         <>
             <div className="Suppliers" hidden={hidden}>
                 <ApiTable
-                    api={"basicData/suppliers"}
-                    postApi={"basicData/suppliers_dml"}
+                    api={"QUERY_SUPPLIER_TABLE_DATA"}
+                    postApi={"POST_SUPPLIER_TABLE_DATA"}
                     columns={columns}
                     hideTools={false}
                     canEdit={true}

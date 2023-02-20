@@ -13,8 +13,8 @@ const Items = () => {
         <>
             <div className="Items" hidden={hidden}>
                 <ApiTable
-                    api={"basicData/items"}
-                    postApi={"basicData/items_dml"}
+                    api={"QUERY_ITEMS_TABLE_DATA"}
+                    postApi={"POST_ITEMS_TABLE_DATA"}
                     columns={columns}
                     hideTools={false}
                     canEdit={true}

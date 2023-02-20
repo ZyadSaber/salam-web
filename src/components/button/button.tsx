@@ -1,16 +1,7 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import './style.css';
-
-interface buttonProp {
-    label: string;
-    onClick?: () => void;
-    className?: string;
-    disabled?: boolean;
-    hidden?: boolean;
-    width?: string;
-    margin?: string;
-    height?: string
-}
+import { buttonProp } from "./interface";
+import useTranslateLabel from '../../hooks/useTranslateLabel';
 
 const Button = ({
     label,
@@ -22,6 +13,8 @@ const Button = ({
     width,
     height
 }: buttonProp) => {
+    const { tran_label } = useTranslateLabel({ label: label })
+    console.log(tran_label)
     return (
         <>
             <button className={`button btn btn-primary ${className} `} style={{
@@ -29,7 +22,7 @@ const Button = ({
                 margin: `${margin}`,
                 height: `${height}`,
                 display: "inline-block"
-            }} onClick={onClick} disabled={disabled} hidden={hidden}>{label}</button>
+            }} onClick={onClick} disabled={disabled} hidden={hidden}>{tran_label ? tran_label : label}</button>
         </>
     )
 }

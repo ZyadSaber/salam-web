@@ -1,18 +1,19 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import useLoacalStorage from "./useLocalStorage";
+import API_ID from "../global/api"
 
 interface usePostProps{
-    api: string;
+    link: string;
 };
 
-const usePost = ({api}: usePostProps) => {
-
-    // const url = `http://144.24.209.19:9090/api/v1/${api}`
-    const url = `http://127.0.0.1:9090/api/v1/${api}`
-    // const url = `http://192.168.1.250:9090/api/v1/${api}`
+const usePost = ({link}: usePostProps) => {
+    //@ts-ignore
+    const url = `http://144.24.209.19:9090/api/v1/${API_ID[link]}`
+    // const url = `http://127.0.0.1:9090/api/v1/${link}`
+    // const url = `http://192.168.1.250:9090/api/v1/${link}`
     const [success, setSuccess] = useState()
     const { authorization } = useLoacalStorage()
-    const postData = useCallback(async (dataToPost: any, link: string) => {
+    const postData = useCallback(async (dataToPost: any) => {
         dataToPost.authorization = authorization
         const settings = {
             method: 'POST',
@@ -33,8 +34,8 @@ const usePost = ({api}: usePostProps) => {
     }, [authorization, url])
 
     const setRow = useCallback((row: any) => {
-        postData(row, url)
-    }, [postData, url])
+        postData(row)
+    }, [postData])
 
     return { success, setRow }
 }

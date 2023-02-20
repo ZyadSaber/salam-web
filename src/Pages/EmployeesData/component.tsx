@@ -7,8 +7,8 @@ const EmployeesData = () => {
     return (<>
         <div className="customers">
             <ApiTable
-                api={"employeesData/employees"}
-                postApi={"employeesData/employees_dml"}
+                api={"QUERY_EMPLOYEES_TABLE_DATA"}
+                postApi={"POST_EMPLOYEES_TABLE_DATA"}
                 columns={columns}
                 hideTools={false}
                 canEdit={true}

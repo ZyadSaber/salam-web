@@ -13,8 +13,8 @@ const Customers = () => {
         <>
             <div className="customers" hidden={hidden}>
                 <ApiTable
-                    api={"basicData/customers"}
-                    postApi={"basicData/customers_dml"}
+                    api={"QUERY_CUSTOMER_TABLE_DATA"}
+                    postApi={"POST_CUSTOMER_TABLE_DATA"}
                     columns={columns}
                     hideTools={false}
                     canEdit={true}

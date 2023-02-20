@@ -25,7 +25,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
     const { date, employee_id, real_time, absent, reason } = state
 
     const { setRow, success } = usePost({
-        api: "employeesData/employee_attendance_dml"
+        link: "POST_EMPLOYEE_ATTENDANCE"
     })
 
     const handleSaveButton = () => {
