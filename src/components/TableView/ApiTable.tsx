@@ -41,7 +41,7 @@ const ApiTable = ({
     params
 }: ApiTableProps) => {
 
-    const { data, refresh } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
+    const { data, runFetch } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
     const { setSelectedRow, onSaveAndInsertion, selectedRow, success } = useTableControlsButtons({ api: postApi })
     const [rows, setRows] = useState({})
     const [modal, setModal] = useState(false)
@@ -65,8 +65,8 @@ const ApiTable = ({
     const handleSaveModal = useCallback(() => {
         setModal(false)
         onSaveAndInsertion()
-        refresh()
-    }, [onSaveAndInsertion, refresh])
+        runFetch()
+    }, [onSaveAndInsertion, runFetch])
 
     const handleSelectedRow = (row: any) => {
         setRows(row)

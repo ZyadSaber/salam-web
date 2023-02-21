@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useFetch from "./useFetch";
 
 interface useTranslateLabelProps{
-    label: string;
+    label?: string;
+    chunkLabel?: string[]
 }
 
-const useTranslateLabel = ({label}: useTranslateLabelProps)=>{
-    const [transLabel, setTransLabel] = useState("")
+const useTranslateLabel = ({label = "", chunkLabel}: useTranslateLabelProps)=>{
 
-const { data}  = useFetch({
+const { data, runFetch}  = useFetch({
     link: "QUERY_LABELS",
-    params:{
-        label: label,
-        p_language: 2
-    },
-    fetchOnFirstRun: true
-})
+    params: {
+            label: label,
+            p_language: 2,
+            chunk_labels: chunkLabel
+        }
+})         
+
 
 useEffect(()=>{
-    if(data){
-        setTransLabel(data.label)
+    if(label !== ""){
+        runFetch()
     }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 },[label])
 
-// const tran_label  = 
-
-return {tran_label: transLabel}
+return {tran_label: data.label}
 
 }
 

@@ -5,9 +5,9 @@ import useLoacalStorage from '../../hooks/useLocalStorage';
 //@ts-ignore
 import { Link } from 'react-router-dom';
 import Button from "../button/button";
-import Modal from '../Modal/Modal';
 import EmployeeAttendance from "../../Pages/employeeAttendance/component";
-import EmployeeLeaving from "../../Pages/employeeLeaving/component"
+import EmployeeLeaving from "../../Pages/employeeLeaving/component";
+// import useTranslateLabel from '../../hooks/useTranslateLabel';
 
 const Header = () => {
     const [btn, setBtn] = useState("");
@@ -15,6 +15,13 @@ const Header = () => {
     const { displayName } = useLoacalStorage()
     const [modalProps, setModalProps] = useState<any>({
     })
+
+    // const { } = useTranslateLabel({
+    //     chunkLabel: [
+    //         "dt",
+    //         "nm"
+    //     ]
+    // })
 
     useEffect(() => {
         if (!hidden) {

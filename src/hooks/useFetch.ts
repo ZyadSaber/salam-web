@@ -16,38 +16,29 @@ const useFetch = ({link = "", fetchOnFirstRun, refreshTimeout, params}: useFetch
   // const url = `http://127.0.0.1:9090/api/v1/${link}`
   // const url = `http://192.168.1.250:9090/api/v1/${link}`
   const [data, setData] = useState<any>([]);
-  // const [runFetch, setRunFetch] = useState(false);
-  const getData = useCallback(async(link: string)=>{
-    if(authorization){
-const response = await fetch(`${url}?authorization=${authorization}${new URLSearchParams(params)}`)
+  const getData = useCallback(async()=>{
+    if(!authorization){
+const response = await fetch(`${url}?authorization=${authorization}&${new URLSearchParams(params)}`)
     const apiData=await response.json();  
   setData(apiData);
     }
 },[authorization, params, url])
 
+
     useEffect(() => {
       if(fetchOnFirstRun){
-        // setRunFetch(true)
-        getData(url)
+        getData()
       }
       }, [fetchOnFirstRun, getData, url, params]);
 
 
 
-      const refresh = ()=>{
-          getData(url)
-      }
+      const runFetch = useCallback(()=>{
+        console.log(link)
+          getData()
+      },[getData, link])
 
-      // const handleTimeOUt = ()=>{
-      //   if(runFetch || fetchOnFirstRun){
-      //     refresh()
-      //   }
-      // }
-      
-      // setInterval(handleTimeOUt, 60000)
-      // setTimeout(handleTimeOUt, 60000)s
-
-      return{data, refresh, setData}
+      return{data, runFetch, setData}
 }
 
 export default useFetch

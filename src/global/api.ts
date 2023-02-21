@@ -17,6 +17,7 @@ const API_ID = {
     USER_LOG_IN: "user_log_in",
     POST_SUPPLIER_INVOICE: "invoices/supplier_invoice_dml",
     QUERY_LABELS: "get_labels",
+    QUERY_CHUNK_LABELS: "get_chunk_labels",
 };
 
 export default API_ID

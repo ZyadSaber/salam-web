@@ -28,7 +28,7 @@ const SignInPage = () => {
         }
     }, [authorization])
 
-    //@ts-ignore
+    // @ts-ignore
     if (success && success.response === "success") {
         window.location.assign("/home")
     }
@@ -47,18 +47,22 @@ const SignInPage = () => {
                         <p>Please Log In</p>
                         <InputText
                             name='user_name'
-                            Label='User Name'
+                            Label='usrnm'
                             onChange={onChange}
+                            width="90%"
                         />
                         <InputText
                             name='user_password'
-                            Label='Password'
+                            Label='pswrd'
                             onChange={onChange}
                             type="password"
+                            width="90%"
                         />
                         <Button
                             label='login'
                             onClick={handleLogIn}
+                            width='40%'
+                            margin='10px'
                         />
                     </div>
                 </div>

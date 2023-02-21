@@ -48,7 +48,7 @@ const InsertForm = ({
                 <InputText
                     name="date"
                     value={state.date}
-                    Label="Date"
+                    Label="dt"
                     onChange={onChange}
                     type="date"
                 />

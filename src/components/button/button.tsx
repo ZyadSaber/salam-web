@@ -4,7 +4,7 @@ import { buttonProp } from "./interface";
 import useTranslateLabel from '../../hooks/useTranslateLabel';
 
 const Button = ({
-    label,
+    label = "",
     onClick,
     disabled,
     className,
@@ -14,7 +14,6 @@ const Button = ({
     height
 }: buttonProp) => {
     const { tran_label } = useTranslateLabel({ label: label })
-    console.log(tran_label)
     return (
         <>
             <button className={`button btn btn-primary ${className} `} style={{

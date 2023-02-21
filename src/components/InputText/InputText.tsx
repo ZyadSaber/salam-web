@@ -1,11 +1,12 @@
 import { memo, useCallback } from "react";
-import { InputTextProps } from "./interface"
+import { InputTextProps } from "./interface";
+import useTranslateLabel from '../../hooks/useTranslateLabel';
 
 const InputText = ({
     disabled,
     value,
     name,
-    Label,
+    Label = "",
     onChange,
     width = "200px",
     type = "text",
@@ -18,10 +19,12 @@ const InputText = ({
         onChange({ name: name, value: event.target.value })
     }, [name, onChange])
 
+    const { tran_label } = useTranslateLabel({ label: Label })
+
     return (
         <>
             <div className="mb-1 d-inline-block" style={{ width: width, margin: margin, padding: padding }}>
-                <label htmlFor="exampleFormControlInput1" className="form-label">{Label}</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">{tran_label ? tran_label : Label}</label>
                 <input type={type} className="form-control" id="exampleFormControlInput1" placeholder={placeHolder} disabled={disabled} onChange={handleChange} value={value} />
             </div>
         </>
