@@ -7,9 +7,16 @@ interface useFetchProp {
   fetchOnFirstRun?: boolean;
   refreshTimeout?: number;
   params?: any
+  noAuthorization?: boolean
 }
 
-const useFetch = ({link = "", fetchOnFirstRun, refreshTimeout, params}: useFetchProp) => {
+const useFetch = ({
+  link = "", 
+  fetchOnFirstRun,
+   refreshTimeout,
+    params, 
+    noAuthorization = false
+  }: useFetchProp) => {
   const { authorization } = useLoacalStorage()
   //@ts-ignore
   const url = `http://144.24.209.19:9090/api/v1/${API_ID[link]}`
@@ -17,12 +24,12 @@ const useFetch = ({link = "", fetchOnFirstRun, refreshTimeout, params}: useFetch
   // const url = `http://192.168.1.250:9090/api/v1/${link}`
   const [data, setData] = useState<any>([]);
   const getData = useCallback(async()=>{
-    if(!authorization){
+    if(authorization || noAuthorization){
 const response = await fetch(`${url}?authorization=${authorization}&${new URLSearchParams(params)}`)
     const apiData=await response.json();  
   setData(apiData);
     }
-},[authorization, params, url])
+},[authorization, noAuthorization, params, url])
 
 
     useEffect(() => {

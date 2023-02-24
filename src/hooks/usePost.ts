@@ -4,9 +4,13 @@ import API_ID from "../global/api"
 
 interface usePostProps{
     link: string;
+    noAuthorization?: boolean
 };
 
-const usePost = ({link}: usePostProps) => {
+const usePost = ({
+    link  = "",
+    noAuthorization = false
+}: usePostProps) => {
     //@ts-ignore
     const url = `http://144.24.209.19:9090/api/v1/${API_ID[link]}`
     // const url = `http://127.0.0.1:9090/api/v1/${link}`
@@ -14,6 +18,7 @@ const usePost = ({link}: usePostProps) => {
     const [success, setSuccess] = useState()
     const { authorization } = useLoacalStorage()
     const postData = useCallback(async (dataToPost: any) => {
+        if(authorization || noAuthorization){
         dataToPost.authorization = authorization
         const settings = {
             method: 'POST',
@@ -30,8 +35,8 @@ const usePost = ({link}: usePostProps) => {
             return data
         } catch (e) {
             console.log(e)
-        }
-    }, [authorization, url])
+        }}
+    }, [authorization, noAuthorization, url])
 
     const setRow = useCallback((row: any) => {
         postData(row)

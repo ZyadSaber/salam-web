@@ -8,7 +8,7 @@ import useLoacalStorage from '../../hooks/useLocalStorage';
 
 const SignInPage = () => {
 
-    const { setRow, success } = usePost({ link: "USER_LOG_IN" })
+    const { setRow, success } = usePost({ link: "USER_LOG_IN", noAuthorization: true })
     const { state, onChange } = useFormManager({})
     const { authorization, changeLocalStorage } = useLoacalStorage()
 
