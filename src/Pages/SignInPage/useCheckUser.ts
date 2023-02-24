@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import useFetch from '../../hooks/useFetch';
 
 const useCheckUser = (userName: string, password: string) => {

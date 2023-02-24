@@ -43,8 +43,8 @@ const SignInPage = () => {
             <div className="sign_in">
                 <div className="card">
                     <div className="card-body">
-                        <h1>Welcome </h1>
-                        <p>Please Log In</p>
+                        <h1>مرحبا</h1>
+                        <p>قم بتسجيل الدخول الى النظام</p>
                         <InputText
                             name='user_name'
                             Label='usrnm'

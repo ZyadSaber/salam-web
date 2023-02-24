@@ -13,7 +13,7 @@ const Button = ({
     width,
     height
 }: buttonProp) => {
-    const { tran_label } = useTranslateLabel({ label: label })
+    const { tran_label } = useTranslateLabel({ label: label, noAuthorization: true })
     return (
         <>
             <button className={`button btn btn-primary ${className} `} style={{

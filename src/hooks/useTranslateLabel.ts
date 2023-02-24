@@ -3,10 +3,11 @@ import useFetch from "./useFetch";
 
 interface useTranslateLabelProps{
     label?: string;
-    chunkLabel?: string[]
+    chunkLabel?: string[];
+    noAuthorization?: boolean;
 }
 
-const useTranslateLabel = ({label = "", chunkLabel}: useTranslateLabelProps)=>{
+const useTranslateLabel = ({label = "", chunkLabel, noAuthorization = false}: useTranslateLabelProps)=>{
 
 const { data, runFetch}  = useFetch({
     link: "QUERY_LABELS",
@@ -14,7 +15,8 @@ const { data, runFetch}  = useFetch({
             label: label,
             p_language: 2,
             chunk_labels: chunkLabel
-        }
+        },
+        noAuthorization: noAuthorization
 })         
 
 

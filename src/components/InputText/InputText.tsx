@@ -19,7 +19,7 @@ const InputText = ({
         onChange({ name: name, value: event.target.value })
     }, [name, onChange])
 
-    const { tran_label } = useTranslateLabel({ label: Label })
+    const { tran_label } = useTranslateLabel({ label: Label, noAuthorization: true })
 
     return (
         <>
