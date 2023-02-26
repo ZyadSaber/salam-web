@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import './style.css';
 import { buttonProp } from "./interface";
-import useTranslateLabel from '../../hooks/useTranslateLabel';
+import { useTranslation } from 'react-i18next'
 
 const Button = ({
     label = "",
@@ -11,9 +11,9 @@ const Button = ({
     hidden,
     margin,
     width,
-    height
+    height,
 }: buttonProp) => {
-    const { tran_label } = useTranslateLabel({ label: label, noAuthorization: true })
+    const { t } = useTranslation()
     return (
         <>
             <button className={`button btn btn-primary ${className} `} style={{
@@ -21,7 +21,7 @@ const Button = ({
                 margin: `${margin}`,
                 height: `${height}`,
                 display: "inline-block"
-            }} onClick={onClick} disabled={disabled} hidden={hidden}>{tran_label ? tran_label : label}</button>
+            }} onClick={onClick} disabled={disabled} hidden={hidden}>{t(label)}</button>
         </>
     )
 }

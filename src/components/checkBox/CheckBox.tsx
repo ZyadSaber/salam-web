@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { CheckBoxProps } from "./interface";
-import useTranslateLabel from '../../hooks/useTranslateLabel';
+import { useTranslation } from 'react-i18next'
 
 const CheckBox = ({
     label = "",
@@ -12,8 +12,8 @@ const CheckBox = ({
     padding,
     margin = "10px"
 }: CheckBoxProps) => {
+    const { t } = useTranslation()
     const [checked, setChecked] = useState(false)
-    const { tran_label } = useTranslateLabel({ label: label })
     const handleChange = useCallback((event: { target: { checked: boolean; }; }) => {
         if (event.target.checked === true) {
             onChange({ name: name, value: "Y" })
@@ -39,7 +39,7 @@ const CheckBox = ({
             }}>
                 <input className="form-check-input" type="checkbox" checked={checked} id="flexCheckIndeterminate" onChange={handleChange} disabled={disabled} />
                 <label className="form-check-label" htmlFor="flexCheckIndeterminate">
-                    {tran_label ? tran_label : label}
+                    {t(label)}
                 </label>
             </div>
         </>

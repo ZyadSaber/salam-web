@@ -9,6 +9,8 @@ export interface InputTextProps {
     placeHolder?: string;
     padding?: number | string;
     margin?: number | string;
+    className?: string;
+    noAuthorization?: boolean;
 }
 
 export interface TextAreaProps{

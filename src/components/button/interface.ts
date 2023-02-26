@@ -6,5 +6,6 @@ export interface buttonProp {
     hidden?: boolean;
     width?: string;
     margin?: string;
-    height?: string
+    height?: string;
+    noAuthorization?: boolean;
 }

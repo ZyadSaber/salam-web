@@ -16,13 +16,6 @@ const Header = () => {
     const [modalProps, setModalProps] = useState<any>({
     })
 
-    // const { } = useTranslateLabel({
-    //     chunkLabel: [
-    //         "dt",
-    //         "nm"
-    //     ]
-    // })
-
     useEffect(() => {
         if (!hidden) {
             setBtn("log Out")
@@ -117,7 +110,7 @@ const Header = () => {
                                     </ul>
                                 </li>
                             </ul>
-                            <div className=' position-absolute ' style={{ right: "2%" }}>
+                            {/* <div className=' position-absolute ' style={{ right: "2%" }}>
                                 <form className="d-flex ff" role="search">
                                     {displayName && <span className="navbar-brand mb-0 h1 ">{`Current User is ${displayName} `}</span>}
                                     <Button
@@ -127,7 +120,7 @@ const Header = () => {
                                         height='100%'
                                     />
                                 </form>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

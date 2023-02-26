@@ -41,9 +41,8 @@ const response = await fetch(`${url}?authorization=${authorization}&${new URLSea
 
 
       const runFetch = useCallback(()=>{
-        console.log(link)
-          getData()
-      },[getData, link])
+          // getData()
+      },[])
 
       return{data, runFetch, setData}
 }
