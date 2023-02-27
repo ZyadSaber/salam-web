@@ -2,7 +2,7 @@ import { memo } from "react";
 import { pageTitleProps } from "./interface";
 import { useTranslation } from 'react-i18next';
 
-const PageTitla = ({
+const Text = ({
     title,
     width,
     padding,
@@ -16,10 +16,10 @@ const PageTitla = ({
                 margin: margin,
                 padding: padding
             }}>
-                <h1>{t(title)}</h1>
+                <h4>{t(title)}</h4>
             </div>
         </>
     )
 }
 
-export default memo(PageTitla)
+export default memo(Text)

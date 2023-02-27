@@ -3,19 +3,15 @@ import './style.css';
 import useCheckUser from '../../hooks/useCheckUser';
 import useLoacalStorage from '../../hooks/useLocalStorage';
 //@ts-ignore
-import { Link } from 'react-router-dom';
-import Button from "../button/button";
-import EmployeeAttendance from "../../Pages/employeeAttendance/component";
-import EmployeeLeaving from "../../Pages/employeeLeaving/component";
-// import useTranslateLabel from '../../hooks/useTranslateLabel';
+import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import Button from '../button/button';
 
 const Header = () => {
     const [btn, setBtn] = useState("");
     const { hidden } = useCheckUser()
+    const { t } = useTranslation()
     const { displayName } = useLoacalStorage()
-    const [modalProps, setModalProps] = useState<any>({
-    })
-
     useEffect(() => {
         if (!hidden) {
             setBtn("log Out")
@@ -33,59 +29,17 @@ const Header = () => {
         }
     }, [hidden])
 
-    const handleClickModal = (modal: string) => {
-        setModalProps({ [modal]: true })
-    }
-    const handleCloseModal = () => {
-        setModalProps({})
-    }
-
     return (
         <>
-            <EmployeeAttendance
-                visible={modalProps.employeeAttendance}
-                handleCloseModal={handleCloseModal}
-            />
-            <EmployeeLeaving
-                visible={modalProps.employeeLeaving}
-                handleCloseModal={handleCloseModal}
-            />
             <nav className="header navbar navbar-expand-lg nav nav2">
                 <div className="container-fluid">
-                    <div className="navbar-brand">
-                        <Link to='/home'>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/800px-Bootstrap_logo.svg.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                        </Link>
-                    </div>
+                    <NavLink to='/home' className="navbar-brand">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/800px-Bootstrap_logo.svg.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ margin: "0 10px" }} />
+                        {t("Salam App")}
+                    </NavLink>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <ul>
-                                <li >
-                                    <label>Basic Data</label>
-                                    <ul >
-                                        <li ><Link to="/suppliers">Suppliers</Link></li>
-                                        <li ><Link to="/customers">Customers</Link></li>
-                                        <li ><Link to="/items">Items</Link></li>
-                                        <li ><Link to="/printOptions">Print Options</Link></li>
-                                    </ul>
-                                </li>
-                                <li >
-                                    <label>Invoices</label>
-                                    <ul>
-                                        <li ><Link to="/supplierInvoices">Supplier invoices</Link></li>
-                                        <li ><Link to="/customerInvoices">Customers invoices</Link></li>
-                                        <li ><Link to="/invoicesSearch">Invoices search</Link></li>
-                                    </ul>
-                                </li>
-                                <li >
-                                    <label>Employees</label>
-                                    <ul>
-                                        <li ><button onClick={() => { handleClickModal("employeeAttendance") }} className='header-button'>Employee Attendance</button></li>
-                                        <li ><button onClick={() => { handleClickModal("employeeLeaving") }} className='header-button'>Employee leaving</button></li>
-                                        <li ><Link to="/employeeSalary">Employee Salary</Link></li>
-                                        <li ><Link to="/employeeData">Employees Data</Link></li>
-                                    </ul>
-                                </li>
+                            {/* <ul>
                                 <li >
                                     <label>Accounts Summary</label>
                                     <ul>
@@ -109,8 +63,8 @@ const Header = () => {
                                         <li><Link to="/users">Users</Link></li>
                                     </ul>
                                 </li>
-                            </ul>
-                            {/* <div className=' position-absolute ' style={{ right: "2%" }}>
+                            </ul> */}
+                            <div className=' position-absolute ' style={{ right: "2%" }}>
                                 <form className="d-flex ff" role="search">
                                     {displayName && <span className="navbar-brand mb-0 h1 ">{`Current User is ${displayName} `}</span>}
                                     <Button
@@ -120,7 +74,7 @@ const Header = () => {
                                         height='100%'
                                     />
                                 </form>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>

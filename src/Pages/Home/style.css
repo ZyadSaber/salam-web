@@ -4,7 +4,11 @@
   width: 100%;
   margin: 10px;
 }
-.side-bar {
+.main .side-bar {
   width: 15%;
-  margin-right: 20px;
+  margin: 0 20px;
+}
+.main .button-actions {
+  width: 90%;
+  padding: 10px;
 }

@@ -31,7 +31,6 @@ const App = () => {
   const currentLanguageCode = cookies.get('i18next') || 'ar';
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
   useEffect(() => {
-    console.log('Setting page stuff')
     //@ts-ignore
     document.body.dir = currentLanguage.dir || 'ltr'
     document.title = t('aptl')

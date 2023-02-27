@@ -1,36 +1,35 @@
-import { memo, useState } from 'react';
-import EmployeeAttendance from "../../Pages/employeeAttendance/component";
-import EmployeeLeaving from "../../Pages/employeeLeaving/component";
-import Button from "../../components/button/button";
-import "./style.css"
+import { memo, useCallback, useState } from 'react';
+import CardButton from '../../components/button/cardButton';
+import "./style.css";
+import BasicData from "./Partials/basicData"
+import Invoices from "./Partials/Invoices";
+import Employees from "./Partials/Employees";
+import Reports from './Partials/Reports';
+import IncomeAndExpens from "./Partials/IncomeAndExpens";
+import SystemTools from './Partials/SystemTools';
 
 const Home = () => {
-    const [modalProps, setModalProps] = useState<any>({});
+    const [defineData, setDefineData] = useState({
+        view: BasicData
+    })
 
-
-    const handleClickModal = (modal: string) => {
-        setModalProps({ [modal]: true })
-    }
-    const handleCloseModal = () => {
-        setModalProps({})
-    }
-
+    const cardButtonMargin = "10px"
+    const data = useCallback((element: any) => {
+        setDefineData({ view: element })
+    }, [])
     return (
         <>
             <div className="main">
                 <div className='side-bar' >
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item"><Button label='bscdat' width='100%' onClick={() => { }} /></li>
-                        <li className="list-group-item"><Button label='invcs' width='100%' onClick={() => { }} /></li>
-                        <li className="list-group-item"><Button label='emplys' width='100%' onClick={() => { }} /></li>
-                        <li className="list-group-item"><Button label='emplys' width='100%' onClick={() => { }} /></li>
-                        <li className="list-group-item"><Button label='acntsmry' width='100%' onClick={() => { }} /></li>
-                    </ul>
+                    <CardButton label='bscdat' width='100%' margin={cardButtonMargin} onClick={() => { data(BasicData) }} />
+                    <CardButton label='invcs' width='100%' margin={cardButtonMargin} onClick={() => { data(Invoices) }} />
+                    <CardButton label='emplys' width='100%' margin={cardButtonMargin} onClick={() => { data(Employees) }} />
+                    <CardButton label='incmandexpns' width='100%' margin={cardButtonMargin} onClick={() => { data(IncomeAndExpens) }} />
+                    <CardButton label='rprts' width='100%' margin={cardButtonMargin} onClick={() => { data(Reports) }} />
+                    <CardButton label='SystemTools' width='100%' margin={cardButtonMargin} onClick={() => { data(SystemTools) }} />
                 </div>
                 <div className='button-actions'>
-                    <Button
-                        label='w'
-                    />
+                    {<defineData.view />}
                 </div>
             </div>
         </>

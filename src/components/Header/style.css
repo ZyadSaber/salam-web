@@ -39,12 +39,6 @@ li .header-button:hover {
   border-radius: 0px 7px 7px 0;
   background: rgba(0, 0, 0, 0.19999999999999996);
 }
-a {
-  margin: 0;
-  padding: 0;
-  font-size: 100%;
-  border-radius: 7px;
-}
 .nav2 ul > li:hover ul {
   visibility: visible;
   opacity: 1;
@@ -81,18 +75,6 @@ a {
   float: left;
   position: relative;
 }
-.nav a {
-  display: block;
-  line-height: 1.2em;
-  color: #111344;
-}
-li a {
-  padding: 10px;
-}
-li a:hover {
-  text-decoration: none;
-  background: #595959;
-}
 .nav label:hover {
   text-decoration: none;
   background: #595959;
@@ -109,27 +91,4 @@ li a:hover {
 }
 .nav li ul li {
   width: 200px;
-}
-.nav li ul a {
-  border: none;
-}
-.nav li ul a:hover {
-  background: rgba(0, 0, 0, 0.19999999999999996);
-  border-radius: 0px 7px 7px 0;
-}
-a {
-  -webkit-transition: 200ms;
-  -moz-transition: 200ms;
-  -o-transition: 200ms;
-  transition: 200ms;
-}
-
-a {
-  color: #111344;
-}
-a:link {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
 }
