@@ -5,7 +5,6 @@ import TextArea from "../../components/InputText/TextArea";
 import useFormManager from "../../hooks/useFormManager";
 import usePost from "../../hooks/usePost";
 import Modal from "../../components/Modal/Modal";
-import Notification from "../../components/Notification/component"
 
 interface EmployeeLeavingProps {
     visible: boolean;
@@ -23,7 +22,7 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
     const { onChange, state } = useFormManager({ initialValue: initialValue })
     const { date, employee_id, leaving_time, notes } = state
 
-    const { setRow, success } = usePost({
+    const { setRow } = usePost({
         link: "POST_EMPLOYEE_LEAVING"
     })
 
@@ -34,10 +33,6 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
 
     return (
         <>
-            <Notification
-                Label="Alert"
-                body={success}
-            />
             <Modal
                 label="Employee Leaving"
                 visible={visible}
@@ -57,7 +52,7 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
                         <SelectWithApi
                             name="employee_id"
                             onChange={onChange}
-                            Api="employeesData/pop_employee_name"
+                            Api="QUERY_EMPLOYEE_NAME_LIST"
                             value={employee_id}
                             Label="Employee"
                             width="33%"

@@ -11,13 +11,13 @@ const Text = ({
     const { t } = useTranslation()
     return (
         <>
-            <div style={{
+            <h4 style={{
                 width: width,
                 margin: margin,
                 padding: padding
             }}>
-                <h4>{t(title)}</h4>
-            </div>
+                {t(title)}
+            </h4>
         </>
     )
 }

@@ -1,40 +1,11 @@
-import React, { memo, useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import "./style.css";
 import Button from "../button/button";
 import IconButton from '../button/iconButton';
-import { addionalButton } from "../../Types/general"
+import { addionalButton } from "../../Types/general";
+import { TableProps } from "./interfece";
+import { useTranslation } from 'react-i18next';
 
-interface TableProps {
-    rowkey?: string | number;
-    dataSource?: any[];
-    columns: column[];
-    title?: string;
-    canEdit?: boolean;
-    canAdd?: boolean;
-    canDelete?: boolean;
-    hideTools?: boolean;
-    onAdd?: () => void;
-    onEdit?: () => void | any;
-    onDelete?: () => void;
-    children?: any;
-    Form?: any;
-    actionColumn?: boolean;
-    onAction?: any;
-    actionLabel?: string;
-    onSelectedRow?: any;
-    canPrint?: boolean;
-    onPrint?: () => void;
-    addionalButtons?: addionalButton[];
-    onSave?: () => void;
-    canSave?: boolean;
-    width?: number | string;
-}
-
-interface column {
-    title: string;
-    width?: number | string;
-    dataIndex?: any;
-}
 
 const Table = ({
     dataSource,
@@ -59,7 +30,7 @@ const Table = ({
     canSave = false,
     width = "100%"
 }: TableProps) => {
-    //@ts-ignore
+    const { t } = useTranslation()
     const [rowSelected, setRowSelected] = useState()
     const handleSelectedRow = useCallback((item: any) => () => {
         onSelectedRow(item)
@@ -116,7 +87,7 @@ const Table = ({
                                     {columns.map((item: any) => {
                                         return (
                                             <th scope="col" style={{ width: item.width }}>
-                                                {item.title}
+                                                {t(item.title)}
                                             </th>
                                         )
                                     })}

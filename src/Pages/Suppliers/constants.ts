@@ -1,11 +1,11 @@
 export const columns = [
         {
-            title: "Name",
+            title: "nm",
             dataIndex: "name",
             width: 20
         },
         {
-            title: "Email",
+            title: "eml",
             dataIndex: "email",
             width: 17
         },

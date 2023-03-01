@@ -18,6 +18,7 @@ const API_ID = {
     POST_SUPPLIER_INVOICE: "invoices/supplier_invoice_dml",
     QUERY_LABELS: "get_labels",
     QUERY_CHUNK_LABELS: "get_chunk_labels",
+    QUERY_EMPLOYEE_NAME_LIST: "employeesData/pop_employee_name"
 };
 
 export default API_ID

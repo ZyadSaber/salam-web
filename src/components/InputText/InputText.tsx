@@ -1,6 +1,7 @@
 import { memo, useCallback } from "react";
 import { InputTextProps } from "./interface";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
+import { Input, FormLabel, Flex } from '@chakra-ui/react'
 
 const InputText = ({
     disabled,
@@ -14,6 +15,7 @@ const InputText = ({
     padding,
     margin = "10px",
     className = "",
+    required = false
 }: InputTextProps) => {
     const { t } = useTranslation()
 
@@ -23,10 +25,29 @@ const InputText = ({
 
     return (
         <>
-            <div className="mb-1 d-inline-block" style={{ width: width, margin: margin, padding: padding }}>
+            <Flex
+                direction="column"
+                w={width}
+                padding={padding}
+                margin={margin}
+            >
+                <FormLabel>{t(Label)}</FormLabel>
+                <Input
+                    placeholder={placeHolder}
+                    size='md'
+                    isDisabled={disabled}
+                    isRequired={required}
+                    onChange={handleChange}
+                    width="100%"
+                    className={className}
+                    value={value}
+                    type={type}
+                />
+            </Flex>
+            {/* <div className="mb-1 d-inline-block" style={{ width: width, margin: margin, padding: padding }}>
                 <label htmlFor="exampleFormControlInput1" className={`form-label ${className}`} >{t(Label)}</label>
                 <input type={type} className="form-control" id="exampleFormControlInput1" placeholder={placeHolder} disabled={disabled} onChange={handleChange} value={value} />
-            </div>
+            </div> */}
         </>
     )
 }

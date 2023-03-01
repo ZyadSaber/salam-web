@@ -12,7 +12,6 @@ const ModalView = ({
     selectedRow
 }: ModalViewProp) => {
     const { state, onChange } = useFormManager({ initialValue: selectedRow, setSelectedRow: setSelectedRow })
-    //@ts-ignore
     const { name, email, phone, mobile, address } = state
 
     return (
@@ -27,30 +26,35 @@ const ModalView = ({
                 Label='Name'
                 onChange={onChange}
                 value={name}
+                width="47%"
             />
             <InputText
                 name="email"
                 Label='Email'
                 onChange={onChange}
                 value={email}
+                width="47%"
             />
             <InputText
                 name="phone"
                 Label='Phone'
                 onChange={onChange}
                 value={phone}
+                width="47%"
             />
             <InputText
                 name="mobile"
                 Label='Mobile'
                 onChange={onChange}
                 value={mobile}
+                width="47%"
             />
             <InputText
                 name="address"
                 Label='Address'
                 onChange={onChange}
                 value={address}
+                width="100%"
             />
         </Modal>
     )

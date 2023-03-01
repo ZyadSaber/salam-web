@@ -11,6 +11,7 @@ export interface InputTextProps {
     margin?: number | string;
     className?: string;
     noAuthorization?: boolean;
+    required?: boolean
 }
 
 export interface TextAreaProps{

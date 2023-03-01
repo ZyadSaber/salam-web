@@ -2,7 +2,6 @@ import { memo, useState, useCallback } from "react";
 import Table from "./Table";
 import useFetch from "../../hooks/useFetch";
 import useTableControlsButtons from "./hooks/useTableControlsButtons"
-import Notification from "../Notification/component";
 
 interface ApiTableProps {
     api: string;
@@ -40,9 +39,8 @@ const ApiTable = ({
     fetchOnFirstRun = false,
     params
 }: ApiTableProps) => {
-
     const { data, runFetch } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
-    const { setSelectedRow, onSaveAndInsertion, selectedRow, success } = useTableControlsButtons({ api: postApi })
+    const { setSelectedRow, onSaveAndInsertion, selectedRow } = useTableControlsButtons({ api: postApi })
     const [rows, setRows] = useState({})
     const [modal, setModal] = useState(false)
     const handleAdd = useCallback(() => {
@@ -75,10 +73,6 @@ const ApiTable = ({
 
     return (
         <>
-            <Notification
-                Label="Alert"
-                body={success}
-            />
             {Modal && <Modal
                 visible={modal}
                 onOK={handleSaveModal}

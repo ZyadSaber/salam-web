@@ -6,7 +6,6 @@ import useFormManager from "../../hooks/useFormManager";
 import CheckBox from "../../components/checkBox/CheckBox";
 import usePost from "../../hooks/usePost";
 import Modal from "../../components/Modal/Modal";
-import Notification from "../../components/Notification/component"
 
 interface EmployeeAttendanceProps {
     visible: boolean;
@@ -24,7 +23,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
     const { onChange, state } = useFormManager({ initialValue: initialValue })
     const { date, employee_id, real_time, absent, reason } = state
 
-    const { setRow, success } = usePost({
+    const { setRow } = usePost({
         link: "POST_EMPLOYEE_ATTENDANCE"
     })
 
@@ -35,10 +34,6 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
 
     return (
         <>
-            <Notification
-                Label="Alert"
-                body={success}
-            />
             <Modal
                 label="Employee Attendance"
                 visible={visible}
@@ -58,7 +53,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                         <SelectWithApi
                             name="employee_id"
                             onChange={onChange}
-                            Api="employeesData/pop_employee_name"
+                            Api="QUERY_EMPLOYEE_NAME_LIST"
                             value={employee_id}
                             Label="Employee"
                             width="33%"

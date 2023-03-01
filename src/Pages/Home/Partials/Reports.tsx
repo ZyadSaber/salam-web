@@ -7,13 +7,18 @@ const Reports = () => {
     return (
         <>
             <Text title="rprts" margin="20px 10px" />
-            <Flex justifyContent="space-around" width="40%" margin="30px" borderd>
-                <LinkButton label="splrs" pathTo="suppliers" width="40%" />
-                <LinkButton label="cstmrs" pathTo="customers" width="40%" />
+            <Flex justifyContent="space-between" width="60%" margin="30px" borderd>
+                <LinkButton label="customersSummary" pathTo="customersSummary" width="30%" />
+                <LinkButton label="suppliersSummary" pathTo="suppliersSummary" width="30%" />
+                <LinkButton label="itemsSummary" pathTo="itemsSummary" width="30%" />
             </Flex>
-            <Flex justifyContent="space-around" width="40%" margin="30px" borderd>
-                <LinkButton label="itms" pathTo="items" width="40%" />
-                <LinkButton label="prntptn" pathTo="printOptions" width="40%" />
+            <Flex justifyContent="space-between" width="60%" margin="30px" borderd>
+                <LinkButton label="dailyTotals" pathTo="dailyTotals" width="30%" />
+                <LinkButton label="monthlyTotals" pathTo="monthlyTotals" width="30%" />
+                <LinkButton label="yearlyTotals" pathTo="yearlyTotals" width="30%" />
+            </Flex>
+            <Flex width="60%" margin="30px" borderd>
+                <LinkButton label="expensesTotals" pathTo="expensesTotals" width="30%" />
             </Flex>
         </>
     )

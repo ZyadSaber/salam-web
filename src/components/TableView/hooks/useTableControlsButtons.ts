@@ -1,10 +1,10 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import usePost from "../../../hooks/usePost";
 
 const useTableControlsButtons = ({api = ""}) => {
 
     const [selectedRow, setRows] = useState<any>({})
-    const { setRow, success } = usePost({link: api})
+    const { setRow } = usePost({link: api})
 
     const onSaveAndInsertion = ()=>{
         //@ts-ignore
@@ -16,7 +16,7 @@ const useTableControlsButtons = ({api = ""}) => {
     const setSelectedRow = useCallback((v:any)=>{
         setRows(v)
     },[])
-    return{setSelectedRow, onSaveAndInsertion, selectedRow, success}
+    return{setSelectedRow, onSaveAndInsertion, selectedRow}
 
 }
 

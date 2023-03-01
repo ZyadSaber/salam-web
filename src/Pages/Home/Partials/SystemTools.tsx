@@ -8,12 +8,8 @@ const SystemTools = () => {
         <>
             <Text title="SystemTools" margin="20px 10px" />
             <Flex justifyContent="space-around" width="40%" margin="30px" borderd>
-                <LinkButton label="splrs" pathTo="suppliers" width="40%" />
-                <LinkButton label="cstmrs" pathTo="customers" width="40%" />
-            </Flex>
-            <Flex justifyContent="space-around" width="40%" margin="30px" borderd>
-                <LinkButton label="itms" pathTo="items" width="40%" />
-                <LinkButton label="prntptn" pathTo="printOptions" width="40%" />
+                <LinkButton label="users" pathTo="users" width="40%" />
+                <LinkButton label="labels" pathTo="labels" width="40%" />
             </Flex>
         </>
     )
