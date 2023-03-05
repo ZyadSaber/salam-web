@@ -23,24 +23,44 @@ export const mainTableColumns = [
 
 export const detailTableColumns = [
         {
-            title: "No.",
-            dataIndex: "invoice_id",
+            title: "item_id",
+            dataIndex: "item_id",
+            width: "5%"
+        },
+         {
+            title: "item_name",
+            dataIndex: "item_name",
             width: "15%"
         },
         {
-            title: "Name",
-            dataIndex: "name",
-            width: "11%"
+            title: "width",
+            dataIndex: "width",
+            width: "5%"
         },
         {
-            title: "Date",
-            dataIndex: "date",
-            width: "10%"
+            title: "height",
+            dataIndex: "height",
+            width: "5%"
         },
         {
-            title: "Total",
+            title: "size",
+            dataIndex: "size",
+            width: "5%"
+        },
+        {
+            title: "quantity",
+            dataIndex: "quantity",
+            width: "5%"
+        },
+        {
+            title: "price",
+            dataIndex: "price",
+            width: "5%"
+        },
+        {
+            title: "total",
             dataIndex: "total",
-            width: "10%"
+            width: "5%"
         }
     ]
 

@@ -8,17 +8,17 @@ const Flex = ({
     height,
     padding = "10px",
     margin,
-    borderd = false,
+    bordered = false,
     borderColor = "#3c8dcf",
     borderWidth = "px",
     borderRadius = "5px"
 }: flexProp) => {
     const [border, setBorder] = useState("")
     useEffect(() => {
-        if (borderd) {
+        if (bordered) {
             setBorder(`${borderWidth} solid ${borderColor}`)
         }
-    }, [borderColor, borderWidth, borderd])
+    }, [borderColor, borderWidth, bordered])
     return (
         <>
             <div style={{

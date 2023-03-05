@@ -5,7 +5,7 @@ export interface flexProp{
     height?: string;
     padding?: string;
     margin?: string;
-    borderd?: boolean;
+    bordered?: boolean;
     borderColor?: string;
     borderWidth?: string;
     borderRadius?: string;

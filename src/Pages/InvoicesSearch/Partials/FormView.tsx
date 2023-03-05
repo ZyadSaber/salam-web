@@ -3,11 +3,12 @@ import RadioBox from "../../../components/radioBox/component";
 import { RadioBoxOptions } from "../constant";
 import SelectWithApi from "../../../components/Select/SelectWithApi";
 import InputText from "../../../components/InputText/InputText";
+import Flex from "../../../components/Flex/Flex";
 
 const FormView = ({ changeSearchParams, searchParams }: any) => {
     return (
         <>
-            <div className="formView">
+            <Flex bordered>
                 <RadioBox
                     name="invoice_type"
                     options={RadioBoxOptions}
@@ -24,15 +25,16 @@ const FormView = ({ changeSearchParams, searchParams }: any) => {
                 />
                 <SelectWithApi
                     name="person_id"
-                    Api="invoices/get_customer_supplier_list"
-                    Label="name"
+                    Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
+                    Label="nm"
                     params={{
                         invoice_type: searchParams.invoice_type
                     }}
                     value={searchParams.name}
                     fetchOnFirstRun
+                    onChange={changeSearchParams}
                 />
-                <InputText
+                {/* <InputText
                     name="date_from"
                     value={searchParams.date_from}
                     Label="Date From"
@@ -45,8 +47,8 @@ const FormView = ({ changeSearchParams, searchParams }: any) => {
                     Label="Date To"
                     onChange={changeSearchParams}
                     type="date"
-                />
-            </div>
+                /> */}
+            </Flex>
         </>
     )
 }

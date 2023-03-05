@@ -26,11 +26,11 @@ const Employees = () => {
                 handleCloseModal={handleCloseModal}
             />
             <Text title="emplys" margin="20px 10px" />
-            <Flex justifyContent="space-around" width="40%" margin="30px" borderd>
+            <Flex justifyContent="space-around" width="40%" margin="30px" bordered>
                 <Button label="emplyatndnc" width="40%" onClick={() => { handleClickModal("employeeAttendance") }} />
                 <Button label="emplylvng" width="40%" onClick={() => { handleClickModal("employeeLeaving") }} />
             </Flex>
-            <Flex justifyContent="space-around" width="40%" margin="30px" borderd>
+            <Flex justifyContent="space-around" width="40%" margin="30px" bordered>
                 <LinkButton label="emplyslry" pathTo="employeeSalary" width="40%" />
                 <LinkButton label="emplydat" pathTo="employeeData" width="40%" />
             </Flex>

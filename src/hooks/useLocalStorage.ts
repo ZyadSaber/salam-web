@@ -12,6 +12,7 @@ const useLoacalStorage = (storageName?: string)=>{
     const [storage, setStorage] = useState()
 
     const changeLocalStorage = useCallback((storageData: storageDataType[])=>{
+        // eslint-disable-next-line array-callback-return
         storageData.map((data: storageDataType)=>{
             window.localStorage.setItem(data.name, JSON.stringify(data.data))
         })

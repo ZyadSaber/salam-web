@@ -1,12 +1,12 @@
-import { useState, useCallback } from "react";
+// import { useState } from "react";
 
 const useCheckUser = () => {
 
-    const [permission, setPermission] = useState()
+    // const [permission, setPermission] = useState()
 let hidden
 
 
-      return{hidden, permission}
+      return{hidden}
 }
 
 export default useCheckUser

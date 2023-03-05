@@ -7,7 +7,7 @@ const Invoices = () => {
     return (
         <>
             <Text title="invcs" margin="20px 10px" />
-            <Flex justifyContent="space-around" width="60%" margin="30px" borderd>
+            <Flex justifyContent="space-around" width="60%" margin="30px" bordered>
                 <LinkButton label="splrsinvcs" pathTo="supplierInvoices" width="30%" />
                 <LinkButton label="cstmrsinvs" pathTo="customerInvoices" width="30%" />
                 <LinkButton label="invsrch" pathTo="invoicesSearch" width="30%" />

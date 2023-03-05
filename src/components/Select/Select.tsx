@@ -33,6 +33,7 @@ const Select = ({
 }: SelectProps) => {
     //@ts-ignore
     const handleValue = (event) => {
+        // eslint-disable-next-line array-callback-return
         Options.map((option) => {
             if (option.value === +event.target.value) {
                 if (withLabel) {

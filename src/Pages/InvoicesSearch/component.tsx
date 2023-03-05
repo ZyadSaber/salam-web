@@ -14,15 +14,17 @@ const InvoicesSearch = () => {
         date_to: ""
     }
     const [row, setRow] = useState({
-        invoice_number: ""
+        invoice_id: ""
     })
     const { state: searchParams, onChange: changeSearchParams } = useFormManager({ initialValue: searchParamsBaseValues })
     //@ts-ignore
-    const { invoice_type, invoice_number, name, date_from, date_to } = searchParams
+    const { invoice_type, invoice_number, person_id } = searchParams
 
     const onSelectedRow = useCallback((row?: any) => {
         setRow(row)
     }, [])
+
+    console.log(person_id)
 
     return (
         <>
@@ -33,17 +35,16 @@ const InvoicesSearch = () => {
             <div style={{ display: "flex" }}>
                 <ApiTable
                     columns={mainTableColumns}
-                    //@ts-ignore
                     api="QUERY_INVOICE_MASTER_TABLE_DATA"
                     rowKey="invoice_id"
                     width="35%"
                     fetchOnFirstRun
                     params={{
                         invoice_type: invoice_type,
-                        number: invoice_number,
-                        name: name,
-                        date_from: date_from,
-                        date_to: date_to
+                        invoice_number: invoice_number,
+                        person_id: person_id,
+                        // date_from: date_from,
+                        // date_to: date_to
                     }}
                     onSelectedRow={onSelectedRow}
                 />
@@ -51,11 +52,11 @@ const InvoicesSearch = () => {
                     <ApiTable
                         columns={detailTableColumns}
                         api="QUERY_INVOICE_DETAIL_TABLE_DATA"
-                        rowKey="item_id"
+                        rowKey="row_key"
                         fetchOnFirstRun
                         params={{
                             invoice_type: invoice_type,
-                            invoice_number: row.invoice_number
+                            invoice_number: row.invoice_id
                         }}
                     />
                 </div>

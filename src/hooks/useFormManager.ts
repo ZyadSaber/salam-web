@@ -24,6 +24,7 @@ const useFormManager =({initialValue, setSelectedRow}: useFormManagerProps)=>{
 
     useEffect(()=>{
         setState(initialValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const resetState = useCallback(()=>{
