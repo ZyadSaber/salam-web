@@ -1,16 +1,16 @@
 export const columns = [
         {
-            title: "Name",
+            title: "itmnm",
             dataIndex: "name",
             width: 20
         },
         {
-            title: "Unit",
+            title: "unt",
             dataIndex: "unit",
             width: 17
         },
         {
-            title: "Base Price",
+            title: "bsprc",
             dataIndex: "base_price",
             width: 15
         }

@@ -34,49 +34,43 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
     return (
         <>
             <Modal
-                label="Employee Leaving"
+                label="emplylvng"
                 visible={visible}
                 onClose={handleCloseModal}
                 onOK={handleSaveButton}
             >
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex" }}>
-                        <InputText
-                            Label="Date"
-                            name="date"
-                            value={date}
-                            onChange={onChange}
-                            type="date"
-                            width="33%"
-                        />
-                        <SelectWithApi
-                            name="employee_id"
-                            onChange={onChange}
-                            Api="QUERY_EMPLOYEE_NAME_LIST"
-                            value={employee_id}
-                            Label="Employee"
-                            width="33%"
-                            fetchOnFirstRun={visible}
-                        />
-                        <InputText
-                            type="time"
-                            name="leaving_time"
-                            value={leaving_time}
-                            onChange={onChange}
-                            Label="Leaving Time"
-                            width="33%"
-                        />
-                    </div>
-                    <div style={{ display: "flex" }}>
-                        <TextArea
-                            name="notes"
-                            value={notes}
-                            onChange={onChange}
-                            Label="Notes"
-                            width="100%"
-                        />
-                    </div>
-                </div>
+                <InputText
+                    Label="dt"
+                    name="date"
+                    value={date}
+                    onChange={onChange}
+                    type="date"
+                    width="30%"
+                />
+                <SelectWithApi
+                    name="employee_id"
+                    onChange={onChange}
+                    Api="QUERY_EMPLOYEE_NAME_LIST"
+                    value={employee_id}
+                    Label="emply"
+                    width="30%"
+                    fetchOnFirstRun={visible}
+                />
+                <InputText
+                    type="time"
+                    name="leaving_time"
+                    value={leaving_time}
+                    onChange={onChange}
+                    Label="lvngtm"
+                    width="30%"
+                />
+                <TextArea
+                    name="notes"
+                    value={notes}
+                    onChange={onChange}
+                    Label="nts"
+                    width="100%"
+                />
             </Modal>
         </>
     )

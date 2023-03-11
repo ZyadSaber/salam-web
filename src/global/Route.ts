@@ -1,6 +1,6 @@
 import Customers from "../Pages/Customers/component";
 import SignInPage from '../Pages/SignInPage/component';
-import Home from "../Pages/Home/component";
+import DashBoard from "../Pages/DashBoard/component";
 import Suppliers from '../Pages/Suppliers/component';
 import Items from "../Pages/Items/component";
 import EmployeesData from "../Pages/EmployeesData/component";
@@ -33,7 +33,7 @@ export const PageRoutes = [{
 },
 {
     Path: "home",
-    Component: Home
+    Component: DashBoard
 },
 {
     Path: "supplierInvoices",

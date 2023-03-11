@@ -1,8 +1,6 @@
 import { memo } from 'react';
 import useCheckUser from '../../hooks/useCheckUser';
-import './style.css';
 import ModalView from "./Partials/ModalView";
-// import FormView from "./Partials/FormView";
 import ApiTable from "../../components/TableView/ApiTable";
 import { columns } from "./constants"
 

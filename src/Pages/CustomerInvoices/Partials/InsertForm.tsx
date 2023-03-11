@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect } from "react";
 import SelectWithApi from "../../../components/Select/SelectWithApi";
 import InputText from "../../../components/InputText/InputText";
+import Flex from "../../../components/Flex/Flex";
 
 interface InsertFormProp {
     activeItem: any;
@@ -38,103 +39,98 @@ const InsertForm = ({
 
     return (
         <>
-            <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-                <div>
+            <Flex width="100%" flexDirection="column" margin="0" padding="0">
+                <Flex margin="0" padding="0">
                     <SelectWithApi
                         Api={"basicData/customer_pop_data"}
                         onChange={onChange}
                         value={state.customer_id}
-                        Label="customer"
+                        Label="cstmr"
                         name="customer_id"
                         fetchOnFirstRun
                     />
-                </div>
-                <InputText
-                    name="date"
-                    value={state.date}
-                    Label="Date"
-                    onChange={onChange}
-                    type="date"
-                />
-            </div>
-            <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-                <div>
+                    <InputText
+                        name="date"
+                        value={state.date}
+                        Label="dt"
+                        onChange={onChange}
+                        type="date"
+                    />
+                </Flex>
+                <Flex margin="0" padding="0">
                     <SelectWithApi
                         Api={"basicData/print_options_pop_data"}
                         onChange={handlePrintChange}
                         value={print_id}
-                        Label="Print Option"
+                        Label="prntnm"
                         name="print_id"
                         withLabel
                         fetchOnFirstRun
                     />
-                </div>
-                <div>
                     <SelectWithApi
                         Api={"basicData/items_pop_data"}
                         onChange={handleItemChange}
                         value={item_id}
-                        Label="Item"
+                        Label="itmnm"
                         name="item_id"
                         withLabel
                         fetchOnFirstRun
                     />
-                </div>
-            </div>
-            <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
-
-                <InputText
-                    name="width"
-                    value={width}
-                    Label="width"
-                    onChange={itemChange}
-                    width="90%"
-                />
-                <InputText
-                    name="height"
-                    value={height}
-                    Label="height"
-                    onChange={itemChange}
-                    width="90%"
-                />
-                <InputText
-                    name="size"
-                    value={size}
-                    Label="size"
-                    onChange={itemChange}
-                    disabled
-                    width="90%"
-                />
-                <InputText
-                    name="quantity"
-                    value={quantity}
-                    Label="quantity"
-                    onChange={itemChange}
-                    width="90%"
-                />
-                <InputText
-                    name="price"
-                    value={price}
-                    Label="price"
-                    onChange={itemChange}
-                    width="90%"
-                />
-                <InputText
-                    name="total"
-                    value={total}
-                    Label="total"
-                    onChange={itemChange}
-                    disabled
-                    width="90%"
-                />
-                <InputText
-                    name="notes"
-                    value={notes}
-                    Label="notes"
-                    onChange={itemChange}
-                    width="90%"
-                />
-            </div>
+                </Flex>
+                <Flex margin="0" padding="0">
+                    <InputText
+                        name="width"
+                        value={width}
+                        Label="wdth"
+                        onChange={itemChange}
+                        width="14%"
+                    />
+                    <InputText
+                        name="height"
+                        value={height}
+                        Label="hght"
+                        onChange={itemChange}
+                        width="14%"
+                    />
+                    <InputText
+                        name="size"
+                        value={size}
+                        Label="sz"
+                        onChange={itemChange}
+                        disabled
+                        width="14%"
+                    />
+                    <InputText
+                        name="quantity"
+                        value={quantity}
+                        Label="qnty"
+                        onChange={itemChange}
+                        width="14%"
+                    />
+                    <InputText
+                        name="price"
+                        value={price}
+                        Label="prc"
+                        onChange={itemChange}
+                        width="14%"
+                    />
+                    <InputText
+                        name="total"
+                        value={total}
+                        Label="total"
+                        onChange={itemChange}
+                        disabled
+                        width="14%"
+                    />
+                    <InputText
+                        name="notes"
+                        value={notes}
+                        Label="nts"
+                        onChange={itemChange}
+                        width="14%"
+                    />
+                </Flex>
+            </Flex>
         </>
     )
 }

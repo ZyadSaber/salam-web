@@ -1,16 +1,16 @@
 export const columns = [
         {
-            title: "id",
+            title: "no",
             dataIndex: "print_id",
             width: 33.3
         },
         {
-            title: "Print Name",
+            title: "prntnm",
             dataIndex: "print_option",
             width: 33.3
         },
         {
-            title: "Notes",
+            title: "nts",
             dataIndex: "note",
             width: 33.3
         }
