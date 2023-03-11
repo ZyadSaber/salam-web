@@ -10,18 +10,18 @@ export const columns = [
             width: 17
         },
         {
-            title: "Phone",
+            title: "phn",
             dataIndex: "phone",
             width: 15
         },
         {
-            title: "Mobile",
+            title: "mbl",
             dataIndex: "mobile",
             width: 15
         },
         {
-            title: "Address",
+            title: "adrs",
             dataIndex: "address",
             width: 20
-        },
+        }
     ]

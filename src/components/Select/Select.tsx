@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { useTranslation } from 'react-i18next';
 interface SelectProps {
     Option?: {
         label: string,
@@ -31,6 +32,7 @@ const Select = ({
     margin = "10px",
     padding
 }: SelectProps) => {
+    const { t } = useTranslation()
     //@ts-ignore
     const handleValue = (event) => {
         // eslint-disable-next-line array-callback-return
@@ -48,12 +50,12 @@ const Select = ({
     return (
         <>
             <div className="mb-1" style={{ width: width, padding: padding, margin: margin }}>
-                <label htmlFor="exampleFormControlInput1" className="form-label">{Label}</label>
+                <label htmlFor="exampleFormControlInput1" className="form-label">{t(Label)}</label>
                 <select className="form-select" aria-label="Default select example" onChange={handleValue}>
                     <option selected>{`Select`}</option>
                     {Options.map((Option) => {
                         return (
-                            <option key={Option.value} value={Option.value} selected={value === Option.value && true}> {Option.label}</option>
+                            <option key={Option.value} value={Option.value} selected={value === Option.value && true}> {t(Option.label)}</option>
                         )
                     })}
                 </select>

@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import './style.css';
 import { buttonProp } from "./interface";
 import { useTranslation } from 'react-i18next'
 

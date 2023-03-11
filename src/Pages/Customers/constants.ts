@@ -1,27 +1,27 @@
 export const columns = [
         {
-            title: "Name",
+            title: "nm",
             dataIndex: "name",
             width: 20
         },
         {
-            title: "Email",
+            title: "eml",
             dataIndex: "email",
             width: 17
         },
         {
-            title: "Phone",
+            title: "phn",
             dataIndex: "phone",
             width: 15
         },
         {
-            title: "Mobile",
+            title: "mbl",
             dataIndex: "mobile",
             width: 15
         },
         {
-            title: "Address",
+            title: "adrs",
             dataIndex: "address",
             width: 20
-        },
+        }
     ]

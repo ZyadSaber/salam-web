@@ -1,31 +1,31 @@
 export const columns = [
         {
-            title: "item",
+            title: "itmnm",
             width: "11.1%",
             dataIndex: "itemName"
         },
         {
-            title: "width",
+            title: "wdth",
             width: "11.1%",
             dataIndex: "width"
         },
         {
-            title: "height",
+            title: "hght",
             width: "11.1%",
             dataIndex: "height"
         },
         {
-            title: "size",
+            title: "sz",
             width: "11.1%",
             dataIndex: "size"
         },
         {
-            title: "quantity",
+            title: "qnty",
             width: "11.1%",
             dataIndex: "quantity"
         },
         {
-            title: "price",
+            title: "prc",
             width: "11.1%",
             dataIndex: "price"
         },
@@ -35,7 +35,7 @@ export const columns = [
             dataIndex: "total"
         },
         {
-            title: "notes",
+            title: "nts",
             width: "11.1%",
             dataIndex: "notes"
         }

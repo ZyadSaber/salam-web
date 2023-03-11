@@ -9,4 +9,7 @@ export interface flexProp{
     borderColor?: string;
     borderWidth?: string;
     borderRadius?: string;
+    backgroundColor?: string;
+    flexDirection?: string;
+    textAlign?: string;
 }

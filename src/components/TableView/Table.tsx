@@ -91,7 +91,7 @@ const Table = ({
                                             </th>
                                         )
                                     })}
-                                    <th hidden={!actionColumn}>Action</th>
+                                    <th hidden={!actionColumn}>{t("actn")}</th>
                                 </tr>
                             </thead>
                         </table>

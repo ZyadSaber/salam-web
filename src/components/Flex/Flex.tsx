@@ -9,9 +9,12 @@ const Flex = ({
     padding = "10px",
     margin,
     bordered = false,
+    backgroundColor,
     borderColor = "#3c8dcf",
     borderWidth = "px",
-    borderRadius = "5px"
+    borderRadius = "5px",
+    flexDirection = "row",
+    textAlign = ""
 }: flexProp) => {
     const [border, setBorder] = useState("")
     useEffect(() => {
@@ -29,7 +32,12 @@ const Flex = ({
                 padding: padding,
                 margin: margin,
                 border: border,
-                borderRadius: borderRadius
+                borderRadius: borderRadius,
+                background: backgroundColor,
+                //@ts-ignore
+                flexDirection: flexDirection,
+                //@ts-ignore
+                textAlign: textAlign,
             }}>
                 {children}
             </div>

@@ -3,6 +3,7 @@ import ApiTable from "../../components/TableView/ApiTable";
 import { mainTableColumns, detailTableColumns } from "./constant";
 import FormView from "./Partials/FormView";
 import useFormManager from "../../hooks/useFormManager";
+import Flex from "../../components/Flex/Flex";
 
 const InvoicesSearch = () => {
 
@@ -28,39 +29,40 @@ const InvoicesSearch = () => {
 
     return (
         <>
-            <FormView
-                changeSearchParams={changeSearchParams}
-                searchParams={searchParams}
-            />
-            <div style={{ display: "flex" }}>
-                <ApiTable
-                    columns={mainTableColumns}
-                    api="QUERY_INVOICE_MASTER_TABLE_DATA"
-                    rowKey="invoice_id"
-                    width="35%"
-                    fetchOnFirstRun
-                    params={{
-                        invoice_type: invoice_type,
-                        invoice_number: invoice_number,
-                        person_id: person_id,
-                        // date_from: date_from,
-                        // date_to: date_to
-                    }}
-                    onSelectedRow={onSelectedRow}
+            <Flex width="100%" margin="0" padding="0" flexDirection="column">
+                <FormView
+                    changeSearchParams={changeSearchParams}
+                    searchParams={searchParams}
                 />
-                <div style={{ width: "65%" }}>
+                <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
+                    <ApiTable
+                        columns={mainTableColumns}
+                        api="QUERY_INVOICE_MASTER_TABLE_DATA"
+                        rowKey="invoice_id"
+                        fetchOnFirstRun
+                        params={{
+                            invoice_type: invoice_type,
+                            invoice_number: invoice_number,
+                            person_id: person_id,
+                            // date_from: date_from,
+                            // date_to: date_to
+                        }}
+                        width="40%"
+                        onSelectedRow={onSelectedRow}
+                    />
                     <ApiTable
                         columns={detailTableColumns}
                         api="QUERY_INVOICE_DETAIL_TABLE_DATA"
                         rowKey="row_key"
                         fetchOnFirstRun
+                        width="60%"
                         params={{
                             invoice_type: invoice_type,
                             invoice_number: row.invoice_id
                         }}
                     />
-                </div>
-            </div>
+                </Flex>
+            </Flex>
         </>
     )
 }

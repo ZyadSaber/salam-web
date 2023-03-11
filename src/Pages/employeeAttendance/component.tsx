@@ -35,54 +35,49 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
     return (
         <>
             <Modal
-                label="Employee Attendance"
+                label="emplyatndnc"
                 visible={visible}
                 onClose={handleCloseModal}
                 onOK={handleSaveButton}
             >
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ display: "flex" }}>
-                        <InputText
-                            Label="Date"
-                            name="date"
-                            value={date}
-                            onChange={onChange}
-                            type="date"
-                            width="33%"
-                        />
-                        <SelectWithApi
-                            name="employee_id"
-                            onChange={onChange}
-                            Api="QUERY_EMPLOYEE_NAME_LIST"
-                            value={employee_id}
-                            Label="Employee"
-                            width="33%"
-                            fetchOnFirstRun={visible}
-                        />
-                        <InputText
-                            type="time"
-                            name="attendance_time"
-                            value={real_time}
-                            onChange={onChange}
-                            Label="Attendance Time"
-                            width="33%"
-                        />
-                    </div>
-                    <div style={{ display: "flex" }}>
-                        <TextArea
-                            name="reason"
-                            value={reason}
-                            onChange={onChange}
-                            Label="Reason"
-                        />
-                        <CheckBox
-                            name="absent"
-                            label="Absent"
-                            value={absent}
-                            onChange={onChange}
-                        />
-                    </div>
-                </div>
+                <InputText
+                    Label="dt"
+                    name="date"
+                    value={date}
+                    onChange={onChange}
+                    type="date"
+                    width="30%"
+                />
+                <SelectWithApi
+                    name="employee_id"
+                    onChange={onChange}
+                    Api="QUERY_EMPLOYEE_NAME_LIST"
+                    value={employee_id}
+                    Label="emply"
+                    width="30%"
+                    fetchOnFirstRun={visible}
+                />
+                <InputText
+                    type="time"
+                    name="attendance_time"
+                    value={real_time}
+                    onChange={onChange}
+                    Label="atndnctm"
+                    width="30%"
+                />
+                <TextArea
+                    name="reason"
+                    value={reason}
+                    onChange={onChange}
+                    Label="rsn"
+                    width="70%"
+                />
+                <CheckBox
+                    name="absent"
+                    label="absnt"
+                    value={absent}
+                    onChange={onChange}
+                />
             </Modal>
         </>
     )

@@ -8,7 +8,7 @@ import Flex from "../../../components/Flex/Flex";
 const FormView = ({ changeSearchParams, searchParams }: any) => {
     return (
         <>
-            <Flex bordered>
+            <Flex bordered width="100%">
                 <RadioBox
                     name="invoice_type"
                     options={RadioBoxOptions}

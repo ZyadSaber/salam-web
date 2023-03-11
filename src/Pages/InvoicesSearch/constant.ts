@@ -1,21 +1,21 @@
 export const mainTableColumns = [
         {
-            title: "No.",
+            title: "no",
             dataIndex: "invoice_id",
             width: "15%"
         },
         {
-            title: "Name",
+            title: "nm",
             dataIndex: "name",
-            width: "11%"
+            width: "20%"
         },
         {
-            title: "Date",
+            title: "dt",
             dataIndex: "date",
             width: "10%"
         },
         {
-            title: "Total",
+            title: "total",
             dataIndex: "total",
             width: "10%"
         }
@@ -28,32 +28,32 @@ export const detailTableColumns = [
             width: "5%"
         },
          {
-            title: "item_name",
+            title: "itmnm",
             dataIndex: "item_name",
             width: "15%"
         },
         {
-            title: "width",
+            title: "wdth",
             dataIndex: "width",
             width: "5%"
         },
         {
-            title: "height",
+            title: "hght",
             dataIndex: "height",
             width: "5%"
         },
         {
-            title: "size",
+            title: "sz",
             dataIndex: "size",
             width: "5%"
         },
         {
-            title: "quantity",
+            title: "qnty",
             dataIndex: "quantity",
             width: "5%"
         },
         {
-            title: "price",
+            title: "prc",
             dataIndex: "price",
             width: "5%"
         },
@@ -66,11 +66,11 @@ export const detailTableColumns = [
 
 export const RadioBoxOptions = [
     {
-        label: "Supplier",
+        label: "splr",
         value: "suppliers",
     },
     {
-        label: "Customers",
+        label: "cstmr",
         value: "customers",
     }
 ]

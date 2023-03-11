@@ -1,36 +1,36 @@
 export const columns = [
         {
-            title: "Print Name",
+            title: "prntnm",
             width: "10%",
             dataIndex: "print_name"
         },
         {
-            title: "Item",
+            title: "itmnm",
             width: "10%",
             dataIndex: "itemName"
         },
         {
-            title: "Width",
+            title: "wdth",
             width: "10%",
             dataIndex: "width"
         },
         {
-            title: "Height",
+            title: "hght",
             width: "10%",
             dataIndex: "height"
         },
         {
-            title: "size",
+            title: "sz",
             width: "10%",
             dataIndex: "size"
         },
         {
-            title: "quantity",
+            title: "qnty",
             width: "10%",
             dataIndex: "quantity"
         },
         {
-            title: "price",
+            title: "prc",
             width: "10%",
             dataIndex: "price"
         },
@@ -40,7 +40,7 @@ export const columns = [
             dataIndex: "total"
         },
         {
-            title: "notes",
+            title: "nts",
             width: "10%",
             dataIndex: "notes"
         },

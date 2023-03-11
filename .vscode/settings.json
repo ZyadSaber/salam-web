@@ -4,7 +4,8 @@
         "acntsmry",
         "bscdat",
         "emplys",
-        "rprts"
+        "rprts",
+        "العربية"
     ],
     "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,6 +1,7 @@
 import { memo, useCallback } from "react";
 import { radioBoxProps, option } from "./interface"
-import "./style.css"
+import "./style.css";
+import { useTranslation } from 'react-i18next'
 
 const RadioBox = ({
     name,
@@ -12,6 +13,7 @@ const RadioBox = ({
     margin = "10px",
     padding
 }: radioBoxProps) => {
+    const { t } = useTranslation()
     const handleChange = useCallback((value: string | number) => {
         onChange({ name: name, value: value })
     }, [name, onChange])
@@ -29,7 +31,7 @@ const RadioBox = ({
                             <div className="form-check">
                                 <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked={option.checked || value === option.value} onClick={() => { handleChange(option.value) }} />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                    {option.label}
+                                    {t(option.label)}
                                 </label>
                             </div>
                         )

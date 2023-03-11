@@ -6,6 +6,7 @@ import usePost from "../../hooks/usePost";
 import { invoiceDtls, itemsType } from "./interface";
 import Table from "../../components/TableView/Table";
 import { columns } from "./constant"
+import Flex from "../../components/Flex/Flex";
 
 const CustomerInvoices = () => {
     const { setRow } = usePost({ link: "POST_CUSTOMER_INVOICE_DETAILS" })
@@ -71,13 +72,6 @@ const CustomerInvoices = () => {
 
     }, [activeItem, itemsType]);
 
-    // const handleDelete = useCallback((passedItem: itemsType) => {
-    //     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    //     let newItems = itemsType.items.filter((item: itemsType) => { item !== passedItem })
-    //     // setItemsType({ ...itemsType, items: newItems })
-    //     console.log(newItems)
-    // }, [itemsType]);
-
     const handleSave = useCallback(() => {
         setRow(itemsType)
         resetItemsType()
@@ -96,21 +90,7 @@ const CustomerInvoices = () => {
     ]
     return (
         <>
-
-            <Table
-                columns={columns}
-                dataSource={itemsType.items}
-                actionColumn
-                actionLabel="Delete"
-                // onAction={handleDelete}
-                hideTools={false}
-                onAdd={handleAdd}
-                onSave={handleSave}
-                onSelectedRow={setActiveItem}
-                canAdd={true}
-                canSave={true}
-                addionalButtons={addionalButtons}
-            >
+            <Flex flexDirection="column" width="100%">
                 <InsertForm
                     itemState={itemState}
                     itemChange={itemChange}
@@ -119,44 +99,58 @@ const CustomerInvoices = () => {
                     onChange={onChange}
                     state={state}
                 />
-            </Table>
-            <div style={{ display: "flex", width: "100%", justifyContent: "space-between", padding: "0 100px" }}>
-                <InputText
-                    name='total'
-                    disabled
-                    //@ts-ignore
-                    value={state.total}
-                    Label="Total"
+                <Table
+                    columns={columns}
+                    dataSource={itemsType.items}
+                    actionColumn
+                    actionLabel="Delete"
+                    // onAction={handleDelete}
+                    hideTools={false}
+                    onAdd={handleAdd}
+                    onSave={handleSave}
+                    onSelectedRow={setActiveItem}
+                    canAdd={true}
+                    canSave={true}
+                    addionalButtons={addionalButtons}
                 />
-                <InputText
-                    name='discount'
-                    //@ts-ignore
-                    value={state.discount}
-                    Label="Discount"
-                    onChange={onChange}
-                />
-                <InputText
-                    name='totalAfterDiscount'
-                    disabled
-                    //@ts-ignore
-                    value={state.total_after_discount}
-                    Label="Total After Discount"
-                />
-                <InputText
-                    name='paid'
-                    //@ts-ignore
-                    value={state.paid}
-                    Label="Paid"
-                    onChange={onChange}
-                />
-                <InputText
-                    name='credit'
-                    disabled
-                    //@ts-ignore
-                    value={state.credit}
-                    Label="Credit"
-                />
-            </div>
+                <Flex width='100%' justifyContent='space-around'>
+                    <InputText
+                        name='total'
+                        disabled
+                        value={state.total}
+                        Label="total"
+                        width="15%"
+                    />
+                    <InputText
+                        name='discount'
+                        value={state.discount}
+                        Label="dscnt"
+                        onChange={onChange}
+                        width="15%"
+                    />
+                    <InputText
+                        name='totalAfterDiscount'
+                        disabled
+                        value={state.total_after_discount}
+                        Label="Tlaftrdsnt"
+                        width="15%"
+                    />
+                    <InputText
+                        name='paid'
+                        value={state.paid}
+                        Label="paid"
+                        onChange={onChange}
+                        width="15%"
+                    />
+                    <InputText
+                        name='credit'
+                        disabled
+                        value={state.credit}
+                        Label="Crdt"
+                        width="15%"
+                    />
+                </Flex>
+            </Flex>
         </>
     )
 }
