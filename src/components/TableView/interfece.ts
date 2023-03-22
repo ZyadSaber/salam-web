@@ -30,4 +30,6 @@ export interface TableProps {
     onSave?: () => void;
     canSave?: boolean;
     width?: number | string;
+    padding?: number | string;
+    margin?: number | string;
 }

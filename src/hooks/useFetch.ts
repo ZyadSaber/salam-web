@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import API_ID from "../global/api";
 import useLoacalStorage from "./useLocalStorage";
+import { useToast } from '@chakra-ui/react';
 
 interface useFetchProp {
   link: string;
@@ -11,17 +12,16 @@ interface useFetchProp {
 }
 
 const useFetch = ({
-  link = "", 
-  fetchOnFirstRun,
-   refreshTimeout,
+    link = "", 
+    fetchOnFirstRun,
+    refreshTimeout,
     params, 
     noAuthorization = false
   }: useFetchProp) => {
+    const toast = useToast()
   const { authorization } = useLoacalStorage()
   //@ts-ignore
   const url = `http://144.24.209.19:9090/api/v1/${API_ID[link]}`
-  // const url = `http://127.0.0.1:9090/api/v1/${link}`
-  // const url = `http://192.168.1.250:9090/api/v1/${link}`
   const [data, setData] = useState<any>([]);
   const getData = useCallback(async()=>{
     if(authorization || noAuthorization){
@@ -38,11 +38,24 @@ const response = await fetch(`${url}?authorization=${authorization}&${new URLSea
       }
       }, [fetchOnFirstRun, getData, url, params]);
 
+      useEffect(()=>{
+        if (data.response){
+          toast({
+            position: "top-right",
+            title: 'error',
+            description: `${JSON.stringify(data.response)}`,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+        })
+        }
+      }, [data, toast])
+
 
 
       const runFetch = useCallback(()=>{
-          // getData()
-      },[])
+          getData()
+      },[getData])
 
       return{data, runFetch, setData}
 }

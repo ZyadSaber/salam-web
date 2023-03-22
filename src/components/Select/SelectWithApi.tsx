@@ -1,20 +1,7 @@
 import { memo } from "react";
 import Select from "./Select";
 import useFetch from "../../hooks/useFetch";
-
-interface SelectWithApiProps {
-    Api: string;
-    onChange?: any;
-    Label?: string;
-    value?: number
-    name: string;
-    width?: number | string;
-    withLabel?: boolean;
-    margin?: number | string;
-    padding?: number | string;
-    params?: any;
-    fetchOnFirstRun?: boolean;
-}
+import { SelectWithApiProps } from "./interface"
 
 const SelectWithApi = ({
     width,

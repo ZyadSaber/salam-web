@@ -1,6 +1,6 @@
 export interface InputTextProps {
     value?: string | number;
-    name: string;
+    name?: string;
     Label?: string;
     onChange?: any;
     disabled?: boolean;
@@ -16,7 +16,7 @@ export interface InputTextProps {
 
 export interface TextAreaProps{
     value?: string | number;
-    name: string;
+    name?: string;
     Label?: string;
     onChange?: any;
     disabled?: boolean;

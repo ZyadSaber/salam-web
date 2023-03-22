@@ -12,4 +12,5 @@ export interface flexProp{
     backgroundColor?: string;
     flexDirection?: string;
     textAlign?: string;
+    hidden?: boolean;
 }
