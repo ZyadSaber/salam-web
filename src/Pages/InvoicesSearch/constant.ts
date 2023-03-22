@@ -23,9 +23,9 @@ export const mainTableColumns = [
 
 export const detailTableColumns = [
         {
-            title: "item_id",
+            title: "itmid",
             dataIndex: "item_id",
-            width: "5%"
+            width: "7%"
         },
          {
             title: "itmnm",

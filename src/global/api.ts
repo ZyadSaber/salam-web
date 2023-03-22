@@ -21,7 +21,9 @@ const API_ID = {
     QUERY_EMPLOYEE_NAME_LIST: "employeesData/pop_employee_name",
     QUERY_CUSTOMER_AND_SUPPLIER_LIST: "invoices/get_customer_supplier_list",
     QUERY_SUPPLIER_LIST: "basicData/supplier_pop_data",
-    QUERY_ITEMS_LIST: "basicData/items_pop_data"
+    QUERY_ITEMS_LIST: "basicData/items_pop_data",
+    //http://144.24.209.19:9090/api/v1/employeesData/employee_sheet?employee_id=4
+    QUERY_EMPLOYEE_SHEET_SALARY: "employeesData/employee_sheet"
 };
 
 export default API_ID

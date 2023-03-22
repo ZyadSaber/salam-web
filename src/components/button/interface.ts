@@ -8,6 +8,7 @@ export interface buttonProp {
     margin?: string;
     height?: string;
     padding?: string;
+    additionalStyle?: string
 }
 export interface linkButtonProp {
     label: string;

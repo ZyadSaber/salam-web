@@ -1,25 +1,6 @@
 import { memo } from "react";
 import { useTranslation } from 'react-i18next';
-interface SelectProps {
-    Option?: {
-        label: string,
-        value: number
-    };
-    Options: {
-        label: string,
-        value: number
-    }[]
-    onChange?: any;
-    Label?: string;
-    value?: number;
-    name: string;
-    width?: number | string;
-    withLabel?: boolean;
-    margin?: number | string;
-    padding?: number | string
-}
-
-
+import { SelectProps } from "./interface"
 
 const Select = ({
     width = "200px",

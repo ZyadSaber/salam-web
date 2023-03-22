@@ -44,7 +44,7 @@ const App = () => {
                       <SideBar />
                     </Flex>
                     <Flex width='85%' flexDirection="column">
-                      <Flex height="5%" margin='0' padding='0'>
+                      <Flex height="50px" margin='0' padding='0'>
                         <Top />
                       </Flex>
                       <Flex height='95%' >

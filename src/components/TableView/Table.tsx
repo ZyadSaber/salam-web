@@ -5,6 +5,7 @@ import IconButton from '../button/iconButton';
 import { addionalButton } from "../../Types/general";
 import { TableProps } from "./interfece";
 import { useTranslation } from 'react-i18next';
+import Flex from '../Flex/Flex';
 
 
 const Table = ({
@@ -18,7 +19,6 @@ const Table = ({
     onAdd,
     onEdit,
     onDelete,
-    children,
     actionColumn = false,
     onAction,
     actionLabel = "",
@@ -28,7 +28,9 @@ const Table = ({
     addionalButtons,
     onSave,
     canSave = false,
-    width = "100%"
+    width = "100%",
+    margin = "",
+    padding = ""
 }: TableProps) => {
     const { t } = useTranslation()
     const [rowSelected, setRowSelected] = useState()
@@ -39,88 +41,86 @@ const Table = ({
 
     return (
         <>
-            <div className="view" style={{ width: width }}>
-                <div className="section">
-                    {children}
-                    <div className="tools" hidden={hideTools}>
-                        <div className="TableTools">
+            <div style={{ width: width, padding: padding, margin: margin }}>
+                <Flex
+                    width='100%'
+                    padding='0'
+                    margin='5px 0'
+                    justifyContent='center'
+                >
+                    <IconButton
+                        icon='fa-sharp fa-solid fa-plus'
+                        onClick={onAdd}
+                        disabled={canAdd}
+                    />
+                    <IconButton
+                        icon='fa-sharp fa-solid fa-pen-clip'
+                        onClick={onEdit}
+                        disabled={canEdit}
+                    />
+                    <IconButton
+                        icon='fa-sharp fa-solid fa-trash'
+                        onClick={onDelete}
+                        disabled={canDelete}
+                    />
+                    {addionalButtons && addionalButtons.map((button: addionalButton) => {
+                        return (
                             <IconButton
-                                icon='fa-sharp fa-solid fa-plus'
-                                onClick={onAdd}
-                                disabled={canAdd}
+                                icon={button.icon}
+                                onClick={button.onClick}
+                                disabled={button.disabled}
                             />
-                            <IconButton
-                                icon='fa-sharp fa-solid fa-pen-clip'
-                                onClick={onEdit}
-                                disabled={canEdit}
-                            />
-                            <IconButton
-                                icon='fa-sharp fa-solid fa-trash'
-                                onClick={onDelete}
-                                disabled={canDelete}
-                            />
-                            {addionalButtons && addionalButtons.map((button: addionalButton) => {
+                        )
+                    })}
+                    <IconButton
+                        icon='fa-solid fa-floppy-disk'
+                        onClick={onSave}
+                        disabled={canSave}
+                    />
+                    <IconButton
+                        icon='fa-solid fa-print'
+                        onClick={onPrint}
+                        disabled={canPrint}
+                    />
+                </Flex>
+                <table className='table m-0'>
+                    <thead>
+                        <tr className='table-secondary'>
+                            {columns.map((item: any) => {
                                 return (
-                                    <IconButton
-                                        icon={button.icon}
-                                        onClick={button.onClick}
-                                        disabled={button.disabled}
-                                    />
+                                    <th scope="col" style={{ maxWidth: item.width, minWidth: item.width }}>
+                                        {t(item.title)}
+                                    </th>
                                 )
                             })}
-                            <IconButton
-                                icon='fa-solid fa-floppy-disk'
-                                onClick={onSave}
-                                disabled={canSave}
-                            />
-                            <IconButton
-                                icon='fa-solid fa-print'
-                                onClick={onPrint}
-                                disabled={canPrint}
-                            />
-                        </div>
-                    </div>
-                    <div className="table2 ">
-                        <table className='table'>
-                            <thead>
-                                <tr className='table-secondary'>
-                                    {columns.map((item: any) => {
-                                        return (
-                                            <th scope="col" style={{ width: item.width }}>
-                                                {t(item.title)}
-                                            </th>
-                                        )
-                                    })}
-                                    <th hidden={!actionColumn}>{t("actn")}</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div className="tbl-content">
-                            <table className='table '>
-                                <tbody>
-                                    {dataSource?.map((item: any) => {
-                                        return (
-                                            <tr key={item[rowkey]} onClick={handleSelectedRow(item)}>
-                                                {columns.map((column: any) => {
-                                                    return (
-                                                        <td className={`${rowSelected === item ? "table-success" : "table-light"} `} style={{ width: column.width }}>
-                                                            {item[column.dataIndex]}
-                                                        </td>
-                                                    )
-                                                })}
-                                                <td className={`${rowSelected === item ? "table-success" : "table-light"} `} hidden={!actionColumn}>
-                                                    <Button
-                                                        label={actionLabel}
-                                                        onClick={() => { onAction(item) }}
-                                                    />
+                            <th hidden={!actionColumn}>{t("actn")}</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div className="tbl-content">
+                    <table className='table '>
+                        <tbody>
+                            {dataSource?.map((item: any) => {
+                                return (
+                                    <tr key={item[rowkey]} onClick={handleSelectedRow(item)}>
+                                        {columns.map((column: any) => {
+                                            return (
+                                                <td className={`${rowSelected === item ? "table-success" : "table-light"} `} style={{ maxWidth: column.width, minWidth: column.width }}>
+                                                    {item[column.dataIndex]}
                                                 </td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                            )
+                                        })}
+                                        <td className={`${rowSelected === item ? "table-success" : "table-light"} `} hidden={!actionColumn}>
+                                            <Button
+                                                label={actionLabel}
+                                                onClick={() => { onAction(item) }}
+                                            />
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </>

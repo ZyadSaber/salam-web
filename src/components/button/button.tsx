@@ -11,7 +11,8 @@ const Button = ({
     margin,
     width,
     height,
-    padding
+    padding,
+    additionalStyle = ""
 }: buttonProp) => {
     const { t } = useTranslation()
     return (
@@ -21,7 +22,9 @@ const Button = ({
                 margin: `${margin}`,
                 height: `${height}`,
                 padding: padding,
-                display: "inline-block"
+                display: "inline-block",
+                //@ts-ignore
+                additionalStyle
             }} onClick={onClick} disabled={disabled} hidden={hidden}>{t(label)}</button>
         </>
     )

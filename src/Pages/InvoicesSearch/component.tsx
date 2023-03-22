@@ -25,8 +25,6 @@ const InvoicesSearch = () => {
         setRow(row)
     }, [])
 
-    console.log(person_id)
-
     return (
         <>
             <Flex width="100%" margin="0" padding="0" flexDirection="column">
@@ -35,32 +33,32 @@ const InvoicesSearch = () => {
                     searchParams={searchParams}
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
-                    <ApiTable
-                        columns={mainTableColumns}
-                        api="QUERY_INVOICE_MASTER_TABLE_DATA"
-                        rowKey="invoice_id"
-                        fetchOnFirstRun
-                        params={{
-                            invoice_type: invoice_type,
-                            invoice_number: invoice_number,
-                            person_id: person_id,
-                            // date_from: date_from,
-                            // date_to: date_to
-                        }}
-                        width="40%"
-                        onSelectedRow={onSelectedRow}
-                    />
-                    <ApiTable
-                        columns={detailTableColumns}
-                        api="QUERY_INVOICE_DETAIL_TABLE_DATA"
-                        rowKey="row_key"
-                        fetchOnFirstRun
-                        width="60%"
-                        params={{
-                            invoice_type: invoice_type,
-                            invoice_number: row.invoice_id
-                        }}
-                    />
+                    <Flex width="40%">
+                        <ApiTable
+                            columns={mainTableColumns}
+                            api="QUERY_INVOICE_MASTER_TABLE_DATA"
+                            rowKey="invoice_id"
+                            fetchOnFirstRun
+                            params={{
+                                invoice_type: invoice_type,
+                                invoice_number: invoice_number,
+                                person_id: person_id,
+                            }}
+                            onSelectedRow={onSelectedRow}
+                        />
+                    </Flex>
+                    <Flex width="60%">
+                        <ApiTable
+                            columns={detailTableColumns}
+                            api="QUERY_INVOICE_DETAIL_TABLE_DATA"
+                            rowKey="row_key"
+                            fetchOnFirstRun
+                            params={{
+                                invoice_type: invoice_type,
+                                invoice_number: row.invoice_id
+                            }}
+                        />
+                    </Flex>
                 </Flex>
             </Flex>
         </>
