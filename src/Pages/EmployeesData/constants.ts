@@ -1,41 +1,41 @@
 export const columns = [
         {
-            title: "Name",
+            title: "nm",
             dataIndex: "name",
             width: 15
         },
         {
-            title: "Date of hiring",
+            title: "dtfhrng",
             dataIndex: "date_of_hiring",
             width: 12
         },
         {
-            title: "Salary",
+            title: "slry",
             dataIndex: "salary",
             width: 10
         },
         {
-            title: "Attendance Time",
+            title: "atndnctm",
             dataIndex: "attendance_time",
             width: 10
         },
         {
-            title: "Leaving Time",
+            title: "lvngtm",
             dataIndex: "leaving_time",
             width: 10
         },
         {
-            title: "Phone",
+            title: "phn",
             dataIndex: "phone",
             width: 15
         },
         {
-            title: "Mobile",
+            title: "mbl",
             dataIndex: "mobile",
             width: 15
         },
         {
-            title: "Address",
+            title: "adrs",
             dataIndex: "address",
             width: 20
         },

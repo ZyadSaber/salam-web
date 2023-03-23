@@ -21,7 +21,7 @@ const ModalView = ({
     return (
         <Modal
             visible={visible}
-            label={"Details"}
+            label={"dtls"}
             onOK={onOK}
             onClose={onClose}
         >
@@ -29,14 +29,14 @@ const ModalView = ({
                 name='name'
                 value={state.name}
                 onChange={onChange}
-                Label='Employee Name'
+                Label='nm'
                 width="30%"
             />
             <InputText
                 name='date_of_hiring'
                 value={state.date_of_hiring}
                 onChange={onChange}
-                Label='Date of Hiring'
+                Label='dtfhrng'
                 width="30%"
                 type='date'
             />
@@ -44,7 +44,7 @@ const ModalView = ({
                 name='phone'
                 value={state.phone}
                 onChange={onChange}
-                Label='Phone'
+                Label='phn'
                 width="30%"
                 type='number'
             />
@@ -52,14 +52,14 @@ const ModalView = ({
                 name='address'
                 value={state.address}
                 onChange={onChange}
-                Label='Address'
+                Label='adrs'
                 width="30%"
             />
             <InputText
                 name='mobile'
                 value={state.mobile}
                 onChange={onChange}
-                Label='Mobile'
+                Label='mbl'
                 width="30%"
                 type='number'
             />
@@ -67,21 +67,21 @@ const ModalView = ({
                 name='email'
                 value={state.email}
                 onChange={onChange}
-                Label='Email'
+                Label='eml'
                 width="30%"
             />
             <InputText
                 name='job_title'
                 value={state.job_title}
                 onChange={onChange}
-                Label='Job Title'
+                Label='jbtl'
                 width="22%"
             />
             <InputText
                 name='salary'
                 value={state.salary}
                 onChange={onChange}
-                Label='Salary'
+                Label='slry'
                 width="22%"
                 type='number'
             />
@@ -89,7 +89,7 @@ const ModalView = ({
                 name='attendance_time'
                 value={state.attendance_time}
                 onChange={onChange}
-                Label='Attendance Time'
+                Label='atndnctm'
                 width="22%"
                 type='time'
             />
@@ -97,7 +97,7 @@ const ModalView = ({
                 name='leaving_time'
                 value={state.leaving_time}
                 onChange={onChange}
-                Label='Leaving Time'
+                Label='lvngtm'
                 width="22%"
                 type='time'
             />
