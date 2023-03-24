@@ -4,6 +4,16 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
+    "@commons/button": "1.0.0",
+    "@commons/global": "1.0.0",
+    "@commons/table": "1.0.0",
+    "@commons/select": "1.0.0",
+    "@commons/input-text": "1.0.0",
+    "@commons/page-title": "1.0.0",
+    "@commons/check-box": "1.0.0",
+    "@commons/flex": "1.0.0",
+    "@commons/radio-box": "1.0.0",
+    "@commons/modal": "1.0.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@testing-library/jest-dom": "^5.16.5",
@@ -30,11 +40,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "gen": "plop"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "gen": "plop",
+    "bootstrap": "lerna bootstrap"
   },
   "eslintConfig": {
     "extends": [
@@ -53,5 +64,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "lerna": "^6.1.0",
+    "react-app-rewired": "^2.2.1"
+  },
+  "workspaces": [
+    "components/*",
+    "pages/*",
+    "common/*"
+  ]
 }

@@ -1,0 +1,11 @@
+{
+  "name": "@commons/input-text",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "salam",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "sideEffects": false,
+  "enableBabelTranspilation": true
+}
