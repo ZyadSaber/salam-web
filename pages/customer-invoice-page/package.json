@@ -1,0 +1,17 @@
+{
+  "name": "@pages/customer-invoice-page",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "salam",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "@chakra-ui/react": "^2.5.1",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.8",
+    "@types/jest": "^27.5.2"
+  },
+  "enableBabelTranspilation": true
+}

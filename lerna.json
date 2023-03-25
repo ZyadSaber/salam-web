@@ -1,0 +1,5 @@
+{
+  "packages": ["components/*", "pages/*", "common/*"],
+  "useWorkspaces": true,
+  "version": "independent"
+}

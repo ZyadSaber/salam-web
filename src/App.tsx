@@ -1,13 +1,13 @@
 import { memo, useEffect } from 'react';
 //@ts-ignore
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SideBar from "./components/SideBar/component"
-import { PageRoutes } from "./global/Route";
+import SideBar from "@components/side-bar"
+import { PageRoutes } from "@commons/global";
 import { useTranslation } from 'react-i18next'
 //@ts-ignore
 import cookies from 'js-cookie';
-import Flex from './components/Flex/Flex';
-import Top from './components/top/Top';
+import Flex from "@commons/flex";
+import Header from '@components/header';
 
 const App = () => {
   const languages = [
@@ -45,7 +45,7 @@ const App = () => {
                     </Flex>
                     <Flex width='85%' flexDirection="column">
                       <Flex height="50px" margin='0' padding='0'>
-                        <Top />
+                        <Header />
                       </Flex>
                       <Flex height='95%' >
                         {< item.Component />}
