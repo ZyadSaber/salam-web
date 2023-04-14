@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import Modal from "@commons/modal";
 import { InputText } from "@commons/input-text";
 import { useFormManager } from "@commons/hooks";
-// import { ModalViewProp } from "../../../Types/general"
+import { ModalViewProp } from "@commons/global"
 
 const ModalView = ({
     visible,
@@ -10,7 +10,7 @@ const ModalView = ({
     onClose,
     setSelectedRow,
     selectedRow
-}: any) => {
+}: ModalViewProp) => {
 
     const { state, onChange } = useFormManager({ initialValue: selectedRow, setSelectedRow: setSelectedRow })
     //@ts-ignore

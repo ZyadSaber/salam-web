@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useEffect } from "react";
 import { InputTextProps } from "./interface";
 import { useTranslation } from 'react-i18next';
 import { Input, FormLabel, Flex } from '@chakra-ui/react'
@@ -22,6 +22,8 @@ const InputText = ({
     const handleChange = useCallback((event: { target: { value: string; }; }) => {
         onChange({ name: name, value: event.target.value })
     }, [name, onChange])
+
+    // console.log(new Date().getFullYear() + "-" + ((new Date().getMonth() + 1).length !== 2 ? "0" + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + "-" + (new Date().getDate().length != 2 ? "0" + new Date().getDate() : new Date().getDate()))
 
     return (
         <>
