@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import Modal from "@commons/modal";
-// import { ModalViewProp } from "../../../Types/general";
+import { ModalViewProp } from "@commons/global"
 import { useFormManager } from "@commons/hooks";
 import { InputText } from "@commons/input-text";
 
@@ -10,7 +10,7 @@ const ModalView = ({
     onClose,
     setSelectedRow,
     selectedRow
-}: any) => {
+}: ModalViewProp) => {
 
 
     const { onChange, state } = useFormManager({
