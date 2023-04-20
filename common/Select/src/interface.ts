@@ -1,11 +1,11 @@
 export interface SelectProps {
     Option?: {
         label: string,
-        value: number
+        value: number | string
     };
     Options: {
         label: string,
-        value: number
+        value: number | string
     }[]
     onChange?: any;
     Label?: string;

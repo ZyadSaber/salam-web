@@ -2,26 +2,38 @@ export const columns = [
         {
             title: "dt",
             dataIndex: "date",
-            width: "20%"
+            width: "10%"
         },
         {
-            title: "eml",
-            dataIndex: "email",
-            width: 17
+            title: "amount",
+            dataIndex: "amount",
+            width: "10%"
         },
         {
-            title: "phn",
-            dataIndex: "phone",
-            width: 15
+            title: "voucher_name",
+            dataIndex: "voucher_name",
+            width: "10%"
         },
         {
-            title: "mbl",
-            dataIndex: "mobile",
-            width: 15
+            title: "customer_name",
+            dataIndex: "customer_name",
+            width: "15%"
         },
         {
-            title: "adrs",
-            dataIndex: "address",
-            width: 20
+            title: "supplier_name",
+            dataIndex: "supplier_name",
+            width: "15%"
+        },
+        {
+            title: "notes",
+            dataIndex: "notes",
+            width: "10%"
         }
     ]
+
+export const voucherOptions = [
+    {
+        label: "supplier",
+        value: "S"
+    }
+]

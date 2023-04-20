@@ -4,6 +4,7 @@ import InputText from "@commons/input-text/src/inputText";
 import { ApiTable } from "@commons/table";
 import { columns } from "./constant";
 import { useFormManager } from "@commons/hooks";
+import ModalView from "./Partials/modalView"
 
 const CasherReceiptVoucher = () => {
 
@@ -13,14 +14,14 @@ const CasherReceiptVoucher = () => {
         <>
             <Flex width="100%" flexDirection="column">
                 <Flex width="100%" >
-                    <InputText name="date" type="date" Label="from" onChange={onChange} />
-                    <InputText name="date" type="date" Label="to" onChange={onChange} />
+                    <InputText name="date_from" type="date" Label="from" onChange={onChange} />
+                    <InputText name="date_to" type="date" Label="to" onChange={onChange} />
                 </Flex>
                 <ApiTable
                     api={"QUERY_CASHER_RECEIPT_VOUCHER_TABLE_DATA"}
                     postApi={""}
                     columns={columns}
-                    hideTools={true}
+                    hideTools={false}
                     canEdit={true}
                     canAdd={true}
                     canDelete={true}
@@ -29,7 +30,8 @@ const CasherReceiptVoucher = () => {
                         date_from: state.date_from,
                         date_to: state.date_to
                     }}
-                    fetchOnFirstRun
+                    Modal={ModalView}
+                // fetchOnFirstRun
                 />
             </Flex>
         </>

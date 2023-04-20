@@ -90,7 +90,7 @@ const Table = ({
                         <tr className='table-secondary'>
                             {columns.map((item: any) => {
                                 return (
-                                    <th scope="col" style={{ maxWidth: item.width, minWidth: item.width }}>
+                                    <th scope="col" style={{ width: item.width }}>
                                         {t(item.title)}
                                     </th>
                                 )
@@ -107,7 +107,7 @@ const Table = ({
                                     <tr key={item[rowkey]} onClick={handleSelectedRow(item)}>
                                         {columns.map((column: any) => {
                                             return (
-                                                <td className={`${rowSelected === item ? "table-success" : "table-light"} `} style={{ maxWidth: column.width, minWidth: column.width }}>
+                                                <td className={`${rowSelected === item ? "table-success" : "table-light"} `} style={{ width: column.width }}>
                                                     {item[column.dataIndex]}
                                                 </td>
                                             )
