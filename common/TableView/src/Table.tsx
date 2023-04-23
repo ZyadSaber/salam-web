@@ -50,17 +50,19 @@ const Table = ({
                     <IconButton
                         icon='fa-sharp fa-solid fa-plus'
                         onClick={onAdd}
-                        disabled={canAdd}
+                        hidden={canAdd}
                     />
                     <IconButton
                         icon='fa-sharp fa-solid fa-pen-clip'
                         onClick={onEdit}
-                        disabled={canEdit}
+                        hidden={canEdit}
+                        disabled={!rowSelected}
                     />
                     <IconButton
                         icon='fa-sharp fa-solid fa-trash'
                         onClick={onDelete}
-                        disabled={canDelete}
+                        hidden={canDelete}
+                        disabled={!rowSelected}
                     />
                     {addionalButtons && addionalButtons.map((button: any[]) => {
                         return (
@@ -70,7 +72,7 @@ const Table = ({
                                 //@ts-ignore
                                 onClick={button.onClick}
                                 //@ts-ignore
-                                disabled={button.disabled}
+                                hidden={button.hidden}
                             />
                         )
                     })}

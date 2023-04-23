@@ -19,19 +19,19 @@ const CasherReceiptVoucher = () => {
                 </Flex>
                 <ApiTable
                     api={"QUERY_CASHER_RECEIPT_VOUCHER_TABLE_DATA"}
-                    postApi={""}
+                    postApi={"POST_CASHER_RECEIPT_VOUCHER_TABLE_DATA"}
                     columns={columns}
                     hideTools={false}
                     canEdit={true}
                     canAdd={true}
                     canDelete={true}
-                    rowKey={"customer_id"}
+                    rowKey={"receipt_voucher_id"}
                     params={{
                         date_from: state.date_from,
                         date_to: state.date_to
                     }}
                     Modal={ModalView}
-                // fetchOnFirstRun
+                    fetchOnFirstRun
                 />
             </Flex>
         </>

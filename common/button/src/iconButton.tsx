@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 
 interface iconButtonProp {
     icon: string;
@@ -9,17 +9,19 @@ interface iconButtonProp {
     color?: string;
     margin?: number | string;
     padding?: number | string;
+    hidden?: boolean;
 }
 
 const IconButton = ({
     icon,
     onClick,
-    disabled = true,
+    disabled = false,
     width = "30px",
     height = "30px",
     color,
     margin = "10px",
-    padding
+    padding,
+    hidden = false
 }: iconButtonProp) => {
     return (
         <>
@@ -31,7 +33,7 @@ const IconButton = ({
                 padding: padding,
                 margin: margin,
                 borderRadius: "20px"
-            }} hidden={!disabled} onClick={onClick} >
+            }} hidden={!hidden} onClick={onClick} disabled={disabled} >
                 <i className={icon}></i>
             </button>
         </>

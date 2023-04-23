@@ -5,27 +5,27 @@ export const columns = [
             width: "10%"
         },
         {
-            title: "amount",
+            title: "amnt",
             dataIndex: "amount",
             width: "10%"
         },
         {
-            title: "voucher_name",
+            title: "vchrnm",
             dataIndex: "voucher_name",
             width: "10%"
         },
         {
-            title: "customer_name",
+            title: "cstmrnm",
             dataIndex: "customer_name",
             width: "15%"
         },
         {
-            title: "supplier_name",
+            title: "splrnm",
             dataIndex: "supplier_name",
             width: "15%"
         },
         {
-            title: "notes",
+            title: "nts",
             dataIndex: "notes",
             width: "10%"
         }
@@ -33,7 +33,11 @@ export const columns = [
 
 export const voucherOptions = [
     {
-        label: "supplier",
-        value: "S"
+        label: "splr",
+        value: 1,
+    },
+    {
+        label: "cstmr",
+        value: 2,
     }
 ]

@@ -67,10 +67,10 @@ export const detailTableColumns = [
 export const RadioBoxOptions = [
     {
         label: "splr",
-        value: "suppliers",
+        value: 1,
     },
     {
         label: "cstmr",
-        value: "customers",
+        value: 2,
     }
 ]
