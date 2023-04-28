@@ -6,19 +6,19 @@ import { ApiTable } from "@commons/table";
 import { columns } from "./constant";
 import { useFormManager } from "@commons/hooks";
 
-const CustomersSummaryPage = () => {
-    const { state, onChange } = useFormManager({ initialValue: { date_from: "", date_to: "", customer_id: "" } })
+const SupplierSummaryPage = () => {
+    const { state, onChange } = useFormManager({ initialValue: { date_from: "", date_to: "", supplier_id: "" } })
     return (
         <>
             <Flex width="100%" flexDirection="column">
                 <Flex width="100%" >
                     <SelectWithApi
-                        Label="cstmr"
+                        Label="splr"
                         fetchOnFirstRun
-                        name="customer_id"
-                        value={state.customer_id}
+                        name="supplier_id"
+                        value={state.supplier_id}
                         onChange={onChange}
-                        Api="QUERY_CUSTOMERS_LIST"
+                        Api="QUERY_SUPPLIER_LIST"
                     />
                     <InputText
                         name="date_from"
@@ -39,7 +39,7 @@ const CustomersSummaryPage = () => {
                     hideTools={true}
                     rowKey={"rowKey"}
                     params={{
-                        customer_id: state.customer_id,
+                        supplier_id: state.supplier_id,
                         date_from: state.date_from,
                         date_to: state.date_to
                     }}
@@ -50,4 +50,4 @@ const CustomersSummaryPage = () => {
     )
 }
 
-export default memo(CustomersSummaryPage)
+export default memo(SupplierSummaryPage)
