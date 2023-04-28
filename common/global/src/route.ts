@@ -10,6 +10,7 @@ import CustomerInvoices from "@pages/customer-invoice-page";
 import InvoicesSearch from "@pages/invoices-search-page";
 import EmpoloyeeSheet from "@pages/employee-sheet-page";
 import CasherReceiptVoucher from "@pages/casher-receipt-voucher-page"
+import CasherPaymentVoucher from "@pages/casher-payment-voucher-page"
 
 const PageRoutes = [{
     Path: "customers",
@@ -58,6 +59,10 @@ const PageRoutes = [{
 {
     Path: "casherReceiptVoucher",
     Component: CasherReceiptVoucher
+},
+{
+    Path: "casherPaymentVoucher",
+    Component: CasherPaymentVoucher
 }
 ]
 

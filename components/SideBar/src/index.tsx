@@ -106,9 +106,8 @@ const SideBar = () => {
                         </h2>
                         <AccordionPanel>
                             <LinkButton label="cshrcptvchr" pathTo="casherReceiptVoucher" width="100%" margin="5% 0" />
-                            <LinkButton label="expens" pathTo="expens" width="100%" margin="5% 0" />
+                            <LinkButton label="cshpymntvchr" pathTo="casherPaymentVoucher" width="100%" margin="5% 0" />
                             <LinkButton label="return" pathTo="return" width="100%" margin="5% 0" />
-                            <LinkButton label="bla" pathTo="bla" width="100%" margin="5% 0" />
                         </AccordionPanel>
                     </AccordionItem>
                     <AccordionItem>
