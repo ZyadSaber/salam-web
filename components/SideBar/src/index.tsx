@@ -76,6 +76,7 @@ const SideBar = () => {
                         <AccordionPanel>
                             <LinkButton label="splrsinvcs" pathTo="supplierInvoices" width="100%" margin="5% 0" />
                             <LinkButton label="cstmrsinvs" pathTo="customerInvoices" width="100%" margin="5% 0" />
+                            {/* <LinkButton label="return" pathTo="return" width="100%" margin="5% 0" /> */}
                             <LinkButton label="invsrch" pathTo="invoicesSearch" width="100%" margin="5% 0" />
                         </AccordionPanel>
                     </AccordionItem>
@@ -107,7 +108,6 @@ const SideBar = () => {
                         <AccordionPanel>
                             <LinkButton label="cshrcptvchr" pathTo="casherReceiptVoucher" width="100%" margin="5% 0" />
                             <LinkButton label="cshpymntvchr" pathTo="casherPaymentVoucher" width="100%" margin="5% 0" />
-                            <LinkButton label="return" pathTo="return" width="100%" margin="5% 0" />
                         </AccordionPanel>
                     </AccordionItem>
                     <AccordionItem>
@@ -120,7 +120,7 @@ const SideBar = () => {
                             </AccordionButton>
                         </h2>
                         <AccordionPanel>
-                            <LinkButton label="customersSummary" pathTo="customersSummary" width="100%" margin="5% 0" />
+                            <LinkButton label="cstmrsmry" pathTo="customersSummary" width="100%" margin="5% 0" />
                             <LinkButton label="suppliersSummary" pathTo="suppliersSummary" width="100%" margin="5% 0" />
                             <LinkButton label="itemsSummary" pathTo="itemsSummary" width="100%" margin="5% 0" />
                             <LinkButton label="dailyTotals" pathTo="dailyTotals" width="100%" margin="5% 0" />
