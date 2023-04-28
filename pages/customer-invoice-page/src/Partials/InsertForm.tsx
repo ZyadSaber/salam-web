@@ -42,7 +42,7 @@ const InsertForm = ({
             <Flex width="100%" flexDirection="column" margin="0" padding="0">
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api={"basicData/customer_pop_data"}
+                        Api={"QUERY_CUSTOMERS_LIST"}
                         onChange={onChange}
                         value={state.customer_id}
                         Label="cstmr"
