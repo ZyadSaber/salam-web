@@ -1,0 +1,16 @@
+{
+"name": "@pages/expenses-totals-page",
+"version": "1.0.0",
+"private": true,
+"description": "",
+"author": "salam",
+"license": "ISC",
+"main": "src/index.ts",
+"sideEffects": false,
+"dependencies": {
+"@types/react": "18.0.25",
+"@types/react-dom": "18.0.8",
+"@types/jest": "^27.5.2"
+},
+"enableBabelTranspilation": true
+}

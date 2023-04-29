@@ -20,8 +20,13 @@ export const columns = [
             width: "15%"
         },
         {
+            title: "blnc",
+            dataIndex: "balance",
+            width: "15%"
+        },
+        {
             title: "dscrptn",
             dataIndex: "description",
-            width: "40%"
+            width: "25%"
         },
     ]
