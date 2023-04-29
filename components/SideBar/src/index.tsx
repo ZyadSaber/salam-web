@@ -121,12 +121,12 @@ const SideBar = () => {
                         </h2>
                         <AccordionPanel>
                             <LinkButton label="cstmrsmry" pathTo="customersSummary" width="100%" margin="5% 0" />
-                            <LinkButton label="suppliersSummary" pathTo="suppliersSummary" width="100%" margin="5% 0" />
-                            <LinkButton label="itemsSummary" pathTo="itemsSummary" width="100%" margin="5% 0" />
-                            <LinkButton label="dailyTotals" pathTo="dailyTotals" width="100%" margin="5% 0" />
-                            <LinkButton label="monthlyTotals" pathTo="monthlyTotals" width="100%" margin="5% 0" />
-                            <LinkButton label="yearlyTotals" pathTo="yearlyTotals" width="100%" margin="5% 0" />
-                            <LinkButton label="expensesTotals" pathTo="expensesTotals" width="100%" margin="5% 0" />
+                            <LinkButton label="splrsmry" pathTo="suppliersSummary" width="100%" margin="5% 0" />
+                            <LinkButton label="itmsmry" pathTo="itemsSummary" width="100%" margin="5% 0" />
+                            <LinkButton label="dltls" pathTo="dailyTotals" width="100%" margin="5% 0" />
+                            <LinkButton label="mnthltl" pathTo="monthlyTotals" width="100%" margin="5% 0" />
+                            <LinkButton label="yrltls" pathTo="yearlyTotals" width="100%" margin="5% 0" />
+                            <LinkButton label="expnstls" pathTo="expensesTotals" width="100%" margin="5% 0" />
                         </AccordionPanel>
                     </AccordionItem>
                     <AccordionItem>
