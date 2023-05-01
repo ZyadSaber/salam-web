@@ -44,7 +44,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "gen": "plop",
+    "generate": "plop",
     "bootstrap": "lerna bootstrap"
   },
   "eslintConfig": {
