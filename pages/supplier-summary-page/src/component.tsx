@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import Flex from "@commons/flex";
 import InputText from "@commons/input-text/src/inputText";
 import { SelectWithApi } from "@commons/select";
-import { ApiTable } from "@commons/table";
+import { TableWithApi } from "@commons/table";
 import { columns } from "./constant";
 import { useFormManager } from "@commons/hooks";
 
@@ -33,7 +33,7 @@ const SupplierSummaryPage = () => {
                         onChange={onChange}
                     />
                 </Flex>
-                <ApiTable
+                <TableWithApi
                     api={""}
                     columns={columns}
                     hideTools={true}

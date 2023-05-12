@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import Flex from "@commons/flex";
 import InputText from "@commons/input-text/src/inputText";
-import { ApiTable } from "@commons/table";
+import { TableWithApi } from "@commons/table";
 import { columns } from "./constant";
 import { useFormManager } from "@commons/hooks";
 import ModalView from "./Partials/modalView"
@@ -15,7 +15,7 @@ const CasherPaymentVoucher = () => {
                     <InputText name="date_from" type="date" Label="from" onChange={onChange} />
                     <InputText name="date_to" type="date" Label="to" onChange={onChange} />
                 </Flex>
-                <ApiTable
+                <TableWithApi
                     api={"QUERY_CASHER_PAYMENT_VOUCHER_TABLE_DATA"}
                     postApi={"POST_CASHER_PAYMENT_VOUCHER_TABLE_DATA"}
                     columns={columns}

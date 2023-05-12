@@ -15,7 +15,6 @@ const ModalView = ({
 }: ModalViewProp) => {
     const { state, onChange } = useFormManager({ initialValue: selectedRow, setSelectedRow: setSelectedRow })
     const { date, voucher_type, person_id, amount, notes } = state
-    console.log(state)
     return (
         <>
             <Modal

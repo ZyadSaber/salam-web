@@ -5,15 +5,16 @@
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
     "@commons/button": "1.0.0",
-    "@commons/global": "1.0.0",
-    "@commons/table": "1.0.0",
-    "@commons/select": "1.0.0",
-    "@commons/input-text": "1.0.0",
-    "@commons/page-title": "1.0.0",
     "@commons/check-box": "1.0.0",
     "@commons/flex": "1.0.0",
-    "@commons/radio-box": "1.0.0",
+    "@commons/global": "1.0.0",
+    "@commons/input-text": "1.0.0",
     "@commons/modal": "1.0.0",
+    "@commons/page-title": "1.0.0",
+    "@commons/radio-box": "1.0.0",
+    "@commons/select": "1.0.0",
+    "@commons/table": "1.0.0",
+    "@cubejs-client/core": "^0.31.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@testing-library/jest-dom": "^5.16.5",
@@ -24,6 +25,7 @@
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "bootstrap": "^5.2.3",
+    "chart.js": "^4.3.0",
     "framer-motion": "^10.0.1",
     "i18next": "^19.9.0",
     "i18next-browser-languagedetector": "^6.0.1",
@@ -32,6 +34,7 @@
     "jspdf-autotable": "^3.5.28",
     "plop": "^3.1.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.0",
     "react-router-dom": "^5.3.4",
@@ -45,7 +48,8 @@
     "test": "craco test",
     "eject": "craco eject",
     "generate": "plop",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "new-ip": "node ./scripts/new-server-address"
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +72,7 @@
   "devDependencies": {
     "@craco/craco": "^7.1.0",
     "lerna": "^6.1.0",
+    "parcel": "^2.6.2",
     "react-app-rewired": "^2.2.1"
   },
   "workspaces": [

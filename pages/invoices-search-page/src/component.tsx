@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from "react";
-import { ApiTable } from "@commons/table";
+import { TableWithApi } from "@commons/table";
 import { mainTableColumns, detailTableColumns } from "./constant";
 import FormView from "./Partials/FormView";
 import { useFormManager } from "@commons/hooks";
@@ -34,7 +34,7 @@ const InvoicesSearch = () => {
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
                     <Flex width="40%">
-                        <ApiTable
+                        <TableWithApi
                             columns={mainTableColumns}
                             api="QUERY_INVOICE_MASTER_TABLE_DATA"
                             rowKey="invoice_id"
@@ -48,7 +48,7 @@ const InvoicesSearch = () => {
                         />
                     </Flex>
                     <Flex width="60%">
-                        <ApiTable
+                        <TableWithApi
                             columns={detailTableColumns}
                             api="QUERY_INVOICE_DETAIL_TABLE_DATA"
                             rowKey="row_key"

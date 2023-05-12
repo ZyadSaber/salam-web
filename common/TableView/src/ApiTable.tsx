@@ -3,7 +3,7 @@ import Table from "./Table";
 import { useFetch } from "@commons/hooks"
 import useTableControlsButtons from "./hooks/useTableControlsButtons"
 
-interface ApiTableProps {
+interface TableWithApiProps {
     api: string;
     postApi?: string;
     columns: {
@@ -24,7 +24,7 @@ interface ApiTableProps {
     params?: any;
 }
 
-const ApiTable = ({
+const TableWithApi = ({
     api,
     postApi,
     columns,
@@ -38,7 +38,7 @@ const ApiTable = ({
     onSelectedRow,
     fetchOnFirstRun = false,
     params
-}: ApiTableProps) => {
+}: TableWithApiProps) => {
     const { data, runFetch } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
     const { setSelectedRow, onSaveAndInsertion, selectedRow } = useTableControlsButtons({ api: postApi })
     const [rows, setRows] = useState({})
@@ -100,4 +100,4 @@ const ApiTable = ({
     )
 }
 
-export default memo(ApiTable)
+export default memo(TableWithApi)

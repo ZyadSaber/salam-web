@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import ModalView from "./Partials/ModalView";
-import { ApiTable } from "@commons/table";
+import { TableWithApi } from "@commons/table";
 import { columns } from "./constants"
 
 const Customers = () => {
     return (
         <>
-            <ApiTable
+            <TableWithApi
                 api={"QUERY_CUSTOMER_TABLE_DATA"}
                 postApi={"POST_CUSTOMER_TABLE_DATA"}
                 columns={columns}
