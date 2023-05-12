@@ -39,7 +39,6 @@ const CheckBox = ({
             }}>
                 <input className="form-check-input" type="checkbox" checked={checked} id="flexCheckIndeterminate" onChange={handleChange} disabled={disabled} />
                 <label className="form-check-label" htmlFor="flexCheckIndeterminate">
-                    {console.log(label)}
                     {t(label)}
                 </label>
             </div>
