@@ -1,14 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import "./style.css";
 import { Button, IconButton } from "@commons/button";
-import { TableProps } from "./interfece";
+import { TableProps, additionalButtonsType } from "./interface";
 import { useTranslation } from 'react-i18next';
 import Flex from "@commons/flex";
 
 
 const Table = ({
     dataSource,
-    rowkey = "rowkey",
+    rowKey = "rowKey",
     columns,
     hideTools = true,
     canEdit = false,
@@ -23,7 +23,7 @@ const Table = ({
     onSelectedRow,
     canPrint = false,
     onPrint,
-    addionalButtons,
+    additionalButtons,
     onSave,
     canSave = false,
     width = "100%",
@@ -50,41 +50,39 @@ const Table = ({
                     <IconButton
                         icon='fa-sharp fa-solid fa-plus'
                         onClick={onAdd}
-                        hidden={canAdd}
+                        hidden={!canAdd}
                     />
                     <IconButton
                         icon='fa-sharp fa-solid fa-pen-clip'
                         onClick={onEdit}
-                        hidden={canEdit}
+                        hidden={!canEdit}
                         disabled={!rowSelected}
                     />
                     <IconButton
                         icon='fa-sharp fa-solid fa-trash'
                         onClick={onDelete}
-                        hidden={canDelete}
+                        hidden={!canDelete}
                         disabled={!rowSelected}
                     />
-                    {addionalButtons && addionalButtons.map((button: any[]) => {
+                    {additionalButtons && additionalButtons.map((button: additionalButtonsType) => {
+                        console.log(additionalButtons)
                         return (
                             <IconButton
-                                //@ts-ignore
                                 icon={button.icon}
-                                //@ts-ignore
                                 onClick={button.onClick}
-                                //@ts-ignore
-                                hidden={button.hidden}
+                                hidden={false}
                             />
                         )
                     })}
                     <IconButton
                         icon='fa-solid fa-floppy-disk'
                         onClick={onSave}
-                        disabled={canSave}
+                        hidden={!canSave}
                     />
                     <IconButton
                         icon='fa-solid fa-print'
                         onClick={onPrint}
-                        disabled={canPrint}
+                        hidden={!canPrint}
                     />
                 </Flex>
                 <table className='table m-0'>
@@ -106,7 +104,7 @@ const Table = ({
                         <tbody>
                             {dataSource?.map((item: any) => {
                                 return (
-                                    <tr key={item[rowkey]} onClick={handleSelectedRow(item)}>
+                                    <tr key={item[rowKey]} onClick={handleSelectedRow(item)}>
                                         {columns.map((column: any) => {
                                             return (
                                                 <td className={`${rowSelected === item ? "table-success" : "table-light"} `} style={{ width: column.width }}>

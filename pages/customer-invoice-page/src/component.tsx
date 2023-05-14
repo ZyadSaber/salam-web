@@ -81,7 +81,7 @@ const CustomerInvoices = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [itemsType.total, itemsType.discount, itemsType.paid])
 
-    const addionalButtons = [
+    const additionalButtons = [
         {
             icon: "fa-solid fa-broom",
             onClick: resetItemsType
@@ -110,7 +110,7 @@ const CustomerInvoices = () => {
                     onSelectedRow={setActiveItem}
                     canAdd={true}
                     canSave={true}
-                    addionalButtons={addionalButtons}
+                    additionalButtons={additionalButtons}
                 />
                 <Flex width='100%' justifyContent='space-around'>
                     <InputText

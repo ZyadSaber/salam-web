@@ -6,7 +6,7 @@ export interface column {
 }
 
 export interface TableProps {
-    rowkey?: string | number;
+    rowKey?: string | number;
     dataSource?: any[];
     columns: column[];
     title?: string;
@@ -25,11 +25,17 @@ export interface TableProps {
     onSelectedRow?: any;
     canPrint?: boolean;
     onPrint?: () => void;
-    // addionalButtons?: addionalButton[];
-    addionalButtons?: any[];
+    // additionalButtons?: addionalButton[];
+    additionalButtons?: any[];
     onSave?: () => void;
     canSave?: boolean;
     width?: number | string;
     padding?: number | string;
     margin?: number | string;
+}
+
+export interface additionalButtonsType{
+    icon: string;
+    onClick: () => void;
+    disabled: boolean;
 }

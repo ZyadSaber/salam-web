@@ -22,3 +22,15 @@ export interface linkButtonProp {
     padding?: string;
     pathTo: string
 }
+
+export interface iconButtonProp {
+    icon: string;
+    onClick?: () => void;
+    disabled?: boolean;
+    width?: number | string;
+    height?: number | string;
+    color?: string;
+    margin?: number | string;
+    padding?: number | string;
+    hidden?: boolean;
+}

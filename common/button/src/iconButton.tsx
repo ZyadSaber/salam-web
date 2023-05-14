@@ -1,16 +1,5 @@
 import React, { memo } from "react";
-
-interface iconButtonProp {
-    icon: string;
-    onClick?: () => void;
-    disabled?: boolean;
-    width?: number | string;
-    height?: number | string;
-    color?: string;
-    margin?: number | string;
-    padding?: number | string;
-    hidden?: boolean;
-}
+import { iconButtonProp } from "./interface"
 
 const IconButton = ({
     icon,
@@ -33,7 +22,7 @@ const IconButton = ({
                 padding: padding,
                 margin: margin,
                 borderRadius: "20px"
-            }} hidden={!hidden} onClick={onClick} disabled={disabled} >
+            }} hidden={hidden} onClick={onClick} disabled={disabled} >
                 <i className={icon}></i>
             </button>
         </>
