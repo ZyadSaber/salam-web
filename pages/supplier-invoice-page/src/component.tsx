@@ -9,7 +9,7 @@ import Flex from "@commons/flex";
 
 const SupplierInvoice = () => {
 
-    const { setRow } = usePost({ link: "POST_SUPPLIER_INVOICE" })
+    const { setRow, success } = usePost({ link: "POST_SUPPLIER_INVOICE" })
 
     const [itemsType, setItemsType] = useState<invoiceDtls>({
         supplier_id: 0,
@@ -70,8 +70,8 @@ const SupplierInvoice = () => {
 
     const handleSave = useCallback(() => {
         setRow(itemsType)
-        resetItemsType()
-    }, [itemsType, resetItemsType, setRow]);
+        if (success?.response === "success") resetItemsType()
+    }, [itemsType, resetItemsType, setRow, success?.response]);
 
     useEffect(() => {
         setItemsType({ ...itemsType, total_after_discount: itemsType.total - itemsType.discount, credit: itemsType.total - itemsType.discount - itemsType.paid })

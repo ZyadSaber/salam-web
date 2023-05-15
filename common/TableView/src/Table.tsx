@@ -65,11 +65,11 @@ const Table = ({
                         disabled={!rowSelected}
                     />
                     {additionalButtons && additionalButtons.map((button: additionalButtonsType) => {
-                        console.log(additionalButtons)
                         return (
                             <IconButton
                                 icon={button.icon}
                                 onClick={button.onClick}
+                                disabled={button.disabled}
                                 hidden={false}
                             />
                         )
@@ -78,11 +78,13 @@ const Table = ({
                         icon='fa-solid fa-floppy-disk'
                         onClick={onSave}
                         hidden={!canSave}
+                        disabled={!canSave}
                     />
                     <IconButton
                         icon='fa-solid fa-print'
                         onClick={onPrint}
                         hidden={!canPrint}
+                        disabled={!canPrint}
                     />
                 </Flex>
                 <table className='table m-0'>
