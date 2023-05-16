@@ -23,6 +23,7 @@ const API_ID = {
     QUERY_SUPPLIER_LIST: "basicData/supplier_pop_data",
     QUERY_CUSTOMERS_LIST: "basicData/customer_pop_data",
     QUERY_ITEMS_LIST: "basicData/items_pop_data",
+    QUERY_PRINT_OPTIONS_LIST: "basicData/print_options_pop_data",
     //http://144.24.209.19:9090/api/v1/employeesData/employee_sheet?employee_id=4
     QUERY_EMPLOYEE_SHEET_SALARY: "employeesData/employee_sheet",
     //http://144.24.209.19:9090/api/v1/income_expense/get_casher_receipt_voucher_invoices?date_from=2023-04-01&date_to=2023-04-30

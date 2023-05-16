@@ -4,13 +4,6 @@ export interface column {
     width?: number | string;
     dataIndex?: any;
 }
-
-export interface additionalButtonsType{
-    icon: string;
-    onClick: ()=>void;
-    disabled?: boolean;
-}
-
 export interface TableProps {
     rowKey?: string | number;
     dataSource?: any[];
@@ -31,7 +24,7 @@ export interface TableProps {
     onSelectedRow?: any;
     canPrint?: boolean;
     onPrint?: () => void;
-    additionalButtons?: additionalButtonsType[];
+    additionalButtons?:additionalButtonsType[];
     onSave?: () => void;
     canSave?: boolean;
     width?: number | string;
@@ -42,5 +35,5 @@ export interface TableProps {
 export interface additionalButtonsType{
     icon: string;
     onClick: () => void;
-    disabled: boolean;
+    disabled?: boolean;
 }

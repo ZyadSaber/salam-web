@@ -59,7 +59,7 @@ const InsertForm = ({
                 </Flex>
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api={"basicData/print_options_pop_data"}
+                        Api={"QUERY_PRINT_OPTIONS_LIST"}
                         onChange={handlePrintChange}
                         value={print_id}
                         Label="prntnm"
@@ -68,7 +68,7 @@ const InsertForm = ({
                         fetchOnFirstRun
                     />
                     <SelectWithApi
-                        Api={"basicData/items_pop_data"}
+                        Api={"QUERY_ITEMS_LIST"}
                         onChange={handleItemChange}
                         value={item_id}
                         Label="itmnm"
