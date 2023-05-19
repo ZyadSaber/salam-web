@@ -108,6 +108,7 @@ const Table = ({
                                 return (
                                     <tr key={item[rowKey]} onClick={handleSelectedRow(item)}>
                                         {columns.map((column: any) => {
+                                            console.log(column.width)
                                             return (
                                                 <td className={`${rowSelected === item ? "table-success" : "table-light"} `} style={{ width: column.width }}>
                                                     {item[column.dataIndex]}
