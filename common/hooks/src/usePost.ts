@@ -5,7 +5,10 @@ import { useToast } from '@chakra-ui/react';
 
 interface usePostProps{
     link: string;
-    noAuthorization?: boolean
+    noAuthorization?: boolean;
+    additionalFunctionToRun?: ()=>void;
+    runOnSuccess?: ()=>void;
+    runOnFail?: ()=>void;
 };
 interface successType{
     response: string;
@@ -13,7 +16,10 @@ interface successType{
 
 const usePost = ({
     link  = "",
-    noAuthorization = false
+    noAuthorization = false,
+    additionalFunctionToRun,
+    runOnSuccess,
+    runOnFail
 }: usePostProps) => {
     const toast = useToast()
     //@ts-ignore
@@ -43,6 +49,7 @@ const usePost = ({
             duration: 5000,
             isClosable: true,
         })
+        if(runOnSuccess)runOnSuccess()
             } else {
                 toast({
             position: "top-right",
@@ -52,13 +59,16 @@ const usePost = ({
             duration: 9000,
             isClosable: true,
         })
+        if(runOnFail)runOnFail()
             }
             setSuccess(data)
+            if(additionalFunctionToRun){
+                additionalFunctionToRun()
+            }
             return data
         } catch (e) {
-            console.log(e)
         }}
-    }, [authorization, noAuthorization, toast, url])
+    }, [additionalFunctionToRun, authorization, noAuthorization, runOnFail, runOnSuccess, toast, url])
 
     const setRow = useCallback((row: any) => {
         postData(row)

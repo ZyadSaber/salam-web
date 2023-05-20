@@ -40,7 +40,7 @@ const TableWithApi = ({
     params
 }: TableWithApiProps) => {
     const { data, runFetch } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
-    const { setSelectedRow, onSaveAndInsertion, selectedRow } = useTableControlsButtons({ api: postApi })
+    const { setSelectedRow, onSaveAndInsertion, selectedRow } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
     const [rows, setRows] = useState({})
     const [modal, setModal] = useState(false)
     const handleAdd = useCallback(() => {
@@ -63,8 +63,8 @@ const TableWithApi = ({
     const handleSaveModal = useCallback(() => {
         setModal(false)
         onSaveAndInsertion()
-        runFetch()
-    }, [onSaveAndInsertion, runFetch])
+        // runFetch()
+    }, [onSaveAndInsertion])
 
     const handleSelectedRow = (row: any) => {
         setRows(row)

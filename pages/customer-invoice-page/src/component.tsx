@@ -6,9 +6,25 @@ import { invoiceDtls, itemsType } from "./interface";
 import { Table } from "@commons/table";
 import { columns } from "./constant"
 import Flex from "@commons/flex";
+import { Button } from "@commons/button";
 
 const CustomerInvoices = () => {
-    const { setRow } = usePost({ link: "POST_CUSTOMER_INVOICE_DETAILS" })
+    const resetItemsType = useCallback(() => {
+        //@ts-ignore
+        setItemsType({
+            customer_id: 0,
+            date: "",
+            items: [],
+            query_status: "n",
+            total: 0,
+            discount: 0,
+            total_after_discount: 0,
+            paid: 0,
+            credit: 0
+        })
+    }, [])
+
+    const { setRow } = usePost({ link: "POST_CUSTOMER_INVOICE_DETAILS", runOnSuccess: resetItemsType })
 
     const [itemsType, setItemsType] = useState<invoiceDtls>({
         customer_id: 0,
@@ -38,21 +54,6 @@ const CustomerInvoices = () => {
     const { state: itemState, onChange: itemChange } = useFormManager({ initialValue: activeItem, setSelectedRow: setActiveItem })
     const { state, onChange } = useFormManager({ initialValue: itemsType, setSelectedRow: setItemsType })
 
-    const resetItemsType = useCallback(() => {
-        //@ts-ignore
-        setItemsType({
-            customer_id: 0,
-            date: "",
-            items: [],
-            query_status: "n",
-            total: 0,
-            discount: 0,
-            total_after_discount: 0,
-            paid: 0,
-            credit: 0
-        })
-    }, [])
-
     const handleAdd = useCallback(() => {
         setItemsType({ ...itemsType, items: [...itemsType.items, activeItem], total: itemsType.total + activeItem.total })
         setActiveItem({
@@ -73,8 +74,7 @@ const CustomerInvoices = () => {
 
     const handleSave = useCallback(() => {
         setRow(itemsType)
-        resetItemsType()
-    }, [itemsType, resetItemsType, setRow]);
+    }, [itemsType, setRow]);
 
     useEffect(() => {
         setItemsType({ ...itemsType, total_after_discount: itemsType.total - itemsType.discount, credit: itemsType.total - itemsType.discount - itemsType.paid })
@@ -106,10 +106,8 @@ const CustomerInvoices = () => {
                     // onAction={handleDelete}
                     hideTools={false}
                     onAdd={handleAdd}
-                    onSave={handleSave}
                     onSelectedRow={setActiveItem}
                     canAdd={true}
-                    canSave={true}
                     additionalButtons={additionalButtons}
                 />
                 <Flex width='100%' justifyContent='space-around'>
@@ -147,6 +145,13 @@ const CustomerInvoices = () => {
                         value={state.credit}
                         Label="Crdt"
                         width="15%"
+                    />
+                    <Button
+                        label="sv"
+                        width="15%"
+                        height="50%"
+                        margin="30px 0"
+                        onClick={handleSave}
                     />
                 </Flex>
             </Flex>

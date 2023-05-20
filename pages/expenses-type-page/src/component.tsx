@@ -7,14 +7,14 @@ const ExpensesType = () => {
     return (
         <>
             <TableWithApi
-                api={""}
-                postApi={""}
+                api={"QUERY_EXPENSES_TYPES_TABLE_DATA"}
+                postApi={"POST_EXPENSES_TYPES_TABLE_DATA"}
                 columns={columns}
                 hideTools={false}
                 canEdit={true}
                 canAdd={true}
                 canDelete={true}
-                rowKey={"customer_id"}
+                rowKey={"expense_id"}
                 Modal={ModalView}
                 fetchOnFirstRun
             />

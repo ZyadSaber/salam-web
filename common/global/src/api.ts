@@ -35,7 +35,11 @@ const API_ID = {
     //http://144.24.209.19:9090/api/v1/income_expense/post_casher_payment_voucher_invoices_dml?authorization=1677621781730
     POST_CASHER_PAYMENT_VOUCHER_TABLE_DATA: "income_expense/post_casher_payment_voucher_invoices_dml",
     //http://144.24.209.19:9090/api/v1/home/dash_board_get_data?authorization=1677621781730
-    QUERY_MAIN_CHART_DATA: "home/dash_board_get_data"
+    QUERY_MAIN_CHART_DATA: "home/dash_board_get_data",
+    //http://144.24.209.19:9090/api/v1/basicData/expenses_types_data?authorization=1684527411581&
+    QUERY_EXPENSES_TYPES_TABLE_DATA: "basicData/expenses_types_data",
+    //http://144.24.209.19:9090/api/v1/basicData/expenses_types_data?authorization=1684527411581&
+    POST_EXPENSES_TYPES_TABLE_DATA: "basicData/expenses_types_dml",
 };
 
 export default API_ID

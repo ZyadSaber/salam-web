@@ -1,13 +1,13 @@
 export const columns = [
         {
-            title: "expense_id",
+            title: "expnsid",
             dataIndex: "expense_id",
-            width: "33.3%"
+            width: "23.3%"
         },
         {
-            title: "expense_name",
+            title: "expnsnm",
             dataIndex: "expense_name",
-            width: "33.3%"
+            width: "43.3%"
         },
         {
             title: "nts",

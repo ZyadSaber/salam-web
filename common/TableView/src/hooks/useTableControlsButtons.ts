@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 import {  usePost } from "@commons/hooks";
 
-const useTableControlsButtons = ({api = ""}) => {
+const useTableControlsButtons = ({api = "", runFetch}:any) => {
 
     const [selectedRow, setRows] = useState<any>({})
-    const { setRow } = usePost({link: api})
+    const { setRow } = usePost({link: api, additionalFunctionToRun:runFetch})
 
     const onSaveAndInsertion = ()=>{
         //@ts-ignore
