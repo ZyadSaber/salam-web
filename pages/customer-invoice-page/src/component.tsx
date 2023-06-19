@@ -1,148 +1,173 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
-import InsertForm from "./Partials/InsertForm";
+import React, { memo, useCallback, useEffect } from "react";
 import { InputText } from "@commons/input-text";
-import { usePost, useFormManager } from "@commons/hooks";
-import { invoiceDtls, itemsType } from "./interface";
+import InputNumber from "@commons/input-number"
+import { useMutation, useFormManager } from "@commons/hooks";
 import { Table } from "@commons/table";
-import { columns } from "./constant"
 import Flex from "@commons/flex";
+import { SelectWithApi } from "@commons/select";
 import { Button } from "@commons/button";
+import InsertForm from "./Partials/InsertForm";
+import { columns } from "./constant"
 
 const CustomerInvoices = () => {
-    const resetItemsType = useCallback(() => {
-        //@ts-ignore
-        setItemsType({
+
+    const {
+        state,
+        onChange,
+        resetForm,
+        handleRootState,
+        handleArrayChange
+    } = useFormManager({
+        initialValues: {
             customer_id: 0,
-            date: "",
-            items: [],
+            customer_invoice_date: "",
+            customer_invoice_items: [],
             query_status: "n",
-            total: 0,
-            discount: 0,
-            total_after_discount: 0,
-            paid: 0,
-            credit: 0
-        })
-    }, [])
-
-    const { setRow } = usePost({ link: "POST_CUSTOMER_INVOICE_DETAILS", runOnSuccess: resetItemsType })
-
-    const [itemsType, setItemsType] = useState<invoiceDtls>({
-        customer_id: 0,
-        date: "",
-        items: [],
-        query_status: "n",
-        total: 0,
-        discount: 0,
-        total_after_discount: 0,
-        paid: 0,
-        credit: 0
-    })
-    const [activeItem, setActiveItem] = useState<itemsType>({
-        item_id: 0,
-        width: 0,
-        height: 0,
-        size: 0,
-        quantity: 0,
-        price: 0,
-        total: 0,
-        notes: "",
-        itemName: "",
-        print_id: 0,
-        print_name: ""
+            customer_invoice_total: 0,
+            customer_invoice_discount: 0,
+            customer_invoice_after_discount: 0,
+            customer_invoice_paid: 0,
+            customer_invoice_credit: 0
+        }
     })
 
-    const { state: itemState, onChange: itemChange } = useFormManager({ initialValue: activeItem, setSelectedRow: setActiveItem })
-    const { state, onChange } = useFormManager({ initialValue: itemsType, setSelectedRow: setItemsType })
+    const {
+        state: currentItemState,
+        onChange: currentItemChange,
+        handleRootState: handleItemMultiChange,
+        handleSelectWithLabelChange,
+        resetForm: resetItemForm
+    } = useFormManager({
+        initialValues: {
+            customer_invoice_print_option_id: 0,
+            customer_invoice_item_id: 0,
+            customer_invoice_item_width: 0,
+            customer_invoice_item_height: 0,
+            customer_invoice_item_size: 0,
+            customer_invoice_item_quantity: 0,
+            customer_invoice_item_price: 0,
+            customer_invoice_item_total: 0,
+            customer_invoice_item_notes: "",
+            item_name: "",
+            print_name: ""
+        }
+    })
+
+    const {
+        setRow
+    } = useMutation({
+        link: "POST_CUSTOMER_INVOICE_DETAILS",
+        runOnSuccess: resetForm
+    })
+
 
     const handleAdd = useCallback(() => {
-        setItemsType({ ...itemsType, items: [...itemsType.items, activeItem], total: itemsType.total + activeItem.total })
-        setActiveItem({
-            item_id: 0,
-            width: 0,
-            height: 0,
-            size: 0,
-            quantity: 0,
-            price: 0,
-            total: 0,
-            notes: "",
-            itemName: "",
-            print_id: 0,
-            print_name: ""
+        handleArrayChange({
+            name: "customer_invoice_items",
+            value: currentItemState
         })
-
-    }, [activeItem, itemsType]);
+        resetItemForm()
+    }, [currentItemState, handleArrayChange, resetItemForm]);
 
     const handleSave = useCallback(() => {
-        setRow(itemsType)
-    }, [itemsType, setRow]);
-
-    useEffect(() => {
-        setItemsType({ ...itemsType, total_after_discount: itemsType.total - itemsType.discount, credit: itemsType.total - itemsType.discount - itemsType.paid })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [itemsType.total, itemsType.discount, itemsType.paid])
+        setRow(state)
+    }, [setRow, state]);
 
     const additionalButtons = [
         {
             icon: "fa-solid fa-broom",
-            onClick: resetItemsType
+            onClick: resetForm
         },
     ]
+
+    useEffect(() => {
+        if (Array.isArray(state.customer_invoice_items) && state.customer_invoice_items.length !== 0) {
+            let totals = 0
+            state.customer_invoice_items.forEach((item: any) => {
+                totals = totals + item.customer_invoice_item_total
+            });
+            onChange({ name: "customer_invoice_total", value: totals })
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.customer_invoice_items, state.customer_invoice_total])
+
+    useEffect(() => {
+        handleRootState({ ...state, customer_invoice_after_discount: state.customer_invoice_total - state.customer_invoice_discount, customer_invoice_credit: state.customer_invoice_total - state.customer_invoice_discount - state.customer_invoice_paid })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.customer_invoice_total, state.customer_invoice_discount, state.customer_invoice_paid])
+
     return (
         <>
             <Flex flexDirection="column" width="100%">
+                <Flex margin="0" padding="0">
+                    <SelectWithApi
+                        Api={"QUERY_CUSTOMERS_LIST"}
+                        onChange={onChange}
+                        value={state.customer_id}
+                        Label="cstmr"
+                        name="customer_id"
+                        fetchOnFirstRun
+                    />
+                    <InputText
+                        name="customer_invoice_date"
+                        value={state.customer_invoice_date}
+                        Label="dt"
+                        onChange={onChange}
+                        type="date"
+                    />
+                </Flex>
                 <InsertForm
-                    itemState={itemState}
-                    itemChange={itemChange}
-                    activeItem={activeItem}
-                    setActiveItem={setActiveItem}
-                    onChange={onChange}
-                    state={state}
+                    state={currentItemState}
+                    onChange={currentItemChange}
+                    handleRootState={handleItemMultiChange}
+                    handleSelectWithLabelChange={handleSelectWithLabelChange}
                 />
                 <Table
                     columns={columns}
-                    dataSource={itemsType.items}
+                    dataSource={state.customer_invoice_items}
                     actionColumn
                     actionLabel="Delete"
                     // onAction={handleDelete}
                     hideTools={false}
                     onAdd={handleAdd}
-                    onSelectedRow={setActiveItem}
+                    // onSelectedRow={setActiveItem}
                     canAdd={true}
                     additionalButtons={additionalButtons}
                 />
                 <Flex width='100%' justifyContent='space-around'>
-                    <InputText
-                        name='total'
+                    <InputNumber
+                        name='customer_invoice_total'
                         disabled
-                        value={state.total}
+                        value={state.customer_invoice_total}
                         Label="total"
                         width="15%"
                     />
-                    <InputText
-                        name='discount'
-                        value={state.discount}
+                    <InputNumber
+                        name='customer_invoice_discount'
+                        value={state.customer_invoice_discount}
                         Label="dscnt"
                         onChange={onChange}
                         width="15%"
                     />
-                    <InputText
+                    <InputNumber
                         name='totalAfterDiscount'
                         disabled
-                        value={state.total_after_discount}
+                        value={state.customer_invoice_after_discount}
                         Label="Tlaftrdsnt"
                         width="15%"
                     />
-                    <InputText
-                        name='paid'
-                        value={state.paid}
+                    <InputNumber
+                        name='customer_invoice_paid'
+                        value={state.customer_invoice_paid}
                         Label="paid"
                         onChange={onChange}
                         width="15%"
                     />
-                    <InputText
-                        name='credit'
+                    <InputNumber
+                        name='customer_invoice_credit'
                         disabled
-                        value={state.credit}
+                        value={state.customer_invoice_credit}
                         Label="Crdt"
                         width="15%"
                     />

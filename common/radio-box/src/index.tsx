@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
-import { radioBoxProps, option } from "./interface"
-import "./style.css";
 import { useTranslation } from 'react-i18next'
+import { Radio, RadioGroup, Stack, FormLabel, Flex } from '@chakra-ui/react'
+import { radioBoxProps, option } from "./interface"
 
 const RadioBox = ({
     name,
@@ -19,25 +19,38 @@ const RadioBox = ({
     }, [name, onChange])
     return (
         <>
-            <div className="mb-1" style={{
-                width: width,
-                margin: margin,
-                padding: padding
-            }}>
-                <label htmlFor="exampleFormControlInput1" className="form-label">{Label}</label>
-                <div className="radio flex-row form-control " style={{ display: "flex" }} >
-                    {options.map((option: option) => {
-                        return (
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked={option.checked || value === option.value} onClick={() => { handleChange(option.value) }} />
-                                <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                    {t(option.label)}
-                                </label>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
+            <Flex
+                direction="column"
+                width={width}
+                padding={padding}
+                margin={margin}
+                wrap="wrap"
+            >
+                <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(Label)}</FormLabel>
+                <Flex
+                    className="css-1xsh6d8"
+                    height="100%"
+                    width="100%"
+                >
+                    <RadioGroup
+                        padding="7px"
+                        onChange={handleChange}
+                        value={value}
+                        width="100%"
+                        display="flex"
+                        gap="15px"
+                        flexWrap="wrap"
+                    >
+                        {options.map((option: option) => {
+                            return (
+                                <Stack direction='row'>
+                                    <Radio value={option.value} >{t(option.label)}</Radio>
+                                </Stack>
+                            )
+                        })}
+                    </RadioGroup>
+                </Flex>
+            </Flex>
         </>
     )
 }

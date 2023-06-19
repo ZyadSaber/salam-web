@@ -11,12 +11,13 @@ const Suppliers = () => {
                 postApi={"POST_SUPPLIER_TABLE_DATA"}
                 columns={columns}
                 hideTools={false}
-                canEdit={true}
-                canAdd={true}
-                canDelete={true}
+                canEdit
+                canAdd
+                canDelete
                 rowKey={"supplier_id"}
-                Modal={ModalView}
+                ModalContent={ModalView}
                 fetchOnFirstRun
+                canExcel
             />
         </>
     )

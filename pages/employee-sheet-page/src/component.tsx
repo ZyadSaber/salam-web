@@ -9,7 +9,7 @@ import { SearchButton } from "@commons/button";
 import { InputText } from "@commons/input-text";
 
 const EmployeeSheet = () => {
-    const { state, onChange } = useFormManager({ initialValue: { employee_id: "", } })
+    const { state, onChange } = useFormManager({ initialValues: { employee_id: "", } })
     const { data, runFetch } = useFetch({
         link: "QUERY_EMPLOYEE_SHEET_SALARY",
         params: {

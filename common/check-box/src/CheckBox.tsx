@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { CheckBoxProps } from "./interface";
 import { useTranslation } from 'react-i18next'
+import { Checkbox as ChakraCheckBox } from '@chakra-ui/react'
+import { CheckBoxProps } from "./interface";
 
 const CheckBox = ({
     label = "",
@@ -32,16 +33,16 @@ const CheckBox = ({
 
     return (
         <>
-            <div className="form-check" style={{
-                width: width,
-                padding: padding,
-                margin: margin
-            }}>
-                <input className="form-check-input" type="checkbox" checked={checked} id="flexCheckIndeterminate" onChange={handleChange} disabled={disabled} />
-                <label className="form-check-label" htmlFor="flexCheckIndeterminate">
-                    {t(label)}
-                </label>
-            </div>
+            <ChakraCheckBox
+                isChecked={checked}
+                onChange={handleChange}
+                width={width}
+                isDisabled={disabled}
+                padding={padding}
+                margin={margin}
+            >
+                {t(label)}
+            </ChakraCheckBox>
         </>
     )
 }

@@ -15,8 +15,9 @@ const ExpensesType = () => {
                 canAdd={true}
                 canDelete={true}
                 rowKey={"expense_id"}
-                Modal={ModalView}
+                ModalContent={ModalView}
                 fetchOnFirstRun
+                canExcel
             />
         </>
     )

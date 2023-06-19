@@ -14,7 +14,8 @@ const SelectWithApi = ({
     padding,
     margin,
     params,
-    fetchOnFirstRun = false
+    fetchOnFirstRun = false,
+    selectLabelName = "label_select"
 }: SelectWithApiProps) => {
 
     const { data } = useFetch({
@@ -35,6 +36,7 @@ const SelectWithApi = ({
                 withLabel={withLabel}
                 margin={margin}
                 padding={padding}
+                selectLabelName={selectLabelName}
             />
         </>
     )

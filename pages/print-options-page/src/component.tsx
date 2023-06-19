@@ -15,9 +15,10 @@ const PrintOptions = () => {
                 canEdit={true}
                 canAdd={true}
                 canDelete={true}
-                rowKey={"print_id"}
-                Modal={ModalView}
+                rowKey={"print_option_id"}
+                ModalContent={ModalView}
                 fetchOnFirstRun
+                canExcel
             />
         </>
     )

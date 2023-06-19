@@ -2,22 +2,22 @@ import React, { memo } from "react";
 import { InputText } from "@commons/input-text";
 import { SelectWithApi } from "@commons/select";
 import { TextArea } from "@commons/input-text";
-import { usePost, useFormManager } from "@commons/hooks";
+import { useMutation, useFormManager } from "@commons/hooks";
 import Modal from "@commons/modal";
 import { EmployeeLeavingProps } from "./interface"
 
 const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) => {
-    const initialValue = {
+    const initialValues = {
         date: "",
         employee_id: "",
         employee_time: "",
         notes: "",
         query_status: "n"
     }
-    const { onChange, state } = useFormManager({ initialValue: initialValue })
+    const { onChange, state } = useFormManager({ initialValues: initialValues })
     const { date, employee_id, leaving_time, notes } = state
 
-    const { setRow } = usePost({
+    const { setRow } = useMutation({
         link: "POST_EMPLOYEE_LEAVING"
     })
 

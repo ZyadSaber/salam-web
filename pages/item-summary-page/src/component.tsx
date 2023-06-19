@@ -7,7 +7,7 @@ import { columns } from "./constant";
 import { useFormManager } from "@commons/hooks";
 
 const ItemSummaryPage = () => {
-    const { state, onChange } = useFormManager({ initialValue: { date_from: "", date_to: "", item_id: "" } })
+    const { state, onChange } = useFormManager({ initialValues: { date_from: "", date_to: "", item_id: "" } })
     return (
         <>
             <Flex width="100%" flexDirection="column">

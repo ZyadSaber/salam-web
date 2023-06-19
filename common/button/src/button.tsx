@@ -1,31 +1,49 @@
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Button as ChakraButton } from '@chakra-ui/react'
 import { buttonProp } from "./interface";
-import { useTranslation } from 'react-i18next'
 
 const Button = ({
     label = "",
     onClick,
     disabled,
-    className,
     hidden,
     margin,
     width,
     height,
     padding,
-    additionalStyle = ""
+    color = "blue",
+    //solid, ghost, outline, or link.
+    variant = "solid",
+    //xs, sm, md, or lg
+    size = "md",
+    leftIcon = <></>,
+    rightIcon = <></>,
+    position = "unset"
 }: buttonProp) => {
     const { t } = useTranslation()
     return (
         <>
-            <button className={`button btn btn-primary ${className} `} style={{
-                width: `${width}`,
-                margin: `${margin}`,
-                height: `${height}`,
-                padding: padding,
-                display: "inline-block",
+            <ChakraButton
+                colorScheme={color}
+                variant={variant}
                 //@ts-ignore
-                additionalStyle
-            }} onClick={onClick} disabled={disabled} hidden={hidden}>{t(label)}</button>
+                leftIcon={leftIcon}
+                //@ts-ignore
+                rightIcon={rightIcon}
+                width={width}
+                onClick={onClick}
+                disabled={disabled}
+                hidden={hidden}
+                margin={margin}
+                padding={padding}
+                height={height}
+                size={size}
+                //@ts-ignore
+                position={position}
+            >
+                {t(label)}
+            </ChakraButton>
         </>
     )
 }

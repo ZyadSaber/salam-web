@@ -1,37 +1,81 @@
-import {useState, useCallback, useEffect} from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
+import usePrevious from "./usePrevious";
 
 interface useFormManagerProps {
-    initialValue?: any
-    setSelectedRow?: any
+  initialValues?: any;
+  setSelectedRow?: any;
+  tableModal?: boolean;
 }
 
-const useFormManager =({initialValue, setSelectedRow}: useFormManagerProps)=>{
-    const [initialValues, setInitialValues] = useState()
-    const [state, setState] = useState<typeof initialValue>({})
+const useFormManager = ({ initialValues }: useFormManagerProps) => {
+  const [state, setState] = useState<typeof initialValues>(initialValues);
 
-    const onChange = useCallback((change: any)=>{
-        //@ts-ignore
-            if (setSelectedRow)setSelectedRow({...initialValue, [change.name]: change.value})
-            setState({...state, [change.name]: change.value})
-            setInitialValues(initialValues)
-    },[initialValues, initialValue, setSelectedRow, state])
+  const hasAnyFieldChangedRef = useRef(false);
+  const preValues = usePrevious(initialValues);
 
-    useEffect(()=>{
-        if(setSelectedRow){
-            setState(initialValue);
-        }
-    },[initialValue, setSelectedRow])
+  const areInitialValuesChanged = useCallback(
+    () => !Object.is(JSON.stringify(preValues), JSON.stringify(initialValues)),
+    [initialValues, preValues]
+  );
 
-    useEffect(()=>{
-        setState(initialValue);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+  useEffect(() => {
+    if (areInitialValuesChanged()) {
+      setState({ ...initialValues });
+    }
+  }, [areInitialValuesChanged, initialValues]);
 
-    const resetState = useCallback(()=>{
-        setSelectedRow(initialValues)
-    },[initialValues, setSelectedRow])
+  const resetForm = useCallback(() => {
+    hasAnyFieldChangedRef.current = false;
+    setState(() => initialValues);
+    // @ts-ignore
+  }, [initialValues]);
 
-    return{state, onChange, resetState}
-}
+  useEffect(
+    () => {
+      return resetForm;
+    },
+    // eslint-disable-next-line
+    []
+  );
 
-export default useFormManager
+  const onChange = useCallback(
+    (eventData: any) => {
+      const { name, value } = eventData;
+      setState({ ...state, [name]: value });
+    },
+    [state]
+  );
+
+  const handleRootState = useCallback((e: any) => {
+    setState(e);
+  }, []);
+
+  const handleSelectWithLabelChange = useCallback(
+    (eventData: any) => {
+      setState({
+        ...state,
+        [eventData.name]: eventData.value,
+        [eventData.selectLabelName]: eventData.label,
+      });
+    },
+    [state]
+  );
+
+  const handleArrayChange = useCallback(
+    ({ name, value }: any) => {
+      setState({ ...state, [name]: [...state[name], value] });
+    },
+    [state]
+  );
+
+  return {
+    state,
+    onChange,
+    resetForm,
+    handleRootState,
+    handleSelectWithLabelChange,
+    handleArrayChange,
+  };
+};
+
+export default useFormManager;

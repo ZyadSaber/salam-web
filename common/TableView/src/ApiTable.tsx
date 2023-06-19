@@ -1,98 +1,71 @@
 import React, { memo, useState, useCallback } from "react";
 import Table from "./Table";
 import { useFetch } from "@commons/hooks"
-import useTableControlsButtons from "./hooks/useTableControlsButtons"
-
-interface TableWithApiProps {
-    api: string;
-    postApi?: string;
-    columns: {
-        title: string,
-        dataIndex: string,
-        width: number | string
-    }[];
-    hideTools?: boolean;
-    canAdd?: boolean;
-    canEdit?: boolean;
-    canDelete?: boolean;
-    rowKey: string;
-    Modal?: any;
-    width?: number | string;
-    onSelectedRow?: any;
-    fetchOnFirstRun?: boolean;
-    refreshAfter?: number;
-    params?: any;
-}
+import Modal from "@commons/modal";
+import useTableControlsButtons from "./hooks/useTableControlsButtons";
+import { TableWithApiProps } from "./interface"
 
 const TableWithApi = ({
     api,
     postApi,
     columns,
-    hideTools,
-    canAdd,
-    canEdit,
-    canDelete,
-    rowKey,
-    Modal,
-    width,
-    onSelectedRow,
+    ModalContent,
+    onClick,
     fetchOnFirstRun = false,
-    params
+    params,
+    ...props
 }: TableWithApiProps) => {
-    const { data, runFetch } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
-    const { setSelectedRow, onSaveAndInsertion, selectedRow } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
-    const [rows, setRows] = useState({})
+    const { data, runFetch, loading } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
+    const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
+    const [selectedRow, setSelectedRow] = useState({})
     const [modal, setModal] = useState(false)
     const handleAdd = useCallback(() => {
         setSelectedRow({ query_status: "n" })
         setModal(true)
     }, [setSelectedRow])
     const handleEdit = useCallback(() => {
-        setSelectedRow({ ...rows, query_status: "u" })
+        setSelectedRow({ ...selectedRow, query_status: "u" })
         setModal(true)
-    }, [rows, setSelectedRow])
+    }, [selectedRow, setSelectedRow])
     const handleDelete = () => {
-        setSelectedRow({ ...rows, query_status: "d" })
-        onSaveAndInsertion()
+        onSaveAndInsertion({ ...selectedRow, query_status: "d" })
     }
 
     const handleCloseModal = useCallback(() => {
         setModal(false)
     }, [])
 
-    const handleSaveModal = useCallback(() => {
-        setModal(false)
-        onSaveAndInsertion()
-        // runFetch()
-    }, [onSaveAndInsertion])
 
     const handleSelectedRow = (row: any) => {
-        setRows(row)
-        if (onSelectedRow) onSelectedRow(row)
+        setSelectedRow(row)
+        if (onClick) onClick(row)
     }
 
     return (
         <>
-            {Modal && <Modal
+            {ModalContent && <Modal
                 visible={modal}
-                onOK={handleSaveModal}
                 onClose={handleCloseModal}
-                selectedRow={selectedRow}
-                setSelectedRow={setSelectedRow}
-            />}
+                hideCloseButton
+                hideSaveButton
+                label="dtls"
+            >
+                <ModalContent
+                    onClose={handleCloseModal}
+                    selectedRow={selectedRow}
+                    refreshTable={runFetch}
+                />
+            </Modal>
+            }
             <Table
-                dataSource={data}
+                dataSource={data?.data}
                 columns={columns}
-                hideTools={hideTools}
-                canAdd={canAdd}
-                canEdit={canEdit}
-                canDelete={canDelete}
-                rowKey={rowKey}
                 onAdd={handleAdd}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
                 onSelectedRow={handleSelectedRow}
-                width={width}
+                loading={loading}
+                {...props}
             >
             </Table>
 

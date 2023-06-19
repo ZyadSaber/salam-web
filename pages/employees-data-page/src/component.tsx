@@ -15,7 +15,7 @@ const EmployeesData = () => {
                 canAdd={true}
                 canDelete={true}
                 rowKey={"employee_id"}
-                Modal={ModalView}
+                ModalContent={ModalView}
                 fetchOnFirstRun
             />
         </>

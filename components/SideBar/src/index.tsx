@@ -14,7 +14,7 @@ import EmployeeAttendance from "@pages/employee-attendance-page"
 import EmployeeLeaving from "@pages/employee-leaving-page";
 //@ts-ignore
 import { NavLink } from 'react-router-dom';
-import { useLocalStorage } from "@commons/hooks"
+import { useLocalStorage } from "@commons/hooks";
 
 const SideBar = () => {
     const { t } = useTranslation()
@@ -27,6 +27,7 @@ const SideBar = () => {
     const handleCloseModal = () => {
         setModalProps({})
     }
+
     return (
         <>
             <EmployeeAttendance
@@ -41,7 +42,7 @@ const SideBar = () => {
                 <Flex width="100%" height="17%" flexDirection="column" justifyContent="space-around" margin="15px 0px 35px" textAlign="center">
                     <NavLink to='/home' className="navbar-brand m-0 w-100" >
                         <Flex width="100%" flexDirection="column" justifyContent="centre" margin="0">
-                            <img src="http://144.24.209.19:9090/api/v1/logo" alt="Logo" className="rounded mx-auto d-block w-50 mb-3" />
+                            <img src="http://144.24.209.19:9090/application_logo/primary_logo" alt="Logo" className="rounded mx-auto d-block w-50 mb-3" />
                             <h4>{t("aptl")}</h4>
                         </Flex>
                     </NavLink>

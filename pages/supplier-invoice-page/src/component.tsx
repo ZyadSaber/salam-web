@@ -1,146 +1,176 @@
-import React, { memo, useState, useCallback, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { Table } from "@commons/table";
 import { InputText } from "@commons/input-text";
-import { useFormManager, usePost } from "@commons/hooks";
+import { useFormManager, useMutation } from "@commons/hooks";
+import { SelectWithApi } from "@commons/select";
+import { Button } from "@commons/button";
+import Flex from "@commons/flex";
+import InputNumber from "@commons/input-number"
+// import { useReactToPrint } from 'react-to-print';
+// import ComponentToPrint from './Partials/printModal';
 import { columns } from "./constants";
 import InsertForm from "./Partials/InsertForm";
-import { itemsType, invoiceDtls } from "./interface";
-import Flex from "@commons/flex";
-import { Button } from "@commons/button";
 
 const SupplierInvoice = () => {
 
+    // const ComponentRef = useRef();
 
-    const resetItemsType = useCallback(() => {
-        //@ts-ignore
-        setItemsType({
+    const {
+        state,
+        onChange,
+        resetForm,
+        handleRootState,
+        handleArrayChange,
+        handleSelectWithLabelChange: mainStateHandleSelectWithLabelChange
+    } = useFormManager({
+        initialValues: {
             supplier_id: 0,
-            date: "",
-            items: [],
+            supplier_name: "",
+            supplier_invoice_date: "",
+            supplier_invoice_items: [],
             query_status: "n",
-            total: 0,
-            discount: 0,
-            total_after_discount: 0,
-            paid: 0,
-            credit: 0
-        })
-    }, [])
-
-    const { setRow, success } = usePost({ link: "POST_SUPPLIER_INVOICE", runOnSuccess: resetItemsType })
-
-    const [itemsType, setItemsType] = useState<invoiceDtls>({
-        supplier_id: 0,
-        date: "",
-        items: [],
-        query_status: "n",
-        total: 0,
-        discount: 0,
-        total_after_discount: 0,
-        paid: 0,
-        credit: 0
-    })
-    const [activeItem, setActiveItem] = useState<itemsType>({
-        item_id: 0,
-        width: 0,
-        height: 0,
-        size: 0,
-        quantity: 0,
-        price: 0,
-        total: 0,
-        notes: "",
-        itemName: ""
+            supplier_invoice_total: 0,
+            supplier_invoice_discount: 0,
+            supplier_invoice_after_discount: 0,
+            supplier_invoice_paid: 0,
+            supplier_invoice_credit: 0
+        }
     })
 
-    const { state: itemState, onChange: itemChange } = useFormManager({ initialValue: activeItem, setSelectedRow: setActiveItem })
-    const { state, onChange } = useFormManager({ initialValue: itemsType, setSelectedRow: setItemsType })
+    const {
+        state: currentItemState,
+        onChange: currentItemChange,
+        handleRootState: handleItemMultiChange,
+        handleSelectWithLabelChange,
+        resetForm: resetItemForm
+    } = useFormManager({
+        initialValues: {
+            supplier_invoice_item_id: 0,
+            supplier_invoice_item_width: 0,
+            supplier_invoice_item_height: 0,
+            supplier_invoice_item_size: 0,
+            supplier_invoice_item_quantity: 0,
+            supplier_invoice_item_price: 0,
+            supplier_invoice_item_total: 0,
+            supplier_invoice_item_notes: "",
+            item_name: ""
+        }
+    })
 
-    const handleAdd = useCallback(() => {
-        setItemsType({ ...itemsType, items: [...itemsType.items, activeItem], total: itemsType.total + activeItem.total })
-        setActiveItem({
-            item_id: 0,
-            width: 0,
-            height: 0,
-            size: 0,
-            quantity: 0,
-            price: 0,
-            total: 0,
-            notes: "",
-            itemName: ""
-        })
+    const { setRow } = useMutation({ link: "POST_SUPPLIER_INVOICE", runOnSuccess: resetForm })
 
-    }, [activeItem, itemsType]);
+    // const handlePrint = useReactToPrint({
+    //     //@ts-ignore
+    //     content: () => ComponentRef.current,
+    // });
 
     const handleSave = useCallback(() => {
-        setRow(itemsType)
-    }, [itemsType, setItemsType, setRow, success?.response]);
+        setRow(state)
+    }, [setRow, state]);
 
     useEffect(() => {
-        setItemsType({ ...itemsType, total_after_discount: itemsType.total - itemsType.discount, credit: itemsType.total - itemsType.discount - itemsType.paid })
+        if (Array.isArray(state.supplier_invoice_items) && state.supplier_invoice_items.length !== 0) {
+            let totals = 0
+            state.supplier_invoice_items.forEach((item: any) => {
+                totals = totals + item.supplier_invoice_item_total
+            });
+            onChange({ name: "supplier_invoice_total", value: totals })
+        }
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [itemsType.total, itemsType.discount, itemsType.paid])
+    }, [state.supplier_invoice_items])
+
+    useEffect(() => {
+        handleRootState({ ...state, supplier_invoice_after_discount: state.supplier_invoice_total - state.supplier_invoice_discount, supplier_invoice_credit: state.supplier_invoice_total - state.supplier_invoice_discount - state.supplier_invoice_paid })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.supplier_invoice_total, state.supplier_invoice_discount, state.supplier_invoice_paid])
 
     const additionalButtons = [
         {
             icon: "fa-solid fa-broom",
-            onClick: resetItemsType
+            onClick: resetForm
         },
     ]
+
+    const handleAdd = useCallback(() => {
+        handleArrayChange({ name: "supplier_invoice_items", value: currentItemState })
+        resetItemForm()
+    }, [currentItemState, handleArrayChange, resetItemForm])
+
     return (
         <>
+
             <Flex flexDirection='column' width='100%'>
+                <Flex margin="0" padding="0">
+                    <SelectWithApi
+                        Api="QUERY_SUPPLIER_LIST"
+                        onChange={mainStateHandleSelectWithLabelChange}
+                        value={state.supplier_id}
+                        Label="splr"
+                        name="supplier_id"
+                        fetchOnFirstRun
+                        withLabel
+                        selectLabelName="supplier_name"
+                    />
+                    <InputText
+                        name="supplier_invoice_date"
+                        value={state.supplier_invoice_date}
+                        Label="dt"
+                        onChange={onChange}
+                        type="date"
+                    />
+                </Flex>
                 <InsertForm
-                    itemState={itemState}
-                    itemChange={itemChange}
-                    activeItem={activeItem}
-                    setActiveItem={setActiveItem}
-                    onChange={onChange}
-                    state={state}
+                    state={currentItemState}
+                    onChange={currentItemChange}
+                    handleRootState={handleItemMultiChange}
+                    handleSelectWithLabelChange={handleSelectWithLabelChange}
                 />
                 <Table
                     columns={columns}
-                    dataSource={itemsType.items}
+                    dataSource={state.supplier_invoice_items}
                     actionColumn
                     actionLabel="Delete"
                     // onAction={handleDelete}
                     hideTools={false}
                     onAdd={handleAdd}
-                    onSelectedRow={setActiveItem}
                     canAdd={true}
+                    canPrint
                     additionalButtons={additionalButtons}
                 />
                 <Flex width='100%' justifyContent='space-around'>
-                    <InputText
-                        name='total'
+                    <InputNumber
+                        name='supplier_invoice_total'
                         disabled
-                        value={state.total}
+                        value={state.supplier_invoice_total}
                         Label="total"
                         width="15%"
                     />
-                    <InputText
-                        name='discount'
-                        value={state.discount}
+                    <InputNumber
+                        name='supplier_invoice_discount'
+                        value={state.supplier_invoice_discount}
                         Label="dscnt"
                         onChange={onChange}
                         width="15%"
                     />
-                    <InputText
-                        name='totalAfterDiscount'
+                    <InputNumber
+                        name='supplier_invoice_after_discount'
                         disabled
-                        value={state.total_after_discount}
+                        value={state.supplier_invoice_after_discount}
                         Label="Tlaftrdsnt"
                         width="15%"
                     />
-                    <InputText
-                        name='paid'
-                        value={state.paid}
+                    <InputNumber
+                        name='supplier_invoice_paid'
+                        value={state.supplier_invoice_paid}
                         Label="paid"
                         onChange={onChange}
                         width="15%"
                     />
-                    <InputText
-                        name='credit'
+                    <InputNumber
+                        name='supplier_invoice_credit'
                         disabled
-                        value={state.credit}
+                        value={state.supplier_invoice_credit}
                         Label="Crdt"
                         width="15%"
                     />
@@ -153,6 +183,7 @@ const SupplierInvoice = () => {
                     />
                 </Flex>
             </Flex>
+            {/* <ComponentToPrint state={state} /> */}
         </>
     )
 }

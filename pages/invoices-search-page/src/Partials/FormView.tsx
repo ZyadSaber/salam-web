@@ -4,51 +4,56 @@ import { RadioBoxOptions } from "../constant";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
+import { SearchButton } from "@commons/button"
 
-const FormView = ({ changeSearchParams, searchParams }: any) => {
+const FormView = ({ onChange, state, runQuery }: any) => {
     return (
         <>
-            <Flex bordered width="100%">
+            <Flex bordered width="100%" wrap>
                 <RadioBox
                     name="invoice_type"
                     options={RadioBoxOptions}
-                    value={searchParams.invoice_type}
-                    onChange={changeSearchParams}
-                    Label="Invoice Type"
+                    value={state.invoice_type}
+                    onChange={onChange}
+                    Label="invctyp"
+                    width="17%"
                 />
                 <InputText
-                    name="invoice_number"
-                    Label="No."
-                    onChange={changeSearchParams}
+                    name="invoice_no"
+                    Label="no"
+                    onChange={onChange}
                     type="number"
-                    value={searchParams.invoice_number}
+                    value={state.invoice_no}
                 />
                 <SelectWithApi
                     name="person_id"
                     Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
                     Label="nm"
                     params={{
-                        invoice_type: searchParams.invoice_type
+                        invoice_type: state.invoice_type
                     }}
-                    value={searchParams.name}
+                    value={state.name}
                     fetchOnFirstRun
-                    onChange={changeSearchParams}
+                    onChange={onChange}
                 />
-                {/* <InputText
+                <InputText
                     name="date_from"
-                    value={searchParams.date_from}
-                    Label="Date From"
-                    onChange={changeSearchParams}
+                    value={state.date_from}
+                    Label="dtfrm"
+                    onChange={onChange}
                     type="date"
                 />
                 <InputText
                     name="date_to"
-                    value={searchParams.date_to}
-                    Label="Date To"
-                    onChange={changeSearchParams}
+                    value={state.date_to}
+                    Label="dto"
+                    onChange={onChange}
                     type="date"
-                /> */}
+                />
             </Flex>
+            <SearchButton
+                onClick={runQuery}
+            />
         </>
     )
 }
