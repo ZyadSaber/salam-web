@@ -2,7 +2,7 @@ export const mainTableColumns = [
   {
     title: "no",
     dataIndex: "invoice_id",
-    width: "15%",
+    width: "14%",
   },
   {
     title: "nm",
@@ -23,43 +23,43 @@ export const mainTableColumns = [
 
 export const detailTableColumns = [
   {
-    title: "itmid",
-    dataIndex: "item_id",
-    width: "7%",
-  },
-  {
     title: "itmnm",
-    dataIndex: "item_name",
+    dataIndex: "invoice_item_name",
     width: "15%",
   },
   {
     title: "wdth",
-    dataIndex: "width",
+    dataIndex: "invoice_item_width",
     width: "5%",
   },
   {
     title: "hght",
-    dataIndex: "height",
+    dataIndex: "invoice_item_height",
     width: "5%",
   },
   {
     title: "sz",
-    dataIndex: "size",
+    dataIndex: "invoice_item_size",
     width: "5%",
   },
   {
     title: "qnty",
-    dataIndex: "quantity",
+    dataIndex: "invoice_item_quantity",
     width: "5%",
   },
   {
     title: "prc",
-    dataIndex: "price",
+    dataIndex: "invoice_item_price",
     width: "5%",
   },
   {
     title: "total",
-    dataIndex: "total",
+    dataIndex: "invoice_item_total",
+    width: "5%",
+  },
+  {
+    title: "nts",
+    dataIndex: "invoice_item_notes",
     width: "5%",
   },
 ];

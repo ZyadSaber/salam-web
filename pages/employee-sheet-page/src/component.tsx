@@ -18,16 +18,6 @@ const EmployeeSheet = () => {
             month: state.month
         }
     })
-    const {
-        daysData,
-        total_late_time,
-        total_over_time,
-        total_early_leaving,
-        net_salary,
-        salary,
-        late_cost,
-        over_time_cost,
-    } = data
     return (
         <>
             <Flex flexDirection="column" padding="0" margin="0" width="100%">
@@ -59,7 +49,7 @@ const EmployeeSheet = () => {
                     />
                 </Flex>
                 <Table
-                    dataSource={daysData}
+                    dataSource={data?.late_cost}
                     columns={columns}
                     hideTools={false}
                     canPrint={true}
@@ -67,37 +57,37 @@ const EmployeeSheet = () => {
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-around">
                     <InputText
-                        value={salary}
+                        value={data?.salary}
                         Label="slry"
                         disabled
                     />
                     <InputText
-                        value={total_late_time}
+                        value={data?.total_late_time}
                         Label="tltm"
                         disabled
                     />
                     <InputText
-                        value={total_over_time}
+                        value={data?.total_over_time}
                         Label="tlvrtm"
                         disabled
                     />
                     <InputText
-                        value={total_early_leaving}
+                        value={data?.total_early_leaving}
                         Label="tlrlylvng"
                         disabled
                     />
                     <InputText
-                        value={late_cost}
+                        value={data?.late_cost}
                         Label="ltcs"
                         disabled
                     />
                     <InputText
-                        value={over_time_cost}
+                        value={data?.over_time_cost}
                         Label="ovrtmcst"
                         disabled
                     />
                     <InputText
-                        value={net_salary}
+                        value={data?.net_data?.salary}
                         Label="ntslry"
                         disabled
                     />

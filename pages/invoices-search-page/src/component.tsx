@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { Table } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
 import Flex from "@commons/flex";
@@ -23,7 +23,7 @@ const InvoicesSearch = () => {
             date_to: ""
         }
     })
-    const { invoice_type, invoice_no, person_id } = state
+    const { invoice_type, invoice_no, holder_number } = state
 
     const onSelectedRow = useCallback((row?: any) => {
         setRow(row)
@@ -34,7 +34,7 @@ const InvoicesSearch = () => {
         params: {
             invoice_type: invoice_type,
             invoice_no: invoice_no,
-            person_id: person_id,
+            holder_number: holder_number,
         },
     })
 
@@ -46,14 +46,16 @@ const InvoicesSearch = () => {
         link: "QUERY_INVOICE_DETAIL_TABLE_DATA",
         params: {
             invoice_type: invoice_type,
-            invoice_no: row.invoice_id
+            invoice_no: row.invoice_id,
         }
     })
 
-    const runQuery = useCallback(() => {
-        runFetch()
-        runFetchDetailData()
-    }, [runFetch, runFetchDetailData])
+    useEffect(() => {
+        if (row.invoice_id) {
+            runFetchDetailData()
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [row.invoice_id])
 
     return (
         <>
@@ -61,7 +63,7 @@ const InvoicesSearch = () => {
                 <FormView
                     onChange={onChange}
                     state={state}
-                    runQuery={runQuery}
+                    runQuery={runFetch}
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
                     <Flex width="40%">

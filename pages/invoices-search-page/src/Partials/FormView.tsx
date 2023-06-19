@@ -4,7 +4,7 @@ import { RadioBoxOptions } from "../constant";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
-import { SearchButton } from "@commons/button"
+import { Button } from "@commons/button"
 
 const FormView = ({ onChange, state, runQuery }: any) => {
     return (
@@ -26,13 +26,13 @@ const FormView = ({ onChange, state, runQuery }: any) => {
                     value={state.invoice_no}
                 />
                 <SelectWithApi
-                    name="person_id"
+                    name="holder_number"
                     Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
                     Label="nm"
                     params={{
                         invoice_type: state.invoice_type
                     }}
-                    value={state.name}
+                    value={state.holder_number}
                     fetchOnFirstRun
                     onChange={onChange}
                 />
@@ -50,10 +50,11 @@ const FormView = ({ onChange, state, runQuery }: any) => {
                     onChange={onChange}
                     type="date"
                 />
+                <Button
+                    onClick={runQuery}
+                    label="Search"
+                />
             </Flex>
-            <SearchButton
-                onClick={runQuery}
-            />
         </>
     )
 }

@@ -72,6 +72,8 @@ const API_ID = {
   POST_EXPENSES_TYPES_TABLE_DATA:
     "basic_data/expenses_type/expenses_type_table_data_dml",
   GET_PRIMARY_IMAGE: "application_logo/primary_logo",
+  //http://144.24.209.19:9090/api/charts/invoices_query?
+  QUERY_INVOICES_CHART_DATA: "charts/invoices_query",
 };
 
 export default API_ID;

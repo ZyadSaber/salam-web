@@ -1,17 +1,13 @@
 import React, { memo, useEffect, useState } from "react";
-import BarChart from "./chart";
 import { useFetch } from "@commons/hooks"
+import BarChart from "./chart";
+import { chartWithApi } from "./interface"
 
 const ChartWithApi = ({
     api,
     params,
-    width,
-    height,
-    padding,
-    margin,
-    label,
-    mode
-}: any) => {
+    ...prop
+}: chartWithApi) => {
 
     const [dataSource, setDataSource] = useState({
         labels: [],
@@ -39,12 +35,7 @@ const ChartWithApi = ({
         <>
             <BarChart
                 dataSource={dataSource}
-                width={width}
-                height={height}
-                padding={padding}
-                margin={margin}
-                label={label}
-                mode={mode}
+                {...prop}
             />
         </>
     )

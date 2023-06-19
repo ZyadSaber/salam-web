@@ -13,7 +13,7 @@ const BarChart = ({
   padding,
   label = "chart",
   dataSource
-}: any) => {
+}: barChartProp) => {
   const { t } = useTranslation()
   const view = () => {
 
@@ -39,7 +39,7 @@ const BarChart = ({
         <Flex width="100%" justifyContent="center">
           <p>{t(label)}</p>
         </Flex>
-        {view()}
+        {dataSource && view()}
       </Flex>
     </>
   )

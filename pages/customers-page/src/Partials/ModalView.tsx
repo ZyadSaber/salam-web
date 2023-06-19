@@ -3,7 +3,7 @@ import { InputText } from "@commons/input-text";
 import { useFormManager } from '@commons/hooks';
 import { ModalViewProp } from "@commons/global"
 import { useTableControlsButtons } from "@commons/table";
-import { SaveButton } from "@commons/button"
+import { Button } from "@commons/button"
 
 const ModalView = ({
     onClose,
@@ -65,8 +65,9 @@ const ModalView = ({
                 value={address}
                 width="100%"
             />
-            <SaveButton
-                onOK={handleSave}
+            <Button
+                onClick={handleSave}
+                label="sv"
             />
         </>
     )

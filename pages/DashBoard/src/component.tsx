@@ -15,9 +15,10 @@ const DashBoard = () => {
                         rowKey=''
                         columns={mainTableColumns}
                         fetchOnFirstRun
-                        label='customers invoices'
+                        label='cstmrs'
                         params={{
-                            invoice_type: "C"
+                            invoice_type: "C",
+                            take: -4
                         }}
                     />
                     <TableWithApi
@@ -25,25 +26,26 @@ const DashBoard = () => {
                         rowKey=''
                         columns={mainTableColumns}
                         fetchOnFirstRun
-                        label='supplier invoices'
+                        label='splrs'
                         params={{
-                            invoice_type: "S"
+                            invoice_type: "S",
+                            take: -4
                         }}
                     />
                 </Flex>
                 <Flex width='25%' flexDirection="column">
-                    {/* <ChartWithApi
+                    <ChartWithApi
+                        api="QUERY_INVOICES_CHART_DATA"
+                        label="invcs"
+                        mode="pie"
+                        width="100%"
+                    />
+                    <ChartWithApi
                         api="QUERY_MAIN_CHART_DATA"
                         label="vault"
                         mode="pie"
                         width="100%"
-                    /> */}
-                    {/* <ChartWithApi
-                        api="QUERY_MAIN_CHART_DATA"
-                        label="vault"
-                        mode="pie"
-                        width="100%"
-                    /> */}
+                    />
                 </Flex>
             </Flex>
 
