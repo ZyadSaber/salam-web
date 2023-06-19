@@ -5,7 +5,7 @@
   "description": "",
   "author": "salam",
   "license": "ISC",
-  "main": "src/index.ts",
+  "main": "src",
   "sideEffects": false,
   "dependencies": {
     "@types/react": "18.0.25",

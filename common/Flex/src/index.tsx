@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
+import { Flex as ChackraFlex } from "@chakra-ui/react"
 import { flexProp } from "./interface"
 
 const Flex = ({
@@ -16,7 +17,8 @@ const Flex = ({
     flexDirection = "row",
     textAlign = "",
     hidden = false,
-}: flexProp) => {
+    wrap
+}: any) => {
     const [border, setBorder] = useState("")
     useEffect(() => {
         if (bordered) {
@@ -25,27 +27,22 @@ const Flex = ({
     }, [borderColor, borderWidth, bordered])
     return (
         <>
-            <div
+            <ChackraFlex
+                width={width}
+                height={height}
+                padding={padding}
+                margin={margin}
+                background={backgroundColor}
+                borderRadius={borderRadius}
+                flexDirection={flexDirection}
+                textAlign={textAlign}
+                justifyContent={justifyContent}
                 hidden={hidden}
-                style={{
-                    display: "flex",
-                    justifyContent: justifyContent,
-                    width: width,
-                    maxWidth: width,
-                    height: height,
-                    maxHeight: height,
-                    padding: padding,
-                    margin: margin,
-                    border: border,
-                    borderRadius: borderRadius,
-                    background: backgroundColor,
-                    //@ts-ignore
-                    flexDirection: flexDirection,
-                    //@ts-ignore
-                    textAlign: textAlign,
-                }}>
+                //@ts-ignore
+                wrap={wrap ? "wrap" : ""}
+            >
                 {children}
-            </div>
+            </ChackraFlex>
         </>
     )
 }

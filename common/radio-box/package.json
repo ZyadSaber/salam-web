@@ -5,7 +5,7 @@
   "description": "",
   "author": "salam",
   "license": "ISC",
-  "main": "src/index.tsx",
+  "main": "src",
   "sideEffects": false,
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",

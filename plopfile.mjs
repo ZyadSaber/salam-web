@@ -51,7 +51,7 @@ export default function (plop) {
             templateFile: 'Templates/constant.hbs'
         },{
             type: 'add',
-            path: '{{mode}}/{{name}}/src/index.ts',
+            path: '{{mode}}/{{name}}/src',
             templateFile: 'Templates/index.hbs'
         },{
             type: 'add',

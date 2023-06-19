@@ -16,8 +16,9 @@ const Items = () => {
                 canAdd={true}
                 canDelete={true}
                 rowKey={"item_id"}
-                Modal={ModalView}
+                ModalContent={ModalView}
                 fetchOnFirstRun
+                canExcel
             />
         </>
     )

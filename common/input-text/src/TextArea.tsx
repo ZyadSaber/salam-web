@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from "react";
-import { TextAreaProps } from "./interface";
+import { Textarea, FormLabel, Flex } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { TextAreaProps } from "./interface";
 
 const TextArea = ({
     name,
@@ -21,15 +22,22 @@ const TextArea = ({
 
     return (
         <>
-            <div className="mb-1 d-inline-block" style={{
-                height: height,
-                width: width,
-                padding: padding,
-                margin: margin
-            }}>
-                <label htmlFor="exampleFormControlInput1" className="form-label">{t(Label)}</label>
-                <textarea className="form-control" placeholder={t(placeHolder)} id="floatingTextarea2Disabled" value={value} disabled={disabled} onChange={handleChange}></textarea>
-            </div>
+            <Flex
+                direction="column"
+                width={width}
+                padding={padding}
+                margin={margin}
+                height={height}
+            >
+                <FormLabel>{t(Label)}</FormLabel>
+                <Textarea
+                    value={value}
+                    onChange={handleChange}
+                    placeholder={placeHolder}
+                    isDisabled={disabled}
+                    height="100%"
+                />
+            </Flex>
         </>
     )
 }

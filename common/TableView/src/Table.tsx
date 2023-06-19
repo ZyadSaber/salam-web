@@ -1,19 +1,36 @@
-import React, { useState, useCallback } from 'react';
-import "./style.css";
+import React, { useState, useCallback, useRef } from 'react';
 import { Button, IconButton } from "@commons/button";
-import { TableProps, additionalButtonsType } from "./interface";
+import { useLocation } from 'react-router-dom';
+import * as XLSX from "xlsx";
 import { useTranslation } from 'react-i18next';
+import ReactToPrint from 'react-to-print';
+import {
+    Table as ChakraTable,
+    Thead,
+    Tbody,
+    // Tfoot,
+    Text,
+    Box,
+    Tr,
+    Th,
+    Td,
+    TableContainer,
+    Skeleton
+} from '@chakra-ui/react'
 import Flex from "@commons/flex";
+import { TableProps, additionalButtonsType } from "./interface";
 
 
 const Table = ({
     dataSource,
+    height = "300px",
     rowKey = "rowKey",
     columns,
     hideTools = true,
     canEdit = false,
     canAdd = false,
     canDelete = false,
+    canExcel = false,
     onAdd,
     onEdit,
     onDelete,
@@ -28,8 +45,11 @@ const Table = ({
     canSave = false,
     width = "100%",
     margin = "",
-    padding = ""
+    padding = "",
+    loading = false,
+    onDoubleClick = () => { }
 }: TableProps) => {
+    const { pathname } = useLocation()
     const { t } = useTranslation()
     const [rowSelected, setRowSelected] = useState()
     const handleSelectedRow = useCallback((item: any) => () => {
@@ -37,9 +57,20 @@ const Table = ({
         setRowSelected(item)
     }, [onSelectedRow])
 
+    const onExcel = useCallback(() => {
+        const pathName = pathname.replace("/", "")
+        const wb = XLSX.utils.book_new(),
+            //@ts-ignore
+            ws = XLSX.utils.json_to_sheet(dataSource)
+        XLSX.utils.book_append_sheet(wb, ws, pathName)
+        XLSX.writeFile(wb, `${pathName} ${new Date().toUTCString()}.xlsx`)
+    }, [dataSource, pathname])
+
+    const componentRef = useRef();
+
     return (
         <>
-            <div style={{ width: width, padding: padding, margin: margin }}>
+            <TableContainer width={width} padding={padding} margin={margin}>
                 <Flex
                     width='100%'
                     padding='0'
@@ -80,53 +111,83 @@ const Table = ({
                         hidden={!canSave}
                         disabled={!canSave}
                     />
+                    <ReactToPrint
+                        trigger={() => <IconButton
+                            icon='fa-solid fa-print'
+                            hidden={!canPrint}
+                            disabled={!canPrint}
+                        />}
+                        //@ts-ignore
+                        content={() => {
+                            return (
+                                componentRef.current
+                            )
+                        }}
+                        documentTitle="dd"
+                    />
                     <IconButton
-                        icon='fa-solid fa-print'
-                        onClick={onPrint}
-                        hidden={!canPrint}
-                        disabled={!canPrint}
+                        icon='fa-sharp fa-regular fa-file-excel'
+                        onClick={onExcel}
+                        hidden={!canExcel}
+                        disabled={!canExcel}
                     />
                 </Flex>
-                <table className='table m-0'>
-                    <thead>
-                        <tr className='table-secondary'>
-                            {columns.map((item: any) => {
-                                return (
-                                    <th scope="col" style={{ width: item.width }}>
-                                        {t(item.title)}
-                                    </th>
-                                )
-                            })}
-                            <th hidden={!actionColumn}>{t("actn")}</th>
-                        </tr>
-                    </thead>
-                </table>
-                <div className="tbl-content">
-                    <table className='table '>
-                        <tbody>
-                            {dataSource?.map((item: any) => {
-                                return (
-                                    <tr key={item[rowKey]} onClick={handleSelectedRow(item)}>
-                                        {columns.map((column: any) => {
-                                            return (
-                                                <td className={`${rowSelected === item ? "table-success" : "table-light"} `} style={{ width: column.width }}>
-                                                    {item[column.dataIndex]}
-                                                </td>
-                                            )
-                                        })}
-                                        <td className={`${rowSelected === item ? "table-success" : "table-light"} `} hidden={!actionColumn}>
-                                            <Button
-                                                label={actionLabel}
-                                                onClick={() => { onAction(item) }}
-                                            />
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <Skeleton isLoaded={!loading} fadeDuration={0} >
+                    <Box overflowY="auto" height={height}>
+                        <ChakraTable
+                            //@ts-ignore
+                            ref={componentRef}
+                        >
+                            <Thead top={0} position="sticky" bgColor="#3edae6">
+                                <Tr>
+                                    {columns.map((item: any) => {
+                                        return (
+                                            <Th maxWidth={item.width} minWidth={item.width}>
+                                                {t(item.title)}
+                                            </Th>
+                                        )
+                                    })}
+                                    <Th hidden={!actionColumn}>{t("actn")}</Th>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
+                                {dataSource?.map((item: any) => {
+                                    return (
+                                        <Tr key={item[rowKey]} onClick={handleSelectedRow(item)} onDoubleClick={onDoubleClick} background={`${rowSelected === item ? "#dbffbf" : ""}`} >
+                                            {columns.map((column: any) => {
+                                                return (
+                                                    <Td maxWidth={column.width} minWidth={column.width}>
+                                                        {item[column.dataIndex]}
+                                                    </Td>
+                                                )
+                                            })}
+                                            <Td hidden={!actionColumn}>
+                                                <Button
+                                                    label={actionLabel}
+                                                    onClick={() => { onAction(item) }}
+                                                />
+                                            </Td>
+                                        </Tr>
+                                    )
+                                })}
+                            </Tbody>
+
+                            {/* <Tfoot>
+                        <Tr>
+                        <Th>To convert</Th>
+                        <Th>into</Th>
+                        <Th isNumeric>multiply by</Th>
+                        </Tr>
+                    </Tfoot> */}
+
+                        </ChakraTable>
+
+                        {!Array.isArray(dataSource) || dataSource.length === 0 && !loading ? <Flex justifyContent='center' width='100%'>
+                            <Text as='b' fontSize='md' color='red'>No Data</Text>
+                        </Flex> : <></>}
+                    </Box>
+                </Skeleton>
+            </TableContainer>
         </>
     )
 }

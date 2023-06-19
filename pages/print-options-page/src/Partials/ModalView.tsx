@@ -1,41 +1,58 @@
 import React, { memo } from 'react';
-import Modal from "@commons/modal";
 import { InputText } from "@commons/input-text";
-import { useFormManager } from "@commons/hooks";
-// import { ModalViewProp } from "../../../Types/general"
+import { useFormManager } from '@commons/hooks';
+import { ModalViewProp } from "@commons/global"
+import { useTableControlsButtons } from "@commons/table";
+import { SaveButton } from "@commons/button";
 
 const ModalView = ({
-    visible,
-    onOK,
     onClose,
-    setSelectedRow,
-    selectedRow
-}: any) => {
+    selectedRow,
+    refreshTable
+}: ModalViewProp) => {
+    const {
+        state,
+        onChange,
+    }
+        = useFormManager({
+            initialValues: {
+                ...selectedRow
+            }
+        })
+    const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_PRINT_OPTIONS_TABLE_DATA", runFetch: refreshTable })
+    const { print_option_name, print_option_note, print_option_id, query_status } = state;
 
-    const { state, onChange } = useFormManager({ initialValue: selectedRow, setSelectedRow: setSelectedRow })
-    //@ts-ignore
-    const { print_option, note } = state
+    const handleSave = () => {
+        const record = {
+            print_option_name,
+            print_option_note,
+            print_option_id,
+            query_status
+        }
+        onSaveAndInsertion(record)
+        onClose()
+    }
 
     return (
-        <Modal
-            visible={visible}
-            label={"Details"}
-            onOK={onOK}
-            onClose={onClose}
-        >
+        <>
             <InputText
-                name='print_option'
+                name="print_option_name"
+                Label='print_option_name'
                 onChange={onChange}
-                value={print_option}
-                Label="Print Option"
+                value={print_option_name}
+                width="100%"
             />
             <InputText
-                name='note'
+                name="print_option_note"
+                Label='print_option_note'
                 onChange={onChange}
-                value={note}
-                Label="Notes"
+                value={print_option_note}
+                width="100%"
             />
-        </Modal>
+            <SaveButton
+                onOK={handleSave}
+            />
+        </>
     )
 };
 

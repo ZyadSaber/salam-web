@@ -14,28 +14,29 @@ const DashBoard = () => {
                         api=''
                         rowKey=''
                         columns={suppliersColumns}
-                        fetchOnFirstRun
+                    // fetchOnFirstRun
                     />
                     <TableWithApi
                         api=''
                         rowKey=''
                         columns={customersColumns}
-                        fetchOnFirstRun
+                    // fetchOnFirstRun
                     />
                 </Flex>
                 <Flex width='25%' flexDirection="column">
-                    <ChartWithApi
+
+                    {/* <ChartWithApi
                         api="QUERY_MAIN_CHART_DATA"
                         label="vault"
                         mode="pie"
                         width="100%"
-                    />
-                    <ChartWithApi
+                    /> */}
+                    {/* <ChartWithApi
                         api="QUERY_MAIN_CHART_DATA"
                         label="vault"
                         mode="pie"
                         width="100%"
-                    />
+                    /> */}
                 </Flex>
             </Flex>
 

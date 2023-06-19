@@ -1,42 +1,42 @@
 export const columns = [
-        {
-            title: "nm",
-            dataIndex: "name",
-            width: 15
-        },
-        {
-            title: "dtfhrng",
-            dataIndex: "date_of_hiring",
-            width: 12
-        },
-        {
-            title: "slry",
-            dataIndex: "salary",
-            width: 10
-        },
-        {
-            title: "atndnctm",
-            dataIndex: "attendance_time",
-            width: 10
-        },
-        {
-            title: "lvngtm",
-            dataIndex: "leaving_time",
-            width: 10
-        },
-        {
-            title: "phn",
-            dataIndex: "phone",
-            width: 15
-        },
-        {
-            title: "mbl",
-            dataIndex: "mobile",
-            width: 15
-        },
-        {
-            title: "adrs",
-            dataIndex: "address",
-            width: 20
-        },
-    ]
+  {
+    title: "nm",
+    dataIndex: "employee_name",
+    width: 15,
+  },
+  {
+    title: "dtfhrng",
+    dataIndex: "date_of_hiring",
+    width: 12,
+  },
+  {
+    title: "slry",
+    dataIndex: "employee_salary",
+    width: 10,
+  },
+  {
+    title: "atndnctm",
+    dataIndex: "employee_attendance_time",
+    width: 10,
+  },
+  {
+    title: "lvngtm",
+    dataIndex: "employee_leaving_time",
+    width: 10,
+  },
+  {
+    title: "phn",
+    dataIndex: "employee_phone",
+    width: 15,
+  },
+  {
+    title: "mbl",
+    dataIndex: "employee_mobile",
+    width: 15,
+  },
+  {
+    title: "adrs",
+    dataIndex: "employee_address",
+    width: 20,
+  },
+];

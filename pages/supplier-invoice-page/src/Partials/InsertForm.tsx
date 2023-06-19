@@ -1,119 +1,102 @@
-import React, { memo, useCallback, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
+import InputNumber from "@commons/input-number"
 
 interface InsertFormProp {
-    activeItem: any;
-    setActiveItem: any;
-    itemState: any;
-    itemChange: any;
+    onChange: any;
     state: any;
-    onChange: any
+    handleRootState: any;
+    handleSelectWithLabelChange: any
 }
 
 const InsertForm = ({
-    activeItem,
-    setActiveItem,
-    itemChange,
-    itemState,
+    onChange,
     state,
-    onChange
+    handleRootState,
+    handleSelectWithLabelChange
 }: InsertFormProp) => {
 
-    const { item_id, width, height, size, quantity, price, total, notes } = itemState
-
     useEffect(() => {
-        setActiveItem({ ...activeItem, size: +width * +height, total: +quantity * +price * +width * +height })
+        handleRootState({
+            ...state,
+            supplier_invoice_item_size: +state.supplier_invoice_item_width * +state.supplier_invoice_item_height,
+            supplier_invoice_item_total: +state.supplier_invoice_item_quantity * +state.supplier_invoice_item_price * +state.supplier_invoice_item_width * +state.supplier_invoice_item_height
+        })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [height, width, quantity, price])
-
-    const handleItemChange = useCallback((onChange: any) => {
-        //@ts-ignore
-        setActiveItem({ ...activeItem, itemName: onChange.label, [onChange.name]: onChange.value })
-    }, [activeItem, setActiveItem])
+    }, [
+        state.supplier_invoice_item_width,
+        state.supplier_invoice_item_height,
+        state.supplier_invoice_item_quantity,
+        state.supplier_invoice_item_price
+    ])
 
     return (
         <>
             <Flex width="100%" flexDirection="column" margin="0" padding="0">
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api="QUERY_SUPPLIER_LIST"
-                        onChange={onChange}
-                        value={state.supplier_id}
-                        Label="splr"
-                        name="supplier_id"
-                        fetchOnFirstRun
-                    />
-                    <InputText
-                        name="date"
-                        value={state.date}
-                        Label="dt"
-                        onChange={onChange}
-                        type="date"
-                    />
-                </Flex>
-                <Flex margin="0" padding="0">
-                    <SelectWithApi
                         Api="QUERY_ITEMS_LIST"
-                        onChange={handleItemChange}
-                        value={item_id}
+                        onChange={handleSelectWithLabelChange}
+                        value={state.supplier_invoice_item_id}
                         Label="itmnm"
-                        name="item_id"
+                        name="supplier_invoice_item_id"
                         withLabel
                         fetchOnFirstRun
+                        selectLabelName="item_name"
                     />
                 </Flex>
                 <Flex margin="0" padding="0">
-                    <InputText
-                        name="width"
-                        value={width}
+                    <InputNumber
+                        name="supplier_invoice_item_width"
+                        value={state.supplier_invoice_item_width}
                         Label="wdth"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="height"
-                        value={height}
+                    <InputNumber
+                        name="supplier_invoice_item_height"
+                        value={state.supplier_invoice_item_height}
                         Label="hght"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="size"
-                        value={size}
+                    <InputNumber
+                        name="supplier_invoice_item_size"
+                        value={state.supplier_invoice_item_size}
                         Label="sz"
-                        onChange={itemChange}
+                        onChange={onChange}
                         disabled
                         width="14%"
                     />
-                    <InputText
-                        name="quantity"
-                        value={quantity}
+                    <InputNumber
+                        name="supplier_invoice_item_quantity"
+                        value={state.supplier_invoice_item_quantity}
                         Label="qty"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="price"
-                        value={price}
+                    <InputNumber
+                        name="supplier_invoice_item_price"
+                        value={state.supplier_invoice_item_price}
                         Label="prc"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="total"
-                        value={total}
+                    <InputNumber
+                        name="supplier_invoice_item_total"
+                        value={state.supplier_invoice_item_total}
                         Label="total"
-                        onChange={itemChange}
+                        onChange={onChange}
                         disabled
                         width="14%"
                     />
                     <InputText
-                        name="notes"
-                        value={notes}
+                        name="supplier_invoice_item_notes"
+                        value={state.supplier_invoice_item_notes}
                         Label="nts"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
                 </Flex>

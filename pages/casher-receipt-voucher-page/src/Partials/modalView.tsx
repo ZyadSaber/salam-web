@@ -13,7 +13,7 @@ const ModalView = ({
     setSelectedRow,
     selectedRow
 }: ModalViewProp) => {
-    const { state, onChange } = useFormManager({ initialValue: selectedRow, setSelectedRow: setSelectedRow })
+    const { state, onChange } = useFormManager({ initialValues: selectedRow, setSelectedRow: setSelectedRow })
     const { date, voucher_type, person_id, amount, notes } = state
     return (
         <>

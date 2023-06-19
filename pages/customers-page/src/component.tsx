@@ -14,8 +14,9 @@ const Customers = () => {
                 canEdit={true}
                 canAdd={true}
                 canDelete={true}
+                canExcel
                 rowKey={"customer_id"}
-                Modal={ModalView}
+                ModalContent={ModalView}
                 fetchOnFirstRun
             />
         </>

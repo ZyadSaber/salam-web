@@ -2,23 +2,23 @@ import React, { memo } from "react";
 import { InputText } from "@commons/input-text";
 import { SelectWithApi } from "@commons/select";
 import { TextArea } from "@commons/input-text";
-import { useFormManager, usePost } from "@commons/hooks";
+import { useFormManager, useMutation } from "@commons/hooks";
 import { CheckBox } from "@commons/check-box";
 import Modal from "@commons/modal";
 import { EmployeeAttendanceProps } from "./interface"
 
 const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendanceProps) => {
-    const initialValue = {
+    const initialValues = {
         date: "",
         employee_id: "",
         absent: "N",
         query_status: "n",
         attendance_time: ""
     }
-    const { onChange, state } = useFormManager({ initialValue: initialValue })
+    const { onChange, state } = useFormManager({ initialValues: initialValues })
     const { date, employee_id, real_time, absent, reason } = state
 
-    const { setRow } = usePost({
+    const { setRow } = useMutation({
         link: "POST_EMPLOYEE_ATTENDANCE"
     })
 

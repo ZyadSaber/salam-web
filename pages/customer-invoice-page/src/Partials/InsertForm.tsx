@@ -1,132 +1,112 @@
-import React, { memo, useCallback, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
+import InputNumber from "@commons/input-number"
 
 interface InsertFormProp {
-    activeItem: any;
-    setActiveItem: any;
-    itemState: any;
-    itemChange: any;
+    onChange: any;
     state: any;
-    onChange: any
+    handleRootState: any;
+    handleSelectWithLabelChange: any
 }
 
 const InsertForm = ({
-    activeItem,
-    setActiveItem,
-    itemChange,
-    itemState,
+    onChange,
     state,
-    onChange
+    handleRootState,
+    handleSelectWithLabelChange
 }: InsertFormProp) => {
 
-    const { item_id, width, height, size, quantity, price, total, notes, print_id } = itemState
-
     useEffect(() => {
-        setActiveItem({ ...activeItem, size: +width * +height, total: +quantity * +price * +width * +height })
+        handleRootState({
+            ...state,
+            customer_invoice_item_size: +state.customer_invoice_item_width * +state.customer_invoice_item_height,
+            customer_invoice_item_total: +state.customer_invoice_item_quantity * +state.customer_invoice_item_price * +state.customer_invoice_item_width * +state.customer_invoice_item_height
+        })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [height, width, quantity, price])
-
-    const handleItemChange = useCallback((onChange: any) => {
-        //@ts-ignore
-        setActiveItem({ ...activeItem, itemName: onChange.label, [onChange.name]: onChange.value })
-    }, [activeItem, setActiveItem])
-    const handlePrintChange = useCallback((onChange: any) => {
-        //@ts-ignore
-        setActiveItem({ ...activeItem, print_name: onChange.label, [onChange.name]: onChange.value })
-    }, [activeItem, setActiveItem])
+    }, [
+        state.customer_invoice_item_width,
+        state.customer_invoice_item_height,
+        state.customer_invoice_item_quantity,
+        state.customer_invoice_item_price
+    ])
 
     return (
         <>
             <Flex width="100%" flexDirection="column" margin="0" padding="0">
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api={"QUERY_CUSTOMERS_LIST"}
-                        onChange={onChange}
-                        value={state.customer_id}
-                        Label="cstmr"
-                        name="customer_id"
-                        fetchOnFirstRun
-                    />
-                    <InputText
-                        name="date"
-                        value={state.date}
-                        Label="dt"
-                        onChange={onChange}
-                        type="date"
-                    />
-                </Flex>
-                <Flex margin="0" padding="0">
-                    <SelectWithApi
                         Api={"QUERY_PRINT_OPTIONS_LIST"}
-                        onChange={handlePrintChange}
-                        value={print_id}
+                        onChange={handleSelectWithLabelChange}
+                        value={state.customer_invoice_print_option_id}
                         Label="prntnm"
-                        name="print_id"
+                        name="customer_invoice_print_option_id"
                         withLabel
                         fetchOnFirstRun
+                        selectLabelName="print_name"
                     />
                     <SelectWithApi
                         Api={"QUERY_ITEMS_LIST"}
-                        onChange={handleItemChange}
-                        value={item_id}
+                        onChange={handleSelectWithLabelChange}
+                        value={state.customer_invoice_item_id}
                         Label="itmnm"
-                        name="item_id"
+                        name="customer_invoice_item_id"
                         withLabel
                         fetchOnFirstRun
+                        selectLabelName="item_name"
                     />
                 </Flex>
                 <Flex margin="0" padding="0">
-                    <InputText
-                        name="width"
-                        value={width}
+                    <InputNumber
+                        name="customer_invoice_item_width"
+                        value={state.customer_invoice_item_width}
                         Label="wdth"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="height"
-                        value={height}
+                    <InputNumber
+                        name="customer_invoice_item_height"
+                        value={state.customer_invoice_item_height}
                         Label="hght"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="size"
-                        value={size}
+                    <InputNumber
+                        name="customer_invoice_item_size"
+                        value={state.customer_invoice_item_size}
                         Label="sz"
-                        onChange={itemChange}
+                        onChange={onChange}
                         disabled
                         width="14%"
                     />
-                    <InputText
-                        name="quantity"
-                        value={quantity}
+                    <InputNumber
+                        name="customer_invoice_item_quantity"
+                        value={state.customer_invoice_item_quantity}
                         Label="qnty"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="price"
-                        value={price}
+                    <InputNumber
+                        name="customer_invoice_item_price"
+                        value={state.customer_invoice_item_price}
                         Label="prc"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
-                    <InputText
-                        name="total"
-                        value={total}
+                    <InputNumber
+                        name="customer_invoice_item_total"
+                        value={state.customer_invoice_item_total}
                         Label="total"
-                        onChange={itemChange}
+                        onChange={onChange}
                         disabled
                         width="14%"
                     />
                     <InputText
-                        name="notes"
-                        value={notes}
+                        name="customer_invoice_item_notes"
+                        value={state.customer_invoice_item_notes}
                         Label="nts"
-                        onChange={itemChange}
+                        onChange={onChange}
                         width="14%"
                     />
                 </Flex>

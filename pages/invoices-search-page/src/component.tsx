@@ -1,62 +1,85 @@
 import React, { memo, useCallback, useState } from "react";
-import { TableWithApi } from "@commons/table";
-import { mainTableColumns, detailTableColumns } from "./constant";
-import FormView from "./Partials/FormView";
+import { Table } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
 import Flex from "@commons/flex";
+import { useFetch } from "@commons/hooks"
+import FormView from "./Partials/FormView";
+import { mainTableColumns, detailTableColumns } from "./constant";
 
 const InvoicesSearch = () => {
 
-    const searchParamsBaseValues = {
-        invoice_type: "",
-        invoice_number: "",
-        person_id: "",
-        date_from: "",
-        date_to: ""
-    }
     const [row, setRow] = useState({
         invoice_id: ""
     })
-    const { state: searchParams, onChange: changeSearchParams } = useFormManager({ initialValue: searchParamsBaseValues })
-    //@ts-ignore
-    const { invoice_type, invoice_number, person_id } = searchParams
+    const {
+        state
+        , onChange
+    } = useFormManager({
+        initialValues: {
+            invoice_type: "C",
+            invoice_no: "",
+            person_id: "",
+            date_from: "",
+            date_to: ""
+        }
+    })
+    const { invoice_type, invoice_no, person_id } = state
 
     const onSelectedRow = useCallback((row?: any) => {
         setRow(row)
     }, [])
 
+    const { data, runFetch, loading } = useFetch({
+        link: "QUERY_INVOICE_MASTER_TABLE_DATA",
+        params: {
+            invoice_type: invoice_type,
+            invoice_no: invoice_no,
+            person_id: person_id,
+        },
+    })
+
+    const {
+        data: detailData,
+        runFetch: runFetchDetailData,
+        loading: detailLoading
+    } = useFetch({
+        link: "QUERY_INVOICE_DETAIL_TABLE_DATA",
+        params: {
+            invoice_type: invoice_type,
+            invoice_no: row.invoice_id
+        }
+    })
+
+    const runQuery = useCallback(() => {
+        runFetch()
+        runFetchDetailData()
+    }, [runFetch, runFetchDetailData])
+
     return (
         <>
             <Flex width="100%" margin="0" padding="0" flexDirection="column">
                 <FormView
-                    changeSearchParams={changeSearchParams}
-                    searchParams={searchParams}
+                    onChange={onChange}
+                    state={state}
+                    runQuery={runQuery}
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
                     <Flex width="40%">
-                        <TableWithApi
+                        <Table
                             columns={mainTableColumns}
-                            api="QUERY_INVOICE_MASTER_TABLE_DATA"
+                            dataSource={data?.data}
                             rowKey="invoice_id"
-                            fetchOnFirstRun
-                            params={{
-                                invoice_type: invoice_type,
-                                invoice_number: invoice_number,
-                                person_id: person_id,
-                            }}
                             onSelectedRow={onSelectedRow}
+                            height="400px"
+                            loading={loading}
                         />
                     </Flex>
                     <Flex width="60%">
-                        <TableWithApi
+                        <Table
                             columns={detailTableColumns}
-                            api="QUERY_INVOICE_DETAIL_TABLE_DATA"
+                            dataSource={detailData?.data}
                             rowKey="row_key"
-                            fetchOnFirstRun
-                            params={{
-                                invoice_type: invoice_type,
-                                invoice_number: row.invoice_id
-                            }}
+                            loading={detailLoading}
                         />
                     </Flex>
                 </Flex>

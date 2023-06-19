@@ -2,34 +2,35 @@ import React, { memo, useCallback, useEffect } from 'react';
 import './Style.css';
 import { Button } from "@commons/button";
 import { InputText } from "@commons/input-text";
-import { useLocalStorage, usePost, useFormManager } from "@commons/hooks"
+import { useLocalStorage, useMutation, useFormManager } from "@commons/hooks"
 
 const SignInPage = () => {
 
-    const { setRow, success } = usePost({ link: "USER_LOG_IN", noAuthorization: true })
-    const { state, onChange } = useFormManager({})
-    const { authorization, changeLocalStorage } = useLocalStorage()
+    const { setRow, success } = useMutation({ link: "USER_LOG_IN", noAuthorization: true })
+    const { state, onChange } = useFormManager({
+        initialValues: {
+            user_name: "",
+            password: ""
+        }
+    })
+    const { changeLocalStorage } = useLocalStorage()
 
     if (success) {
         changeLocalStorage([
             {
                 name: "salam",
                 //@ts-ignore
-                data: { authorization: success.authorization, display_name: success.display_name }
+                data: { authorization: success.authorization, display_name: success.first_name }
             }
         ])
     }
 
+
     useEffect(() => {
-        if (authorization) {
+        if (success && success.response === "success") {
             window.location.assign("/home")
         }
-    }, [authorization])
-
-    // @ts-ignore
-    if (success && success.response === "success") {
-        window.location.assign("/home")
-    }
+    }, [success])
 
     const handleLogIn = useCallback(() => {
         setRow(state)
@@ -48,13 +49,15 @@ const SignInPage = () => {
                             Label='usrnm'
                             onChange={onChange}
                             width="90%"
+                            value={state.user_name}
                         />
                         <InputText
-                            name='user_password'
+                            name='password'
                             Label='pswrd'
                             onChange={onChange}
                             type="password"
                             width="90%"
+                            value={state.password}
                         />
                         <Button
                             label='login'

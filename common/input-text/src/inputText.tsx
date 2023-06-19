@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useEffect } from "react";
-import { InputTextProps } from "./interface";
+import React, { memo, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import { Input, FormLabel, Flex } from '@chakra-ui/react'
+import { InputTextProps } from "./interface";
 
 const InputText = ({
     disabled,
@@ -27,7 +27,7 @@ const InputText = ({
         <>
             <Flex
                 direction="column"
-                w={width}
+                width={width}
                 padding={padding}
                 margin={margin}
             >

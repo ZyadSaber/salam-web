@@ -1,23 +1,37 @@
-import { useState, useCallback } from "react";
-import {  usePost } from "@commons/hooks";
+import { useCallback } from "react";
+import { useMutation } from "@commons/hooks";
 
-const useTableControlsButtons = ({api = "", runFetch}:any) => {
+const useTableControlsButtons = ({ api = "", runFetch }: any) => {
+  const { setRow: newRecord } = useMutation({
+    link: api,
+    additionalFunctionToRun: runFetch,
+    method: "POST",
+  });
+  const { setRow: updateRecord } = useMutation({
+    link: api,
+    additionalFunctionToRun: runFetch,
+    method: "PUT",
+  });
+  const { setRow: deleteRecord } = useMutation({
+    link: api,
+    additionalFunctionToRun: runFetch,
+    method: "Delete",
+  });
 
-    const [selectedRow, setRows] = useState<any>({})
-    const { setRow } = usePost({link: api, additionalFunctionToRun:runFetch})
+  const onSaveAndInsertion = useCallback(
+    (record: any) => {
+      if (record.query_status === "n") {
+        newRecord(record);
+      } else if (record.query_status === "u") {
+        updateRecord(record);
+      } else if (record.query_status === "d") {
+        deleteRecord(record);
+      }
+    },
+    [newRecord, updateRecord, deleteRecord]
+  );
 
-    const onSaveAndInsertion = ()=>{
-        //@ts-ignore
-       if(selectedRow.query_status !== undefined){
-        setRow(selectedRow)
-       }
-    }
+  return { onSaveAndInsertion };
+};
 
-    const setSelectedRow = useCallback((v:any)=>{
-        setRows(v)
-    },[])
-    return{setSelectedRow, onSaveAndInsertion, selectedRow}
-
-}
-
-export default useTableControlsButtons
+export default useTableControlsButtons;

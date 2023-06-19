@@ -1,28 +1,43 @@
-import React, { memo } from 'react';
-import Modal from "@commons/modal";
+import React, { memo, useCallback } from 'react';
 import { InputText } from "@commons/input-text";
 import { useFormManager } from "@commons/hooks";
 import { ModalViewProp } from "@commons/global"
+import { useTableControlsButtons } from "@commons/table";
+import { SaveButton } from "@commons/button"
 
 const ModalView = ({
-    visible,
-    onOK,
     onClose,
-    setSelectedRow,
-    selectedRow
+    selectedRow,
+    refreshTable
 }: ModalViewProp) => {
 
-    const { state, onChange } = useFormManager({ initialValue: selectedRow, setSelectedRow: setSelectedRow })
-    //@ts-ignore
-    const { item_name, unit, base_price } = state
+    const {
+        state,
+        onChange,
+    }
+        = useFormManager({
+            initialValues: {
+                ...selectedRow
+            }
+        })
+    const { item_id, item_name, item_unit, item_description, query_status } = state
+
+    const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_ITEMS_TABLE_DATA", runFetch: refreshTable })
+
+    const handleSave = useCallback(() => {
+        const record = {
+            item_id,
+            item_name,
+            item_unit,
+            item_description,
+            query_status
+        }
+        onSaveAndInsertion(record)
+        onClose()
+    }, [item_description, item_id, item_name, item_unit, onClose, onSaveAndInsertion, query_status])
 
     return (
-        <Modal
-            visible={visible}
-            label={"Details"}
-            onOK={onOK}
-            onClose={onClose}
-        >
+        <>
             <InputText
                 name="item_name"
                 Label='Name'
@@ -30,18 +45,21 @@ const ModalView = ({
                 value={item_name}
             />
             <InputText
-                name="unit"
+                name="item_unit"
                 Label='Unit'
                 onChange={onChange}
-                value={unit}
+                value={item_unit}
             />
             <InputText
-                name="base_price"
-                Label='Base Price'
+                name="item_description"
+                Label='nts'
                 onChange={onChange}
-                value={base_price}
+                value={item_description}
             />
-        </Modal>
+            <SaveButton
+                onOK={handleSave}
+            />
+        </>
     )
 };
 

@@ -8,7 +8,7 @@ import ModalView from "./Partials/modalView"
 
 const CasherReceiptVoucher = () => {
 
-    const { state, onChange } = useFormManager({ initialValue: { date_from: "", date_to: "" } })
+    const { state, onChange } = useFormManager({ initialValues: { date_from: "", date_to: "" } })
 
     return (
         <>
@@ -30,7 +30,7 @@ const CasherReceiptVoucher = () => {
                         date_from: state.date_from,
                         date_to: state.date_to
                     }}
-                    Modal={ModalView}
+                    ModalContent
                     fetchOnFirstRun
                 />
             </Flex>

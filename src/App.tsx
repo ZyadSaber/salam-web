@@ -1,6 +1,5 @@
 import { memo, useEffect } from 'react';
-//@ts-ignore
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import SideBar from "@components/side-bar"
 import { PageRoutes } from "@commons/global";
 import { useTranslation } from 'react-i18next'
@@ -8,8 +7,9 @@ import { useTranslation } from 'react-i18next'
 import cookies from 'js-cookie';
 import Flex from "@commons/flex";
 import Header from '@components/header';
-
+// import Error404 from './error404';
 const App = () => {
+
   const languages = [
     {
       code: 'en',
@@ -23,6 +23,7 @@ const App = () => {
       country_code: 'sa',
     },
   ]
+
   const { t } = useTranslation()
   const currentLanguageCode = cookies.get('i18next') || 'ar';
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
@@ -31,14 +32,19 @@ const App = () => {
     document.body.dir = currentLanguage.dir || 'ltr'
     document.title = t('aptl')
   }, [currentLanguage, t])
+
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          {PageRoutes.map((item: any) => {
-            if (item.Path !== "") {
-              return (
-                <Route exact path={`/${item.Path}`}>
+    <>
+      <BrowserRouter>
+        {PageRoutes.map(({ Path, Component }) => {
+          return (
+            <Route
+              exact
+              path={Path}
+              key={Path.toString()}
+            >
+              {
+                !Array.isArray(Path) ?
                   <Flex width='100%' height='100vh' margin='0' padding='0' borderRadius='0' >
                     <Flex width='15%' padding='0' margin='0'>
                       <SideBar />
@@ -48,23 +54,18 @@ const App = () => {
                         <Header />
                       </Flex>
                       <Flex height='95%' >
-                        {< item.Component />}
+                        {< Component />}
                       </Flex>
                     </Flex>
                   </Flex>
-                </Route >
-              )
-            } else {
-              return (
-                <Route exact path={`/${item.Path}`}>
-                  {< item.Component />}
-                </Route >
-              )
-            }
-          })}
-        </Switch>
-      </Router>
-    </div >
+                  :
+                  <Component />
+              }
+            </Route>
+          );
+        })}
+      </BrowserRouter>
+    </>
   );
 }
 
