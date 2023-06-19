@@ -15,7 +15,7 @@ import {
     Th,
     Td,
     TableContainer,
-    Skeleton
+    Skeleton,
 } from '@chakra-ui/react'
 import Flex from "@commons/flex";
 import { TableProps, additionalButtonsType } from "./interface";
@@ -38,6 +38,7 @@ const Table = ({
     onAction,
     actionLabel = "",
     onSelectedRow,
+    label,
     canPrint = false,
     onPrint,
     additionalButtons,
@@ -71,6 +72,7 @@ const Table = ({
     return (
         <>
             <TableContainer width={width} padding={padding} margin={margin}>
+                {label && <Text width="100%" textAlign="center" marginBottom="7px" fontSize='md' fontWeight="bold">{t(label)}</Text>}
                 <Flex
                     width='100%'
                     padding='0'

@@ -8,6 +8,7 @@ export interface TableProps {
   dataSource?: any[];
   columns: column[];
   height?: string;
+  label?: string;
   title?: string;
   canEdit?: boolean;
   canAdd?: boolean;

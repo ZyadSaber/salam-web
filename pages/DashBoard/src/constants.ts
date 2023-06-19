@@ -1,55 +1,22 @@
-export const suppliersColumns = [
-        {
-            title: "nm",
-            dataIndex: "name",
-            width: "20%"
-        },
-        {
-            title: "eml",
-            dataIndex: "email",
-            width: 17
-        },
-        {
-            title: "phn",
-            dataIndex: "phone",
-            width: 15
-        },
-        {
-            title: "mbl",
-            dataIndex: "mobile",
-            width: 15
-        },
-        {
-            title: "adrs",
-            dataIndex: "address",
-            width: 20
-        }
-    ]
-
-    export const customersColumns = [
-        {
-            title: "nm",
-            dataIndex: "name",
-            width: "20%"
-        },
-        {
-            title: "eml",
-            dataIndex: "email",
-            width: 17
-        },
-        {
-            title: "phn",
-            dataIndex: "phone",
-            width: 15
-        },
-        {
-            title: "mbl",
-            dataIndex: "mobile",
-            width: 15
-        },
-        {
-            title: "adrs",
-            dataIndex: "address",
-            width: 20
-        }
-    ]
+export const mainTableColumns = [
+  {
+    title: "no",
+    dataIndex: "invoice_id",
+    width: "15%",
+  },
+  {
+    title: "nm",
+    dataIndex: "invoice_holder_name",
+    width: "20%",
+  },
+  {
+    title: "dt",
+    dataIndex: "invoice_date",
+    width: "10%",
+  },
+  {
+    title: "total",
+    dataIndex: "invoice_after_discount",
+    width: "10%",
+  },
+];

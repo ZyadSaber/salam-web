@@ -43,10 +43,8 @@ const SideBar = () => {
                     <NavLink to='/home' className="navbar-brand m-0 w-100" >
                         <Flex width="100%" flexDirection="column" justifyContent="centre" margin="0">
                             <img src="http://144.24.209.19:9090/application_logo/primary_logo" alt="Logo" className="rounded mx-auto d-block w-50 mb-3" />
-                            <h4>{t("aptl")}</h4>
                         </Flex>
                     </NavLink>
-                    {displayName && <span className="navbar-brand mb-0 h1 " >{`${t("crntsrs")} ${displayName} `}</span>}
                 </Flex>
                 <Accordion width="100%" allowToggle defaultIndex={[1]}>
                     <AccordionItem>
