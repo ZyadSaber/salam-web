@@ -54,7 +54,7 @@ const Table = ({
     const { t } = useTranslation()
     const [rowSelected, setRowSelected] = useState()
     const handleSelectedRow = useCallback((item: any) => () => {
-        onSelectedRow(item)
+        if (onSelectedRow) onSelectedRow(item)
         setRowSelected(item)
     }, [onSelectedRow])
 

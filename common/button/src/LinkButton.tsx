@@ -14,9 +14,9 @@ const LinkButton = ({
     height,
     padding = "10px",
     pathTo = "",
-    color = "blue",
+    color = "white.200",
     //solid, ghost, outline, or link.
-    variant = "solid",
+    variant = "outline",
     //xs, sm, md, or lg
     size = "md",
     disabled = false,
@@ -27,9 +27,10 @@ const LinkButton = ({
 
     return (
         <>
-            <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", color: "white", width: "100%" }} target={target}>
+            <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", width: "100%" }} target={target}>
                 <ChakraButton
-                    colorScheme={color}
+                    color={color}
+                    bg={"cyan.300"}
                     variant={variant}
                     width={width}
                     onClick={onClick}

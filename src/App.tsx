@@ -1,37 +1,21 @@
-import { memo, useEffect } from 'react';
+import{ memo } from 'react';
+import {
+  Box,
+  useColorModeValue,
+  Drawer,
+  DrawerContent,
+  useDisclosure,
+} from '@chakra-ui/react';
+import Header from "@components/header";
 import { BrowserRouter, Route } from 'react-router-dom';
 import SideBar from "@components/side-bar"
 import { PageRoutes } from "@commons/global";
-import { useTranslation } from 'react-i18next'
-//@ts-ignore
-import cookies from 'js-cookie';
-import Flex from "@commons/flex";
-import Header from '@components/header';
-// import Error404 from './error404';
+
 const App = () => {
 
-  const languages = [
-    {
-      code: 'en',
-      name: 'English',
-      country_code: 'gb',
-    },
-    {
-      code: 'ar',
-      name: 'العربية',
-      dir: 'rtl',
-      country_code: 'sa',
-    },
-  ]
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const gb = useColorModeValue('gray.100', 'gray.900')
 
-  const { t } = useTranslation()
-  const currentLanguageCode = cookies.get('i18next') || 'ar';
-  const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
-  useEffect(() => {
-    //@ts-ignore
-    document.body.dir = currentLanguage.dir || 'ltr'
-    document.title = t('aptl')
-  }, [currentLanguage, t])
 
   return (
     <>
@@ -45,19 +29,30 @@ const App = () => {
             >
               {
                 !Array.isArray(Path) ?
-                  <Flex width='100%' height='100vh' margin='0' padding='0' borderRadius='0' >
-                    <Flex width='15%' padding='0' margin='0'>
-                      <SideBar />
-                    </Flex>
-                    <Flex width='85%' flexDirection="column">
-                      <Flex height="50px" margin='0' padding='0'>
-                        <Header />
-                      </Flex>
-                      <Flex height='95%' >
-                        {< Component />}
-                      </Flex>
-                    </Flex>
-                  </Flex>
+                  <>
+                    <Box minH="100vh" bg={gb}>
+                      <SideBar
+                        onClose={() => onClose}
+                        display={{ base: 'none', md: 'block' }}
+                      />
+                      <Drawer
+                        autoFocus={false}
+                        isOpen={isOpen}
+                        placement="left"
+                        onClose={onClose}
+                        returnFocusOnClose={false}
+                        onOverlayClick={onClose}
+                        size="full">
+                        <DrawerContent>
+                          <SideBar onClose={onClose} />
+                        </DrawerContent>
+                      </Drawer>
+                      <Header onOpen={onOpen} />
+                      <Box ml={{ base: 0, md: 60 }} p="4">
+                        <Component />
+                      </Box>
+                    </Box>
+                  </>
                   :
                   <Component />
               }
@@ -66,8 +61,7 @@ const App = () => {
         })}
       </BrowserRouter>
     </>
-  );
+  )
 }
 
-export default memo(App);
-
+export default memo(App)
