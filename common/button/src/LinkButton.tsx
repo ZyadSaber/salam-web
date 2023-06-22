@@ -21,16 +21,17 @@ const LinkButton = ({
     size = "md",
     disabled = false,
     onClick,
-    target = ""
+    target = "",
+    bg = "cyan.300"
 }: linkButtonProp) => {
     const { t } = useTranslation()
 
     return (
         <>
-            <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", width: "100%" }} target={target}>
+            <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", width: "100%" }}>
                 <ChakraButton
                     color={color}
-                    bg={"cyan.300"}
+                    bg={bg}
                     variant={variant}
                     width={width}
                     onClick={onClick}
@@ -41,7 +42,6 @@ const LinkButton = ({
                     height={height}
                     size={size}
                 >
-
                     {t(label)}
                 </ChakraButton >
             </NavLink>

@@ -1,10 +1,5 @@
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-} from "react";
-export interface buttonProp {
+import { ButtonProps } from "@chakra-ui/react";
+export interface buttonProp extends ButtonProps {
   label: string;
   onClick?: () => void;
   className?: string;
@@ -18,23 +13,8 @@ export interface buttonProp {
   color?: string;
   variant?: string;
   size?: string;
-  position?: string;
-  leftIcon?:
-    | string
-    | number
-    | boolean
-    | ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment
-    | ReactPortal;
-  rightIcon?:
-    | string
-    | number
-    | boolean
-    | ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment
-    | ReactPortal;
 }
-export interface linkButtonProp {
+export interface linkButtonProp extends ButtonProps {
   label: string;
   onClick?: () => void;
   className?: string;
@@ -48,7 +28,6 @@ export interface linkButtonProp {
   color?: string;
   variant?: string;
   size?: string;
-  position?: string;
   target?: string;
 }
 

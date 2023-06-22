@@ -12,14 +12,12 @@ const Button = ({
     width,
     height,
     padding,
-    color = "blue",
+    color = "white.200",
     //solid, ghost, outline, or link.
-    variant = "solid",
+    variant = "outline",
     //xs, sm, md, or lg
     size = "md",
-    leftIcon = <></>,
-    rightIcon = <></>,
-    position = "unset"
+    ...prop
 }: buttonProp) => {
     const { t } = useTranslation()
     return (
@@ -27,10 +25,7 @@ const Button = ({
             <ChakraButton
                 colorScheme={color}
                 variant={variant}
-                //@ts-ignore
-                leftIcon={leftIcon}
-                //@ts-ignore
-                rightIcon={rightIcon}
+                bg={"cyan.300"}
                 width={width}
                 onClick={onClick}
                 disabled={disabled}
@@ -38,9 +33,10 @@ const Button = ({
                 margin={margin}
                 padding={padding}
                 height={height}
+                textDecoration={"none"}
+                border={0}
                 size={size}
-                //@ts-ignore
-                position={position}
+                {...prop}
             >
                 {t(label)}
             </ChakraButton>
