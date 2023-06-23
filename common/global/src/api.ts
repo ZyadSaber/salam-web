@@ -22,6 +22,11 @@ const API_ID = {
   //http://144.24.209.19:9090/api/invoices/invoice_search/customer_supplier_invoice_main_table?invoice_type=C&invoice_no=
   QUERY_INVOICE_MASTER_TABLE_DATA:
     "invoices/invoice_search/customer_supplier_invoice_main_table",
+  //http://144.24.209.19:9090/api/invoices/invoice_search/customer_invoices_for_today
+  QUERY_CUSTOMERS_INVOICES_FOT_TODAY:
+    "invoices/invoice_search/customer_invoices_for_today",
+  QUERY_SUPPLIERS_INVOICES_FOT_TODAY:
+    "invoices/invoice_search/supplier_invoices_for_today",
   //http://144.24.209.19:9090/api/basic_data/items/items_table_data
   QUERY_ITEMS_TABLE_DATA: "basic_data/items/items_table_data",
   //http://144.24.209.19:9090/api/basic_data/items/items_table_data_dml
