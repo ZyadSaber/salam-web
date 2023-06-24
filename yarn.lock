@@ -1868,7 +1868,7 @@
   resolved "https://registry.npmjs.org/@chakra-ui/visually-hidden/-/visually-hidden-2.0.15.tgz"
   integrity sha512-WWULIiucYRBIewHKFA7BssQ2ABLHLVd9lrUo3N3SZgR0u4ZRDDVEUNOy+r+9ruDze8+36dGbN9wsN1IdELtdOw==
 
-"@commons/button@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\button":
+"@commons/button@file:/home/zyad/Documents/active_projects/salam-web/common/button":
   version "1.0.0"
   resolved "file:common/button"
   dependencies:
@@ -1877,7 +1877,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/check-box@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\check-box":
+"@commons/check-box@file:/home/zyad/Documents/active_projects/salam-web/common/check-box":
   version "1.0.0"
   resolved "file:common/check-box"
   dependencies:
@@ -1886,7 +1886,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/flex@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\Flex":
+"@commons/flex@file:/home/zyad/Documents/active_projects/salam-web/common/Flex":
   version "1.0.0"
   resolved "file:common/Flex"
   dependencies:
@@ -1895,7 +1895,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/global@1.0.0", "@commons/global@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\global":
+"@commons/global@1.0.0", "@commons/global@file:/home/zyad/Documents/active_projects/salam-web/common/global":
   version "1.0.0"
   resolved "file:common/global"
   dependencies:
@@ -1904,7 +1904,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/hooks@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\hooks":
+"@commons/hooks@file:/home/zyad/Documents/active_projects/salam-web/common/hooks":
   version "1.0.0"
   resolved "file:common/hooks"
   dependencies:
@@ -1914,15 +1914,15 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/input-number@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\input-number":
+"@commons/input-number@file:/home/zyad/Documents/active_projects/salam-web/common/input-number":
   version "1.0.0"
   resolved "file:common/input-number"
 
-"@commons/input-text@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\input-text":
+"@commons/input-text@file:/home/zyad/Documents/active_projects/salam-web/common/input-text":
   version "1.0.0"
   resolved "file:common/input-text"
 
-"@commons/modal@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\modal":
+"@commons/modal@file:/home/zyad/Documents/active_projects/salam-web/common/modal":
   version "1.0.0"
   resolved "file:common/modal"
   dependencies:
@@ -1931,7 +1931,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/page-title@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\page-title":
+"@commons/page-title@file:/home/zyad/Documents/active_projects/salam-web/common/page-title":
   version "1.0.0"
   resolved "file:common/page-title"
   dependencies:
@@ -1940,7 +1940,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/radio-box@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\radio-box":
+"@commons/radio-box@file:/home/zyad/Documents/active_projects/salam-web/common/radio-box":
   version "1.0.0"
   resolved "file:common/radio-box"
   dependencies:
@@ -1949,7 +1949,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/select@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\Select":
+"@commons/select@file:/home/zyad/Documents/active_projects/salam-web/common/Select":
   version "1.0.0"
   resolved "file:common/Select"
   dependencies:
@@ -1958,7 +1958,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@commons/table@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\TableView":
+"@commons/table@file:/home/zyad/Documents/active_projects/salam-web/common/TableView":
   version "1.0.0"
   resolved "file:common/TableView"
   dependencies:
@@ -1968,7 +1968,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@components/header@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\components\\header":
+"@components/header@file:/home/zyad/Documents/active_projects/salam-web/components/header":
   version "1.0.0"
   resolved "file:components/header"
   dependencies:
@@ -1977,7 +1977,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@components/side-bar@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\components\\SideBar":
+"@components/side-bar@file:/home/zyad/Documents/active_projects/salam-web/components/SideBar":
   version "1.0.0"
   resolved "file:components/SideBar"
   dependencies:
@@ -2630,11 +2630,6 @@
   dependencies:
     "@lezer/common" "^0.15.0"
 
-"@lmdb/lmdb-win32-x64@2.5.2":
-  version "2.5.2"
-  resolved "https://registry.npmjs.org/@lmdb/lmdb-win32-x64/-/lmdb-win32-x64-2.5.2.tgz"
-  integrity sha512-zrBczSbXKxEyK2ijtbRdICDygRqWSRPpZMN5dD1T8VMEW5RIhIbwFWw2phDRXuBQdVDpSjalCIUMWMV2h3JaZA==
-
 "@mischnic/json-sourcemap@^0.1.0":
   version "0.1.0"
   resolved "https://registry.npmjs.org/@mischnic/json-sourcemap/-/json-sourcemap-0.1.0.tgz"
@@ -2643,11 +2638,6 @@
     "@lezer/common" "^0.15.7"
     "@lezer/lr" "^0.15.4"
     json5 "^2.2.1"
-
-"@msgpackr-extract/msgpackr-extract-win32-x64@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.npmjs.org/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-3.0.2.tgz"
-  integrity sha512-O+6Gs8UeDbyFpbSh2CPEz/UOrrdWPTBYNblZK5CxxLisYt4kGX3Sc+czffFonyjiGSq3jWLwJS/CCJc7tBr4sQ==
 
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
@@ -2830,11 +2820,6 @@
     tmp "~0.2.1"
     tslib "^2.3.0"
 
-"@nrwl/nx-win32-x64-msvc@15.8.7":
-  version "15.8.7"
-  resolved "https://registry.npmjs.org/@nrwl/nx-win32-x64-msvc/-/nx-win32-x64-msvc-15.8.7.tgz"
-  integrity sha512-VMdDptI2rqkLQRCvertF29QeA/V/MnFtHbsmVzMCEv5EUfrkHbA5LLxV66LLfngmkDT1FHktffztlsMpbxvhRw==
-
 "@nrwl/tao@15.8.7":
   version "15.8.7"
   resolved "https://registry.npmjs.org/@nrwl/tao/-/tao-15.8.7.tgz"
@@ -2972,7 +2957,7 @@
   dependencies:
     "@octokit/openapi-types" "^16.0.0"
 
-"@pages/casher-payment-voucher-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\casher-payment-voucher-page":
+"@pages/casher-payment-voucher-page@file:/home/zyad/Documents/active_projects/salam-web/pages/casher-payment-voucher-page":
   version "1.0.0"
   resolved "file:pages/casher-payment-voucher-page"
   dependencies:
@@ -2980,7 +2965,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/casher-receipt-voucher-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\casher-receipt-voucher-page":
+"@pages/casher-receipt-voucher-page@file:/home/zyad/Documents/active_projects/salam-web/pages/casher-receipt-voucher-page":
   version "1.0.0"
   resolved "file:pages/casher-receipt-voucher-page"
   dependencies:
@@ -2988,7 +2973,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/chart-js@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\common\\chart-js":
+"@pages/chart-js@file:/home/zyad/Documents/active_projects/salam-web/common/chart-js":
   version "1.0.0"
   resolved "file:common/chart-js"
   dependencies:
@@ -2996,7 +2981,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/customer-invoice-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\customer-invoice-page":
+"@pages/customer-invoice-page@file:/home/zyad/Documents/active_projects/salam-web/pages/customer-invoice-page":
   version "1.0.0"
   resolved "file:pages/customer-invoice-page"
   dependencies:
@@ -3005,7 +2990,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/customers-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\customers-page":
+"@pages/customers-page@file:/home/zyad/Documents/active_projects/salam-web/pages/customers-page":
   version "1.0.0"
   resolved "file:pages/customers-page"
   dependencies:
@@ -3014,7 +2999,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/customers-summary-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\customers-summary-page":
+"@pages/customers-summary-page@file:/home/zyad/Documents/active_projects/salam-web/pages/customers-summary-page":
   version "1.0.0"
   resolved "file:pages/customers-summary-page"
   dependencies:
@@ -3022,7 +3007,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/daily-totals-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\daily-totals-page":
+"@pages/daily-totals-page@file:/home/zyad/Documents/active_projects/salam-web/pages/daily-totals-page":
   version "1.0.0"
   resolved "file:pages/daily-totals-page"
   dependencies:
@@ -3030,7 +3015,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/dashboard-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\DashBoard":
+"@pages/dashboard-page@file:/home/zyad/Documents/active_projects/salam-web/pages/DashBoard":
   version "1.0.0"
   resolved "file:pages/DashBoard"
   dependencies:
@@ -3039,7 +3024,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/employee-attendance-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\employee-attendance-page":
+"@pages/employee-attendance-page@file:/home/zyad/Documents/active_projects/salam-web/pages/employee-attendance-page":
   version "1.0.0"
   resolved "file:pages/employee-attendance-page"
   dependencies:
@@ -3048,7 +3033,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/employee-leaving-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\employee-leaving-page":
+"@pages/employee-leaving-page@file:/home/zyad/Documents/active_projects/salam-web/pages/employee-leaving-page":
   version "1.0.0"
   resolved "file:pages/employee-leaving-page"
   dependencies:
@@ -3057,7 +3042,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/employee-sheet-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\employee-sheet-page":
+"@pages/employee-sheet-page@file:/home/zyad/Documents/active_projects/salam-web/pages/employee-sheet-page":
   version "1.0.0"
   resolved "file:pages/employee-sheet-page"
   dependencies:
@@ -3066,7 +3051,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/employees-data-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\employees-data-page":
+"@pages/employees-data-page@file:/home/zyad/Documents/active_projects/salam-web/pages/employees-data-page":
   version "1.0.0"
   resolved "file:pages/employees-data-page"
   dependencies:
@@ -3075,7 +3060,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/expenses-totals-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\expenses-totals-page":
+"@pages/expenses-totals-page@file:/home/zyad/Documents/active_projects/salam-web/pages/expenses-totals-page":
   version "1.0.0"
   resolved "file:pages/expenses-totals-page"
   dependencies:
@@ -3083,7 +3068,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/expenses-type-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\expenses-type-page":
+"@pages/expenses-type-page@file:/home/zyad/Documents/active_projects/salam-web/pages/expenses-type-page":
   version "1.0.0"
   resolved "file:pages/expenses-type-page"
   dependencies:
@@ -3091,7 +3076,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/invoices-search-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\invoices-search-page":
+"@pages/invoices-search-page@file:/home/zyad/Documents/active_projects/salam-web/pages/invoices-search-page":
   version "1.0.0"
   resolved "file:pages/invoices-search-page"
   dependencies:
@@ -3099,7 +3084,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/item-summary-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\item-summary-page":
+"@pages/item-summary-page@file:/home/zyad/Documents/active_projects/salam-web/pages/item-summary-page":
   version "1.0.0"
   resolved "file:pages/item-summary-page"
   dependencies:
@@ -3107,7 +3092,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/items-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\items-page":
+"@pages/items-page@file:/home/zyad/Documents/active_projects/salam-web/pages/items-page":
   version "1.0.0"
   resolved "file:pages/items-page"
   dependencies:
@@ -3115,7 +3100,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/labels-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\labels-page":
+"@pages/labels-page@file:/home/zyad/Documents/active_projects/salam-web/pages/labels-page":
   version "1.0.0"
   resolved "file:pages/labels-page"
   dependencies:
@@ -3123,7 +3108,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/monthly-totals-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\monthly-totals-page":
+"@pages/monthly-totals-page@file:/home/zyad/Documents/active_projects/salam-web/pages/monthly-totals-page":
   version "1.0.0"
   resolved "file:pages/monthly-totals-page"
   dependencies:
@@ -3131,7 +3116,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/print-options-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\print-options-page":
+"@pages/print-options-page@file:/home/zyad/Documents/active_projects/salam-web/pages/print-options-page":
   version "1.0.0"
   resolved "file:pages/print-options-page"
   dependencies:
@@ -3139,7 +3124,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/sign-in-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\sign-in-page":
+"@pages/sign-in-page@file:/home/zyad/Documents/active_projects/salam-web/pages/sign-in-page":
   version "1.0.0"
   resolved "file:pages/sign-in-page"
   dependencies:
@@ -3147,7 +3132,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/supplier-invoice-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\supplier-invoice-page":
+"@pages/supplier-invoice-page@file:/home/zyad/Documents/active_projects/salam-web/pages/supplier-invoice-page":
   version "1.0.0"
   resolved "file:pages/supplier-invoice-page"
   dependencies:
@@ -3155,7 +3140,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/supplier-summary-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\supplier-summary-page":
+"@pages/supplier-summary-page@file:/home/zyad/Documents/active_projects/salam-web/pages/supplier-summary-page":
   version "1.0.0"
   resolved "file:pages/supplier-summary-page"
   dependencies:
@@ -3163,7 +3148,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/suppliers-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\suppliers-page":
+"@pages/suppliers-page@file:/home/zyad/Documents/active_projects/salam-web/pages/suppliers-page":
   version "1.0.0"
   resolved "file:pages/suppliers-page"
   dependencies:
@@ -3171,7 +3156,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/users-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\users-page":
+"@pages/users-page@file:/home/zyad/Documents/active_projects/salam-web/pages/users-page":
   version "1.0.0"
   resolved "file:pages/users-page"
   dependencies:
@@ -3179,7 +3164,7 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/yearly-totals-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\yearly-totals-page":
+"@pages/yearly-totals-page@file:/home/zyad/Documents/active_projects/salam-web/pages/yearly-totals-page":
   version "1.0.0"
   resolved "file:pages/yearly-totals-page"
   dependencies:
@@ -10067,11 +10052,6 @@ liftoff@^4.0.0:
     object.map "^1.0.1"
     rechoir "^0.8.0"
     resolve "^1.20.0"
-
-lightningcss-win32-x64-msvc@1.20.0:
-  version "1.20.0"
-  resolved "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.20.0.tgz"
-  integrity sha512-BRdPvbq7Cc1qxAzp2emqWJHrqsEkf4ggxS29VOnxT7jhkdHKU+a26OVMjvm/OL0NH0ToNOZNAPvHMSexiEgBeA==
 
 lightningcss@^1.16.1:
   version "1.20.0"

@@ -29,7 +29,6 @@ const RadioBox = ({
                 <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(Label)}</FormLabel>
                 <Flex
                     className="css-1xsh6d8"
-                    height="100%"
                     width="100%"
                 >
                     <RadioGroup

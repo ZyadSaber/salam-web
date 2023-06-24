@@ -1,60 +1,65 @@
-import React, { memo } from "react";
-import Modal from "@commons/modal";
+import React, { memo, useCallback } from "react";
+import { useTableControlsButtons } from "@commons/table";
 import { ModalViewProp } from "@commons/global";
+import RadioBox from "@commons/radio-box"
 import { InputText, TextArea } from "@commons/input-text";
-import { SelectWithApi, Select } from "@commons/select";
+import InputNumber from "@commons/input-number"
+import { SelectWithApi } from "@commons/select";
 import { useFormManager } from "@commons/hooks";
+import { Button } from "@commons/button"
 import { voucherOptions } from "../constant"
 
 const ModalView = ({
-    visible,
-    onOK,
     onClose,
-    setSelectedRow,
-    selectedRow
+    selectedRow,
+    refreshTable
 }: ModalViewProp) => {
-    const { state, onChange } = useFormManager({ initialValues: selectedRow, setSelectedRow: setSelectedRow })
-    const { date, voucher_type, person_id, amount, notes } = state
+    const { state, onChange } = useFormManager({
+        initialValues: {
+            ...selectedRow,
+            voucher_type: "C"
+        }
+    })
+    const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_CASHER_RECEIPT_VOUCHER_TABLE_DATA", runFetch: refreshTable })
+
+    const handleSave = useCallback(() => {
+        onSaveAndInsertion(state)
+        onClose()
+    }, [onSaveAndInsertion, state, onClose])
     return (
         <>
-            <Modal
-                visible={visible}
-                label={"Details"}
-                onOK={onOK}
-                onClose={onClose}
-            >
+            <>
                 <InputText
-                    name="date"
+                    name="voucher_date"
                     type="date"
                     onChange={onChange}
-                    value={date}
+                    value={state?.voucher_date}
                     Label="dt"
                     width="47%"
                 />
-                <InputText
-                    name="amount"
-                    type="number"
+                <InputNumber
+                    name="voucher_amount"
                     onChange={onChange}
-                    value={amount}
+                    value={state?.voucher_amount}
                     Label="amnt"
                     width="47%"
                 />
-                <Select
+                <RadioBox
                     name="voucher_type"
                     onChange={onChange}
-                    value={voucher_type}
+                    value={state?.voucher_type}
                     Label="vchr"
                     width="47%"
-                    Options={voucherOptions}
+                    options={voucherOptions}
                 />
                 <SelectWithApi
-                    name="person_id"
+                    name="voucher_id"
                     Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
                     Label="nm"
                     params={{
-                        invoice_type: voucher_type
+                        invoice_type: state.voucher_type
                     }}
-                    value={person_id}
+                    value={state?.voucher_id}
                     fetchOnFirstRun
                     width="47%"
                     onChange={onChange}
@@ -63,10 +68,14 @@ const ModalView = ({
                     width="100%"
                     name="notes"
                     onChange={onChange}
-                    value={notes}
+                    value={state?.notes}
                     Label="nts"
                 />
-            </Modal>
+                <Button
+                    onClick={handleSave}
+                    label="sv"
+                />
+            </>
         </>
     )
 }

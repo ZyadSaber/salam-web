@@ -56,12 +56,12 @@ const API_ID = {
   QUERY_PRINT_OPTIONS_LIST: "basic_data/print_options/print_options_lins",
   //http://144.24.209.19:9090/api/v1/employeesData/employee_sheet?employee_id=4
   QUERY_EMPLOYEE_SHEET_SALARY: "employeesData/employee_sheet",
-  //http://144.24.209.19:9090/api/v1/income_expense/get_casher_receipt_voucher_invoices?date_from=2023-04-01&date_to=2023-04-30
+  //http://144.24.209.19:9090/api/income_and_expenses/casher_receipt_voucher/main_table?date_from=2023-04-01&date_to=2023-04-30
   QUERY_CASHER_RECEIPT_VOUCHER_TABLE_DATA:
-    "income_expense/get_casher_receipt_voucher_invoices",
-  //http://144.24.209.19:9090/api/v1/income_expense/post_casher_receipt_voucher_invoices_dml?authorization=1677621781730
+    "income_and_expenses/casher_receipt_voucher/main_table",
+  //http://144.24.209.19:9090/api/income_and_expenses/casher_receipt_voucher/main_table_dml
   POST_CASHER_RECEIPT_VOUCHER_TABLE_DATA:
-    "income_expense/post_casher_receipt_voucher_invoices_dml",
+    "income_and_expenses/casher_receipt_voucher/main_table_dml",
   //http://144.24.209.19:9090/api/v1/income_expense/get_casher_payment_voucher_invoices?date_from=2023-04-01&date_to=2023-04-30
   QUERY_CASHER_PAYMENT_VOUCHER_TABLE_DATA:
     "income_expense/get_casher_payment_voucher_invoices",
