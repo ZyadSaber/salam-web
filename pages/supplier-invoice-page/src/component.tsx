@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect } from 'react';
 import { Table } from "@commons/table";
-import { InputText } from "@commons/input-text";
+import DatePicker from "@commons/date-picker"
+import { defaultDate } from "@commons/global";
 import { useFormManager, useMutation } from "@commons/hooks";
 import { SelectWithApi } from "@commons/select";
 import { Button } from "@commons/button";
@@ -26,7 +27,7 @@ const SupplierInvoice = () => {
         initialValues: {
             supplier_id: 0,
             supplier_name: "",
-            supplier_invoice_date: "",
+            supplier_invoice_date: defaultDate,
             supplier_invoice_items: [],
             query_status: "n",
             supplier_invoice_total: 0,
@@ -112,12 +113,11 @@ const SupplierInvoice = () => {
                         withLabel
                         selectLabelName="supplier_name"
                     />
-                    <InputText
+                    <DatePicker
                         name="supplier_invoice_date"
                         value={state.supplier_invoice_date}
                         Label="dt"
                         onChange={onChange}
-                        type="date"
                     />
                 </Flex>
                 <InsertForm
@@ -177,7 +177,6 @@ const SupplierInvoice = () => {
                     <Button
                         label="sv"
                         width="15%"
-                        height="50%"
                         margin="30px 0"
                         onClick={handleSave}
                     />
