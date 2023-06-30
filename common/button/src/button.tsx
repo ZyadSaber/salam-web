@@ -12,6 +12,7 @@ const Button = ({
     width,
     height,
     padding,
+    backGround = "cyan.300",
     color = "white.200",
     //solid, ghost, outline, or link.
     variant = "outline",
@@ -25,7 +26,7 @@ const Button = ({
             <ChakraButton
                 colorScheme={color}
                 variant={variant}
-                bg={"cyan.300"}
+                bg={backGround}
                 width={width}
                 onClick={onClick}
                 disabled={disabled}

@@ -1,8 +1,19 @@
 import React, { memo, useCallback, useEffect } from 'react';
-import './Style.css';
 import { Button } from "@commons/button";
 import { InputText } from "@commons/input-text";
 import { useLocalStorage, useMutation, useFormManager } from "@commons/hooks"
+import {
+    // Button,
+    Checkbox,
+    Flex,
+    FormControl,
+    FormLabel,
+    Heading,
+    Input,
+    Link,
+    Stack,
+    Image,
+} from '@chakra-ui/react';
 
 const SignInPage = () => {
 
@@ -39,35 +50,57 @@ const SignInPage = () => {
 
     return (
         <>
-            <div className="sign_in">
-                <div className="card">
-                    <div className="card-body">
-                        <h1>مرحبا</h1>
-                        <p>قم بتسجيل الدخول الى النظام</p>
-                        <InputText
-                            name='user_name'
-                            Label='usrnm'
-                            onChange={onChange}
-                            width="90%"
-                            value={state.user_name}
-                        />
-                        <InputText
-                            name='password'
-                            Label='pswrd'
-                            onChange={onChange}
-                            type="password"
-                            width="90%"
-                            value={state.password}
-                        />
-                        <Button
-                            label='login'
-                            onClick={handleLogIn}
-                            width='40%'
-                            margin='10px'
-                        />
-                    </div>
-                </div>
-            </div>
+            <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+                <Flex p={8} flex={1} align={'center'} justify={'center'}>
+                    <Stack spacing={4} w={'full'} maxW={'md'}>
+                        <Heading fontSize={'2xl'}>Sign in to your account</Heading>
+                        <FormControl id="email">
+                            {/* <FormLabel>Email address</FormLabel> */}
+                            <InputText
+                                name='user_name'
+                                Label='usrnm'
+                                onChange={onChange}
+                                width="100%"
+                                margin={0}
+                                padding={0}
+                                value={state.user_name}
+                            />
+                        </FormControl>
+                        <FormControl id="password">
+                            {/* <FormLabel>Password</FormLabel>  */}
+                            <InputText
+                                name='password'
+                                Label='pswrd'
+                                onChange={onChange}
+                                type="password"
+                                width="100%"
+                                margin={0}
+                                padding={0}
+                                value={state.password}
+                            />
+                        </FormControl>
+                        <Stack spacing={6}>
+                            <Stack
+                                direction={{ base: 'column', sm: 'row' }}
+                                align={'start'}
+                                justify={'space-between'}>
+                                {/* <Checkbox>Remember me</Checkbox> */}
+                                {/* <Link color={'blue.500'}>Forgot password?</Link> */}
+                            </Stack>
+                            <Button backGround={'blue'} variant={'solid'} label='login' onClick={handleLogIn} />
+                        </Stack>
+                    </Stack>
+                </Flex>
+                <Flex flex={1}>
+                    <Image
+                        alt={'Login Image'}
+                        objectFit={'cover'}
+                        src={
+                            'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80'
+                        }
+                    />
+                </Flex>
+            </Stack>
         </>
     )
 };

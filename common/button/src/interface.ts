@@ -12,6 +12,7 @@ export interface buttonProp extends ButtonProps {
   additionalStyle?: string;
   color?: string;
   variant?: string;
+  backGround?: string;
   size?: string;
 }
 export interface linkButtonProp extends ButtonProps {
