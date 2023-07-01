@@ -3,14 +3,9 @@ import { Button } from "@commons/button";
 import { InputText } from "@commons/input-text";
 import { useLocalStorage, useMutation, useFormManager } from "@commons/hooks"
 import {
-    // Button,
-    Checkbox,
     Flex,
     FormControl,
-    FormLabel,
     Heading,
-    Input,
-    Link,
     Stack,
     Image,
 } from '@chakra-ui/react';
@@ -55,7 +50,6 @@ const SignInPage = () => {
                     <Stack spacing={4} w={'full'} maxW={'md'}>
                         <Heading fontSize={'2xl'}>Sign in to your account</Heading>
                         <FormControl id="email">
-                            {/* <FormLabel>Email address</FormLabel> */}
                             <InputText
                                 name='user_name'
                                 Label='usrnm'
@@ -67,7 +61,6 @@ const SignInPage = () => {
                             />
                         </FormControl>
                         <FormControl id="password">
-                            {/* <FormLabel>Password</FormLabel>  */}
                             <InputText
                                 name='password'
                                 Label='pswrd'
@@ -84,8 +77,6 @@ const SignInPage = () => {
                                 direction={{ base: 'column', sm: 'row' }}
                                 align={'start'}
                                 justify={'space-between'}>
-                                {/* <Checkbox>Remember me</Checkbox> */}
-                                {/* <Link color={'blue.500'}>Forgot password?</Link> */}
                             </Stack>
                             <Button backGround={'blue'} variant={'solid'} label='login' onClick={handleLogIn} />
                         </Stack>
