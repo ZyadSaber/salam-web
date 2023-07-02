@@ -10,6 +10,7 @@ export interface radioBoxProps {
   onChange?: any;
   value?: string | undefined;
   Label?: string | number;
+  hidden?: boolean;
   margin?: number | string;
   padding?: number | string;
 }

@@ -11,7 +11,8 @@ const RadioBox = ({
     value,
     Label,
     margin = "10px",
-    padding
+    padding,
+    hidden = false
 }: radioBoxProps) => {
     const { t } = useTranslation()
     const handleChange = useCallback((value: string | number) => {
@@ -25,6 +26,7 @@ const RadioBox = ({
                 padding={padding}
                 margin={margin}
                 wrap="wrap"
+                hidden={hidden}
             >
                 <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(Label)}</FormLabel>
                 <Flex

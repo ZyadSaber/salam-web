@@ -62,12 +62,12 @@ const API_ID = {
   //http://144.24.209.19:9090/api/income_and_expenses/casher_receipt_voucher/main_table_dml
   POST_CASHER_RECEIPT_VOUCHER_TABLE_DATA:
     "income_and_expenses/casher_receipt_voucher/main_table_dml",
-  //http://144.24.209.19:9090/api/v1/income_expense/get_casher_payment_voucher_invoices?date_from=2023-04-01&date_to=2023-04-30
+  //http://144.24.209.19:9090/api/income_and_expenses/casher_receipt_voucher/main_table?date_from=2023-04-01&date_to=2023-04-30
   QUERY_CASHER_PAYMENT_VOUCHER_TABLE_DATA:
-    "income_expense/get_casher_payment_voucher_invoices",
-  //http://144.24.209.19:9090/api/v1/income_expense/post_casher_payment_voucher_invoices_dml?authorization=1677621781730
+    "income_and_expenses/casher_payment_voucher/main_table",
+  //http://144.24.209.19:9090/api/income_and_expenses/casher_receipt_voucher/main_table_dml
   POST_CASHER_PAYMENT_VOUCHER_TABLE_DATA:
-    "income_expense/post_casher_payment_voucher_invoices_dml",
+    "income_and_expenses/casher_payment_voucher/main_table_dml",
   //http://144.24.209.19:9090/api/v1/home/dash_board_get_data?authorization=1677621781730
   QUERY_MAIN_CHART_DATA: "home/dash_board_get_data",
   //http://144.24.209.19:9090/api/basic_data/expenses_type/expenses_type_table_data
@@ -79,6 +79,9 @@ const API_ID = {
   GET_PRIMARY_IMAGE: "application_logo/primary_logo",
   //http://144.24.209.19:9090/api/charts/invoices_query?
   QUERY_INVOICES_CHART_DATA: "charts/invoices_query",
+  //http://144.24.209.19:9090/api/auth_security/users_info
+  QUERY_USERS_TABLE_DATA: "auth_security/users_info",
+  POST_USERS_TABLE_DATA: "",
 };
 
 export default API_ID;

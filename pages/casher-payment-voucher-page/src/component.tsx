@@ -28,7 +28,7 @@ const CasherPaymentVoucher = () => {
                         date_from: state.date_from,
                         date_to: state.date_to
                     }}
-                    ModalContent
+                    ModalContent={ModalView}
                     fetchOnFirstRun
                 />
             </Flex>

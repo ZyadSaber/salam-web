@@ -16,8 +16,7 @@ const ModalView = ({
 }: ModalViewProp) => {
     const { state, onChange } = useFormManager({
         initialValues: {
-            ...selectedRow,
-            voucher_type: "C"
+            ...selectedRow
         }
     })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_CASHER_RECEIPT_VOUCHER_TABLE_DATA", runFetch: refreshTable })
@@ -26,6 +25,7 @@ const ModalView = ({
         onSaveAndInsertion(state)
         onClose()
     }, [onSaveAndInsertion, state, onClose])
+
     return (
         <>
             <>
@@ -51,6 +51,7 @@ const ModalView = ({
                     Label="vchr"
                     width="47%"
                     options={voucherOptions}
+                    hidden={state.query_status === "u"}
                 />
                 <SelectWithApi
                     name="voucher_id"
