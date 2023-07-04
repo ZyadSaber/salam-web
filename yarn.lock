@@ -3125,6 +3125,14 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
+"@pages/page-name-page@file:/home/zyad/Documents/active_projects/salam-web/pages/page-name-page":
+  version "1.0.0"
+  resolved "file:pages/page-name-page"
+  dependencies:
+    "@types/jest" "^27.5.2"
+    "@types/react" "18.0.25"
+    "@types/react-dom" "18.0.8"
+
 "@pages/print-options-page@file:/home/zyad/Documents/active_projects/salam-web/pages/print-options-page":
   version "1.0.0"
   resolved "file:pages/print-options-page"

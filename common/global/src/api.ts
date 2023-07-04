@@ -81,7 +81,8 @@ const API_ID = {
   QUERY_INVOICES_CHART_DATA: "charts/invoices_query",
   //http://144.24.209.19:9090/api/auth_security/users_info
   QUERY_USERS_TABLE_DATA: "auth_security/users_info",
-  POST_USERS_TABLE_DATA: "",
+  //http://144.24.209.19:9090/api/auth_security/users_info_dml
+  POST_USERS_TABLE_DATA: "auth_security/users_info_dml",
 };
 
 export default API_ID;

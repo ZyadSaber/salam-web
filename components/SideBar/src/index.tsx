@@ -1,4 +1,4 @@
-import React, { memo, ReactText, useState } from "react";
+import React, { memo, useState } from "react";
 import {
     Box,
     CloseButton,
@@ -14,10 +14,10 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { Button, LinkButton } from "@commons/button";
-import EmployeeAttendance from "@pages/employee-attendance-page"
-import EmployeeLeaving from "@pages/employee-leaving-page";
+// import EmployeeAttendance from "@pages/employee-attendance-page"
+// import EmployeeLeaving from "@pages/employee-leaving-page";
 //@ts-ignore
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useLocalStorage } from "@commons/hooks";
 
 interface SidebarProps extends BoxProps {
@@ -33,9 +33,9 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
     const handleClickModal = (modal: string) => {
         setModalProps({ [modal]: true })
     }
-    const handleCloseModal = () => {
-        setModalProps({})
-    }
+    // const handleCloseModal = () => {
+    //     setModalProps({})
+    // }
 
     return (
         <>
@@ -150,6 +150,8 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                         </h2>
                         <AccordionPanel>
                             <LinkButton label="users" pathTo="users" width="100%" margin="5% 0" />
+                            <LinkButton label="users roles" pathTo="users" width="100%" margin="5% 0" />
+                            <LinkButton label="page name" pathTo="pageName" width="100%" margin="5% 0" />
                             <LinkButton label="labels" pathTo="labels" width="100%" margin="5% 0" />
                         </AccordionPanel>
                     </AccordionItem>

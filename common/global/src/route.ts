@@ -21,6 +21,7 @@ import ExpensesTotalsPage from "@pages/expenses-totals-page";
 import UsersPage from "@pages/users-page";
 import LabelsPage from "@pages/labels-page";
 import ExpensesType from "@pages/expenses-type-page";
+import PageName from "@pages/page-name-page";
 
 const PageRoutes = [
   {
@@ -114,6 +115,10 @@ const PageRoutes = [
   {
     Path: "/expensesType",
     Component: ExpensesType,
+  },
+  {
+    Path: "/pageName",
+    Component: PageName,
   },
 ];
 
