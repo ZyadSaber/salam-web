@@ -1,22 +1,27 @@
 export const columns = [
   {
-    title: "nm",
-    dataIndex: "customer_name",
+    title: "page_name",
+    dataIndex: "page_name",
     width: "20%",
   },
   {
-    title: "eml",
-    dataIndex: "email",
+    title: "page_link",
+    dataIndex: "page_link",
     width: "17%",
   },
   {
-    title: "phn",
-    dataIndex: "phone",
+    title: "page_disabled",
+    dataIndex: "page_disabled",
     width: "17%",
   },
   {
-    title: "adrs",
-    dataIndex: "address",
+    title: "run_in_modal",
+    dataIndex: "run_in_modal",
+    width: "17%",
+  },
+  {
+    title: "parent_name",
+    dataIndex: "parent_name",
     width: "17%",
   },
   {

@@ -5,8 +5,7 @@ const API_ID = {
   POST_CUSTOMER_TABLE_DATA: "basic_data/customers/customers_table_data_dml",
   //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data
   QUERY_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data",
-  //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data_dml
-  POST_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data_dml",
+  //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data_dmlPOST_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data_dml",
   //http://144.24.209.19:9090/api/invoices/customer_invoice/new_customer_invoice
   POST_CUSTOMER_INVOICE_DETAILS:
     "invoices/customer_invoice/new_customer_invoice",
@@ -83,6 +82,10 @@ const API_ID = {
   QUERY_USERS_TABLE_DATA: "auth_security/users_info",
   //http://144.24.209.19:9090/api/auth_security/users_info_dml
   POST_USERS_TABLE_DATA: "auth_security/users_info_dml",
+  //http://144.24.209.19:9090/api/system_tools/page_name/page_name_table_data
+  QUERY_PAGE_NAME_MAIN_TABLE: "system_tools/page_name/page_name_table_data",
+  //http://144.24.209.19:9090/api/system_tools/page_name/page_name_table_data_dml
+  POST_PAGE_NAME_MAIN_TABLE: "system_tools/page_name/page_name_table_data_dml",
 };
 
 export default API_ID;

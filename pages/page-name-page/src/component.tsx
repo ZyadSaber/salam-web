@@ -7,8 +7,8 @@ const PageName = () => {
     return (
         <>
             <TableWithApi
-                api={"QUERY_CUSTOMER_TABLE_DATA"}
-                postApi={"POST_CUSTOMER_TABLE_DATA"}
+                api={"QUERY_PAGE_NAME_MAIN_TABLE"}
+                postApi={"POST_PAGE_NAME_MAIN_TABLE"}
                 columns={columns}
                 hideTools={false}
                 canEdit={true}
