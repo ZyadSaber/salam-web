@@ -48,7 +48,7 @@ const Table = ({
     margin = "",
     padding = "",
     loading = false,
-    onDoubleClick = () => { }
+    onDoubleClick = (e) => { console.log(e) }
 }: TableProps) => {
     const { pathname } = useLocation()
     const { t } = useTranslation()
@@ -57,6 +57,11 @@ const Table = ({
         if (onSelectedRow) onSelectedRow(item)
         setRowSelected(item)
     }, [onSelectedRow])
+
+    const handleDouble = useCallback((item: any) => () => {
+        if (onDoubleClick) onDoubleClick(item)
+        setRowSelected(item)
+    }, [onDoubleClick])
 
     const onExcel = useCallback(() => {
         const pathName = pathname.replace("/", "")
@@ -155,7 +160,7 @@ const Table = ({
                             <Tbody>
                                 {dataSource?.map((item: any) => {
                                     return (
-                                        <Tr key={item[rowKey]} onClick={handleSelectedRow(item)} onDoubleClick={onDoubleClick} background={`${rowSelected === item ? "#dbffbf" : ""}`} >
+                                        <Tr key={item[rowKey]} onClick={handleSelectedRow(item)} onDoubleClick={handleDouble(item)} background={`${rowSelected === item ? "#dbffbf" : ""}`} >
                                             {columns.map((column: any) => {
                                                 return (
                                                     <Td maxWidth={column.width} minWidth={column.width}>

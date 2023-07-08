@@ -33,7 +33,7 @@ export interface TableProps {
   padding?: number | string;
   margin?: number | string;
   loading?: boolean;
-  onDoubleClick?: () => void;
+  onDoubleClick?: (e: any) => void;
 }
 
 export interface additionalButtonsType {

@@ -86,6 +86,8 @@ const API_ID = {
   QUERY_PAGE_NAME_MAIN_TABLE: "system_tools/page_name/page_name_table_data",
   //http://144.24.209.19:9090/api/system_tools/page_name/page_name_table_data_dml
   POST_PAGE_NAME_MAIN_TABLE: "system_tools/page_name/page_name_table_data_dml",
+  //http://144.24.209.19:9090/api/system_reports/customer_summary_table
+  QUERY_CUSTOMER_SUMMARY_TABLE: "system_reports/customer_summary_table",
 };
 
 export default API_ID;
