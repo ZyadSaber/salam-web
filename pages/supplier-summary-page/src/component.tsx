@@ -34,14 +34,14 @@ const SupplierSummaryPage = () => {
                     />
                 </Flex>
                 <TableWithApi
-                    api={""}
+                    api={"QUERY_SUPPLIER_SUMMARY_TABLE"}
                     columns={columns}
                     hideTools={true}
                     rowKey={"rowKey"}
                     params={{
                         supplier_id: state.supplier_id,
-                        date_from: state.date_from,
-                        date_to: state.date_to
+                        // date_from: state.date_from,
+                        // date_to: state.date_to
                     }}
                     fetchOnFirstRun
                 />
