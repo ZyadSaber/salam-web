@@ -1,11 +1,11 @@
 import React, { memo } from "react";
 
-const YearlyTotalsPage = () => {
+const AccountsSummary = () => {
     return (
         <>
-            <h1>YearlyTotalsPage</h1>
+            <h1>AccountsSummary</h1>
         </>
     )
 }
 
-export default memo(YearlyTotalsPage)
+export default memo(AccountsSummary)

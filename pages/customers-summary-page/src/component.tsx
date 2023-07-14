@@ -36,15 +36,15 @@ const CustomersSummaryPage = () => {
                 <TableWithApi
                     api={"QUERY_CUSTOMER_SUMMARY_TABLE"}
                     columns={columns}
-                    hideTools={true}
                     rowKey={"rowKey"}
+                    hideTools={false}
+                    canExcel
                     params={{
                         customer_id: state.customer_id,
                         // date_from: state.date_from,
                         // date_to: state.date_to
                     }}
                     fetchOnFirstRun
-                    onDoubleClick={(e: any) => { console.log(e) }}
                 />
             </Flex>
         </>

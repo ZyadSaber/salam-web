@@ -36,7 +36,8 @@ const SupplierSummaryPage = () => {
                 <TableWithApi
                     api={"QUERY_SUPPLIER_SUMMARY_TABLE"}
                     columns={columns}
-                    hideTools={true}
+                    hideTools={false}
+                    canExcel
                     rowKey={"rowKey"}
                     params={{
                         supplier_id: state.supplier_id,

@@ -15,8 +15,7 @@ import CustomersSummaryPage from "@pages/customers-summary-page";
 import SupplierSummaryPage from "@pages/supplier-summary-page";
 import ItemSummaryPage from "@pages/item-summary-page";
 import DailyTotalPage from "@pages/daily-totals-page";
-import MonthlyTotalsPage from "@pages/monthly-totals-page";
-import YearlyTotalsPage from "@pages/yearly-totals-page";
+import AccountsSummary from "@pages/accounts-summary-page";
 import ExpensesTotalsPage from "@pages/expenses-totals-page";
 import UsersPage from "@pages/users-page";
 import LabelsPage from "@pages/labels-page";
@@ -93,12 +92,8 @@ const PageRoutes = [
     Component: DailyTotalPage,
   },
   {
-    Path: "/monthlyTotals",
-    Component: MonthlyTotalsPage,
-  },
-  {
-    Path: "/yearlyTotals",
-    Component: YearlyTotalsPage,
+    Path: "/accountsSummary",
+    Component: AccountsSummary,
   },
   {
     Path: "/expensesTotals",

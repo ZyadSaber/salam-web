@@ -90,6 +90,10 @@ const API_ID = {
   QUERY_CUSTOMER_SUMMARY_TABLE: "system_reports/customer_summary_table",
   //http://144.24.209.19:9090/api/system_reports/supplier_summary_table?supplier_id=1
   QUERY_SUPPLIER_SUMMARY_TABLE: "system_reports/supplier_summary_table",
+  //http://144.24.209.19:9090/api/system_reports/items_summary_table?item_id=1
+  QUERY_ITEM_SUMMARY_TABLE: "system_reports/items_summary_table",
+  //http://144.24.209.19:9090/api/system_reports/daily_summary_table?date_from=2023-01-01&date_to=2023-12-12
+  QUERY_DAILY_SUMMARY_TABLE: "system_reports/daily_summary_table",
 };
 
 export default API_ID;

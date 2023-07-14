@@ -134,8 +134,7 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                             <LinkButton label="splrsmry" pathTo="suppliersSummary" width="100%" margin="5% 0" />
                             <LinkButton label="itmsmry" pathTo="itemsSummary" width="100%" margin="5% 0" />
                             <LinkButton label="dltls" pathTo="dailyTotals" width="100%" margin="5% 0" />
-                            <LinkButton label="mnthltl" pathTo="monthlyTotals" width="100%" margin="5% 0" />
-                            <LinkButton label="yrltls" pathTo="yearlyTotals" width="100%" margin="5% 0" />
+                            <LinkButton label="acntsmry" pathTo="accountsSummary" width="100%" margin="5% 0" />
                             <LinkButton label="expnstls" pathTo="expensesTotals" width="100%" margin="5% 0" />
                         </AccordionPanel>
                     </AccordionItem>

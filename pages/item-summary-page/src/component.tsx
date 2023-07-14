@@ -34,9 +34,10 @@ const ItemSummaryPage = () => {
                     />
                 </Flex>
                 <TableWithApi
-                    api={""}
+                    api={"QUERY_ITEM_SUMMARY_TABLE"}
                     columns={columns}
-                    hideTools={true}
+                    hideTools={false}
+                    canExcel
                     rowKey={"rowKey"}
                     params={{
                         item_id: state.item_id,
