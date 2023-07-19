@@ -2981,9 +2981,9 @@
   dependencies:
     "@octokit/openapi-types" "^16.0.0"
 
-"@pages/accounts-summary-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\yearly-totals-page":
+"@pages/accounts-summary-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\accounts-summary-page":
   version "1.0.0"
-  resolved "file:pages/yearly-totals-page"
+  resolved "file:pages/accounts-summary-page"
   dependencies:
     "@types/jest" "^27.5.2"
     "@types/react" "18.0.25"
