@@ -6,27 +6,27 @@ import { TableWithApi } from "@commons/table";
 import { voucherOptions, columns } from "./constant"
 
 const AccountsSummary = () => {
-    const { state, onChange } = useFormManager({ initialValues: { account_type: "C" } })
+    const { state, onChange } = useFormManager({ initialValues: { type: "C" } })
     return (
         <>
             <Flex bordered width="100%" wrap>
                 <RadioBox
-                    name="account_type"
+                    name="type"
                     onChange={onChange}
-                    value={state?.account_type}
-                    Label="account_type"
+                    value={state?.type}
+                    Label="type"
                     width="47%"
                     options={voucherOptions}
                 />
             </Flex>
             <TableWithApi
-                api={"QUERY_CASHER_PAYMENT_VOUCHER_TABLE_DATA"}
+                api={"QUERY_ACCOUNTS_SUMMARY_TABLE"}
                 columns={columns}
                 hideTools={false}
                 canExcel={true}
                 rowKey={"rowKey"}
                 params={{
-                    account_type: state.account_type,
+                    type: state.type,
                 }}
                 fetchOnFirstRun
             />

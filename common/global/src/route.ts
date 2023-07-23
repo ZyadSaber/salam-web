@@ -16,7 +16,6 @@ import SupplierSummaryPage from "@pages/supplier-summary-page";
 import ItemSummaryPage from "@pages/item-summary-page";
 import DailyTotalPage from "@pages/daily-totals-page";
 import AccountsSummary from "@pages/accounts-summary-page";
-import ExpensesTotalsPage from "@pages/expenses-totals-page";
 import UsersPage from "@pages/users-page";
 import LabelsPage from "@pages/labels-page";
 import ExpensesType from "@pages/expenses-type-page";
@@ -94,10 +93,6 @@ const PageRoutes = [
   {
     Path: "/accountsSummary",
     Component: AccountsSummary,
-  },
-  {
-    Path: "/expensesTotals",
-    Component: ExpensesTotalsPage,
   },
   {
     Path: "/users",

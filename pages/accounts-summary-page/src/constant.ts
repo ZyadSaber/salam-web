@@ -8,35 +8,39 @@ export const voucherOptions = [
     value: "C",
   },
   {
-    label: "othr",
-    value: "O",
+    label: "itms",
+    value: "I",
+  },
+  {
+    label: "expns",
+    value: "E",
   },
 ];
 
 export const columns = [
   {
-    title: "dt",
-    dataIndex: "voucher_date",
+    title: "id",
+    dataIndex: "rowKey",
+    width: "5%",
+  },
+  {
+    title: "nm",
+    dataIndex: "record_name",
     width: "10%",
   },
   {
-    title: "amnt",
-    dataIndex: "voucher_amount",
+    title: "crdt",
+    dataIndex: "credit",
     width: "10%",
   },
   {
-    title: "vchrnm",
-    dataIndex: "voucher_id",
+    title: "dbt",
+    dataIndex: "debit",
     width: "10%",
   },
   {
-    title: "vchrnm",
-    dataIndex: "voucher_name",
-    width: "10%",
-  },
-  {
-    title: "nts",
-    dataIndex: "notes",
+    title: "total",
+    dataIndex: "total",
     width: "10%",
   },
 ];
