@@ -8,7 +8,7 @@ import SupplierInvoice from "@pages/supplier-invoice-page";
 import PrintOptions from "@pages/print-options-page";
 import CustomerInvoices from "@pages/customer-invoice-page";
 import InvoicesSearch from "@pages/invoices-search-page";
-import EmpoloyeeSheet from "@pages/employee-sheet-page";
+import EmployeeSheet from "@pages/employee-sheet-page";
 import CasherReceiptVoucher from "@pages/casher-receipt-voucher-page";
 import CasherPaymentVoucher from "@pages/casher-payment-voucher-page";
 import CustomersSummaryPage from "@pages/customers-summary-page";
@@ -17,6 +17,7 @@ import ItemSummaryPage from "@pages/item-summary-page";
 import DailyTotalPage from "@pages/daily-totals-page";
 import AccountsSummary from "@pages/accounts-summary-page";
 import UsersPage from "@pages/users-page";
+import UsersRolesPage from "@pages/users-roles-page";
 import LabelsPage from "@pages/labels-page";
 import ExpensesType from "@pages/expenses-type-page";
 import PageName from "@pages/page-name-page";
@@ -64,7 +65,7 @@ const PageRoutes = [
   },
   {
     Path: "/employeeSalary",
-    Component: EmpoloyeeSheet,
+    Component: EmployeeSheet,
   },
   {
     Path: "/casherReceiptVoucher",
@@ -109,6 +110,10 @@ const PageRoutes = [
   {
     Path: "/pageName",
     Component: PageName,
+  },
+  {
+    Path: "/usersRoles",
+    Component: UsersRolesPage,
   },
 ];
 

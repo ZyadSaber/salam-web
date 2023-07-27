@@ -71,6 +71,7 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                             <LinkButton label="cstmrs" pathTo="customers" width="100%" margin="5% 0" />
                             <LinkButton label="itms" pathTo="items" width="100%" margin="5% 0" />
                             <LinkButton label="prntptn" pathTo="printOptions" width="100%" margin="5% 0" />
+                            <LinkButton label="expnstyp" pathTo="expensesType" width="100%" margin="5% 0" />
                         </AccordionPanel>
                     </AccordionItem>
                     <AccordionItem>

@@ -3092,14 +3092,6 @@
     "@types/react" "18.0.25"
     "@types/react-dom" "18.0.8"
 
-"@pages/expenses-totals-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\expenses-totals-page":
-  version "1.0.0"
-  resolved "file:pages/expenses-totals-page"
-  dependencies:
-    "@types/jest" "^27.5.2"
-    "@types/react" "18.0.25"
-    "@types/react-dom" "18.0.8"
-
 "@pages/expenses-type-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\expenses-type-page":
   version "1.0.0"
   resolved "file:pages/expenses-type-page"
@@ -3191,6 +3183,14 @@
 "@pages/users-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\users-page":
   version "1.0.0"
   resolved "file:pages/users-page"
+  dependencies:
+    "@types/jest" "^27.5.2"
+    "@types/react" "18.0.25"
+    "@types/react-dom" "18.0.8"
+
+"@pages/users-roles-page@file:C:\\Users\\Zyad Saber\\Documents\\projects\\salam-web\\pages\\users-roles-page":
+  version "1.0.0"
+  resolved "file:pages/users-roles-page"
   dependencies:
     "@types/jest" "^27.5.2"
     "@types/react" "18.0.25"
