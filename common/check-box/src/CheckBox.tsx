@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback } from "react";
 import { useTranslation } from 'react-i18next'
-import { Checkbox as ChakraCheckBox } from '@chakra-ui/react'
 import { CheckBoxProps } from "./interface";
+import styled from "@emotion/styled";
 
 const CheckBox = ({
     label = "",
@@ -9,12 +9,12 @@ const CheckBox = ({
     onChange,
     name,
     width,
+    height,
     disabled,
     padding,
     margin = "10px"
 }: CheckBoxProps) => {
     const { t } = useTranslation()
-    const [checked, setChecked] = useState(false)
     const handleChange = useCallback((event: { target: { checked: boolean; }; }) => {
         if (event.target.checked === true) {
             onChange({ name: name, value: "Y" })
@@ -23,26 +23,25 @@ const CheckBox = ({
         }
     }, [name, onChange])
 
-    useEffect(() => {
-        if (value === "Y") {
-            setChecked(true)
-        } else if (value === "N") {
-            setChecked(false)
-        }
-    }, [value])
+    const checked = value === "Y" ? true : false
+
+    const StyledCheckBox = styled.input`
+        width: ${width};
+        height: ${height};
+        padding: ${padding};
+        margin:${margin};
+    `
 
     return (
         <>
-            <ChakraCheckBox
-                isChecked={checked}
+            <StyledCheckBox
+                checked={checked}
+                type="checkbox"
                 onChange={handleChange}
-                width={width}
-                isDisabled={disabled}
-                padding={padding}
-                margin={margin}
+                disabled={disabled}
             >
                 {t(label)}
-            </ChakraCheckBox>
+            </StyledCheckBox>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import { memo } from "react"
-import { Button } from "@commons/button";
+import Button from "./button"
 
 const SearchButton = ({ onClick }: any) => {
     return (
@@ -7,7 +7,6 @@ const SearchButton = ({ onClick }: any) => {
             <Button
                 label="search"
                 height="50%"
-                additionalStyle="top: 50%, position: relative;"
                 onClick={onClick}
             />
         </>

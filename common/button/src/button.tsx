@@ -1,46 +1,37 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button as ChakraButton } from '@chakra-ui/react'
+import styled from '@emotion/styled';
 import { buttonProp } from "./interface";
 
 const Button = ({
     label = "",
     onClick,
+    onDoubleClick,
     disabled,
     hidden,
-    margin,
+    margin = "10px 0",
     width,
     height,
-    padding,
-    backGround = "cyan.300",
-    color = "white.200",
-    //solid, ghost, outline, or link.
-    variant = "outline",
-    //xs, sm, md, or lg
-    size = "md",
-    ...prop
+    padding = "5px",
+    borderRadius = "5px",
+    backGround = "#04ecec",
+    fontWeight = "500",
 }: buttonProp) => {
     const { t } = useTranslation()
+    const StyledButton = styled.button`
+        margin: ${margin};
+        height: ${height};
+        padding:${padding};
+        width: ${width};
+        background-color: ${backGround};
+        border-radius: ${borderRadius};
+        font-weight: ${fontWeight};
+    `
     return (
         <>
-            <ChakraButton
-                colorScheme={color}
-                variant={variant}
-                bg={backGround}
-                width={width}
-                onClick={onClick}
-                disabled={disabled}
-                hidden={hidden}
-                margin={margin}
-                padding={padding}
-                height={height}
-                textDecoration={"none"}
-                border={0}
-                size={size}
-                {...prop}
-            >
+            <StyledButton hidden={hidden} disabled={disabled} onClick={onClick} onDoubleClick={onDoubleClick} >
                 {t(label)}
-            </ChakraButton>
+            </StyledButton>
         </>
     )
 }

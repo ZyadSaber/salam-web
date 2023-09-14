@@ -78,7 +78,7 @@ const SignInPage = () => {
                                 align={'start'}
                                 justify={'space-between'}>
                             </Stack>
-                            <Button backGround={'blue'} variant={'solid'} label='login' onClick={handleLogIn} />
+                            <Button backGround={'blue'} label='login' onClick={handleLogIn} />
                         </Stack>
                     </Stack>
                 </Flex>

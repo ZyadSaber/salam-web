@@ -57,7 +57,7 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                 </Flex>
                 <Accordion width="100%" allowToggle defaultIndex={[1]}>
                     <AccordionItem>
-                        <LinkButton label="home" pathTo="home" bg="none" width="100%" margin="5% 0" />
+                        <LinkButton label="home" pathTo="home" width="100%" margin="5% 0" />
                     </AccordionItem>
                     <AccordionItem>
                         <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
@@ -100,7 +100,7 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                             </AccordionButton>
                         </h2>
                         <AccordionPanel>
-                            <Button variant="outline" bg="cyan.300" color="white.200" label="emplyatndnc" width="100%" onClick={() => { handleClickModal("employeeAttendance") }} margin="5% 0" disabled />
+                            <Button color="white.200" label="emplyatndnc" width="100%" onClick={() => { handleClickModal("employeeAttendance") }} margin="5% 0" disabled />
                             <Button label="emplylvng" width="100%" onClick={() => { handleClickModal("employeeLeaving") }} margin="5% 0" disabled />
                             <LinkButton label="emplyslry" pathTo="employeeSalary" width="100%" margin="5% 0" disabled />
                             <LinkButton label="emplydat" pathTo="employeeData" width="100%" margin="5% 0" disabled />

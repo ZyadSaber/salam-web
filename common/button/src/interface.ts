@@ -1,6 +1,6 @@
-import { ButtonProps } from "@chakra-ui/react";
-export interface buttonProp extends ButtonProps {
-  label: string;
+export interface buttonProp {
+  label?: string;
+  onDoubleClick?: () => void;
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
@@ -11,25 +11,14 @@ export interface buttonProp extends ButtonProps {
   padding?: string;
   additionalStyle?: string;
   color?: string;
-  variant?: string;
   backGround?: string;
-  size?: string;
+  borderRadius?: string;
+  fontWeight?: string;
 }
-export interface linkButtonProp extends ButtonProps {
+export interface linkButtonProp extends buttonProp {
   label: string;
   onClick?: () => void;
-  className?: string;
-  disabled?: boolean;
-  hidden?: boolean;
-  width?: string;
-  margin?: string;
-  height?: string;
-  padding?: string;
   pathTo: string;
-  color?: string;
-  variant?: string;
-  size?: string;
-  target?: string;
 }
 
 export interface iconButtonProp {
@@ -45,12 +34,6 @@ export interface iconButtonProp {
   position?: string;
 }
 
-export interface saveButtonProp {
-  saveTitle?: string;
+export interface saveButtonProp extends buttonProp {
   onOK?: () => void;
-  disabled?: boolean;
-  width?: number | string;
-  margin?: number | string;
-  padding?: number | string;
-  position?: string;
 }
