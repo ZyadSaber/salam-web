@@ -1,0 +1,3 @@
+type classOf{
+    children: React.
+}

@@ -1,13 +1,14 @@
-import { memo } from "react"
+import React, { memo } from "react"
 import Button from "./button"
+import { buttonProp } from "./interface"
 
-const SearchButton = ({ onClick }: any) => {
+const SearchButton = (prop:buttonProp) => {
     return (
         <>
             <Button
                 label="search"
                 height="50%"
-                onClick={onClick}
+                {...prop}
             />
         </>
     )

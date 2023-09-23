@@ -116,7 +116,7 @@ const SupplierInvoice = () => {
                     <DatePicker
                         name="supplier_invoice_date"
                         value={state.supplier_invoice_date}
-                        Label="dt"
+                        label="dt"
                         onChange={onChange}
                     />
                 </Flex>
