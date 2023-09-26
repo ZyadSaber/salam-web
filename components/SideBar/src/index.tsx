@@ -18,7 +18,7 @@ import { Button, LinkButton } from "@commons/button";
 // import EmployeeLeaving from "@pages/employee-leaving-page";
 //@ts-ignore
 // import { NavLink } from 'react-router-dom';
-import { useLocalStorage } from "@commons/hooks";
+import { useLocalStorage, useFetch, useCurrentUserName } from "@commons/hooks";
 
 interface SidebarProps extends BoxProps {
     onClose: () => void;
@@ -27,15 +27,24 @@ interface SidebarProps extends BoxProps {
 const SideBar = ({ onClose, ...rest }: SidebarProps) => {
     const { t } = useTranslation()
     const { appName } = useLocalStorage()
+    const user_name = useCurrentUserName()
 
-    const [modalProps, setModalProps] = useState<any>({
-    })
-    const handleClickModal = (modal: string) => {
-        setModalProps({ [modal]: true })
-    }
+    // const [modalProps, setModalProps] = useState<any>({
+    // })
+    // const handleClickModal = (modal: string) => {
+    //     setModalProps({ [modal]: true })
+    // }
     // const handleCloseModal = () => {
     //     setModalProps({})
     // }
+
+    const { data } = useFetch({
+        link: "QUERY_SIDE_PAGES_DATA",
+        fetchOnFirstRun: true,
+        params: {
+            user_name
+        }
+    })
 
     return (
         <>
@@ -59,100 +68,28 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                     <AccordionItem>
                         <LinkButton label="home" pathTo="home" width="100%" margin="5% 0" />
                     </AccordionItem>
-                    <AccordionItem>
-                        <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
-                            <Box as="span" flex='1' textAlign='left' >
-                                {t("bscdat")}
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel>
-                            <LinkButton label="splrs" pathTo="suppliers" width="100%" margin="5% 0" />
-                            <LinkButton label="cstmrs" pathTo="customers" width="100%" margin="5% 0" />
-                            <LinkButton label="itms" pathTo="items" width="100%" margin="5% 0" />
-                            <LinkButton label="prntptn" pathTo="printOptions" width="100%" margin="5% 0" />
-                            <LinkButton label="expnstyp" pathTo="expensesType" width="100%" margin="5% 0" />
-                        </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                        <h2>
-                            <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
-                                <Box as="span" flex='1' textAlign='left' >
-                                    {t("invcs")}
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                        </h2>
-                        <AccordionPanel>
-                            <LinkButton label="splrsinvcs" pathTo="supplierInvoices" width="100%" margin="5% 0" />
-                            <LinkButton label="cstmrsinvs" pathTo="customerInvoices" width="100%" margin="5% 0" />
-                            {/* <LinkButton label="return" pathTo="return" width="100%" margin="5% 0" /> */}
-                            <LinkButton label="invsrch" pathTo="invoicesSearch" width="100%" margin="5% 0" />
-                        </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                        <h2>
-                            <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
-                                <Box as="span" flex='1' textAlign='left' >
-                                    {t("emplys")}
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                        </h2>
-                        <AccordionPanel>
-                            <Button color="white.200" label="emplyatndnc" width="100%" onClick={() => { handleClickModal("employeeAttendance") }} margin="5% 0" disabled />
-                            <Button label="emplylvng" width="100%" onClick={() => { handleClickModal("employeeLeaving") }} margin="5% 0" disabled />
-                            <LinkButton label="emplyslry" pathTo="employeeSalary" width="100%" margin="5% 0" disabled />
-                            <LinkButton label="emplydat" pathTo="employeeData" width="100%" margin="5% 0" disabled />
-                        </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                        <h2>
-                            <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
-                                <Box as="span" flex='1' textAlign='left' >
-                                    {t("incmandexpns")}
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                        </h2>
-                        <AccordionPanel>
-                            <LinkButton label="cshrcptvchr" pathTo="casherReceiptVoucher" width="100%" margin="5% 0" />
-                            <LinkButton label="cshpymntvchr" pathTo="casherPaymentVoucher" width="100%" margin="5% 0" />
-                        </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                        <h2>
-                            <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
-                                <Box as="span" flex='1' textAlign='left' >
-                                    {t("rprts")}
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                        </h2>
-                        <AccordionPanel>
-                            <LinkButton label="cstmrsmry" pathTo="customersSummary" width="100%" margin="5% 0" />
-                            <LinkButton label="splrsmry" pathTo="suppliersSummary" width="100%" margin="5% 0" />
-                            <LinkButton label="itmsmry" pathTo="itemsSummary" width="100%" margin="5% 0" />
-                            <LinkButton label="dltls" pathTo="dailyTotals" width="100%" margin="5% 0" />
-                            <LinkButton label="acntsmry" pathTo="accountsSummary" width="100%" margin="5% 0" />
-                        </AccordionPanel>
-                    </AccordionItem>
-                    <AccordionItem>
-                        <h2>
-                            <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
-                                <Box as="span" flex='1' textAlign='left' >
-                                    {t("SystemTools")}
-                                </Box>
-                                <AccordionIcon />
-                            </AccordionButton>
-                        </h2>
-                        <AccordionPanel>
-                            <LinkButton label="users" pathTo="users" width="100%" margin="5% 0" />
-                            <LinkButton label="users roles" pathTo="users" width="100%" margin="5% 0" />
-                            <LinkButton label="page name" pathTo="pageName" width="100%" margin="5% 0" />
-                            <LinkButton label="labels" pathTo="labels" width="100%" margin="5% 0" />
-                        </AccordionPanel>
-                    </AccordionItem>
+
+                    {
+                        data && data.map((event: any) => {
+                            return (
+                                <AccordionItem key={event.page_parent_id}>
+                                    <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
+                                        <Box as="span" flex='1' textAlign='left' >
+                                            {t(event.page_parent_name)}
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                    <AccordionPanel>
+                                        {event.app_pages.map((page: any) => {
+                                            return page.run_in_modal === "N" ? (
+                                                <LinkButton key={page.page_id} label={page.page_name} pathTo={page.link} width="100%" margin="5% 0" />
+                                            ) : <></>
+                                        })}
+                                    </AccordionPanel>
+                                </AccordionItem>
+                            )
+                        })
+                    }
                 </Accordion>
             </Box>
         </>

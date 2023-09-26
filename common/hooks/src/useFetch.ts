@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { API_ID } from "@commons/global";
-import { useLocalStorage } from "@commons/hooks";
+import { useCurrentAuthorization } from "@commons/hooks";
 import { useToast } from "@chakra-ui/react";
 
 interface useFetchProp {
@@ -19,7 +19,7 @@ const useFetch = ({
   noAuthorization = false,
 }: useFetchProp) => {
   const toast = useToast();
-  const { authorization } = useLocalStorage();
+  const authorization = useCurrentAuthorization();
   //@ts-ignore
   const url = `http://144.24.209.19:9090/api/${API_ID[link]}`;
   const [data, setData] = useState<any>(undefined);
@@ -27,7 +27,7 @@ const useFetch = ({
 
   const getData = useCallback(async () => {
     setLoading(true);
-    if (authorization || noAuthorization) {
+    if (authorization) {
       const settings = {
         // method: "FETCH",
         headers: {
@@ -44,20 +44,14 @@ const useFetch = ({
       const apiData = await response.json();
       setData(apiData);
     }
-  }, [authorization, noAuthorization, params, url]);
-
-  const everyTime = useCallback(() => {
-    if (fetchOnFirstRun) {
-      getData();
-    }
-  }, [fetchOnFirstRun, getData]);
+  }, [authorization, params, url]);
 
   useEffect(() => {
     if (fetchOnFirstRun) {
       getData();
-      // setInterval(everyTime, 10000);
     }
-  }, [fetchOnFirstRun, getData, url, params, everyTime]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchOnFirstRun, authorization]);
 
   useEffect(() => {
     if (data && data.response) {
@@ -71,8 +65,6 @@ const useFetch = ({
       });
     }
   }, [data, toast]);
-
-  // clearInterval(myInterval);
 
   const runFetch = useCallback(() => {
     getData();

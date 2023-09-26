@@ -96,6 +96,8 @@ const API_ID = {
   QUERY_DAILY_SUMMARY_TABLE: "system_reports/daily_summary_table",
   //http://144.24.209.19:9090/api/system_reports/accounts_summary_table?type=C
   QUERY_ACCOUNTS_SUMMARY_TABLE: "system_reports/accounts_summary_table",
+  //http://144.24.209.19:9090/api/auth_security/salam_pages?user_name=admin
+  QUERY_SIDE_PAGES_DATA: "auth_security/salam_pages",
 };
 
 export default API_ID;

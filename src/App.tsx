@@ -1,9 +1,7 @@
-import{ memo } from 'react';
+import { memo } from 'react';
 import {
   Box,
   useColorModeValue,
-  Drawer,
-  DrawerContent,
   useDisclosure,
 } from '@chakra-ui/react';
 import Header from "@components/header";
@@ -11,11 +9,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import SideBar from "@components/side-bar"
 import { PageRoutes } from "@commons/global";
 
+
 const App = () => {
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const gb = useColorModeValue('gray.100', 'gray.900')
-
+  const { onOpen, onClose } = useDisclosure();
+  const gb = useColorModeValue('gray.100', 'gray.900');
 
   return (
     <>
@@ -35,18 +33,6 @@ const App = () => {
                         onClose={() => onClose}
                         display={{ base: 'none', md: 'block' }}
                       />
-                      <Drawer
-                        autoFocus={false}
-                        isOpen={isOpen}
-                        placement="left"
-                        onClose={onClose}
-                        returnFocusOnClose={false}
-                        onOverlayClick={onClose}
-                        size="full">
-                        <DrawerContent>
-                          <SideBar onClose={onClose} />
-                        </DrawerContent>
-                      </Drawer>
                       <Header onOpen={onOpen} />
                       <Box ml={{ base: 0, md: 60 }} p="4">
                         <Component />

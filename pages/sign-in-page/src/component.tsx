@@ -26,7 +26,7 @@ const SignInPage = () => {
             {
                 name: "salam",
                 //@ts-ignore
-                data: { authorization: success.authorization, display_name: success.display_name, role: success.role, build_name: success.build_name, app_name: success.app_name }
+                data: { ...success }
             }
         ])
     }
