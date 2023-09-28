@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
-import { Input, FormLabel, Flex } from '@chakra-ui/react'
+import { FormLabel, Flex } from '@chakra-ui/react'
+import styled from '@emotion/styled';
 import { InputTextProps } from "./interface";
 
 const InputText = ({
@@ -15,9 +16,19 @@ const InputText = ({
     padding,
     margin = "10px",
     className = "",
-    required = false
+    required = false,
+    ...props
 }: InputTextProps) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
+
+    const StyledInput = styled.input`
+    background-color:transparent;
+    height: 100%;
+    width: 100%;
+    border-radius: 7px;
+    padding: 0 10px;
+    border:  ${required ? `1px solid red` : `1px solid #54626F`};
+    `
 
     const handleChange = useCallback((event: { target: { value: string; }; }) => {
         onChange({ name: name, value: event.target.value })
@@ -32,16 +43,16 @@ const InputText = ({
                 margin={margin}
             >
                 <FormLabel>{t(Label)}</FormLabel>
-                <Input
+                <StyledInput
                     placeholder={placeHolder}
-                    size='md'
-                    isDisabled={disabled}
-                    isRequired={required}
+                    disabled={disabled}
+                    required={required}
                     onChange={handleChange}
                     width="100%"
                     className={className}
                     value={value}
                     type={type}
+                    {...props}
                 />
             </Flex>
         </>

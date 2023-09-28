@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import Flex from "@commons/flex";
-import InputText from "@commons/input-text/src/inputText";
+import { InputText } from "@commons/input-text";
 import { SelectWithApi } from "@commons/select";
 import { TableWithApi } from "@commons/table";
 import { columns } from "./constant";

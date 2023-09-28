@@ -82,7 +82,7 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                                     <AccordionPanel>
                                         {event.app_pages.map((page: any) => {
                                             return page.run_in_modal === "N" ? (
-                                                <LinkButton key={page.page_id} label={page.page_name} pathTo={page.link} width="100%" margin="5% 0" />
+                                                <LinkButton key={page.page_id} label={page.page_name} pathTo={page.page_link} width="100%" margin="5% 0" />
                                             ) : <></>
                                         })}
                                     </AccordionPanel>

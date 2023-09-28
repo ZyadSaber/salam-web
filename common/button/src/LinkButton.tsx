@@ -10,6 +10,8 @@ const LinkButton = ({
     ...props
 }: linkButtonProp) => {
 
+    console.log(pathTo)
+
     return (
         <>
             <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", width: "100%" }}>
