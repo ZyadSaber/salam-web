@@ -14,6 +14,7 @@ const CheckBox = ({
     width,
     height,
     disabled,
+    required,
     padding,
     margin = "10px"
 }: any) => {
@@ -38,8 +39,8 @@ const CheckBox = ({
     const StyledLabel = styled.label`
         position: relative;
         display: inline-block;
-        width: 5.5rem;
-        height: 2rem;
+        width: 4rem;
+        height: 1.7rem;
     `
 
     const StyledSpan = styled.span`
@@ -54,12 +55,13 @@ const CheckBox = ({
         transition: all 0.3s;
         border-radius: 2rem;
         cursor: pointer;
+        ${required && "border: 1.5px solid red;"}
 
         &:before {
             content: "";
             position: absolute;
-            height: 1.4rem;
-            width: 1.5rem;
+            height: 1rem;
+            width: 1rem;
             border-radius: 100%;
             display: block;
             left: 0.5rem;

@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import { FormLabel, Flex } from '@chakra-ui/react'
-import styled from '@emotion/styled';
+import {StyledInput} from "./styled"
 import { InputTextProps } from "./interface";
 
 const InputText = ({
@@ -10,29 +10,31 @@ const InputText = ({
     name,
     Label = "",
     onChange,
+    height ="65px",
     width = "200px",
     type = "text",
     placeHolder,
     padding,
     margin = "10px",
     className = "",
-    required = false,
+    required,
     ...props
-}: InputTextProps) => {
+}: any) => {
     const { t } = useTranslation();
 
-    const StyledInput = styled.input`
-    background-color:transparent;
-    height: 100%;
-    width: 100%;
-    border-radius: 7px;
-    padding: 0 10px;
-    border:  ${required ? `1px solid red` : `1px solid #54626F`};
-    `
+    // const StyledInput = styled.input`
+    // background-color: ${disabled ? "#e9e9e9" : "#fdfdfd"};
+    // height: 100%;
+    // width: 100%;
+    // border-radius: 7px;
+    // padding: 0 16px;
+    // border:  ${required ? `0.5px solid red` : `0.5px solid #cbd5e0`};
+    // `
 
     const handleChange = useCallback((event: { target: { value: string; }; }) => {
         onChange({ name: name, value: event.target.value })
-    }, [name, onChange])
+        console.log(value)
+    }, [name, onChange, value]);
 
     return (
         <>
@@ -41,6 +43,7 @@ const InputText = ({
                 width={width}
                 padding={padding}
                 margin={margin}
+                height={height}
             >
                 <FormLabel>{t(Label)}</FormLabel>
                 <StyledInput

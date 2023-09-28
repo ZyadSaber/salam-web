@@ -12,6 +12,7 @@ export interface InputTextProps {
     className?: string;
     noAuthorization?: boolean;
     required?: boolean
+    height?: number | string;
 }
 
 export interface TextAreaProps{
