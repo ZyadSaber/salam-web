@@ -1,14 +1,13 @@
 import React, { memo } from "react";
 import { useTranslation } from 'react-i18next';
-import { Select as ChakraSelect, FormLabel, Flex } from '@chakra-ui/react';
+import { FormLabel, Flex } from '@chakra-ui/react';
+import { StyledSelect, StyledOption } from "./styled"
 import { SelectProps } from "./interface";
 
 const Select = ({
+    height = "65px",
     width = "200px",
-    Options = [{
-        label: "",
-        value: 0
-    }],
+    Options,
     onChange,
     Label,
     value = 0,
@@ -42,18 +41,19 @@ const Select = ({
                 width={width}
                 padding={padding}
                 margin={margin}
+                height={height}
             >
                 <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(Label)}</FormLabel>
-                <ChakraSelect
+                <StyledSelect
                     placeholder={t(placeholder)}
                     onChange={handleValue}
                 >
-                    {Array.isArray(Options) ? Options.map((Option) => {
+                    {Array.isArray(Options) && Options.length !== 0 ? Options.map((Option) => {
                         return (
-                            <option key={Option.value} value={Option.value} selected={value === Option.value && true}> {t(Option.label)}</option>
+                            <StyledOption key={Option.value} value={Option.value} selected={value === Option.value && true}> {t(Option.label)}</StyledOption>
                         )
-                    }) : <option disabled>{t("No data")}</option>}
-                </ChakraSelect>
+                    }) : <StyledOption disabled>{t("No data")}</StyledOption>}
+                </StyledSelect>
             </Flex>
         </>
     )

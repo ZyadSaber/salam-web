@@ -9,12 +9,14 @@ interface useFetchProp {
   refreshTimeout?: number;
   params?: any;
   noAuthorization?: boolean;
+  checkForParams?: boolean;
 }
 
 const useFetch = ({
   link = "",
   fetchOnFirstRun,
   refreshTimeout,
+  checkForParams = false,
   params,
   noAuthorization = false,
 }: useFetchProp) => {
@@ -47,11 +49,20 @@ const useFetch = ({
   }, [authorization, params, url]);
 
   useEffect(() => {
-    if (fetchOnFirstRun) {
+    if (fetchOnFirstRun && !checkForParams) {
       getData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchOnFirstRun, authorization]);
+
+  console.log(checkForParams);
+
+  useEffect(() => {
+    if (checkForParams) {
+      getData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchOnFirstRun, authorization, params, checkForParams]);
 
   useEffect(() => {
     if (data && data.response) {

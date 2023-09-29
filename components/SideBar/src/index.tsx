@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import {
     Box,
     CloseButton,
@@ -13,7 +13,7 @@ import {
     AccordionButton,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { Button, LinkButton } from "@commons/button";
+import { LinkButton } from "@commons/button";
 // import EmployeeAttendance from "@pages/employee-attendance-page"
 // import EmployeeLeaving from "@pages/employee-leaving-page";
 //@ts-ignore

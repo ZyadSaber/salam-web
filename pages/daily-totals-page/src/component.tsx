@@ -1,14 +1,19 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import Flex from "@commons/flex";
 import InputText from "@commons/input-text/src/inputText";
 import { TableWithApi } from "@commons/table";
 import { columns } from "./constant";
 import { useFormManager } from "@commons/hooks";
 import { defaultDate } from "@commons/global"
+import { Button } from "@commons/button"
 
 
 const DailyTotalPage = () => {
     const { state, onChange } = useFormManager({ initialValues: { date_from: defaultDate, date_to: defaultDate } })
+
+    const handleSearch = useCallback(() => {
+
+    }, [])
     return (
         <>
             <Flex width="100%" flexDirection="column">
@@ -27,6 +32,11 @@ const DailyTotalPage = () => {
                         Label="to"
                         onChange={onChange}
                     />
+                    <Button
+                        onClick={handleSearch}
+                        label="search"
+                        width="10%"
+                    />
                 </Flex>
                 <TableWithApi
                     api={"QUERY_DAILY_SUMMARY_TABLE"}
@@ -38,6 +48,7 @@ const DailyTotalPage = () => {
                         date_from: state.date_from,
                         date_to: state.date_to
                     }}
+                    checkForParams={true}
                     fetchOnFirstRun
                 />
             </Flex>

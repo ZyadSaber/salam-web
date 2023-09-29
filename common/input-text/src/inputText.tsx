@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import { FormLabel, Flex } from '@chakra-ui/react'
-import {StyledInput} from "./styled"
+import { StyledInput } from "./styled"
 import { InputTextProps } from "./interface";
 
 const InputText = ({
@@ -10,7 +10,7 @@ const InputText = ({
     name,
     Label = "",
     onChange,
-    height ="65px",
+    height = "65px",
     width = "200px",
     type = "text",
     placeHolder,
@@ -19,22 +19,12 @@ const InputText = ({
     className = "",
     required,
     ...props
-}: any) => {
+}: InputTextProps) => {
     const { t } = useTranslation();
-
-    // const StyledInput = styled.input`
-    // background-color: ${disabled ? "#e9e9e9" : "#fdfdfd"};
-    // height: 100%;
-    // width: 100%;
-    // border-radius: 7px;
-    // padding: 0 16px;
-    // border:  ${required ? `0.5px solid red` : `0.5px solid #cbd5e0`};
-    // `
 
     const handleChange = useCallback((event: { target: { value: string; }; }) => {
         onChange({ name: name, value: event.target.value })
-        console.log(value)
-    }, [name, onChange, value]);
+    }, [name, onChange]);
 
     return (
         <>

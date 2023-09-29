@@ -13,9 +13,10 @@ const TableWithApi = ({
     onClick,
     fetchOnFirstRun = false,
     params,
+    checkForParams = false,
     ...props
-}: TableWithApiProps) => {
-    const { data, runFetch, loading } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
+}: any) => {
+    const { data, runFetch, loading } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: true })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
     const [selectedRow, setSelectedRow] = useState({})
     const [modal, setModal] = useState(false)

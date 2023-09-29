@@ -8,6 +8,7 @@ export interface SelectProps {
     value: number | string;
   }[];
   onChange?: any;
+  height?: string | number;
   Label?: string;
   value?: number;
   name: string;
