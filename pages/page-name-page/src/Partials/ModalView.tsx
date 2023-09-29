@@ -6,6 +6,7 @@ import { useTableControlsButtons } from "@commons/table";
 import { SaveButton } from "@commons/button";
 import { CheckBox } from "@commons/check-box";
 import { Flex } from '@chakra-ui/react';
+import { SelectWithApi } from '@commons/select';
 
 const ModalView = ({
     onClose,
@@ -49,12 +50,14 @@ const ModalView = ({
             />
             </Flex>
                 <Flex width="100%">
-                <InputText
-                    name="parent_name"
+                <SelectWithApi
+                    Api='QUERY_PAGE_PARENT_LIST'
+                    name="page_parent_id"
                     Label='parent_name'
                     onChange={onChange}
-                    value={state.parent_name}
+                    value={state.page_parent_id}
                     width="47%"
+                    fetchOnFirstRun
                 />
             <CheckBox
                 name="page_disabled"

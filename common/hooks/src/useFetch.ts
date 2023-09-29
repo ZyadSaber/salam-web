@@ -55,8 +55,6 @@ const useFetch = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchOnFirstRun, authorization]);
 
-  console.log(checkForParams);
-
   useEffect(() => {
     if (checkForParams) {
       getData();

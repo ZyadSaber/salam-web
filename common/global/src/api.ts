@@ -5,7 +5,8 @@ const API_ID = {
   POST_CUSTOMER_TABLE_DATA: "basic_data/customers/customers_table_data_dml",
   //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data
   QUERY_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data",
-  //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data_dmlPOST_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data_dml",
+  //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data_dml
+  POST_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data_dml",
   //http://144.24.209.19:9090/api/invoices/customer_invoice/new_customer_invoice
   POST_CUSTOMER_INVOICE_DETAILS:
     "invoices/customer_invoice/new_customer_invoice",
@@ -98,6 +99,8 @@ const API_ID = {
   QUERY_ACCOUNTS_SUMMARY_TABLE: "system_reports/accounts_summary_table",
   //http://144.24.209.19:9090/api/auth_security/salam_pages?user_name=admin
   QUERY_SIDE_PAGES_DATA: "auth_security/salam_pages",
+  //http://144.24.209.19:9090/api/system_tools/parent_pages/page_name_table_data
+  QUERY_PAGE_PARENT_LIST: "system_tools/parent_pages/page_name_table_data"
 };
 
 export default API_ID;

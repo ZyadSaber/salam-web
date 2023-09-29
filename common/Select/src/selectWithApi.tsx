@@ -20,7 +20,7 @@ const SelectWithApi = ({
 
     const { data } = useFetch({
         link: Api,
-        fetchOnFirstRun: fetchOnFirstRun,
+        fetchOnFirstRun: true,
         params: params
     })
 
