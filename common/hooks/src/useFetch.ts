@@ -10,6 +10,7 @@ interface useFetchProp {
   params?: any;
   noAuthorization?: boolean;
   checkForParams?: boolean;
+  onResponse?: (data: any) => void;
 }
 
 const useFetch = ({
@@ -19,6 +20,7 @@ const useFetch = ({
   checkForParams = false,
   params,
   noAuthorization = false,
+  onResponse,
 }: useFetchProp) => {
   const toast = useToast();
   const authorization = useCurrentAuthorization();
@@ -27,26 +29,31 @@ const useFetch = ({
   const [data, setData] = useState<any>(undefined);
   const [loading, setLoading] = useState(false);
 
-  const getData = useCallback(async () => {
-    setLoading(true);
-    if (authorization) {
-      const settings = {
-        // method: "FETCH",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${authorization}`,
-        },
-      };
-      const response = await fetch(
-        `${url}?${new URLSearchParams(params)}`,
-        settings
-      );
-      setLoading(false);
-      const apiData = await response.json();
-      setData(apiData);
-    }
-  }, [authorization, params, url]);
+  const getData = useCallback(
+    async (additionalParams?: any) => {
+      setLoading(true);
+      if (authorization) {
+        const settings = {
+          // method: "FETCH",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authorization}`,
+          },
+        };
+        const computedParams = { ...additionalParams, ...additionalParams };
+        const response = await fetch(
+          `${url}?${new URLSearchParams(computedParams)}`,
+          settings
+        );
+        setLoading(false);
+        const apiData = await response.json();
+        setData(apiData);
+        onResponse && onResponse(apiData);
+      }
+    },
+    [authorization, onResponse, url]
+  );
 
   useEffect(() => {
     if (fetchOnFirstRun && !checkForParams) {
@@ -60,7 +67,7 @@ const useFetch = ({
       getData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchOnFirstRun, authorization, params, checkForParams]);
+  }, [fetchOnFirstRun, authorization, params]);
 
   useEffect(() => {
     if (data && data.response) {
@@ -75,11 +82,19 @@ const useFetch = ({
     }
   }, [data, toast]);
 
-  const runFetch = useCallback(() => {
-    getData();
-  }, [getData]);
+  const runFetch = useCallback(
+    (params?: any) => {
+      getData(params);
+    },
+    [getData]
+  );
 
-  return { data, runFetch, setData, loading };
+  return {
+    data,
+    runFetch,
+    setData,
+    loading,
+  };
 };
 
 export default useFetch;

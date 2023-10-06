@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import ModalView from "./Partials/ModalView";
 import { TableWithApi } from "@commons/table";
+import ModalView from "./Partials/ModalView";
 import { columns } from "./constants"
 
 const Customers = () => {
