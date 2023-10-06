@@ -109,6 +109,10 @@ const API_ID = {
   QUERY_LABELS_TABLE_DATA: "system_tools/labels/label_data_table",
   //http://144.24.209.19:9090/api/system_tools/labels/label_data_table_dml
   POST_LABELS_TABLE_DATA: "system_tools/labels/label_data_table_dml",
+  //http://144.24.209.19:9090/api/system_tools/pages_parent/pages_parent_data_table
+  QUERY_PAGES_PARENT_DATA_TABLE: "system_tools/pages_parent/pages_parent_data_table",
+  //http://144.24.209.19:9090/api/system_tools/pages_parent/pages_parent_data_table_dml
+  POST_PAGES_PARENT_DATA_TABLE: "system_tools/pages_parent/pages_parent_data_table_dml"
 };
 
 export default API_ID;

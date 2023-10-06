@@ -1,21 +1,21 @@
 import React, { memo } from "react";
-import { TableWithApi } from "@commons/table";
 import ModalView from "./Partials/ModalView";
-import { columns } from "./constant"
+import { TableWithApi } from "@commons/table";
+import { columns } from "./constants"
 
-const LabelsPage = () => {
+const PagesParent = () => {
     return (
         <>
             <TableWithApi
-                api={"QUERY_LABELS_TABLE_DATA"}
-                postApi={"POST_LABELS_TABLE_DATA"}
+                api={"QUERY_PAGES_PARENT_DATA_TABLE"}
+                postApi={"POST_PAGES_PARENT_DATA_TABLE"}
                 columns={columns}
                 hideTools={false}
                 canEdit={true}
                 canAdd={true}
                 canDelete={true}
-                canExcel
-                rowKey={"language_id"}
+                canExcel={false}
+                rowKey={"page_parent_id"}
                 ModalContent={ModalView}
                 fetchOnFirstRun
             />
@@ -23,4 +23,4 @@ const LabelsPage = () => {
     )
 }
 
-export default memo(LabelsPage)
+export default memo(PagesParent)
