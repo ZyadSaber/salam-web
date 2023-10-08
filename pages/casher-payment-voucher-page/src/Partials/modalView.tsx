@@ -51,7 +51,7 @@ const ModalView = ({
                     Label="vchr"
                     width="47%"
                     options={voucherOptions}
-                    hidden={state.query_status === "u"}
+                    disabled={state.query_status === "u"}
                 />
                 <SelectWithApi
                     name="voucher_id"

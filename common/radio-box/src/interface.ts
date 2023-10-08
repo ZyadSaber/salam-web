@@ -12,5 +12,6 @@ export interface radioBoxProps {
   Label?: string | number;
   hidden?: boolean;
   margin?: number | string;
+  disabled?: boolean;
   padding?: number | string;
 }

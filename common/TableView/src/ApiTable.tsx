@@ -1,4 +1,11 @@
-import React, { memo, useState, useCallback } from "react";
+import React, 
+{ 
+    memo, 
+    useState,
+    useCallback,
+    useImperativeHandle,
+    forwardRef
+} from "react";
 import Table from "./Table";
 import { useFetch } from "@commons/hooks"
 import Modal from "@commons/modal";
@@ -14,12 +21,14 @@ const TableWithApi = ({
     fetchOnFirstRun = false,
     params,
     checkForParams = false,
-    ...props
-}: any) => {
+    ...tableProps
+}: TableWithApiProps,
+ref: any
+) => {
     const { data, runFetch, loading } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: true })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
     const [selectedRow, setSelectedRow] = useState({})
-    const [modal, setModal] = useState(false)
+    const [modal, setModal] = useState(false);
     const handleAdd = useCallback(() => {
         setSelectedRow({ query_status: "n" })
         setModal(true)
@@ -40,7 +49,14 @@ const TableWithApi = ({
     const handleSelectedRow = (row: any) => {
         setSelectedRow(row)
         if (onClick) onClick(row)
-    }
+    };
+
+    useImperativeHandle(ref, () => ({
+        runFetch,
+        // setTableData: setData,
+        // resetTableData,
+        // getCurrentDataSource: () => foundDataSource
+      }));
 
     return (
         <>
@@ -66,12 +82,11 @@ const TableWithApi = ({
                 onDelete={handleDelete}
                 onSelectedRow={handleSelectedRow}
                 loading={loading}
-                {...props}
+                {...tableProps}
             >
             </Table>
 
         </>
     )
 }
-
-export default memo(TableWithApi)
+export default memo(forwardRef(TableWithApi))

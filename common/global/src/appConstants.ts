@@ -49,6 +49,6 @@ export const month = [
   },
 ];
 
-export const defaultDate = `${new Date().getFullYear()}-0${
+export const defaultDate = `${new Date().getFullYear()}-${
   new Date().getMonth() + 1
 }-${new Date().getDate()}`;

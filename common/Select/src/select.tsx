@@ -22,7 +22,7 @@ const Select = ({
     //@ts-ignore
     const handleValue = (event) => {
         if (Array.isArray(Options)) {
-            Options.map((option) => {
+            Options.forEach((option) => {
                 if (option.value === +event.target.value) {
                     if (withLabel) {
                         onChange({ value: option.value, selectLabelName: selectLabelName, label: option.label, name: name })
@@ -48,6 +48,7 @@ const Select = ({
                     placeholder={t(placeholder)}
                     onChange={handleValue}
                 >
+                    <StyledOption>{t("Select")}</StyledOption>
                     {Array.isArray(Options) && Options.length !== 0 ? Options.map((Option) => {
                         return (
                             <StyledOption key={Option.value} value={Option.value} selected={value === Option.value && true}> {t(Option.label)}</StyledOption>

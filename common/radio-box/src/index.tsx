@@ -12,7 +12,9 @@ const RadioBox = ({
     Label,
     margin = "10px",
     padding,
-    hidden = false
+    hidden = false,
+    disabled= false,
+    ...props
 }: radioBoxProps) => {
     const { t } = useTranslation()
     const handleChange = useCallback((value: string | number) => {
@@ -41,6 +43,8 @@ const RadioBox = ({
                         display="flex"
                         gap="15px"
                         flexWrap="wrap"
+                        isDisabled={disabled}
+                        {...props}
                     >
                         {options.map((option: option) => {
                             return (

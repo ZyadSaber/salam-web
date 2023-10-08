@@ -1,13 +1,28 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import Flex from "@commons/flex";
 import InputText from "@commons/input-text/src/inputText";
 import { SelectWithApi } from "@commons/select";
-import { TableWithApi } from "@commons/table";
-import { columns } from "./constant";
+import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
+import { Button } from "@commons/button"
+import { columns } from "./constant";
 
 const SupplierSummaryPage = () => {
     const { state, onChange } = useFormManager({ initialValues: { date_from: "", date_to: "", supplier_id: "" } })
+    const {
+        tableRef,
+         fetchTableData,
+        } = useCreateTableActionRef()
+
+    const handleSearch = useCallback(() => {
+        fetchTableData(
+            {
+                supplier_id: state.supplier_id,
+                // date_from: state.date_from,
+                // date_to: state.date_to
+            }
+        )
+    }, [fetchTableData, state.supplier_id])
     return (
         <>
             <Flex width="100%" flexDirection="column">
@@ -32,19 +47,19 @@ const SupplierSummaryPage = () => {
                         Label="to"
                         onChange={onChange}
                     />
+                        <Button
+                        onClick={handleSearch}
+                        label="search"
+                        width="10%"
+                    />
                 </Flex>
                 <TableWithApi
+                    ref={tableRef}
                     api={"QUERY_SUPPLIER_SUMMARY_TABLE"}
                     columns={columns}
                     hideTools={false}
                     canExcel
                     rowKey={"rowKey"}
-                    params={{
-                        supplier_id: state.supplier_id,
-                        // date_from: state.date_from,
-                        // date_to: state.date_to
-                    }}
-                    fetchOnFirstRun
                 />
             </Flex>
         </>
