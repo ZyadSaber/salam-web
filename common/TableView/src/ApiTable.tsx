@@ -1,6 +1,6 @@
-import React, 
-{ 
-    memo, 
+import React,
+{
+    memo,
     useState,
     useCallback,
     useImperativeHandle,
@@ -23,9 +23,9 @@ const TableWithApi = ({
     checkForParams = false,
     ...tableProps
 }: TableWithApiProps,
-ref: any
+    ref: any
 ) => {
-    const { data, runFetch, loading } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: true })
+    const { data, runFetch, loading, setData, resetData } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: true })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
     const [selectedRow, setSelectedRow] = useState({})
     const [modal, setModal] = useState(false);
@@ -53,10 +53,10 @@ ref: any
 
     useImperativeHandle(ref, () => ({
         runFetch,
-        // setTableData: setData,
-        // resetTableData,
-        // getCurrentDataSource: () => foundDataSource
-      }));
+        setTableData: setData,
+        resetTableData: resetData,
+        getCurrentDataSource: data
+    }));
 
     return (
         <>

@@ -9,3 +9,4 @@ export { default as useTranslation } from "./useTranslation";
 export { default as usePrevious } from "./usePrevious";
 export { default as useCurrentUserName } from "./useCurrentUserName";
 export { default as useCurrentAuthorization } from "./useCurrentAuthorization";
+export { default as useValidateForm } from "./useValidateForm";

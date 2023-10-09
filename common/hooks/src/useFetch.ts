@@ -89,11 +89,16 @@ const useFetch = ({
     [getData]
   );
 
+  const resetData = useCallback(() => {
+    setData(undefined);
+  }, []);
+
   return {
     data,
     runFetch,
     setData,
     loading,
+    resetData,
   };
 };
 
