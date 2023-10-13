@@ -12,6 +12,8 @@ import Modal from "@commons/modal";
 import useTableControlsButtons from "./hooks/useTableControlsButtons";
 import { TableWithApiProps } from "./interface"
 
+//TODO: change the ref type
+
 const TableWithApi = ({
     api,
     postApi,

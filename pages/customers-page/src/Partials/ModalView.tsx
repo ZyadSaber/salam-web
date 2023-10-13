@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react';
 import { InputText } from "@commons/input-text";
-import { useFormManager } from '@commons/hooks';
+import { useFormManager, useValidateForm } from '@commons/hooks';
 import { ModalViewProp } from "@commons/global"
 import { useTableControlsButtons } from "@commons/table";
-import { Button } from "@commons/button"
+import { SaveButton } from "@commons/button"
 
 const ModalView = ({
     onClose,
@@ -13,28 +13,26 @@ const ModalView = ({
     const {
         state,
         onChange,
-    }
-        = useFormManager({
+    } = useFormManager({
             initialValues: {
                 ...selectedRow
             }
         })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_CUSTOMER_TABLE_DATA", runFetch: refreshTable })
-    const { customer_id, customer_name, email, phone, address, query_status } = state;
-
+    
     const handleSave = useCallback(() => {
-        const record = {
-            customer_name,
-            email,
-            phone,
-            address,
-            customer_id,
-            query_status
-        }
-        onSaveAndInsertion(record)
+        onSaveAndInsertion(state)
         onClose()
-    }, [address, email, onClose, onSaveAndInsertion, phone, query_status, customer_id, customer_name])
+    }, [onClose, onSaveAndInsertion, state])
+    
+    const handleValidateFelids = useValidateForm({
+        validateFelids:["customer_name"],
+        functionToRun:handleSave,
+        stateToValidate:state
+    })
 
+    const { customer_name, email, phone, address } = state;
+    
     return (
         <>
             <InputText
@@ -65,9 +63,8 @@ const ModalView = ({
                 value={address}
                 width="100%"
             />
-            <Button
-                onClick={handleSave}
-                label="sv"
+            <SaveButton
+                onClick={handleValidateFelids}
             />
         </>
     )

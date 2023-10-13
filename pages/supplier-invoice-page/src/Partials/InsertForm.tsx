@@ -1,36 +1,49 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useCallback } from "react";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
 import InputNumber from "@commons/input-number"
+import {onChangeType} from"@commons/global"
 
 interface InsertFormProp {
     onChange: any;
     state: any;
-    handleRootState: any;
     handleSelectWithLabelChange: any
+    handleItemMultiInput?: any
 }
 
 const InsertForm = ({
     onChange,
     state,
-    handleRootState,
-    handleSelectWithLabelChange
+    handleSelectWithLabelChange,
+    handleItemMultiInput
 }: InsertFormProp) => {
 
-    useEffect(() => {
-        handleRootState({
-            ...state,
-            supplier_invoice_item_size: +state.supplier_invoice_item_width * +state.supplier_invoice_item_height,
-            supplier_invoice_item_total: +state.supplier_invoice_item_quantity * +state.supplier_invoice_item_price * +state.supplier_invoice_item_width * +state.supplier_invoice_item_height
+    const handleWidth = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_size: +value * +state.supplier_invoice_item_height,
         })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
-        state.supplier_invoice_item_width,
-        state.supplier_invoice_item_height,
-        state.supplier_invoice_item_quantity,
-        state.supplier_invoice_item_price
-    ])
+    },[handleItemMultiInput, state.supplier_invoice_item_height])
+    const handleHeight = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_size: +state.supplier_invoice_item_width  * +value
+        })
+    },[handleItemMultiInput, state.supplier_invoice_item_width])
+    const handleQuantity = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_total: +value * +state.supplier_invoice_item_price *  +state.supplier_invoice_item_size
+        })
+    },[handleItemMultiInput, state.supplier_invoice_item_price, state.supplier_invoice_item_size])
+    const handlePrice = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_total: +state.supplier_invoice_item_quantity * +value * +state.supplier_invoice_item_size
+        })
+    },[handleItemMultiInput, state.supplier_invoice_item_quantity, state.supplier_invoice_item_size])
+    
 
     return (
         <>
@@ -52,14 +65,14 @@ const InsertForm = ({
                         name="supplier_invoice_item_width"
                         value={state.supplier_invoice_item_width}
                         Label="wdth"
-                        onChange={onChange}
+                        onChange={handleWidth}
                         width="14%"
                     />
                     <InputNumber
                         name="supplier_invoice_item_height"
                         value={state.supplier_invoice_item_height}
                         Label="hght"
-                        onChange={onChange}
+                        onChange={handleHeight}
                         width="14%"
                     />
                     <InputNumber
@@ -74,14 +87,14 @@ const InsertForm = ({
                         name="supplier_invoice_item_quantity"
                         value={state.supplier_invoice_item_quantity}
                         Label="qty"
-                        onChange={onChange}
+                        onChange={handleQuantity}
                         width="14%"
                     />
                     <InputNumber
                         name="supplier_invoice_item_price"
                         value={state.supplier_invoice_item_price}
                         Label="prc"
-                        onChange={onChange}
+                        onChange={handlePrice}
                         width="14%"
                     />
                     <InputNumber

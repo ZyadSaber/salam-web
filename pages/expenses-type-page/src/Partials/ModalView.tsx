@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { SaveButton } from "@commons/button";
 import { InputText } from "@commons/input-text";
-import { useFormManager } from "@commons/hooks";
+import { useFormManager, useValidateForm } from "@commons/hooks";
 import { ModalViewProp } from "@commons/global";
 import { useTableControlsButtons } from "@commons/table";
 
@@ -14,18 +14,19 @@ const ModalView = ({
     const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_EXPENSES_TYPES_TABLE_DATA", runFetch: refreshTable })
 
     const { state, onChange } = useFormManager({ initialValues: selectedRow })
-    const { expense_type_name, expense_type_note, query_status, expense_type_id } = state;
 
     const handleSave = () => {
-        const record = {
-            expense_type_name,
-            expense_type_note,
-            expense_type_id,
-            query_status
-        }
-        onSaveAndInsertion(record)
+        onSaveAndInsertion(state)
         onClose()
     }
+
+    const handleValidateFelids = useValidateForm({
+        validateFelids:["expense_type_name"],
+        functionToRun:handleSave,
+        stateToValidate:state
+    })
+
+    const { expense_type_name, expense_type_note } = state;
 
     return (
         <>
@@ -44,7 +45,7 @@ const ModalView = ({
                 value={expense_type_note}
             />
             <SaveButton
-                onOK={handleSave}
+                onOK={handleValidateFelids}
             />
         </>
     )

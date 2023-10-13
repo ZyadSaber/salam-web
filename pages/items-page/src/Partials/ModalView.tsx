@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { InputText } from "@commons/input-text";
-import { useFormManager } from "@commons/hooks";
+import { useFormManager,useValidateForm } from "@commons/hooks";
 import { ModalViewProp } from "@commons/global"
 import { useTableControlsButtons } from "@commons/table";
 import { SaveButton } from "@commons/button"
@@ -14,28 +14,24 @@ const ModalView = ({
     const {
         state,
         onChange,
-    }
-        = useFormManager({
+    } = useFormManager({
             initialValues: {
                 ...selectedRow
             }
         })
-    const { item_id, item_name, item_unit, item_description, query_status } = state
-
-    const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_ITEMS_TABLE_DATA", runFetch: refreshTable })
-
-    const handleSave = useCallback(() => {
-        const record = {
-            item_id,
-            item_name,
-            item_unit,
-            item_description,
-            query_status
-        }
-        onSaveAndInsertion(record)
-        onClose()
-    }, [item_description, item_id, item_name, item_unit, onClose, onSaveAndInsertion, query_status])
-
+        
+        const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_ITEMS_TABLE_DATA", runFetch: refreshTable })
+        
+        const handleSave = useCallback(() => {
+            onSaveAndInsertion(state)
+            onClose()
+        }, [onClose, onSaveAndInsertion, state])
+        const handleValidateFelids = useValidateForm({
+            validateFelids:["item_name", "item_unit"],
+            functionToRun:handleSave,
+            stateToValidate:state
+        })
+        const { item_name, item_unit, item_description } = state
     return (
         <>
             <InputText
@@ -57,7 +53,7 @@ const ModalView = ({
                 value={item_description}
             />
             <SaveButton
-                onOK={handleSave}
+                onOK={handleValidateFelids}
             />
         </>
     )
