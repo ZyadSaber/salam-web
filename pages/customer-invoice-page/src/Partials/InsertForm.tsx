@@ -1,36 +1,48 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useCallback } from "react";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
-import InputNumber from "@commons/input-number"
+import InputNumber from "@commons/input-number";
+import { onChangeType } from "@commons/global";
 
 interface InsertFormProp {
     onChange: any;
     state: any;
-    handleRootState: any;
+    handleItemMultiInput: any;
     handleSelectWithLabelChange: any
 }
 
 const InsertForm = ({
     onChange,
     state,
-    handleRootState,
+    handleItemMultiInput,
     handleSelectWithLabelChange
 }: InsertFormProp) => {
 
-    useEffect(() => {
-        handleRootState({
-            ...state,
-            customer_invoice_item_size: +state.customer_invoice_item_width * +state.customer_invoice_item_height,
-            customer_invoice_item_total: +state.customer_invoice_item_quantity * +state.customer_invoice_item_price * +state.customer_invoice_item_width * +state.customer_invoice_item_height
+    const handleWidth = useCallback(({ name, value }: onChangeType) => {
+        handleItemMultiInput({
+            [name]: value,
+            customer_invoice_item_size: +value * +state.customer_invoice_item_height,
         })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
-        state.customer_invoice_item_width,
-        state.customer_invoice_item_height,
-        state.customer_invoice_item_quantity,
-        state.customer_invoice_item_price
-    ])
+    }, [handleItemMultiInput, state.customer_invoice_item_height])
+    const handleHeight = useCallback(({ name, value }: onChangeType) => {
+        handleItemMultiInput({
+            [name]: value,
+            customer_invoice_item_size: +state.customer_invoice_item_width * +value
+        })
+    }, [handleItemMultiInput, state.customer_invoice_item_width])
+    const handleQuantity = useCallback(({ name, value }: onChangeType) => {
+        handleItemMultiInput({
+            [name]: value,
+            customer_invoice_item_total: +value * +state.customer_invoice_item_price * +state.customer_invoice_item_size
+        })
+    }, [handleItemMultiInput, state.customer_invoice_item_price, state.customer_invoice_item_size])
+    const handlePrice = useCallback(({ name, value }: onChangeType) => {
+        handleItemMultiInput({
+            [name]: value,
+            customer_invoice_item_total: +state.customer_invoice_item_quantity * +value * +state.customer_invoice_item_size
+        })
+    }, [handleItemMultiInput, state.customer_invoice_item_quantity, state.customer_invoice_item_size])
 
     return (
         <>
@@ -62,14 +74,14 @@ const InsertForm = ({
                         name="customer_invoice_item_width"
                         value={state.customer_invoice_item_width}
                         Label="wdth"
-                        onChange={onChange}
+                        onChange={handleWidth}
                         width="14%"
                     />
                     <InputNumber
                         name="customer_invoice_item_height"
                         value={state.customer_invoice_item_height}
                         Label="hght"
-                        onChange={onChange}
+                        onChange={handleHeight}
                         width="14%"
                     />
                     <InputNumber
@@ -84,14 +96,14 @@ const InsertForm = ({
                         name="customer_invoice_item_quantity"
                         value={state.customer_invoice_item_quantity}
                         Label="qnty"
-                        onChange={onChange}
+                        onChange={handleQuantity}
                         width="14%"
                     />
                     <InputNumber
                         name="customer_invoice_item_price"
                         value={state.customer_invoice_item_price}
                         Label="prc"
-                        onChange={onChange}
+                        onChange={handlePrice}
                         width="14%"
                     />
                     <InputNumber

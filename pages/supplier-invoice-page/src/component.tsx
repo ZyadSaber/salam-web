@@ -28,7 +28,7 @@ const SupplierInvoice = () => {
         onChange: currentItemChange,
         handleSelectWithLabelChange,
         resetForm: resetItemForm,
-        handleMultiInput:handleItemMultiInput
+        handleMultiInput: handleItemMultiInput
     } = useFormManager({
         initialValues: initialItemState
     })
@@ -49,48 +49,48 @@ const SupplierInvoice = () => {
     const handleAdd = useCallback(() => {
         handleArrayChange({ name: "supplier_invoice_items", value: currentItemState })
         let totals = 0
-            state.supplier_invoice_items.forEach((item: any) => {
-                totals = totals + item.supplier_invoice_item_total
-            });
-            handleMultiInput({
-                supplier_invoice_items: [
-                    ...state.supplier_invoice_items,
-                    currentItemState
-                ],
-                supplier_invoice_total:totals+currentItemState.supplier_invoice_item_total
-            })
+        state.supplier_invoice_items.forEach((item: any) => {
+            totals = totals + item.supplier_invoice_item_total
+        });
+        handleMultiInput({
+            supplier_invoice_items: [
+                ...state.supplier_invoice_items,
+                currentItemState
+            ],
+            supplier_invoice_total: totals + currentItemState.supplier_invoice_item_total
+        })
         resetItemForm()
     }, [currentItemState, handleArrayChange, handleMultiInput, resetItemForm, state.supplier_invoice_items])
 
-    const handleDiscount = useCallback(({name, value}:onChangeType)=>{
-        handleItemMultiInput({
-            [name]:value,
+    const handleDiscount = useCallback(({ name, value }: onChangeType) => {
+        handleMultiInput({
+            [name]: value,
             supplier_invoice_after_discount: state.supplier_invoice_total - +value
         })
-    },[handleItemMultiInput, state.supplier_invoice_total])
+    }, [handleMultiInput, state.supplier_invoice_total])
 
-    const handlePaid = useCallback(({name, value}:onChangeType)=>{
-        handleItemMultiInput({
-            [name]:value,
+    const handlePaid = useCallback(({ name, value }: onChangeType) => {
+        handleMultiInput({
+            [name]: value,
             supplier_invoice_credit: state.supplier_invoice_total - state.supplier_invoice_discount - +value
         })
-    },[handleItemMultiInput, state.supplier_invoice_discount, state.supplier_invoice_total])
+    }, [handleMultiInput, state.supplier_invoice_discount, state.supplier_invoice_total])
 
     //TODO: add Delete Function and make sure to update the total and credit
-    const handleDelete = (e:any)=>{
+    const handleDelete = (e: any) => {
         console.log(e)
     }
 
     const handleValidateFelids = useValidateForm({
         validateFelids: itemValidate,
-        functionToRun:handleAdd,
-        stateToValidate:currentItemState
+        functionToRun: handleAdd,
+        stateToValidate: currentItemState
     })
 
     const handleValidateInvoiceFelids = useValidateForm({
-        validateFelids:rootValidate,
-        functionToRun:handleSave,
-        stateToValidate:state
+        validateFelids: rootValidate,
+        functionToRun: handleSave,
+        stateToValidate: state
     })
 
     return (

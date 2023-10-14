@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 
 const SignInPage = () => {
+    //TODO: redesign this page with different ui
 
     const { setRow, success } = useMutation({ link: "USER_LOG_IN", noAuthorization: true })
     const { state, onChange } = useFormManager({

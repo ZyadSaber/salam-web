@@ -16,10 +16,12 @@ interface useFetchProp {
 const useFetch = ({
   link = "",
   fetchOnFirstRun,
-  refreshTimeout,
+  //TODO: add request time out to fetch data
+  // refreshTimeout,
   checkForParams = false,
   params,
-  noAuthorization = false,
+  //TODO: check the noAuthorization for prop
+  // noAuthorization = false,
   onResponse,
 }: useFetchProp) => {
   const toast = useToast();
@@ -63,11 +65,10 @@ const useFetch = ({
   }, [fetchOnFirstRun, authorization]);
 
   useEffect(() => {
-    if (checkForParams) {
-      getData();
+    if (checkForParams && fetchOnFirstRun) {
+      getData(params);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchOnFirstRun, authorization, params]);
+  }, [fetchOnFirstRun, authorization, params, checkForParams, getData]);
 
   useEffect(() => {
     if (data && data.response) {
@@ -82,20 +83,13 @@ const useFetch = ({
     }
   }, [data, toast]);
 
-  const runFetch = useCallback(
-    (params?: any) => {
-      getData(params);
-    },
-    [getData]
-  );
-
   const resetData = useCallback(() => {
     setData(undefined);
   }, []);
 
   return {
     data,
-    runFetch,
+    runFetch: getData,
     setData,
     loading,
     resetData,

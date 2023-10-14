@@ -1,13 +1,14 @@
-import React, { memo, useCallback, useEffect } from "react";
+import React, { memo, useCallback } from "react";
 import { InputText } from "@commons/input-text";
 import InputNumber from "@commons/input-number"
-import { useMutation, useFormManager } from "@commons/hooks";
+import { useMutation, useFormManager, useValidateForm } from "@commons/hooks";
+import { onChangeType } from "@commons/global";
 import { Table } from "@commons/table";
 import Flex from "@commons/flex";
 import { SelectWithApi } from "@commons/select";
 import { Button } from "@commons/button";
 import InsertForm from "./Partials/InsertForm";
-import { columns } from "./constant"
+import { columns, initialRootState, initialItemState, rootValidate, itemValidate } from "./constant";
 
 const CustomerInvoices = () => {
 
@@ -15,42 +16,20 @@ const CustomerInvoices = () => {
         state,
         onChange,
         resetForm,
-        handleRootState,
+        handleMultiInput,
         handleArrayChange
     } = useFormManager({
-        initialValues: {
-            customer_id: 0,
-            customer_invoice_date: "",
-            customer_invoice_items: [],
-            query_status: "n",
-            customer_invoice_total: 0,
-            customer_invoice_discount: 0,
-            customer_invoice_after_discount: 0,
-            customer_invoice_paid: 0,
-            customer_invoice_credit: 0
-        }
+        initialValues: initialRootState
     })
 
     const {
         state: currentItemState,
         onChange: currentItemChange,
-        handleRootState: handleItemMultiChange,
+        handleMultiInput: handleItemMultiInput,
         handleSelectWithLabelChange,
         resetForm: resetItemForm
     } = useFormManager({
-        initialValues: {
-            customer_invoice_print_option_id: 0,
-            customer_invoice_item_id: 0,
-            customer_invoice_item_width: 0,
-            customer_invoice_item_height: 0,
-            customer_invoice_item_size: 0,
-            customer_invoice_item_quantity: 0,
-            customer_invoice_item_price: 0,
-            customer_invoice_item_total: 0,
-            customer_invoice_item_notes: "",
-            item_name: "",
-            print_name: ""
-        }
+        initialValues: initialItemState
     })
 
     const {
@@ -62,12 +41,34 @@ const CustomerInvoices = () => {
 
 
     const handleAdd = useCallback(() => {
-        handleArrayChange({
-            name: "customer_invoice_items",
-            value: currentItemState
+        handleArrayChange({ name: "customer_invoice_items", value: currentItemState })
+        let totals = 0
+        state.customer_invoice_items.forEach((item: any) => {
+            totals = totals + item.customer_invoice_item_total
+        });
+        handleMultiInput({
+            customer_invoice_items: [
+                ...state.customer_invoice_items,
+                currentItemState
+            ],
+            customer_invoice_total: totals + currentItemState.customer_invoice_item_total
         })
         resetItemForm()
-    }, [currentItemState, handleArrayChange, resetItemForm]);
+    }, [currentItemState, handleArrayChange, handleMultiInput, resetItemForm, state.customer_invoice_items])
+
+    const handleDiscount = useCallback(({ name, value }: onChangeType) => {
+        handleMultiInput({
+            [name]: value,
+            customer_invoice_after_discount: state.customer_invoice_total - +value
+        })
+    }, [handleMultiInput, state.customer_invoice_total])
+
+    const handlePaid = useCallback(({ name, value }: onChangeType) => {
+        handleMultiInput({
+            [name]: value,
+            customer_invoice_credit: state.customer_invoice_total - state.customer_invoice_discount - +value
+        })
+    }, [handleMultiInput, state.customer_invoice_discount, state.customer_invoice_total])
 
     const handleSave = useCallback(() => {
         setRow(state)
@@ -80,22 +81,22 @@ const CustomerInvoices = () => {
         },
     ]
 
-    useEffect(() => {
-        if (Array.isArray(state.customer_invoice_items) && state.customer_invoice_items.length !== 0) {
-            let totals = 0
-            state.customer_invoice_items.forEach((item: any) => {
-                totals = totals + item.customer_invoice_item_total
-            });
-            onChange({ name: "customer_invoice_total", value: totals })
-        }
+    //TODO: add Delete Function and make sure to update the total and credit
+    const handleDelete = (e: any) => {
+        console.log(e)
+    }
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.customer_invoice_items, state.customer_invoice_total])
+    const handleValidateFelids = useValidateForm({
+        validateFelids: itemValidate,
+        functionToRun: handleAdd,
+        stateToValidate: currentItemState
+    })
 
-    useEffect(() => {
-        handleRootState({ ...state, customer_invoice_after_discount: state.customer_invoice_total - state.customer_invoice_discount, customer_invoice_credit: state.customer_invoice_total - state.customer_invoice_discount - state.customer_invoice_paid })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.customer_invoice_total, state.customer_invoice_discount, state.customer_invoice_paid])
+    const handleValidateInvoiceFelids = useValidateForm({
+        validateFelids: rootValidate,
+        functionToRun: handleSave,
+        stateToValidate: state
+    })
 
     return (
         <>
@@ -120,7 +121,7 @@ const CustomerInvoices = () => {
                 <InsertForm
                     state={currentItemState}
                     onChange={currentItemChange}
-                    handleRootState={handleItemMultiChange}
+                    handleItemMultiInput={handleItemMultiInput}
                     handleSelectWithLabelChange={handleSelectWithLabelChange}
                 />
                 <Table
@@ -128,10 +129,9 @@ const CustomerInvoices = () => {
                     dataSource={state.customer_invoice_items}
                     actionColumn
                     actionLabel="Delete"
-                    // onAction={handleDelete}
+                    onAction={handleDelete}
                     hideTools={false}
-                    onAdd={handleAdd}
-                    // onSelectedRow={setActiveItem}
+                    onAdd={handleValidateFelids}
                     canAdd={true}
                     additionalButtons={additionalButtons}
                 />
@@ -147,28 +147,28 @@ const CustomerInvoices = () => {
                         name='customer_invoice_discount'
                         value={state.customer_invoice_discount}
                         Label="dscnt"
-                        onChange={onChange}
+                        onChange={handleDiscount}
                         width="15%"
                     />
                     <InputNumber
                         name='totalAfterDiscount'
                         disabled
                         value={state.customer_invoice_after_discount}
-                        Label="Tlaftrdsnt"
+                        Label="tlaftrdsnt"
                         width="15%"
                     />
                     <InputNumber
                         name='customer_invoice_paid'
                         value={state.customer_invoice_paid}
                         Label="paid"
-                        onChange={onChange}
+                        onChange={handlePaid}
                         width="15%"
                     />
                     <InputNumber
                         name='customer_invoice_credit'
                         disabled
                         value={state.customer_invoice_credit}
-                        Label="Crdt"
+                        Label="crdt"
                         width="15%"
                     />
                     <Button
@@ -176,7 +176,7 @@ const CustomerInvoices = () => {
                         width="15%"
                         height="50%"
                         margin="30px 0"
-                        onClick={handleSave}
+                        onClick={handleValidateInvoiceFelids}
                     />
                 </Flex>
             </Flex>

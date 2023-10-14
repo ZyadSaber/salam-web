@@ -14,14 +14,14 @@ const SelectWithApi = ({
     padding,
     margin,
     params,
-    fetchOnFirstRun = false,
     selectLabelName = "label_select"
 }: SelectWithApiProps) => {
 
     const { data } = useFetch({
         link: Api,
         fetchOnFirstRun: true,
-        params: params
+        params: params,
+        checkForParams: true
     })
 
     return (

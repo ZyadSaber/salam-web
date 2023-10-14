@@ -11,8 +11,8 @@ const CasherPaymentVoucher = () => {
     const { state, onChange } = useFormManager({ initialValues: { date_from: "", date_to: "" } })
     const {
         tableRef,
-         fetchTableData,
-        } = useCreateTableActionRef()
+        fetchTableData,
+    } = useCreateTableActionRef()
     const handleSearch = useCallback(() => {
         fetchTableData(
             {
@@ -25,11 +25,11 @@ const CasherPaymentVoucher = () => {
         <>
             <Flex width="100%" flexDirection="column">
                 <Flex width="100%" >
-                    <DatePicker name="date_from"label="from" onChange={onChange} />
-                    <DatePicker name="date_to"label="to" onChange={onChange} />
+                    <DatePicker name="date_from" label="frm" onChange={onChange} />
+                    <DatePicker name="date_to" label="to" onChange={onChange} />
                     <Button
                         onClick={handleSearch}
-                        label="search"
+                        label="srch"
                         width="10%"
                     />
                 </Flex>
