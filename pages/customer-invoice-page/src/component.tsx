@@ -106,14 +106,14 @@ const CustomerInvoices = () => {
                         Api={"QUERY_CUSTOMERS_LIST"}
                         onChange={onChange}
                         value={state.customer_id}
-                        Label="cstmr"
+                        label="cstmr"
                         name="customer_id"
                         fetchOnFirstRun
                     />
                     <InputText
                         name="customer_invoice_date"
                         value={state.customer_invoice_date}
-                        Label="dt"
+                        label="dt"
                         onChange={onChange}
                         type="date"
                     />
@@ -140,13 +140,13 @@ const CustomerInvoices = () => {
                         name='customer_invoice_total'
                         disabled
                         value={state.customer_invoice_total}
-                        Label="total"
+                        label="total"
                         width="15%"
                     />
                     <InputNumber
                         name='customer_invoice_discount'
                         value={state.customer_invoice_discount}
-                        Label="dscnt"
+                        label="dscnt"
                         onChange={handleDiscount}
                         width="15%"
                     />
@@ -154,13 +154,13 @@ const CustomerInvoices = () => {
                         name='totalAfterDiscount'
                         disabled
                         value={state.customer_invoice_after_discount}
-                        Label="tlaftrdsnt"
+                        label="tlaftrdsnt"
                         width="15%"
                     />
                     <InputNumber
                         name='customer_invoice_paid'
                         value={state.customer_invoice_paid}
-                        Label="paid"
+                        label="paid"
                         onChange={handlePaid}
                         width="15%"
                     />
@@ -168,7 +168,7 @@ const CustomerInvoices = () => {
                         name='customer_invoice_credit'
                         disabled
                         value={state.customer_invoice_credit}
-                        Label="crdt"
+                        label="crdt"
                         width="15%"
                     />
                     <Button

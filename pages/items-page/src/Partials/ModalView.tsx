@@ -36,19 +36,19 @@ const ModalView = ({
         <>
             <InputText
                 name="item_name"
-                Label='Name'
+                label='Name'
                 onChange={onChange}
                 value={item_name}
             />
             <InputText
                 name="item_unit"
-                Label='Unit'
+                label='Unit'
                 onChange={onChange}
                 value={item_unit}
             />
             <InputText
                 name="item_description"
-                Label='nts'
+                label='nts'
                 onChange={onChange}
                 value={item_description}
             />

@@ -2,7 +2,8 @@ import React, { memo, useCallback } from "react";
 import { useTableControlsButtons } from "@commons/table";
 import { ModalViewProp, defaultDate } from "@commons/global";
 import RadioBox from "@commons/radio-box"
-import { InputText, TextArea } from "@commons/input-text";
+import { TextArea } from "@commons/input-text";
+import DatePicker from "@commons/date-picker"
 import InputNumber from "@commons/input-number"
 import { SelectWithApi } from "@commons/select";
 import { useFormManager, useValidateForm } from "@commons/hooks";
@@ -18,7 +19,7 @@ const ModalView = ({
         initialValues: {
             ...selectedRow,
             voucher_type: selectedRow.voucher_type || "S",
-            voucher_date: defaultDate
+            voucher_date: defaultDate || selectedRow.voucher_date
         }
     })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_CASHER_PAYMENT_VOUCHER_TABLE_DATA", runFetch: refreshTable })
@@ -41,26 +42,25 @@ const ModalView = ({
 
     return (
         <>
-            <InputText
+            <DatePicker
                 name="voucher_date"
-                type="date"
                 onChange={onChange}
-                value={state?.voucher_date}
-                Label="dt"
+                value={state.voucher_date}
+                label="dt"
                 width="47%"
             />
             <InputNumber
                 name="voucher_amount"
                 onChange={onChange}
-                value={state?.voucher_amount}
-                Label="amnt"
+                value={state.voucher_amount}
+                label="amnt"
                 width="47%"
             />
             <RadioBox
                 name="voucher_type"
                 onChange={onChange}
-                value={state?.voucher_type}
-                Label="vchr"
+                value={state.voucher_type}
+                label="vchr"
                 width="47%"
                 options={voucherOptions}
                 disabled={state.query_status === "u"}
@@ -68,11 +68,11 @@ const ModalView = ({
             <SelectWithApi
                 name="voucher_id"
                 Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
-                Label="nm"
+                label="nm"
                 params={{
                     invoice_type: state.voucher_type
                 }}
-                value={state?.voucher_id}
+                value={state.voucher_id}
                 fetchOnFirstRun
                 width="47%"
                 onChange={onChange}
@@ -82,7 +82,7 @@ const ModalView = ({
                 name="notes"
                 onChange={onChange}
                 value={state?.notes}
-                Label="nts"
+                label="nts"
             />
             <SaveButton
                 onClick={handleValidateFelids}

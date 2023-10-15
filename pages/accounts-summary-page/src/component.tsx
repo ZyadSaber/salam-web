@@ -26,7 +26,7 @@ const AccountsSummary = () => {
                     name="type"
                     onChange={onChange}
                     value={state?.type}
-                    Label="type"
+                    label="type"
                     options={voucherOptions}
                 />
                   <Button

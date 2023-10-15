@@ -52,7 +52,7 @@ const InsertForm = ({
                         Api={"QUERY_PRINT_OPTIONS_LIST"}
                         onChange={handleSelectWithLabelChange}
                         value={state.customer_invoice_print_option_id}
-                        Label="prntnm"
+                        label="prntnm"
                         name="customer_invoice_print_option_id"
                         withLabel
                         fetchOnFirstRun
@@ -62,7 +62,7 @@ const InsertForm = ({
                         Api={"QUERY_ITEMS_LIST"}
                         onChange={handleSelectWithLabelChange}
                         value={state.customer_invoice_item_id}
-                        Label="itmnm"
+                        label="itmnm"
                         name="customer_invoice_item_id"
                         withLabel
                         fetchOnFirstRun
@@ -73,21 +73,21 @@ const InsertForm = ({
                     <InputNumber
                         name="customer_invoice_item_width"
                         value={state.customer_invoice_item_width}
-                        Label="wdth"
+                        label="wdth"
                         onChange={handleWidth}
                         width="14%"
                     />
                     <InputNumber
                         name="customer_invoice_item_height"
                         value={state.customer_invoice_item_height}
-                        Label="hght"
+                        label="hght"
                         onChange={handleHeight}
                         width="14%"
                     />
                     <InputNumber
                         name="customer_invoice_item_size"
                         value={state.customer_invoice_item_size}
-                        Label="sz"
+                        label="sz"
                         onChange={onChange}
                         disabled
                         width="14%"
@@ -95,21 +95,21 @@ const InsertForm = ({
                     <InputNumber
                         name="customer_invoice_item_quantity"
                         value={state.customer_invoice_item_quantity}
-                        Label="qnty"
+                        label="qnty"
                         onChange={handleQuantity}
                         width="14%"
                     />
                     <InputNumber
                         name="customer_invoice_item_price"
                         value={state.customer_invoice_item_price}
-                        Label="prc"
+                        label="prc"
                         onChange={handlePrice}
                         width="14%"
                     />
                     <InputNumber
                         name="customer_invoice_item_total"
                         value={state.customer_invoice_item_total}
-                        Label="total"
+                        label="total"
                         onChange={onChange}
                         disabled
                         width="14%"
@@ -117,7 +117,7 @@ const InsertForm = ({
                     <InputText
                         name="customer_invoice_item_notes"
                         value={state.customer_invoice_item_notes}
-                        Label="nts"
+                        label="nts"
                         onChange={onChange}
                         width="14%"
                     />

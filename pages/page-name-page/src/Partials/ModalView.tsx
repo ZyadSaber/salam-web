@@ -36,14 +36,14 @@ const ModalView = ({
         <Flex width="100%">
             <InputText
                 name="page_name"
-                Label='page_name'
+                label='page_name'
                 onChange={onChange}
                 value={state.page_name}
                 width="47%"
             />
             <InputText
                 name="page_link"
-                Label='page_link'
+                label='page_link'
                 onChange={onChange}
                 value={state.page_link}
                 width="47%"
@@ -53,7 +53,7 @@ const ModalView = ({
                 <SelectWithApi
                     Api='QUERY_PAGE_PARENT_LIST'
                     name="page_parent_id"
-                    Label='parent_name'
+                    label='parent_name'
                     onChange={onChange}
                     value={state.page_parent_id}
                     width="47%"

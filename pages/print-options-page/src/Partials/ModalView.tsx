@@ -37,14 +37,14 @@ const ModalView = ({
         <>
             <InputText
                 name="print_option_name"
-                Label='prntnm'
+                label='prntnm'
                 onChange={onChange}
                 value={print_option_name}
                 width="100%"
             />
             <InputText
                 name="print_option_note"
-                Label='nts'
+                label='nts'
                 onChange={onChange}
                 value={print_option_note}
                 width="100%"

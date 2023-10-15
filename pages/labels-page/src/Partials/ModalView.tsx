@@ -37,7 +37,7 @@ const ModalView = ({
         <>
             <InputText
                 name="language_code"
-                Label='language_code'
+                label='language_code'
                 onChange={onChange}
                 value={language_code}
                 width="50%"
@@ -45,14 +45,14 @@ const ModalView = ({
             />
             <InputText
                 name="english_name"
-                Label='english_name'
+                label='english_name'
                 onChange={onChange}
                 value={english_name}
                 width="47%"
             />
             <InputText
                 name="arabic_name"
-                Label='arabic_name'
+                label='arabic_name'
                 onChange={onChange}
                 value={arabic_name}
                 width="47%"

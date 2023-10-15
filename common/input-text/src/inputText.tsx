@@ -8,7 +8,7 @@ const InputText = ({
     disabled,
     value,
     name,
-    Label = "",
+    label = "",
     onChange,
     height = "65px",
     width = "200px",
@@ -35,7 +35,7 @@ const InputText = ({
                 margin={margin}
                 height={height}
             >
-                <FormLabel>{t(Label)}</FormLabel>
+                <FormLabel>{t(label)}</FormLabel>
                 <StyledInput
                     placeholder={placeHolder}
                     disabled={disabled}

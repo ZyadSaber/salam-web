@@ -102,7 +102,7 @@ const SupplierInvoice = () => {
                         Api="QUERY_SUPPLIER_LIST"
                         onChange={mainStateHandleSelectWithLabelChange}
                         value={state.supplier_id}
-                        Label="splr"
+                        label="splr"
                         name="supplier_id"
                         fetchOnFirstRun
                         withLabel
@@ -139,13 +139,13 @@ const SupplierInvoice = () => {
                         name='supplier_invoice_total'
                         disabled
                         value={state.supplier_invoice_total}
-                        Label="total"
+                        label="total"
                         width="15%"
                     />
                     <InputNumber
                         name='supplier_invoice_discount'
                         value={state.supplier_invoice_discount}
-                        Label="dscnt"
+                        label="dscnt"
                         onChange={handleDiscount}
                         width="15%"
                     />
@@ -153,13 +153,13 @@ const SupplierInvoice = () => {
                         name='supplier_invoice_after_discount'
                         disabled
                         value={state.supplier_invoice_after_discount}
-                        Label="tlaftrdsnt"
+                        label="tlaftrdsnt"
                         width="15%"
                     />
                     <InputNumber
                         name='supplier_invoice_paid'
                         value={state.handlePaid}
-                        Label="paid"
+                        label="paid"
                         onChange={handlePaid}
                         width="15%"
                     />
@@ -167,7 +167,7 @@ const SupplierInvoice = () => {
                         name='supplier_invoice_credit'
                         disabled
                         value={state.supplier_invoice_credit}
-                        Label="crdt"
+                        label="crdt"
                         width="15%"
                     />
                     <Button

@@ -32,12 +32,12 @@ const FormView = ({ fetchTableData }: any) => {
                     options={RadioBoxOptions}
                     value={state.invoice_type}
                     onChange={onChange}
-                    Label="invctyp"
+                    label="invctyp"
                     width="17%"
                 />
                 <InputText
                     name="invoice_no"
-                    Label="no"
+                    label="no"
                     onChange={onChange}
                     type="number"
                     value={state.invoice_no}
@@ -45,7 +45,7 @@ const FormView = ({ fetchTableData }: any) => {
                 <SelectWithApi
                     name="holder_number"
                     Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
-                    Label="nm"
+                    label="nm"
                     params={{
                         invoice_type: state.invoice_type
                     }}
@@ -56,14 +56,14 @@ const FormView = ({ fetchTableData }: any) => {
                 <InputText
                     name="date_from"
                     value={state.date_from}
-                    Label="dtfrm"
+                    label="dtfrm"
                     onChange={onChange}
                     type="date"
                 />
                 <InputText
                     name="date_to"
                     value={state.date_to}
-                    Label="dto"
+                    label="dto"
                     onChange={onChange}
                     type="date"
                 />

@@ -9,7 +9,7 @@ export interface SelectProps {
   }[];
   onChange?: any;
   height?: string | number;
-  Label?: string;
+  label?: string;
   value?: number;
   name: string;
   width?: string;
@@ -23,7 +23,7 @@ export interface SelectProps {
 export interface SelectWithApiProps {
   Api: string;
   onChange?: any;
-  Label?: string;
+  label?: string;
   value?: number;
   name: string;
   width?: string;
@@ -39,7 +39,7 @@ export interface SelectWithApiProps {
 export interface monthSelectProp {
   range?: number;
   onChange?: any;
-  Label?: string;
+  label?: string;
   value?: number;
   name: string;
   width?: string;

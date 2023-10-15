@@ -3,7 +3,7 @@ export interface inputNumberProp {
   value: number;
   name: string;
   height?: number | string;
-  Label?: string;
+  label?: string;
   onChange?: any;
   width?: string;
   padding?: string;

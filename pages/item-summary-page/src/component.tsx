@@ -27,7 +27,7 @@ const ItemSummaryPage = () => {
             <Flex width="100%" flexDirection="column">
                 <Flex width="100%" >
                     <SelectWithApi
-                        Label="itm"
+                        label="itm"
                         fetchOnFirstRun
                         name="item_id"
                         value={state.item_id}
@@ -37,13 +37,13 @@ const ItemSummaryPage = () => {
                     <InputText
                         name="date_from"
                         type="date"
-                        Label="frm"
+                        label="frm"
                         onChange={onChange}
                     />
                     <InputText
                         name="date_to"
                         type="date"
-                        Label="to"
+                        label="to"
                         onChange={onChange}
                     />
                     <Button

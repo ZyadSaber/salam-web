@@ -53,7 +53,7 @@ const SignInPage = () => {
                         <FormControl id="email">
                             <InputText
                                 name='user_name'
-                                Label='usrnm'
+                                label='usrnm'
                                 onChange={onChange}
                                 width="100%"
                                 margin={0}
@@ -64,7 +64,7 @@ const SignInPage = () => {
                         <FormControl id="password">
                             <InputText
                                 name='password'
-                                Label='pswrd'
+                                label='pswrd'
                                 onChange={onChange}
                                 type="password"
                                 width="100%"

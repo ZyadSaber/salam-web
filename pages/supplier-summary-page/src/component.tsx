@@ -28,7 +28,7 @@ const SupplierSummaryPage = () => {
             <Flex width="100%" flexDirection="column">
                 <Flex width="100%" >
                     <SelectWithApi
-                        Label="splr"
+                        label="splr"
                         fetchOnFirstRun
                         name="supplier_id"
                         value={state.supplier_id}
@@ -38,13 +38,13 @@ const SupplierSummaryPage = () => {
                     <InputText
                         name="date_from"
                         type="date"
-                        Label="frm"
+                        label="frm"
                         onChange={onChange}
                     />
                     <InputText
                         name="date_to"
                         type="date"
-                        Label="to"
+                        label="to"
                         onChange={onChange}
                     />
                         <Button

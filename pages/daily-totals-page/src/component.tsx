@@ -31,7 +31,7 @@ const DailyTotalPage = () => {
                     <InputText
                         name="date_from"
                         type="date"
-                        Label="frm"
+                        label="frm"
                         value={state.date_from}
                         onChange={onChange}
                     />
@@ -39,12 +39,12 @@ const DailyTotalPage = () => {
                         name="date_to"
                         value={state.date_to}
                         type="date"
-                        Label="to"
+                        label="to"
                         onChange={onChange}
                     />
                     <Button
                         onClick={handleSearch}
-                        label="search"
+                        label="srch"
                         width="10%"
                     />
                 </Flex>

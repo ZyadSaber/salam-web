@@ -8,7 +8,7 @@ const InputNumber = ({
     disabled,
     value,
     name,
-    Label = "",
+    label = "",
     onChange,
     height = "65px",
     width = "200px",
@@ -32,7 +32,7 @@ const InputNumber = ({
                 margin={margin}
                 height={height}
             >
-                <FormLabel>{t(Label)}</FormLabel>
+                <FormLabel>{t(label)}</FormLabel>
                 <StyledInput
                     disabled={disabled}
                     onChange={handleChange}

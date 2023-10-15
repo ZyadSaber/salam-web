@@ -10,12 +10,12 @@ export const columns = [
     width: "20%",
   },
   {
-    title: "vchrtp",
-    dataIndex: "voucher_type",
+    title: "vchrnm",
+    dataIndex: "voucher_type_name",
     width: "10%",
   },
   {
-    title: "vchrnm",
+    title: "hldrnm",
     dataIndex: "voucher_name",
     width: "40%",
   },

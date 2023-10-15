@@ -35,7 +35,7 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
                 onOK={handleSaveButton}
             >
                 <InputText
-                    Label="dt"
+                    label="dt"
                     name="date"
                     value={date}
                     onChange={onChange}
@@ -47,7 +47,7 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
                     onChange={onChange}
                     Api="QUERY_EMPLOYEE_NAME_LIST"
                     value={employee_id}
-                    Label="emply"
+                    label="emply"
                     width="30%"
                     fetchOnFirstRun={visible}
                 />
@@ -56,14 +56,14 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
                     name="leaving_time"
                     value={leaving_time}
                     onChange={onChange}
-                    Label="lvngtm"
+                    label="lvngtm"
                     width="30%"
                 />
                 <TextArea
                     name="notes"
                     value={notes}
                     onChange={onChange}
-                    Label="nts"
+                    label="nts"
                     width="100%"
                 />
             </Modal>

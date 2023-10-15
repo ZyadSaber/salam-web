@@ -9,7 +9,7 @@ const RadioBox = ({
     width,
     onChange,
     value,
-    Label,
+    label,
     margin = "10px",
     padding,
     hidden = false,
@@ -30,7 +30,7 @@ const RadioBox = ({
                 wrap="wrap"
                 hidden={hidden}
             >
-                <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(Label)}</FormLabel>
+                <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(label)}</FormLabel>
                 <Flex
                     className="css-1xsh6d8"
                     width="100%"

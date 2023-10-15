@@ -9,7 +9,7 @@ const Select = ({
     width = "200px",
     Options,
     onChange,
-    Label,
+    label,
     value = 0,
     name,
     withLabel = false,
@@ -43,7 +43,7 @@ const Select = ({
                 margin={margin}
                 height={height}
             >
-                <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(Label)}</FormLabel>
+                <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(label)}</FormLabel>
                 <StyledSelect
                     placeholder={t(placeholder)}
                     onChange={handleValue}

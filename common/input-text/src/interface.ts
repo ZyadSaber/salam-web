@@ -1,7 +1,7 @@
 export interface InputTextProps extends React.InputHTMLAttributes<number> {
   value?: string | number;
   name?: string;
-  Label?: string;
+  label?: string;
   onChange?: any;
   disabled?: boolean;
   width?: number | string;
@@ -18,7 +18,7 @@ export interface InputTextProps extends React.InputHTMLAttributes<number> {
 export interface TextAreaProps {
   value?: string | number;
   name?: string;
-  Label?: string;
+  label?: string;
   onChange?: any;
   disabled?: boolean;
   width?: number | string;

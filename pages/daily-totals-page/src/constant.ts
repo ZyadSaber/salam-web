@@ -1,16 +1,16 @@
 export const columns = [
   {
-    title: "record_id",
+    title: "id",
     dataIndex: "record_id",
     width: "10%",
   },
   {
-    title: "type",
+    title: "typ",
     dataIndex: "type",
     width: "10%",
   },
   {
-    title: "holder_name",
+    title: "hldrnm",
     dataIndex: "holder_name",
     width: "20%",
   },

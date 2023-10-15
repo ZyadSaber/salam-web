@@ -32,14 +32,14 @@ const ModalView = ({
         <>
             <InputText
                 name="expense_type_name"
-                Label='expnsnm'
+                label='expnsnm'
                 width="100%"
                 onChange={onChange}
                 value={expense_type_name}
             />
             <InputText
                 name="expense_type_note"
-                Label='nts'
+                label='nts'
                 width="100%"
                 onChange={onChange}
                 value={expense_type_note}

@@ -35,7 +35,7 @@ const ModalView = ({
         <Flex width="100%">
             <InputText
                 name="page_parent_id"
-                Label='page_parent_id'
+                label='page_parent_id'
                 onChange={onChange}
                 value={state.page_parent_id}
                 width="20%"
@@ -43,7 +43,7 @@ const ModalView = ({
             />
             <InputText
                 name="page_parent_name"
-                Label='page_parent_name'
+                label='page_parent_name'
                 onChange={onChange}
                 value={state.page_parent_name}
                 width="60%"

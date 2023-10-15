@@ -42,21 +42,21 @@ const ModalView = ({
         <>
             <InputText
                 name="user_name"
-                Label='user_name'
+                label='user_name'
                 onChange={onChange}
                 value={user_name}
                 width="47%"
             />
             <InputText
                 name="first_name"
-                Label='first_name'
+                label='first_name'
                 onChange={onChange}
                 value={first_name}
                 width="47%"
             />
             <InputText
                 name="last_name"
-                Label='last_name'
+                label='last_name'
                 onChange={onChange}
                 value={last_name}
                 width="47%"
@@ -64,14 +64,14 @@ const ModalView = ({
             <SelectWithApi
                 Api=""
                 name="user_role"
-                Label='user_role'
+                label='user_role'
                 onChange={onChange}
                 value={user_role}
                 width="47%"
             />
             <InputText
                 name="password"
-                Label='password'
+                label='password'
                 onChange={onChange}
                 value={password}
                 width="47%"
@@ -79,7 +79,7 @@ const ModalView = ({
             />
             <InputText
                 name="confirm_password"
-                Label='confirm_password'
+                label='confirm_password'
                 onChange={onChange}
                 value={confirm_password}
                 width="47%"

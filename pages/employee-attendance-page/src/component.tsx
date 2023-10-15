@@ -36,7 +36,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                 onOK={handleSaveButton}
             >
                 <InputText
-                    Label="dt"
+                    label="dt"
                     name="date"
                     value={date}
                     onChange={onChange}
@@ -48,7 +48,7 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                     onChange={onChange}
                     Api="QUERY_EMPLOYEE_NAME_LIST"
                     value={employee_id}
-                    Label="emply"
+                    label="emply"
                     width="30%"
                     fetchOnFirstRun={visible}
                 />
@@ -57,14 +57,14 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                     name="attendance_time"
                     value={real_time}
                     onChange={onChange}
-                    Label="atndnctm"
+                    label="atndnctm"
                     width="30%"
                 />
                 <TextArea
                     name="reason"
                     value={reason}
                     onChange={onChange}
-                    Label="rsn"
+                    label="rsn"
                     width="70%"
                 />
                 <CheckBox

@@ -38,28 +38,28 @@ const ModalView = ({
         <>
             <InputText
                 name="supplier_name"
-                Label='Name'
+                label='Name'
                 onChange={onChange}
                 value={supplier_name}
                 width="47%"
             />
             <InputText
                 name="email"
-                Label='Email'
+                label='Email'
                 onChange={onChange}
                 value={email}
                 width="47%"
             />
             <InputText
                 name="phone"
-                Label='Phone'
+                label='Phone'
                 onChange={onChange}
                 value={phone}
                 width="47%"
             />
             <InputText
                 name="address"
-                Label='Address'
+                label='Address'
                 onChange={onChange}
                 value={address}
                 width="100%"
