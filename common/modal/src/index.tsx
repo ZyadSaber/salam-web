@@ -1,17 +1,8 @@
 import React, { memo } from 'react';
 import {Button} from "@commons/button";
 import {BaseTitle} from "@commons/page-title"
-import {
-    Modal as ModalView,
-    ModalOverlay,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Flex
-} from '@chakra-ui/react';
-import "./index.css"
-import {ModalContainer, ModalContent} from "./style"
+import Flex from "@commons/flex"
+import {ModalContainer, ModalContent, ModalHeader, ModalBody, ModalFooter} from "./style"
 
 interface ModalProp {
     visible?: boolean,
@@ -23,6 +14,8 @@ interface ModalProp {
     width?: string;
     hideSaveButton?: boolean;
     hideCloseButton?: boolean;
+    height?: string;
+    noFooter?: boolean;
 }
 
 const Modal = (
@@ -33,31 +26,36 @@ const Modal = (
         onClose,
         onOK,
         submitTitle = "smbt",
-        width = "3xl",
+        width = "90%",
+        height = "auto",
         hideSaveButton = false,
-        hideCloseButton = false
+        hideCloseButton = false,
+        noFooter = false
     }: ModalProp
 ) => {
+
     return (
         <>
         {visible &&
             <ModalContainer hidden={!visible}>
-  {/* <div className="overlay"></div> */}
-
-  <ModalContent width="1100px" height='100%'>
-    <div>
+  <ModalContent width={width} height={height}>
+    <ModalHeader>
         <BaseTitle value={label} />
-        <Button label='&times;' backGround='none' data-dismiss="modal" />
-    </div>
+        <Button label='&times;' backGround='none' data-dismiss="modal" onClick={onClose} />
+    </ModalHeader>
 
-    <div className="modal-body">
+    <ModalBody>
+        <Flex width="100%" padding="0" wrap="wrap" height="100%">
       {children}
-    </div>
+      </Flex>
+    </ModalBody>
 
-    <div className="modal-footer">
-        <Button onClick={onOK} label={submitTitle}/>
-        <Button onClick={onClose} label='cls' />
-    </div>
+    {!noFooter &&
+        <ModalFooter hidden={noFooter}>
+            {!hideSaveButton && <Button onClick={onOK} label={submitTitle} hidden={hideSaveButton} />}
+            {!hideCloseButton && <Button onClick={onClose} label='cls' hidden={hideCloseButton} />}
+        </ModalFooter>
+    }
   </ModalContent>
 </ModalContainer>
         }
@@ -66,25 +64,3 @@ const Modal = (
 }
 
 export default memo(Modal);
-
-
-  // {/* <ModalView isOpen={visible} onClose={onClose} size={width}>
-            //     <ModalOverlay />
-            //     <ModalContent>
-            //         <ModalHeader>{t(label)}</ModalHeader>
-            //         <ModalCloseButton />
-            //         <ModalBody>
-            //             <Flex w="100%" padding="5px" wrap="wrap">
-            //                 {children}
-            //             </Flex>
-            //         </ModalBody>
-            //         <ModalFooter>
-            //             <Flex w="25%" justifyContent="space-around">
-            //                 <Button colorScheme='red' mr={3} onClick={onClose} hidden={hideCloseButton}>
-            //                     {t("cls")}
-            //                 </Button>
-            //                 <Button colorScheme='blue' onClick={onOK} hidden={hideSaveButton} >{t(submitTitle)}</Button>
-            //             </Flex>
-            //         </ModalFooter>
-            //     </ModalContent>
-            // </ModalView> */}

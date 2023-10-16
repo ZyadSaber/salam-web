@@ -118,7 +118,13 @@ const Table = ({
                         hidden={!canSave}
                         disabled={!canSave}
                     />
-                    <ReactToPrint
+                    <IconButton
+                        icon='fa-solid fa-print'
+                        onClick={onPrint}
+                        hidden={!canPrint}
+                        disabled={!canPrint}
+                    />
+                    {/* <ReactToPrint
                         trigger={() => <IconButton
                             icon='fa-solid fa-print'
                             hidden={!canPrint}
@@ -131,7 +137,7 @@ const Table = ({
                             )
                         }}
                         documentTitle="dd"
-                    />
+                    /> */}
                     <IconButton
                         icon='fa-sharp fa-regular fa-file-excel'
                         onClick={onExcel}

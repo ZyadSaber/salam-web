@@ -2,13 +2,10 @@ import React, { memo, useCallback } from "react";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import Flex from "@commons/flex";
 import PdfViewer from "@commons/pdf-viewer";
+import {usePdfViewerControl} from "@commons/pdf-viewer";
 import FormView from "./Partials/FormView";
 import { mainTableColumns, detailTableColumns } from "./constant";
 
-/**
- * Renders a component for searching invoices.
- * @returns JSX.Element
- */
 const InvoicesSearch = () => {
     const {
         tableRef,
@@ -19,10 +16,8 @@ const InvoicesSearch = () => {
         fetchTableData: fetchDetailTableData,
     } = useCreateTableActionRef()
 
-    /**
-     * Handles the selection of a row in the main table and fetches data for the detail table.
-     * @param e - The selected row data.
-     */
+    const {PDFRef, handleOpenModal} = usePdfViewerControl()
+
     //TODO: change that type to invoice_type
     const handleSelectedRow = useCallback((e: any) => {
         fetchDetailTableData({
@@ -56,11 +51,13 @@ const InvoicesSearch = () => {
                             rowKey="row_key"
                             hideTools={false}
                             canPrint={true}
-                            // onPrint={handlePrint}
+                            onPrint={handleOpenModal}
                         />
                     </Flex>
                 </Flex>
-            <PdfViewer />
+            <PdfViewer
+                ref={PDFRef}
+            />
             </Flex>
         </>
     )

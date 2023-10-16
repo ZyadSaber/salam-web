@@ -1,24 +1,47 @@
-import React, {memo} from "react";
+import React, {memo, useImperativeHandle, forwardRef, useState, useCallback} from "react";
 import Modal from "@commons/modal";
 
 //TODO: implement pdf viewer type
-const PdfViewer = ({visible, onClose}:any) => {
+const PdfViewer = ({
+        reportName,
+        params
+    }:any,
+    ref: any
+    ) => {
+
+        const [visible, setVisible] = useState(false);
+        
+        const handleOpen = useCallback(()=>{
+            setVisible(true);
+        },[])
+
+        const handleClose = useCallback(()=>{
+            setVisible(false);
+        },[])
+
+        useImperativeHandle(ref, () => ({
+            handleOpen,
+            // setTableData: setData,
+            // resetTableData: resetData,
+            // getCurrentDataSource: data
+        }));
+
     return(
         <Modal
             label="PDF Viewer"
-            visible={true}
-            onClose={onClose}
-            hideCloseButton
-            hideSaveButton
-            width="6xl"
+            visible={visible}
+            onClose={handleClose}
+            noFooter
+            width="90%"
+            height="80%"
         >
-            {/* <iframe title="PDF Viewer" src="http://144.24.209.19:9090/api/invoices/customer_invoice/files" style={{height:"100%"}}></iframe> */}
-            <object data={"http://144.24.209.19:9090/api/invoices/customer_invoice/files"} width="100%" height="100%">
+            <object data={"http://144.24.209.19:9090/system_pdf_generate/files"} width="100%" height="100%">
           {`Your browser does not support pdf files.`}
         </object>
         </Modal>
     )
 }
 
-export default memo(PdfViewer)
+export default memo(forwardRef(PdfViewer))
 export * from "./interface"
+export {default as usePdfViewerControl} from "./hooks/usePdfViewerControl";

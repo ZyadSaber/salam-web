@@ -56,4 +56,5 @@ export interface TableWithApiProps extends TableProps {
   fetchOnFirstRun?: boolean;
   refreshAfter?: number;
   params?: any;
+  modalWidth?: string;
 }

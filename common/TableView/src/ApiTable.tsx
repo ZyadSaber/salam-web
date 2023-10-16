@@ -23,6 +23,7 @@ const TableWithApi = ({
     fetchOnFirstRun = false,
     params,
     checkForParams = false,
+    modalWidth = "60%",
     ...tableProps
 }: TableWithApiProps,
     ref: any
@@ -68,6 +69,8 @@ const TableWithApi = ({
                 hideCloseButton
                 hideSaveButton
                 label="dtls"
+                noFooter
+                width={modalWidth}
             >
                 <ModalContent
                     onClose={handleCloseModal}
