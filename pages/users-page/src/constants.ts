@@ -15,18 +15,13 @@ export const columns = [
     width: "17%",
   },
   {
-    title: "user_role",
-    dataIndex: "user_role",
-    width: "17%",
-  },
-  {
     title: "created_at",
     dataIndex: "created_at",
-    width: "20%",
+    width: "10%",
   },
   {
     title: "updated_at",
     dataIndex: "updated_at",
-    width: "20%",
+    width: "10%",
   },
 ];

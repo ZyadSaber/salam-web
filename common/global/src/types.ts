@@ -1,5 +1,5 @@
 export interface onChangeType {
-  value: string;
+  value: string | number | boolean;
   name: string;
 }
 

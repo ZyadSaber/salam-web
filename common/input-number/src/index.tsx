@@ -1,56 +1,47 @@
 import React, { memo, useCallback } from "react";
-import {
-    NumberInput,
-    NumberInputField,
-    // NumberInputStepper,
-    // NumberIncrementStepper,
-    // NumberDecrementStepper,
-    Flex,
-    FormLabel
-} from '@chakra-ui/react';
+import { FormLabel, Flex } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import { StyledInput } from "./styled"
 import { inputNumberProp } from "./interface";
 
 const InputNumber = ({
     disabled,
     value,
-    name = "number",
-    Label = "",
+    name,
+    label = "",
     onChange,
+    height = "65px",
     width = "200px",
     padding,
     margin = "10px",
-    step = 1,
-    min = 0,
-    max
+    ...props
 }: inputNumberProp) => {
-    const { t } = useTranslation()
 
-    const handleChange = useCallback((event: { target: { value: number; }; }) => {
+    const { t } = useTranslation();
+
+    const handleChange = useCallback((event: { target: { value: string; }; }) => {
         onChange({ name: name, value: +event.target.value })
-    }, [name, onChange])
+    }, [name, onChange]);
+
     return (
-        <>
-            <Flex
+
+        <Flex
                 direction="column"
                 width={width}
                 padding={padding}
                 margin={margin}
-
+                height={height}
             >
-                <FormLabel>{t(Label)}</FormLabel>
-                <NumberInput step={step} min={min} max={max} isDisabled={disabled} value={value | 0}>
-                    {
-                        //@ts-ignore
-                        <NumberInputField onChange={handleChange} />
-                    }
-                    {/* <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                    </NumberInputStepper> */}
-                </NumberInput>
+                <FormLabel>{t(label)}</FormLabel>
+                <StyledInput
+                    disabled={disabled}
+                    onChange={handleChange}
+                    width="100%"
+                    value={value}
+                    type = "number"
+                    {...props}
+                />
             </Flex>
-        </>
     )
 }
 

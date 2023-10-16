@@ -1,9 +1,18 @@
-import React, { memo, useState, useCallback } from "react";
+import React,
+{
+    memo,
+    useState,
+    useCallback,
+    useImperativeHandle,
+    forwardRef
+} from "react";
 import Table from "./Table";
 import { useFetch } from "@commons/hooks"
 import Modal from "@commons/modal";
 import useTableControlsButtons from "./hooks/useTableControlsButtons";
 import { TableWithApiProps } from "./interface"
+
+//TODO: change the ref type
 
 const TableWithApi = ({
     api,
@@ -13,12 +22,16 @@ const TableWithApi = ({
     onClick,
     fetchOnFirstRun = false,
     params,
-    ...props
-}: TableWithApiProps) => {
-    const { data, runFetch, loading } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params })
+    checkForParams = false,
+    modalWidth = "60%",
+    ...tableProps
+}: TableWithApiProps,
+    ref: any
+) => {
+    const { data, runFetch, loading, setData, resetData } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: true })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
     const [selectedRow, setSelectedRow] = useState({})
-    const [modal, setModal] = useState(false)
+    const [modal, setModal] = useState(false);
     const handleAdd = useCallback(() => {
         setSelectedRow({ query_status: "n" })
         setModal(true)
@@ -39,7 +52,14 @@ const TableWithApi = ({
     const handleSelectedRow = (row: any) => {
         setSelectedRow(row)
         if (onClick) onClick(row)
-    }
+    };
+
+    useImperativeHandle(ref, () => ({
+        runFetch,
+        setTableData: setData,
+        resetTableData: resetData,
+        getCurrentDataSource: data
+    }));
 
     return (
         <>
@@ -49,6 +69,8 @@ const TableWithApi = ({
                 hideCloseButton
                 hideSaveButton
                 label="dtls"
+                noFooter
+                width={modalWidth}
             >
                 <ModalContent
                     onClose={handleCloseModal}
@@ -65,12 +87,11 @@ const TableWithApi = ({
                 onDelete={handleDelete}
                 onSelectedRow={handleSelectedRow}
                 loading={loading}
-                {...props}
+                {...tableProps}
             >
             </Table>
 
         </>
     )
 }
-
-export default memo(TableWithApi)
+export default memo(forwardRef(TableWithApi))

@@ -4,11 +4,13 @@ import { saveButtonProp } from "./interface"
 
 const SaveButton = ({
     onOK,
+    width="40%",
+    label = "sv",
     ...props
 }: saveButtonProp) => {
     return (
         <>
-            <Button onClick={onOK} {...props} />
+            <Button onClick={onOK} label="sv" width={width} {...props} />
         </>
     )
 }

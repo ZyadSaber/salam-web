@@ -11,6 +11,7 @@ const useLocalStorage = (storageName?: string) => {
     app_name: "",
     build_name: "",
     role: "",
+    user_name: "",
   });
   const [storage, setStorage] = useState();
 
@@ -45,6 +46,7 @@ const useLocalStorage = (storageName?: string) => {
     displayName: localStorageData.display_name,
     storage,
     appName: localStorageData.app_name,
+    user_name: localStorageData.user_name,
     changeLocalStorage,
     buildName: localStorageData.build_name,
     role: localStorageData.role,

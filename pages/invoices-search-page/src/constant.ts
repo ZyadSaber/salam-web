@@ -1,3 +1,11 @@
+export const initialFormValues = {
+  invoice_type: "C",
+  invoice_no: "",
+  person_id: "",
+  date_from: "",
+  date_to: "",
+};
+
 export const mainTableColumns = [
   {
     title: "no",
@@ -6,7 +14,7 @@ export const mainTableColumns = [
   },
   {
     title: "nm",
-    dataIndex: "invoice_holder_name",
+    dataIndex: "holder_name",
     width: "20%",
   },
   {
@@ -16,7 +24,7 @@ export const mainTableColumns = [
   },
   {
     title: "total",
-    dataIndex: "invoice_after_discount",
+    dataIndex: "invoice_total",
     width: "10%",
   },
 ];
@@ -24,42 +32,42 @@ export const mainTableColumns = [
 export const detailTableColumns = [
   {
     title: "itmnm",
-    dataIndex: "invoice_item_name",
+    dataIndex: "item",
     width: "15%",
   },
   {
     title: "wdth",
-    dataIndex: "invoice_item_width",
+    dataIndex: "width",
     width: "5%",
   },
   {
     title: "hght",
-    dataIndex: "invoice_item_height",
+    dataIndex: "height",
     width: "5%",
   },
   {
     title: "sz",
-    dataIndex: "invoice_item_size",
+    dataIndex: "size",
     width: "5%",
   },
   {
     title: "qnty",
-    dataIndex: "invoice_item_quantity",
+    dataIndex: "quantity",
     width: "5%",
   },
   {
     title: "prc",
-    dataIndex: "invoice_item_price",
+    dataIndex: "price",
     width: "5%",
   },
   {
     title: "total",
-    dataIndex: "invoice_item_total",
+    dataIndex: "total",
     width: "5%",
   },
   {
     title: "nts",
-    dataIndex: "invoice_item_notes",
+    dataIndex: "notes",
     width: "5%",
   },
 ];

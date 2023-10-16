@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const BaseTitle = ({
     value,
@@ -9,6 +10,7 @@ const BaseTitle = ({
     color,
     backgroundColor
 }: any) => {
+    const { t } = useTranslation()
     return (
         <>
             <strong
@@ -20,7 +22,7 @@ const BaseTitle = ({
                     color: color,
                     backgroundColor: backgroundColor
                 }}>
-                {value}
+                {t(value)}
             </strong>
         </>
     )

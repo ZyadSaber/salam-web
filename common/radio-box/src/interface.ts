@@ -9,8 +9,9 @@ export interface radioBoxProps {
   width?: number | string;
   onChange?: any;
   value?: string | undefined;
-  Label?: string | number;
+  label?: string | number;
   hidden?: boolean;
   margin?: number | string;
+  disabled?: boolean;
   padding?: number | string;
 }

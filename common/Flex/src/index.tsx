@@ -17,7 +17,8 @@ const Flex = ({
     flexDirection = "row",
     textAlign = "",
     hidden = false,
-    wrap
+    wrap,
+    ...prop
 }: any) => {
     const [border, setBorder] = useState("")
     useEffect(() => {
@@ -40,6 +41,7 @@ const Flex = ({
                 hidden={hidden}
                 //@ts-ignore
                 wrap={wrap ? "wrap" : ""}
+                {...prop}
             >
                 {children}
             </ChackraFlex>

@@ -1,12 +1,29 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import RadioBox from "@commons/radio-box";
 import { RadioBoxOptions } from "../constant";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
+import { useFormManager } from "@commons/hooks";
 import { Button } from "@commons/button"
+import { initialFormValues } from "../constant"
 
-const FormView = ({ onChange, state, runQuery }: any) => {
+const FormView = ({ fetchTableData }: any) => {
+    const {
+        state
+        , onChange
+    } = useFormManager({
+        initialValues: initialFormValues
+    })
+
+    const handleSearch = useCallback(() => {
+        fetchTableData({
+            invoice_type: state.invoice_type,
+            invoice_no: state.invoice_no,
+            holder_number: state.holder_number,
+        })
+    }, [fetchTableData, state.holder_number, state.invoice_no, state.invoice_type])
+
     return (
         <>
             <Flex bordered width="100%" wrap>
@@ -15,12 +32,12 @@ const FormView = ({ onChange, state, runQuery }: any) => {
                     options={RadioBoxOptions}
                     value={state.invoice_type}
                     onChange={onChange}
-                    Label="invctyp"
+                    label="invctyp"
                     width="17%"
                 />
                 <InputText
                     name="invoice_no"
-                    Label="no"
+                    label="no"
                     onChange={onChange}
                     type="number"
                     value={state.invoice_no}
@@ -28,7 +45,7 @@ const FormView = ({ onChange, state, runQuery }: any) => {
                 <SelectWithApi
                     name="holder_number"
                     Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
-                    Label="nm"
+                    label="nm"
                     params={{
                         invoice_type: state.invoice_type
                     }}
@@ -39,19 +56,19 @@ const FormView = ({ onChange, state, runQuery }: any) => {
                 <InputText
                     name="date_from"
                     value={state.date_from}
-                    Label="dtfrm"
+                    label="dtfrm"
                     onChange={onChange}
                     type="date"
                 />
                 <InputText
                     name="date_to"
                     value={state.date_to}
-                    Label="dto"
+                    label="dto"
                     onChange={onChange}
                     type="date"
                 />
                 <Button
-                    onClick={runQuery}
+                    onClick={handleSearch}
                     label="Search"
                 />
             </Flex>

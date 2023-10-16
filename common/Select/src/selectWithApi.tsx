@@ -7,21 +7,21 @@ const SelectWithApi = ({
     width,
     Api,
     onChange,
-    Label,
+    label,
     name = "",
     value = 0,
     withLabel = false,
     padding,
     margin,
     params,
-    fetchOnFirstRun = false,
     selectLabelName = "label_select"
 }: SelectWithApiProps) => {
 
     const { data } = useFetch({
         link: Api,
-        fetchOnFirstRun: fetchOnFirstRun,
-        params: params
+        fetchOnFirstRun: true,
+        params: params,
+        checkForParams: true
     })
 
     return (
@@ -29,7 +29,7 @@ const SelectWithApi = ({
             <Select
                 Options={data}
                 onChange={onChange}
-                Label={Label}
+                label={label}
                 value={value}
                 name={name}
                 width={width}

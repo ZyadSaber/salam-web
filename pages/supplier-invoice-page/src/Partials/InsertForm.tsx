@@ -1,36 +1,49 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useCallback } from "react";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
 import InputNumber from "@commons/input-number"
+import {onChangeType} from"@commons/global"
 
 interface InsertFormProp {
     onChange: any;
     state: any;
-    handleRootState: any;
     handleSelectWithLabelChange: any
+    handleItemMultiInput?: any
 }
 
 const InsertForm = ({
     onChange,
     state,
-    handleRootState,
-    handleSelectWithLabelChange
+    handleSelectWithLabelChange,
+    handleItemMultiInput
 }: InsertFormProp) => {
 
-    useEffect(() => {
-        handleRootState({
-            ...state,
-            supplier_invoice_item_size: +state.supplier_invoice_item_width * +state.supplier_invoice_item_height,
-            supplier_invoice_item_total: +state.supplier_invoice_item_quantity * +state.supplier_invoice_item_price * +state.supplier_invoice_item_width * +state.supplier_invoice_item_height
+    const handleWidth = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_size: +value * +state.supplier_invoice_item_height,
         })
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [
-        state.supplier_invoice_item_width,
-        state.supplier_invoice_item_height,
-        state.supplier_invoice_item_quantity,
-        state.supplier_invoice_item_price
-    ])
+    },[handleItemMultiInput, state.supplier_invoice_item_height])
+    const handleHeight = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_size: +state.supplier_invoice_item_width  * +value
+        })
+    },[handleItemMultiInput, state.supplier_invoice_item_width])
+    const handleQuantity = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_total: +value * +state.supplier_invoice_item_price *  +state.supplier_invoice_item_size
+        })
+    },[handleItemMultiInput, state.supplier_invoice_item_price, state.supplier_invoice_item_size])
+    const handlePrice = useCallback(({name, value}:onChangeType)=>{
+        handleItemMultiInput({
+            [name]:value,
+            supplier_invoice_item_total: +state.supplier_invoice_item_quantity * +value * +state.supplier_invoice_item_size
+        })
+    },[handleItemMultiInput, state.supplier_invoice_item_quantity, state.supplier_invoice_item_size])
+    
 
     return (
         <>
@@ -40,7 +53,7 @@ const InsertForm = ({
                         Api="QUERY_ITEMS_LIST"
                         onChange={handleSelectWithLabelChange}
                         value={state.supplier_invoice_item_id}
-                        Label="itmnm"
+                        label="itmnm"
                         name="supplier_invoice_item_id"
                         withLabel
                         fetchOnFirstRun
@@ -51,21 +64,21 @@ const InsertForm = ({
                     <InputNumber
                         name="supplier_invoice_item_width"
                         value={state.supplier_invoice_item_width}
-                        Label="wdth"
-                        onChange={onChange}
+                        label="wdth"
+                        onChange={handleWidth}
                         width="14%"
                     />
                     <InputNumber
                         name="supplier_invoice_item_height"
                         value={state.supplier_invoice_item_height}
-                        Label="hght"
-                        onChange={onChange}
+                        label="hght"
+                        onChange={handleHeight}
                         width="14%"
                     />
                     <InputNumber
                         name="supplier_invoice_item_size"
                         value={state.supplier_invoice_item_size}
-                        Label="sz"
+                        label="sz"
                         onChange={onChange}
                         disabled
                         width="14%"
@@ -73,21 +86,21 @@ const InsertForm = ({
                     <InputNumber
                         name="supplier_invoice_item_quantity"
                         value={state.supplier_invoice_item_quantity}
-                        Label="qty"
-                        onChange={onChange}
+                        label="qty"
+                        onChange={handleQuantity}
                         width="14%"
                     />
                     <InputNumber
                         name="supplier_invoice_item_price"
                         value={state.supplier_invoice_item_price}
-                        Label="prc"
-                        onChange={onChange}
+                        label="prc"
+                        onChange={handlePrice}
                         width="14%"
                     />
                     <InputNumber
                         name="supplier_invoice_item_total"
                         value={state.supplier_invoice_item_total}
-                        Label="total"
+                        label="total"
                         onChange={onChange}
                         disabled
                         width="14%"
@@ -95,7 +108,7 @@ const InsertForm = ({
                     <InputText
                         name="supplier_invoice_item_notes"
                         value={state.supplier_invoice_item_notes}
-                        Label="nts"
+                        label="nts"
                         onChange={onChange}
                         width="14%"
                     />

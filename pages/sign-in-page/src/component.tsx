@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 
 const SignInPage = () => {
+    //TODO: redesign this page with different ui
 
     const { setRow, success } = useMutation({ link: "USER_LOG_IN", noAuthorization: true })
     const { state, onChange } = useFormManager({
@@ -26,7 +27,7 @@ const SignInPage = () => {
             {
                 name: "salam",
                 //@ts-ignore
-                data: { authorization: success.authorization, display_name: success.display_name, role: success.role, build_name: success.build_name, app_name: success.app_name }
+                data: { ...success }
             }
         ])
     }
@@ -52,7 +53,7 @@ const SignInPage = () => {
                         <FormControl id="email">
                             <InputText
                                 name='user_name'
-                                Label='usrnm'
+                                label='usrnm'
                                 onChange={onChange}
                                 width="100%"
                                 margin={0}
@@ -63,7 +64,7 @@ const SignInPage = () => {
                         <FormControl id="password">
                             <InputText
                                 name='password'
-                                Label='pswrd'
+                                label='pswrd'
                                 onChange={onChange}
                                 type="password"
                                 width="100%"

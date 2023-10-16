@@ -1,9 +1,24 @@
 import React, { memo } from "react";
+import { TableWithApi } from "@commons/table";
+import ModalView from "./Partials/ModalView";
+import { columns } from "./constant"
 
 const LabelsPage = () => {
     return (
         <>
-            <h1>LabelsPage</h1>
+            <TableWithApi
+                api={"QUERY_LABELS_TABLE_DATA"}
+                postApi={"POST_LABELS_TABLE_DATA"}
+                columns={columns}
+                hideTools={false}
+                canEdit={true}
+                canAdd={true}
+                canDelete={true}
+                canExcel
+                rowKey={"language_id"}
+                ModalContent={ModalView}
+                fetchOnFirstRun
+            />
         </>
     )
 }

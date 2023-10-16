@@ -1,90 +1,63 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
-import { Table } from "@commons/table";
-import { useFormManager } from "@commons/hooks";
+import React, { memo, useCallback } from "react";
+import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import Flex from "@commons/flex";
-import { useFetch } from "@commons/hooks"
+import PdfViewer from "@commons/pdf-viewer";
+import {usePdfViewerControl} from "@commons/pdf-viewer";
 import FormView from "./Partials/FormView";
 import { mainTableColumns, detailTableColumns } from "./constant";
 
 const InvoicesSearch = () => {
-
-    const [row, setRow] = useState({
-        invoice_id: ""
-    })
     const {
-        state
-        , onChange
-    } = useFormManager({
-        initialValues: {
-            invoice_type: "C",
-            invoice_no: "",
-            person_id: "",
-            date_from: "",
-            date_to: ""
-        }
-    })
-    const { invoice_type, invoice_no, holder_number } = state
-
-    const onSelectedRow = useCallback((row?: any) => {
-        setRow(row)
-    }, [])
-
-    const { data, runFetch, loading } = useFetch({
-        link: "QUERY_INVOICE_MASTER_TABLE_DATA",
-        params: {
-            invoice_type: invoice_type,
-            invoice_no: invoice_no,
-            holder_number: holder_number,
-        },
-    })
-
+        tableRef,
+        fetchTableData,
+    } = useCreateTableActionRef()
     const {
-        data: detailData,
-        runFetch: runFetchDetailData,
-        loading: detailLoading
-    } = useFetch({
-        link: "QUERY_INVOICE_DETAIL_TABLE_DATA",
-        params: {
-            invoice_type: invoice_type,
-            invoice_no: row.invoice_id,
-        }
-    })
+        tableRef: detailTableRef,
+        fetchTableData: fetchDetailTableData,
+    } = useCreateTableActionRef()
 
-    useEffect(() => {
-        if (row.invoice_id) {
-            runFetchDetailData()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [row.invoice_id])
+    const {PDFRef, handleOpenModal} = usePdfViewerControl()
+
+    //TODO: change that type to invoice_type
+    const handleSelectedRow = useCallback((e: any) => {
+        fetchDetailTableData({
+            invoice_type: e.invoice_type,
+            invoice_no: e.invoice_id
+        })
+    }, [fetchDetailTableData])
 
     return (
         <>
             <Flex width="100%" margin="0" padding="0" flexDirection="column">
                 <FormView
-                    onChange={onChange}
-                    state={state}
-                    runQuery={runFetch}
+                    fetchTableData={fetchTableData}
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
                     <Flex width="40%">
-                        <Table
+                        <TableWithApi
+                            ref={tableRef}
+                            api="QUERY_INVOICE_MASTER_TABLE_DATA"
                             columns={mainTableColumns}
-                            dataSource={data?.data}
                             rowKey="invoice_id"
-                            onSelectedRow={onSelectedRow}
+                            onSelectedRow={handleSelectedRow}
                             height="400px"
-                            loading={loading}
                         />
                     </Flex>
                     <Flex width="60%">
-                        <Table
+                        <TableWithApi
+                            ref={detailTableRef}
+                            api="QUERY_INVOICE_DETAIL_TABLE_DATA"
                             columns={detailTableColumns}
-                            dataSource={detailData?.data}
                             rowKey="row_key"
-                            loading={detailLoading}
+                            hideTools={false}
+                            canPrint={true}
+                            onPrint={handleOpenModal}
                         />
                     </Flex>
                 </Flex>
+            <PdfViewer
+                ref={PDFRef}
+            />
             </Flex>
         </>
     )

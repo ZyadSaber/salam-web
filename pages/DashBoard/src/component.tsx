@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { ChartWithApi } from "@pages/chart-js";
 import Flex from "@commons/flex";
 import { TableWithApi } from "@commons/table";
-import { mainTableColumns, customerTableColumns } from "./constants"
+import { supplierTableColumns, customerTableColumns } from "./constants"
 
 const DashBoard = () => {
 
@@ -11,16 +11,16 @@ const DashBoard = () => {
             <Flex width='100%'>
                 <Flex width='75%' flexDirection='column'>
                     <TableWithApi
-                        api='QUERY_CUSTOMERS_INVOICES_FOT_TODAY'
-                        rowKey=''
+                        api='QUERY_CUSTOMERS_INVOICES_FOR_TODAY'
+                        rowKey='customer_invoice_id'
                         columns={customerTableColumns}
                         fetchOnFirstRun
                         label='cstmrs'
                     />
                     <TableWithApi
-                        api='QUERY_SUPPLIERS_INVOICES_FOT_TODAY'
-                        rowKey=''
-                        columns={mainTableColumns}
+                        api='QUERY_SUPPLIERS_INVOICES_FOR_TODAY'
+                        rowKey='supplier_invoice_id'
+                        columns={supplierTableColumns}
                         fetchOnFirstRun
                         label='splrs'
                     />

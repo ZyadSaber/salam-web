@@ -36,25 +36,40 @@ export const customerTableColumns = [
   },
 ];
 
-export const mainTableColumns = [
+export const supplierTableColumns = [
   {
     title: "no",
-    dataIndex: "invoice_id",
-    width: "15%",
+    dataIndex: "supplier_invoice_id",
+    width: "5%",
   },
   {
     title: "nm",
     dataIndex: "invoice_holder_name",
-    width: "20%",
-  },
-  {
-    title: "dt",
-    dataIndex: "invoice_date",
     width: "10%",
   },
   {
     title: "total",
-    dataIndex: "invoice_after_discount",
-    width: "10%",
+    dataIndex: "supplier_invoice_total",
+    width: "5%",
   },
+  {
+    title: "discount",
+    dataIndex: "supplier_invoice_discount",
+    width: "5%",
+  },
+  {
+    title: "total after",
+    dataIndex: "supplier_invoice_after_discount",
+    width: "5%",
+  },
+  {
+    title: "paid",
+    dataIndex: "supplier_invoice_paid",
+    width: "5%",
+  },
+  {
+    title: "credit",
+    dataIndex: "supplier_invoice_credit",
+    width: "5%",
+  }
 ];

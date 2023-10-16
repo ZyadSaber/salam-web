@@ -2,7 +2,8 @@ export interface inputNumberProp {
   disabled?: boolean;
   value: number;
   name: string;
-  Label?: string;
+  height?: number | string;
+  label?: string;
   onChange?: any;
   width?: string;
   padding?: string;

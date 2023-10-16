@@ -21,8 +21,8 @@ export const columns = [
   },
   {
     title: "parent_name",
-    dataIndex: "parent_name",
-    width: "17%",
+    dataIndex: "page_parent_name",
+    width: "15%",
   },
   {
     title: "created_at",

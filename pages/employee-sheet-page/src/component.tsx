@@ -25,20 +25,20 @@ const EmployeeSheet = () => {
                     <SelectWithApi
                         Api="QUERY_EMPLOYEE_NAME_LIST"
                         name="employee_id"
-                        Label="emply"
+                        label="emply"
                         onChange={onChange}
                         fetchOnFirstRun
                         value={state.employee_id}
                     />
                     <MonthSelect
                         name="month"
-                        Label="mnth"
+                        label="mnth"
                         onChange={onChange}
                         value={state.month}
                     />
                     <YearSelect
                         name="year"
-                        Label="yr"
+                        label="yr"
                         onChange={onChange}
                         value={state.year}
                         width="15%"
@@ -58,37 +58,37 @@ const EmployeeSheet = () => {
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-around">
                     <InputText
                         value={data?.salary}
-                        Label="slry"
+                        label="slry"
                         disabled
                     />
                     <InputText
                         value={data?.total_late_time}
-                        Label="tltm"
+                        label="tltm"
                         disabled
                     />
                     <InputText
                         value={data?.total_over_time}
-                        Label="tlvrtm"
+                        label="tlvrtm"
                         disabled
                     />
                     <InputText
                         value={data?.total_early_leaving}
-                        Label="tlrlylvng"
+                        label="tlrlylvng"
                         disabled
                     />
                     <InputText
                         value={data?.late_cost}
-                        Label="ltcs"
+                        label="ltcs"
                         disabled
                     />
                     <InputText
                         value={data?.over_time_cost}
-                        Label="ovrtmcst"
+                        label="ovrtmcst"
                         disabled
                     />
                     <InputText
                         value={data?.net_data?.salary}
-                        Label="ntslry"
+                        label="ntslry"
                         disabled
                     />
                 </Flex>

@@ -5,7 +5,7 @@ import Select from "./select";
 const MonthSelect = ({
     width = "100px",
     onChange,
-    Label,
+    label,
     value = 0,
     name,
     withLabel = false,
@@ -30,7 +30,7 @@ const MonthSelect = ({
                 padding={padding}
                 value={value}
                 onChange={onChange}
-                Label={Label}
+                label={label}
                 width={width}
                 //@ts-ignore for now
                 Options={options()}

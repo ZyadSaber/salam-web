@@ -17,7 +17,6 @@ export interface buttonProp {
 }
 export interface linkButtonProp extends buttonProp {
   label: string;
-  onClick?: () => void;
   pathTo: string;
 }
 

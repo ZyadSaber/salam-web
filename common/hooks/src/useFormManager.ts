@@ -3,8 +3,6 @@ import usePrevious from "./usePrevious";
 
 interface useFormManagerProps {
   initialValues?: any;
-  setSelectedRow?: any;
-  tableModal?: boolean;
 }
 
 const useFormManager = ({ initialValues }: useFormManagerProps) => {
@@ -46,9 +44,12 @@ const useFormManager = ({ initialValues }: useFormManagerProps) => {
     [state]
   );
 
-  const handleRootState = useCallback((e: any) => {
-    setState(e);
-  }, []);
+  const handleMultiInput = useCallback((e:any)=>{
+    setState({
+      ...state,
+      ...e
+    })
+  },[state])
 
   const handleSelectWithLabelChange = useCallback(
     (eventData: any) => {
@@ -72,9 +73,10 @@ const useFormManager = ({ initialValues }: useFormManagerProps) => {
     state,
     onChange,
     resetForm,
-    handleRootState,
+    handleRootState: setState,
     handleSelectWithLabelChange,
     handleArrayChange,
+    handleMultiInput
   };
 };
 

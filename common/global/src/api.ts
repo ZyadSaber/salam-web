@@ -5,7 +5,8 @@ const API_ID = {
   POST_CUSTOMER_TABLE_DATA: "basic_data/customers/customers_table_data_dml",
   //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data
   QUERY_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data",
-  //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data_dmlPOST_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data_dml",
+  //http://144.24.209.19:9090/api/basic_data/suppliers/suppliers_table_data_dml
+  POST_SUPPLIER_TABLE_DATA: "basic_data/suppliers/suppliers_table_data_dml",
   //http://144.24.209.19:9090/api/invoices/customer_invoice/new_customer_invoice
   POST_CUSTOMER_INVOICE_DETAILS:
     "invoices/customer_invoice/new_customer_invoice",
@@ -22,9 +23,9 @@ const API_ID = {
   QUERY_INVOICE_MASTER_TABLE_DATA:
     "invoices/invoice_search/customer_supplier_invoice_main_table",
   //http://144.24.209.19:9090/api/invoices/invoice_search/customer_invoices_for_today
-  QUERY_CUSTOMERS_INVOICES_FOT_TODAY:
+  QUERY_CUSTOMERS_INVOICES_FOR_TODAY:
     "invoices/invoice_search/customer_invoices_for_today",
-  QUERY_SUPPLIERS_INVOICES_FOT_TODAY:
+  QUERY_SUPPLIERS_INVOICES_FOR_TODAY:
     "invoices/invoice_search/supplier_invoices_for_today",
   //http://144.24.209.19:9090/api/basic_data/items/items_table_data
   QUERY_ITEMS_TABLE_DATA: "basic_data/items/items_table_data",
@@ -96,6 +97,22 @@ const API_ID = {
   QUERY_DAILY_SUMMARY_TABLE: "system_reports/daily_summary_table",
   //http://144.24.209.19:9090/api/system_reports/accounts_summary_table?type=C
   QUERY_ACCOUNTS_SUMMARY_TABLE: "system_reports/accounts_summary_table",
+  //http://144.24.209.19:9090/api/auth_security/salam_pages?user_name=admin
+  QUERY_SIDE_PAGES_DATA: "auth_security/salam_pages",
+  //http://144.24.209.19:9090/api/system_tools/parent_pages/page_name_table_data
+  QUERY_PAGE_PARENT_LIST: "system_tools/parent_pages/page_name_table_data",
+  //http://144.24.209.19:9090/api/system_tools/page_name/page_name_list_to_view
+  QUERY_PAGE_NAME_LIST_TO_VIEW: "system_tools/page_name/page_name_list_to_view",
+  //http://144.24.209.19:9090/api/auth_security/user_page_permissions,
+  POST_USER_PAGE_PERMISSIONS: "auth_security/user_page_permissions",
+  //http://144.24.209.19:9090/api/system_tools/labels/label_data_table
+  QUERY_LABELS_TABLE_DATA: "system_tools/labels/label_data_table",
+  //http://144.24.209.19:9090/api/system_tools/labels/label_data_table_dml
+  POST_LABELS_TABLE_DATA: "system_tools/labels/label_data_table_dml",
+  //http://144.24.209.19:9090/api/system_tools/pages_parent/pages_parent_data_table
+  QUERY_PAGES_PARENT_DATA_TABLE: "system_tools/pages_parent/pages_parent_data_table",
+  //http://144.24.209.19:9090/api/system_tools/pages_parent/pages_parent_data_table_dml
+  POST_PAGES_PARENT_DATA_TABLE: "system_tools/pages_parent/pages_parent_data_table_dml"
 };
 
 export default API_ID;

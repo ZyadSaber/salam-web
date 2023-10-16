@@ -5,7 +5,7 @@ import { TextAreaProps } from "./interface";
 
 const TextArea = ({
     name,
-    Label = "name",
+    label = "name",
     placeHolder,
     width = "30%",
     height = "100px",
@@ -29,7 +29,7 @@ const TextArea = ({
                 margin={margin}
                 height={height}
             >
-                <FormLabel>{t(Label)}</FormLabel>
+                <FormLabel>{t(label)}</FormLabel>
                 <Textarea
                     value={value}
                     onChange={handleChange}

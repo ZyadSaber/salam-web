@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import Button from "./button"
-//@ts-ignore
 import { NavLink } from 'react-router-dom';
 import { linkButtonProp } from "./interface";
 
