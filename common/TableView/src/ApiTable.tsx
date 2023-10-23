@@ -4,7 +4,8 @@ import React,
     useState,
     useCallback,
     useImperativeHandle,
-    forwardRef
+    forwardRef,
+    useMemo
 } from "react";
 import Table from "./Table";
 import { useFetch } from "@commons/hooks"
@@ -28,7 +29,7 @@ const TableWithApi = ({
 }: TableWithApiProps,
     ref: any
 ) => {
-    const { data, runFetch, loading, setData, resetData } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: true })
+    const { data, runFetch, loading, setData, resetData } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: checkForParams })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
     const [selectedRow, setSelectedRow] = useState({})
     const [modal, setModal] = useState(false);
@@ -54,11 +55,16 @@ const TableWithApi = ({
         if (onClick) onClick(row)
     };
 
+    const foundDataSource = useMemo(
+        () => data?.data,
+        [data?.data]
+      );
+
     useImperativeHandle(ref, () => ({
         runFetch,
         setTableData: setData,
         resetTableData: resetData,
-        getCurrentDataSource: data
+        getCurrentDataSource: () => foundDataSource,
     }));
 
     return (

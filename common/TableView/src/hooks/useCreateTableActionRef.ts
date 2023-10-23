@@ -9,9 +9,30 @@ const useCreateTableActionRef = ()=>{
     await tableRef.current?.runFetch(params),
   [tableRef])
 
+  const getTableData = useCallback(
+    //@ts-ignore
+    () => tableRef.current?.getCurrentDataSource() || [],
+    [tableRef]
+  );
+
+  const setTableData = useCallback(
+    //@ts-ignore
+    (newTableData: any) => tableRef.current?.setTableData(newTableData) || [],
+    [tableRef]
+  );
+
+  const resetTable = useCallback(
+    //@ts-ignore
+    () => tableRef.current?.resetTableData() || [],
+    [tableRef]
+  );
+
     return {
         tableRef,
-        fetchTableData
+        fetchTableData,
+        getTableData,
+        setTableData,
+        resetTable
     }
 }
 

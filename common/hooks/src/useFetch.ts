@@ -1,7 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { API_ID } from "@commons/global";
-import { useCurrentAuthorization } from "@commons/hooks";
+import { 
+  useCurrentAuthorization, 
+  // usePrevious
+ } from "@commons/hooks";
 import { useToast } from "@chakra-ui/react";
+// import {objectIs} from "@commons/helpers"
 
 interface useFetchProp {
   link: string;
@@ -21,75 +25,94 @@ const useFetch = ({
   checkForParams = false,
   params,
   //TODO: check the noAuthorization for prop
-  // noAuthorization = false,
+  noAuthorization = false,
   onResponse,
 }: useFetchProp) => {
-  const toast = useToast();
-  const authorization = useCurrentAuthorization();
-  //@ts-ignore
-  const url = `http://144.24.209.19:9090/api/${API_ID[link]}`;
+  
   const [data, setData] = useState<any>(undefined);
   const [loading, setLoading] = useState(false);
+  const toast = useToast();
+  const useAuthorization = useCurrentAuthorization();
+  const baseNextParams = params || {};
+  // const previousParams = usePrevious(baseNextParams);
 
-  const getData = useCallback(
-    async (additionalParams?: any) => {
+  // const hasParamsChanged = useCallback(
+  //   () => !objectIs(previousParams, baseNextParams),
+  //   [baseNextParams, previousParams]
+  // );
+
+    //@ts-ignore
+  const url = `http://144.24.209.19:9090/api/${API_ID[link]}`;
+
+  const generateBasicRequest = useCallback(
+    async ({params, authorization}:any) => {
       setLoading(true);
-      if (authorization) {
-        const settings = {
-          // method: "FETCH",
-          headers: {
+        const headers = {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${authorization}`,
-          },
         };
-        const computedParams = { ...additionalParams, ...additionalParams };
         const response = await fetch(
-          `${url}?${new URLSearchParams(computedParams)}`,
-          settings
+          `${url}?${new URLSearchParams(params)}`,
+          {
+            headers: authorization ? {...headers, Authorization: `Bearer ${authorization}`} : headers
+          }
         );
         setLoading(false);
         const apiData = await response.json();
         setData(apiData);
         onResponse && onResponse(apiData);
-      }
+        if (apiData && apiData?.response) {
+          toast({
+            position: "top-right",
+            title: "error",
+            description: `${JSON.stringify(apiData?.response)}`,
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+        }
     },
-    [authorization, onResponse, url]
+    [onResponse, toast, url]
   );
 
+    // useEffect(() => {
+  //   if (checkForParams && fetchOnFirstRun) {
+  //     getData(params);
+  //   }
+  // }, [fetchOnFirstRun, authorization, params, checkForParams, getData]);
+
   useEffect(() => {
-    if (fetchOnFirstRun && !checkForParams) {
-      getData();
+    if (useAuthorization && !checkForParams) {
+      generateBasicRequest({params: baseNextParams, authorization: useAuthorization});
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [useAuthorization, checkForParams]);
+
+  useEffect(() => {
+    if (useAuthorization && checkForParams) {
+      generateBasicRequest({params: baseNextParams, authorization: useAuthorization});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchOnFirstRun, authorization]);
+  }, [useAuthorization, checkForParams, params]);
 
-  useEffect(() => {
-    if (checkForParams && fetchOnFirstRun) {
-      getData(params);
-    }
-  }, [fetchOnFirstRun, authorization, params, checkForParams, getData]);
 
-  useEffect(() => {
-    if (data && data.response) {
-      toast({
-        position: "top-right",
-        title: "error",
-        description: `${JSON.stringify(data.response)}`,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-  }, [data, toast]);
+  // useEffect(() => {
+  //   if (checkForParams && fetchOnFirstRun) {
+  //     getData(params);
+  //   }
+  // }, [fetchOnFirstRun, authorization, params, checkForParams, getData]);
 
   const resetData = useCallback(() => {
     setData(undefined);
   }, []);
+  
+  const runFetch = (e?:any)=>{
+    generateBasicRequest({params: e, authorization: useAuthorization})
+  }
 
   return {
     data,
-    runFetch: getData,
+    runFetch,
     setData,
     loading,
     resetData,

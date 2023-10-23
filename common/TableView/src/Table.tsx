@@ -3,7 +3,6 @@ import { Button, IconButton } from "@commons/button";
 import { useLocation } from 'react-router-dom';
 import * as XLSX from "xlsx";
 import { useTranslation } from 'react-i18next';
-import ReactToPrint from 'react-to-print';
 import {
     Table as ChakraTable,
     Thead,
@@ -48,7 +47,7 @@ const Table = ({
     margin = "",
     padding = "",
     loading = false,
-    onDoubleClick = (e) => { console.log(e) }
+    onDoubleClick
 }: TableProps) => {
     const { pathname } = useLocation()
     const { t } = useTranslation()

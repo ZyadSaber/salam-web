@@ -47,16 +47,25 @@ const InvoicesSearch = () => {
                         <TableWithApi
                             ref={detailTableRef}
                             api="QUERY_INVOICE_DETAIL_TABLE_DATA"
+                            postApi="POST_INVOICE_DETAIL_TABLE_DATA"
                             columns={detailTableColumns}
                             rowKey="row_key"
                             hideTools={false}
                             canPrint={true}
+                            canAdd
+                            canEdit
+                            canDelete
                             onPrint={handleOpenModal}
                         />
                     </Flex>
                 </Flex>
             <PdfViewer
                 ref={PDFRef}
+                reportName="files"
+                params={{
+                    invoice_id: 17,
+                    type: "C"
+                }}
             />
             </Flex>
         </>

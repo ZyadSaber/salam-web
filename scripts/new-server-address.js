@@ -1,20 +1,20 @@
-const fs = require('fs');
+const { networkInterfaces } = require('os');
 
-const params = process.argv
+const nets = networkInterfaces();
+const results = Object.create(null); // Or just '{}', an empty object
 
-function readWriteAsync(params) {
-  console.log(params)
-  // fs.readFile('src/global/appLinks.ts', 'utf-8', function(err, data){
-  //   if (err) throw err;
-  //   const value = `,${params[2]} : "${params[3]}"
-  // }
-  //   `
-  //   const newValue = data.replace("}", value);
-  //   fs.writeFile('src/global/appLinks.ts', newValue, 'utf-8', function (err) {
-  //     if (err) throw err;
-  //     console.log(`Added server ${params[2]} to the app`);
-  //   });
-  // });
+for (const name of Object.keys(nets)) {
+    for (const net of nets[name]) {
+        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+        // 'IPv4' is in Node <= 17, from 18 it's a number 4 or 6
+        const familyV4Value = typeof net.family === 'string' ? 'IPv4' : 4
+        if (net.family === familyV4Value && !net.internal) {
+            if (!results[name]) {
+                results[name] = [];
+            }
+            results[name].push(net.address);
+        }
+    }
 }
 
-readWriteAsync(params);
+console.log(results)

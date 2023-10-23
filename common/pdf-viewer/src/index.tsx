@@ -26,6 +26,8 @@ const PdfViewer = ({
             // getCurrentDataSource: data
         }));
 
+        const computedUrl =`http://144.24.209.19:9090/system_pdf_generate/${reportName}?${new URLSearchParams(params)}`
+
     return(
         <Modal
             label="PDF Viewer"
@@ -35,7 +37,7 @@ const PdfViewer = ({
             width="90%"
             height="80%"
         >
-            <object data={"http://144.24.209.19:9090/system_pdf_generate/files"} width="100%" height="100%">
+            <object data={computedUrl} width="100%" height="100%">
           {`Your browser does not support pdf files.`}
         </object>
         </Modal>

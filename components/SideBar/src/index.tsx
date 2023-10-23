@@ -43,7 +43,7 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
         fetchOnFirstRun: true,
         params: {
             user_name
-        }
+        },
     })
 
     return (
@@ -70,7 +70,7 @@ const SideBar = ({ onClose, ...rest }: SidebarProps) => {
                     </AccordionItem>
 
                     {
-                        data && data.map((event: any) => {
+                        Array.isArray(data) && data?.map((event: any) => {
                             return (
                                 <AccordionItem key={event.page_parent_id}>
                                     <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
