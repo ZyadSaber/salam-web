@@ -45,7 +45,7 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
                 <SelectWithApi
                     name="employee_id"
                     onChange={onChange}
-                    Api="QUERY_EMPLOYEE_NAME_LIST"
+                    api="QUERY_EMPLOYEE_NAME_LIST"
                     value={employee_id}
                     label="emply"
                     width="30%"

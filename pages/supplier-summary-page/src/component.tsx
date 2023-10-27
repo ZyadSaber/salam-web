@@ -33,7 +33,7 @@ const SupplierSummaryPage = () => {
                         name="supplier_id"
                         value={state.supplier_id}
                         onChange={onChange}
-                        Api="QUERY_SUPPLIER_LIST"
+                        api="QUERY_SUPPLIER_LIST"
                     />
                     <InputText
                         name="date_from"

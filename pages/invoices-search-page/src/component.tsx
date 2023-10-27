@@ -4,6 +4,7 @@ import Flex from "@commons/flex";
 import PdfViewer from "@commons/pdf-viewer";
 import {usePdfViewerControl} from "@commons/pdf-viewer";
 import FormView from "./Partials/FormView";
+import ModalView from "./Partials/ModalView";
 import { mainTableColumns, detailTableColumns } from "./constant";
 
 const InvoicesSearch = () => {
@@ -37,10 +38,13 @@ const InvoicesSearch = () => {
                         <TableWithApi
                             ref={tableRef}
                             api="QUERY_INVOICE_MASTER_TABLE_DATA"
+                            postApi="POST_INVOICE_MASTER_TABLE_DATA"
                             columns={mainTableColumns}
                             rowKey="invoice_id"
                             onSelectedRow={handleSelectedRow}
                             height="400px"
+                            hideTools={false}
+                            canDelete
                         />
                     </Flex>
                     <Flex width="60%">
@@ -56,6 +60,8 @@ const InvoicesSearch = () => {
                             canEdit
                             canDelete
                             onPrint={handleOpenModal}
+                            ModalContent={ModalView}
+                            modalWidth="80%"
                         />
                     </Flex>
                 </Flex>

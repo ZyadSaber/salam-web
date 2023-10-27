@@ -22,7 +22,6 @@ export const initialItemState = {
   supplier_invoice_item_price: 0,
   supplier_invoice_item_total: 0,
   supplier_invoice_item_notes: "",
-  item_name: ""
 }
 
 export const itemValidate = [
@@ -33,7 +32,6 @@ export const itemValidate = [
   "supplier_invoice_item_quantity",
   "supplier_invoice_item_price",
   "supplier_invoice_item_total",
-  "item_name",
 ]
 
 export const rootValidate = [
@@ -41,10 +39,7 @@ export const rootValidate = [
   "supplier_invoice_date",
   "supplier_invoice_items",
   "supplier_invoice_total",
-  "supplier_invoice_discount",
   "supplier_invoice_after_discount",
-  "supplier_invoice_paid",
-  "supplier_invoice_credit",
 ]
 
 export const columns = [

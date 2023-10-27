@@ -99,7 +99,7 @@ const SupplierInvoice = () => {
             <Flex flexDirection='column' width='100%'>
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api="QUERY_SUPPLIER_LIST"
+                        api="QUERY_SUPPLIER_LIST"
                         onChange={mainStateHandleSelectWithLabelChange}
                         value={state.supplier_id}
                         label="splr"

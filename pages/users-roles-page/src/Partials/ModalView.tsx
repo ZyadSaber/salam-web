@@ -62,7 +62,7 @@ const ModalView = ({
                 width="47%"
             />
             <SelectWithApi
-                Api=""
+                api=""
                 name="user_role"
                 label='user_role'
                 onChange={onChange}

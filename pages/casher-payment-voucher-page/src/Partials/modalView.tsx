@@ -67,7 +67,7 @@ const ModalView = ({
             />
             <SelectWithApi
                 name="voucher_id"
-                Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
+                api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
                 label="nm"
                 params={{
                     invoice_type: state.voucher_type

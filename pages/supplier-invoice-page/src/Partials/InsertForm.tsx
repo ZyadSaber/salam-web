@@ -50,7 +50,7 @@ const InsertForm = ({
             <Flex width="100%" flexDirection="column" margin="0" padding="0">
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api="QUERY_ITEMS_LIST"
+                        api="QUERY_ITEMS_LIST"
                         onChange={handleSelectWithLabelChange}
                         value={state.supplier_invoice_item_id}
                         label="itmnm"

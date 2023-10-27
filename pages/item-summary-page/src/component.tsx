@@ -32,7 +32,7 @@ const ItemSummaryPage = () => {
                         name="item_id"
                         value={state.item_id}
                         onChange={onChange}
-                        Api="QUERY_ITEMS_LIST"
+                        api="QUERY_ITEMS_LIST"
                     />
                     <InputText
                         name="date_from"

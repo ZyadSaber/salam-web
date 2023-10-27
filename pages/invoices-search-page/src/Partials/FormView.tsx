@@ -44,7 +44,7 @@ const FormView = ({ fetchTableData }: any) => {
                 />
                 <SelectWithApi
                     name="holder_number"
-                    Api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
+                    api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
                     label="nm"
                     params={{
                         invoice_type: state.invoice_type

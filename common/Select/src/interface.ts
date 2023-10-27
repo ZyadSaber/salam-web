@@ -21,7 +21,7 @@ export interface SelectProps {
 }
 
 export interface SelectWithApiProps {
-  Api: string;
+  api: string;
   onChange?: any;
   label?: string;
   value?: number;

@@ -5,7 +5,7 @@ import { SelectWithApiProps } from "./interface"
 
 const SelectWithApi = ({
     width,
-    Api,
+    api,
     onChange,
     label,
     name = "",
@@ -18,7 +18,7 @@ const SelectWithApi = ({
 }: SelectWithApiProps) => {
 
     const { data } = useFetch({
-        link: Api,
+        link: api,
         fetchOnFirstRun: true,
         params: params,
         checkForParams: true

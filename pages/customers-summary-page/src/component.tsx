@@ -33,7 +33,7 @@ const CustomersSummaryPage = () => {
                         name="customer_id"
                         value={state.customer_id}
                         onChange={onChange}
-                        Api="QUERY_CUSTOMERS_LIST"
+                        api="QUERY_CUSTOMERS_LIST"
                     />
                     <InputText
                         name="date_from"

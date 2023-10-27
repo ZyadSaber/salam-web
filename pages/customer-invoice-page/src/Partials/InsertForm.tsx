@@ -49,7 +49,7 @@ const InsertForm = ({
             <Flex width="100%" flexDirection="column" margin="0" padding="0">
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api={"QUERY_PRINT_OPTIONS_LIST"}
+                        api={"QUERY_PRINT_OPTIONS_LIST"}
                         onChange={handleSelectWithLabelChange}
                         value={state.customer_invoice_print_option_id}
                         label="prntnm"
@@ -59,7 +59,7 @@ const InsertForm = ({
                         selectLabelName="print_name"
                     />
                     <SelectWithApi
-                        Api={"QUERY_ITEMS_LIST"}
+                        api={"QUERY_ITEMS_LIST"}
                         onChange={handleSelectWithLabelChange}
                         value={state.customer_invoice_item_id}
                         label="itmnm"

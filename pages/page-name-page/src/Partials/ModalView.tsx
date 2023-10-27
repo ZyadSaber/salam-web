@@ -51,7 +51,7 @@ const ModalView = ({
             </Flex>
                 <Flex width="100%">
                 <SelectWithApi
-                    Api='QUERY_PAGE_PARENT_LIST'
+                    api='QUERY_PAGE_PARENT_LIST'
                     name="page_parent_id"
                     label='parent_name'
                     onChange={onChange}

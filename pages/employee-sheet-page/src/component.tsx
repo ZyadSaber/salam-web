@@ -23,7 +23,7 @@ const EmployeeSheet = () => {
             <Flex flexDirection="column" padding="0" margin="0" width="100%">
                 <Flex width="100%" margin="0" padding="0" bordered>
                     <SelectWithApi
-                        Api="QUERY_EMPLOYEE_NAME_LIST"
+                        api="QUERY_EMPLOYEE_NAME_LIST"
                         name="employee_id"
                         label="emply"
                         onChange={onChange}

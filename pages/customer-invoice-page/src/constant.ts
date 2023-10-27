@@ -31,10 +31,7 @@ export const rootValidate = [
   "customer_invoice_date",
   "customer_invoice_items",
   "customer_invoice_total",
-  "customer_invoice_discount",
   "customer_invoice_after_discount",
-  "customer_invoice_paid",
-  "customer_invoice_credit",
 ];
 
 export const itemValidate = [
@@ -45,7 +42,6 @@ export const itemValidate = [
   "customer_invoice_item_quantity",
   "customer_invoice_item_price",
   "customer_invoice_item_total",
-  "item_name",
 ];
 
 export const columns = [

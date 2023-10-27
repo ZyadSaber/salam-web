@@ -103,7 +103,7 @@ const CustomerInvoices = () => {
             <Flex flexDirection="column" width="100%">
                 <Flex margin="0" padding="0">
                     <SelectWithApi
-                        Api={"QUERY_CUSTOMERS_LIST"}
+                        api={"QUERY_CUSTOMERS_LIST"}
                         onChange={onChange}
                         value={state.customer_id}
                         label="cstmr"
