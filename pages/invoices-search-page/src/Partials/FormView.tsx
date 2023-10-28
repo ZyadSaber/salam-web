@@ -4,17 +4,10 @@ import { RadioBoxOptions } from "../constant";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
-import { useFormManager } from "@commons/hooks";
 import { Button } from "@commons/button"
-import { initialFormValues } from "../constant"
 
-const FormView = ({ fetchTableData }: any) => {
-    const {
-        state
-        , onChange
-    } = useFormManager({
-        initialValues: initialFormValues
-    })
+//TODO: add this type
+const FormView = ({ fetchTableData, state, onChange }: any) => {
 
     const handleSearch = useCallback(() => {
         fetchTableData({

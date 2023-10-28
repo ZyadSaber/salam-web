@@ -9,7 +9,7 @@ interface ModalProp {
     children?: any,
     label: string,
     onOK?: () => void,
-    onClose: () => void,
+    onClose?: () => void,
     submitTitle?: string,
     width?: string;
     hideSaveButton?: boolean;
@@ -41,7 +41,7 @@ const Modal = (
   <ModalContent width={width} height={height}>
     <ModalHeader>
         <BaseTitle value={label} />
-        <Button label='&times;' backGround='none' data-dismiss="modal" onClick={onClose} />
+        <Button label='&times;' backGround='none' margin='0' padding='0' data-dismiss="modal" onClick={onClose} />
     </ModalHeader>
 
     <ModalBody>
@@ -52,8 +52,8 @@ const Modal = (
 
     {!noFooter &&
         <ModalFooter hidden={noFooter}>
-            {!hideSaveButton && <Button onClick={onOK} label={submitTitle} hidden={hideSaveButton} />}
-            {!hideCloseButton && <Button onClick={onClose} label='cls' hidden={hideCloseButton} />}
+            {!hideSaveButton && <Button onClick={onOK} label={submitTitle} hidden={hideSaveButton} width='20%' margin='0' />}
+            {!hideCloseButton && <Button onClick={onClose} label='cls' hidden={hideCloseButton} width='20%' backGround='red' margin='0' />}
         </ModalFooter>
     }
   </ModalContent>

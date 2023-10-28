@@ -3,9 +3,10 @@ import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import Flex from "@commons/flex";
 import PdfViewer from "@commons/pdf-viewer";
 import {usePdfViewerControl} from "@commons/pdf-viewer";
+import { useFormManager } from "@commons/hooks";
 import FormView from "./Partials/FormView";
 import ModalView from "./Partials/ModalView";
-import { mainTableColumns, detailTableColumns } from "./constant";
+import { mainTableColumns, detailTableColumns, initialFormValues } from "./constant";
 
 const InvoicesSearch = () => {
     const {
@@ -27,21 +28,30 @@ const InvoicesSearch = () => {
         })
     }, [fetchDetailTableData])
 
+    const {
+        state
+        , onChange
+    } = useFormManager({
+        initialValues: initialFormValues
+    })
+
     return (
         <>
             <Flex width="100%" margin="0" padding="0" flexDirection="column">
                 <FormView
                     fetchTableData={fetchTableData}
+                    state={state}
+                    onChange={onChange}
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
                     <Flex width="40%">
                         <TableWithApi
                             ref={tableRef}
                             api="QUERY_INVOICE_MASTER_TABLE_DATA"
-                            postApi="POST_INVOICE_MASTER_TABLE_DATA"
+                            postApi={state.invoice_type === "C" ? "POST_CUSTOMER_INVOICES" : "POST_SUPPLIER_INVOICES"}
                             columns={mainTableColumns}
                             rowKey="invoice_id"
-                            onSelectedRow={handleSelectedRow}
+                            onClick={handleSelectedRow}
                             height="400px"
                             hideTools={false}
                             canDelete

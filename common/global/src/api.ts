@@ -112,7 +112,11 @@ const API_ID = {
   //http://144.24.209.19:9090/api/system_tools/pages_parent/pages_parent_data_table
   QUERY_PAGES_PARENT_DATA_TABLE: "system_tools/pages_parent/pages_parent_data_table",
   //http://144.24.209.19:9090/api/system_tools/pages_parent/pages_parent_data_table_dml
-  POST_PAGES_PARENT_DATA_TABLE: "system_tools/pages_parent/pages_parent_data_table_dml"
+  POST_PAGES_PARENT_DATA_TABLE: "system_tools/pages_parent/pages_parent_data_table_dml",
+  //http://144.24.209.19:9090/api/invoices/customer_invoice/customer_invoice_dml
+  POST_CUSTOMER_INVOICES: "invoices/customer_invoice/customer_invoice_dml",
+  //http://144.24.209.19:9090/api/invoices/supplier_invoice/supplier_invoice_dml
+  POST_SUPPLIER_INVOICES: "invoices/supplier_invoice/supplier_invoice_dml"
 };
 
 export default API_ID;

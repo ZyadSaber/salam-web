@@ -40,7 +40,7 @@ export const ModalContent = styled.div<{width: string, height?: string}>`
 `
 
 export const ModalHeader = styled.div`
-	padding: 5px 32px;
+	padding: 15px 32px;
 	border-bottom: 1px solid #ddd;
 	display: flex;
 	align-items: center;
@@ -54,7 +54,7 @@ export const ModalBody = styled.div`
 `
 
 export const ModalFooter = styled.div`
-    padding: 20px 32px;
+    padding: 15px 32px;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;

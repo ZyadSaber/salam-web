@@ -10,6 +10,7 @@ import React,
 import Table from "./Table";
 import { useFetch } from "@commons/hooks"
 import Modal from "@commons/modal";
+import ConfirmationModal from "@commons/confirmation-modal"
 import useTableControlsButtons from "./hooks/useTableControlsButtons";
 import { TableWithApiProps } from "./interface"
 
@@ -33,6 +34,7 @@ const TableWithApi = ({
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
     const [selectedRow, setSelectedRow] = useState({})
     const [modal, setModal] = useState(false);
+    const [confirmModal, setConfirmModal] = useState(false);
     const handleAdd = useCallback(() => {
         setSelectedRow({ query_status: "n" })
         setModal(true)
@@ -49,6 +51,8 @@ const TableWithApi = ({
         setModal(false)
     }, [])
 
+    const handleCloseConfirmModal = useCallback(() => {setConfirmModal(false)},[])
+    const handleOpenConfirmModal = useCallback(() => {setConfirmModal(true)},[])
 
     const handleSelectedRow = (row: any) => {
         setSelectedRow(row)
@@ -85,12 +89,17 @@ const TableWithApi = ({
                 />
             </Modal>
             }
+            <ConfirmationModal
+                visible={confirmModal}
+                onConfirm={handleDelete}
+                onClose={handleCloseConfirmModal}
+            />
             <Table
                 dataSource={data?.data}
                 columns={columns}
                 onAdd={handleAdd}
                 onEdit={handleEdit}
-                onDelete={handleDelete}
+                onDelete={handleOpenConfirmModal}
                 onSelectedRow={handleSelectedRow}
                 loading={loading}
                 {...tableProps}
