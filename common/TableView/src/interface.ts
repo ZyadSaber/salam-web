@@ -57,4 +57,6 @@ export interface TableWithApiProps extends TableProps {
   refreshAfter?: number;
   params?: any;
   modalWidth?: string;
+  printProps?: { [key: string]: string | number };
+  reportName?: string;
 }

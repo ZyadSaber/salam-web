@@ -7,10 +7,11 @@ import React,
     forwardRef,
     useMemo
 } from "react";
-import Table from "./Table";
+import PdfViewer, {usePdfViewerControl} from "@commons/pdf-viewer";
 import { useFetch } from "@commons/hooks"
 import Modal from "@commons/modal";
 import ConfirmationModal from "@commons/confirmation-modal"
+import Table from "./Table";
 import useTableControlsButtons from "./hooks/useTableControlsButtons";
 import { TableWithApiProps } from "./interface"
 
@@ -26,12 +27,15 @@ const TableWithApi = ({
     params,
     checkForParams = false,
     modalWidth = "60%",
+    printProps,
+    reportName,
     ...tableProps
 }: TableWithApiProps,
     ref: any
 ) => {
     const { data, runFetch, loading, setData, resetData } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: checkForParams })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
+    const {PDFRef, handleOpenModal} = usePdfViewerControl()
     const [selectedRow, setSelectedRow] = useState({})
     const [modal, setModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
@@ -64,6 +68,10 @@ const TableWithApi = ({
         [data?.data]
       );
 
+      const handlePrint = useCallback(() => {
+        selectedRow && handleOpenModal() 
+      },[handleOpenModal, selectedRow])
+
     useImperativeHandle(ref, () => ({
         runFetch,
         setTableData: setData,
@@ -94,11 +102,17 @@ const TableWithApi = ({
                 onConfirm={handleDelete}
                 onClose={handleCloseConfirmModal}
             />
+            <PdfViewer
+                ref={PDFRef}
+                reportName={reportName}
+                params={printProps}
+            />
             <Table
                 dataSource={data?.data}
                 columns={columns}
                 onAdd={handleAdd}
                 onEdit={handleEdit}
+                onPrint={handlePrint}
                 onDelete={handleOpenConfirmModal}
                 onSelectedRow={handleSelectedRow}
                 loading={loading}

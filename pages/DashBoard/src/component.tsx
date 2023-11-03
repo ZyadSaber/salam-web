@@ -66,7 +66,7 @@ const DashBoard = () => {
                         width="100%"
                     />
                     <ChartWithApi
-                        api="QUERY_MAIN_CHART_DATA"
+                        api="QUERY_VAULT_CHART_DATA"
                         label="vault"
                         mode="pie"
                         width="100%"

@@ -79,6 +79,8 @@ const API_ID = {
   GET_PRIMARY_IMAGE: "application_logo/primary_logo",
   //http://144.24.209.19:9090/api/charts/invoices_query?
   QUERY_INVOICES_CHART_DATA: "charts/invoices_query",
+  //http://144.24.209.19:9090/api/charts/vault_query_data?
+  QUERY_VAULT_CHART_DATA: "charts/vault_query_data",
   //http://144.24.209.19:9090/api/auth_security/users_info
   QUERY_USERS_TABLE_DATA: "auth_security/users_info",
   //http://144.24.209.19:9090/api/auth_security/users_info_dml
