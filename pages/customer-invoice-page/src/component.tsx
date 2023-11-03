@@ -41,20 +41,23 @@ const CustomerInvoices = () => {
 
 
     const handleAdd = useCallback(() => {
-        handleArrayChange({ name: "customer_invoice_items", value: currentItemState })
+        handleArrayChange({ name: "customer_invoice_items", value: {...currentItemState, rowKey: state.customer_invoice_items.length + 1} })
         let totals = 0
         state.customer_invoice_items.forEach((item: any) => {
             totals = totals + item.customer_invoice_item_total
         });
+        const computedTotals = totals + currentItemState.customer_invoice_item_total
         handleMultiInput({
             customer_invoice_items: [
                 ...state.customer_invoice_items,
                 currentItemState
             ],
-            customer_invoice_total: totals + currentItemState.customer_invoice_item_total
+            customer_invoice_total: computedTotals,
+            customer_invoice_after_discount:  computedTotals - state.customer_invoice_discount,
+            customer_invoice_credit: computedTotals - state.customer_invoice_discount - state.customer_invoice_paid
         })
         resetItemForm()
-    }, [currentItemState, handleArrayChange, handleMultiInput, resetItemForm, state.customer_invoice_items])
+    }, [currentItemState, handleArrayChange, handleMultiInput, resetItemForm, state.customer_invoice_discount, state.customer_invoice_items, state.customer_invoice_paid])
 
     const handleDiscount = useCallback(({ name, value }: onChangeType) => {
         handleMultiInput({
@@ -81,9 +84,15 @@ const CustomerInvoices = () => {
         },
     ]
 
-    //TODO: add Delete Function and make sure to update the total and credit
     const handleDelete = (e: any) => {
-        console.log(e)
+        const computedItems = state.customer_invoice_items.filter((f:any)=> e.rowKey !== f.rowKey )
+        const totalAfterDelete = state.customer_invoice_total - state.customer_invoice_item_total
+        handleMultiInput({
+            customer_invoice_items: computedItems,
+            customer_invoice_total:totalAfterDelete,
+            customer_invoice_after_discount:totalAfterDelete - state.customer_invoice_discount,
+            customer_invoice_credit:totalAfterDelete - state.customer_invoice_discount - state.customer_invoice_paid
+        })
     }
 
     const handleValidateFelids = useValidateForm({
@@ -132,7 +141,7 @@ const CustomerInvoices = () => {
                     onAction={handleDelete}
                     hideTools={false}
                     onAdd={handleValidateFelids}
-                    canAdd={true}
+                    canAdd
                     additionalButtons={additionalButtons}
                 />
                 <Flex width='100%' justifyContent='space-around'>
@@ -151,7 +160,7 @@ const CustomerInvoices = () => {
                         width="15%"
                     />
                     <InputNumber
-                        name='totalAfterDiscount'
+                        name='customer_invoice_after_discount'
                         disabled
                         value={state.customer_invoice_after_discount}
                         label="tlaftrdsnt"

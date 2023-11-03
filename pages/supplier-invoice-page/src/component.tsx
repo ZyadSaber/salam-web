@@ -47,20 +47,23 @@ const SupplierInvoice = () => {
     ]
 
     const handleAdd = useCallback(() => {
-        handleArrayChange({ name: "supplier_invoice_items", value: currentItemState })
+        handleArrayChange({ name: "supplier_invoice_items", value: {...currentItemState, rowKey: state.supplier_invoice_items.length + 1} })
         let totals = 0
         state.supplier_invoice_items.forEach((item: any) => {
             totals = totals + item.supplier_invoice_item_total
         });
+        const computedTotals = totals + currentItemState.supplier_invoice_item_total
         handleMultiInput({
             supplier_invoice_items: [
                 ...state.supplier_invoice_items,
                 currentItemState
             ],
-            supplier_invoice_total: totals + currentItemState.supplier_invoice_item_total
+            supplier_invoice_total: computedTotals,
+            supplier_invoice_after_discount:  computedTotals - state.supplier_invoice_discount,
+            supplier_invoice_credit: computedTotals - state.supplier_invoice_discount - state.supplier_invoice_paid
         })
         resetItemForm()
-    }, [currentItemState, handleArrayChange, handleMultiInput, resetItemForm, state.supplier_invoice_items])
+    }, [currentItemState, handleArrayChange, handleMultiInput, resetItemForm, state.supplier_invoice_discount, state.supplier_invoice_items, state.supplier_invoice_paid])
 
     const handleDiscount = useCallback(({ name, value }: onChangeType) => {
         handleMultiInput({
@@ -78,7 +81,14 @@ const SupplierInvoice = () => {
 
     //TODO: add Delete Function and make sure to update the total and credit
     const handleDelete = (e: any) => {
-        console.log(e)
+        const computedItems = state.supplier_invoice_items.filter((f:any)=> e.rowKey !== f.rowKey )
+        const totalAfterDelete = state.supplier_invoice_total - state.supplier_invoice_item_total
+        handleMultiInput({
+            supplier_invoice_items: computedItems,
+            supplier_invoice_total:totalAfterDelete,
+            supplier_invoice_after_discount:totalAfterDelete - state.supplier_invoice_discount,
+            supplier_invoice_credit:totalAfterDelete - state.supplier_invoice_discount - state.supplier_invoice_paid
+        })
     }
 
     const handleValidateFelids = useValidateForm({

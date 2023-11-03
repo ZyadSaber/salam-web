@@ -77,7 +77,7 @@ const InvoicesSearch = () => {
                 </Flex>
             <PdfViewer
                 ref={PDFRef}
-                reportName="files"
+                reportName="customer"
                 params={{
                     invoice_id: 17,
                     type: "C"
