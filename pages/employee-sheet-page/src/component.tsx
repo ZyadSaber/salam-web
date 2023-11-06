@@ -5,7 +5,7 @@ import Flex from "@commons/flex";
 import { useFormManager } from "@commons/hooks";
 import { columns } from "./constans";
 import { useFetch } from "@commons/hooks"
-import { SearchButton } from "@commons/button";
+import { SearchAndClearButton } from "@commons/button";
 import { InputText } from "@commons/input-text";
 
 const EmployeeSheet = () => {
@@ -44,7 +44,7 @@ const EmployeeSheet = () => {
                         width="15%"
                         range={4}
                     />
-                    <SearchButton
+                    <SearchAndClearButton
                         onClick={runFetch}
                     />
                 </Flex>

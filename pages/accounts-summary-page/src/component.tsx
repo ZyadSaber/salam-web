@@ -10,8 +10,8 @@ const AccountsSummary = () => {
     const { state, onChange } = useFormManager({ initialValues: { type: "C" } })
     const {
         tableRef,
-         fetchTableData,
-        } = useCreateTableActionRef()
+        fetchTableData,
+    } = useCreateTableActionRef()
     const handleSearch = useCallback(() => {
         fetchTableData(
             {
@@ -29,11 +29,11 @@ const AccountsSummary = () => {
                     label="type"
                     options={voucherOptions}
                 />
-                  <Button
-                        onClick={handleSearch}
-                        label="search"
-                        width="10%"
-                    />
+                <Button
+                    onClick={handleSearch}
+                    label="search"
+                    width="10%"
+                />
             </Flex>
             <TableWithApi
                 ref={tableRef}

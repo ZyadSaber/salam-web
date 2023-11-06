@@ -4,15 +4,15 @@ import InputText from "@commons/input-text/src/inputText";
 import { SelectWithApi } from "@commons/select";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
-import { Button } from "@commons/button";
+import { SearchAndClearButton } from "@commons/button";
 import { columns } from "./constant";
 
 const CustomersSummaryPage = () => {
     const { state, onChange } = useFormManager({ initialValues: { date_from: "", date_to: "", customer_id: "" } })
     const {
         tableRef,
-         fetchTableData,
-        } = useCreateTableActionRef()
+        fetchTableData,
+    } = useCreateTableActionRef()
 
     const handleSearch = useCallback(() => {
         fetchTableData(
@@ -47,10 +47,9 @@ const CustomersSummaryPage = () => {
                         label="to"
                         onChange={onChange}
                     />
-                     <Button
-                        onClick={handleSearch}
-                        label="search"
-                        width="10%"
+                    <SearchAndClearButton
+                        onSearch={handleSearch}
+                        width="20%"
                     />
                 </Flex>
                 <TableWithApi

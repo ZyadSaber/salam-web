@@ -1,30 +1,28 @@
 import React, { memo } from "react";
+import Button from "./button"
+import { iconType } from "./constants"
 import { iconButtonProp } from "./interface"
 
 const IconButton = ({
-    icon,
-    onClick,
-    disabled = false,
-    width = "30px",
-    height = "30px",
-    color,
-    margin = "10px",
-    padding,
-    hidden = false
+    type,
+    backGround = "none",
+    margin = "5px",
+    ...prop
 }: iconButtonProp) => {
+
+    const icon = <i className={type ? iconType[type] : ""}></i>
+
     return (
         <>
-            <button style={{
-                border: "none",
-                width: width,
-                height: height,
-                backgroundColor: color,
-                padding: padding,
-                margin: margin,
-                borderRadius: "20px"
-            }} hidden={hidden} onClick={onClick} disabled={disabled} >
-                <i className={icon}></i>
-            </button>
+            <Button
+                border="none"
+                icon={icon}
+                padding="0"
+                borderRadius="20px"
+                margin={margin}
+                backGround={backGround}
+                {...prop}
+            />
         </>
     )
 }

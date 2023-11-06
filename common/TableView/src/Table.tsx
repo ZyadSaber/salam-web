@@ -85,18 +85,18 @@ const Table = ({
                     hidden={hideTools}
                 >
                     <IconButton
-                        icon='fa-sharp fa-solid fa-plus'
+                        type="plus"
                         onClick={onAdd}
                         hidden={!canAdd}
                     />
                     <IconButton
-                        icon='fa-sharp fa-solid fa-pen-clip'
+                        type='edit'
                         onClick={onEdit}
                         hidden={!canEdit}
                         disabled={!rowSelected}
                     />
                     <IconButton
-                        icon='fa-sharp fa-solid fa-trash'
+                        type="delete"
                         onClick={onDelete}
                         hidden={!canDelete}
                         disabled={!rowSelected}
@@ -104,7 +104,7 @@ const Table = ({
                     {additionalButtons && additionalButtons.map((button: additionalButtonsType) => {
                         return (
                             <IconButton
-                                icon={button.icon}
+                                type={button.icon}
                                 onClick={button.onClick}
                                 disabled={button.disabled}
                                 hidden={false}
@@ -112,33 +112,19 @@ const Table = ({
                         )
                     })}
                     <IconButton
-                        icon='fa-solid fa-floppy-disk'
+                        type="save"
                         onClick={onSave}
                         hidden={!canSave}
                         disabled={!canSave}
                     />
                     <IconButton
-                        icon='fa-solid fa-print'
+                        type="print"
                         onClick={onPrint}
                         hidden={!canPrint}
                         disabled={!canPrint}
                     />
-                    {/* <ReactToPrint
-                        trigger={() => <IconButton
-                            icon='fa-solid fa-print'
-                            hidden={!canPrint}
-                            disabled={!canPrint}
-                        />}
-                        //@ts-ignore
-                        content={() => {
-                            return (
-                                componentRef.current
-                            )
-                        }}
-                        documentTitle="dd"
-                    /> */}
                     <IconButton
-                        icon='fa-sharp fa-regular fa-file-excel'
+                        type="excel"
                         onClick={onExcel}
                         hidden={!canExcel}
                         disabled={!canExcel}
@@ -193,8 +179,7 @@ const Table = ({
                     </Tfoot> */}
 
                         </ChakraTable>
-
-                        {!Array.isArray(dataSource) || dataSource.length === 0 && !loading ? <Flex justifyContent='center' width='100%'>
+                        {(!Array.isArray(dataSource) || dataSource.length === 0) && !loading ? <Flex justifyContent='center' width='100%'>
                             <Text as='b' fontSize='md' color='red'>No Data</Text>
                         </Flex> : <></>}
                     </Box>
