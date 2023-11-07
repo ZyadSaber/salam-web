@@ -1,7 +1,7 @@
 import React, { memo } from "react"
-import IconButton from "./iconButton"
 import Flex from "@commons/flex"
 import { primaryColors } from "@commons/global"
+import IconButton from "./iconButton"
 import { searchClearProp } from "./interface"
 
 const SearchAndClearButton = ({
@@ -26,7 +26,7 @@ const SearchAndClearButton = ({
                 <IconButton
                     hidden={noSearch}
                     disabled={disabled}
-                    type="search"
+                    iconName="search"
                     label="search"
                     height="100%"
                     onClick={onSearch}
@@ -38,7 +38,7 @@ const SearchAndClearButton = ({
 
                 <IconButton
                     hidden={noClear}
-                    type="clear"
+                    iconName="clear"
                     height="100%"
                     onClick={onClear}
                     width="25%"

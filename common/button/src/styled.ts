@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { styledButton } from "./interface";
+import { Button} from 'antd';
+import {buttonProp} from "./interface"
 
-export const StyledButton = styled.button<styledButton>`
+export const StyledButton = styled(Button)<buttonProp>`
   margin: ${({ margin }) => margin};
   height: ${({ height }) => height};
   padding: ${({ padding }) => padding};

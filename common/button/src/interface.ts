@@ -1,4 +1,7 @@
-export interface styledButton {
+import {ButtonProps} from "antd"
+
+
+export interface buttonProp extends ButtonProps {
   width?: string;
   margin?: string;
   height?: string;
@@ -9,9 +12,6 @@ export interface styledButton {
   borderRadius?: string;
   fontWeight?: string;
   border?: string;
-}
-
-export interface buttonProp extends styledButton {
   label?: string;
   onDoubleClick?: () => void;
   onClick?: () => void;
@@ -29,10 +29,12 @@ export interface linkButtonProp extends buttonProp {
 export interface searchClearProp extends buttonProp {
   onSearch?: () => void;
   onClear?: () => void;
+  noSearch?: boolean;
+  noClear?: boolean;
 }
 
 export interface iconButtonProp extends buttonProp {
-  type: string;
+  iconName: string;
 }
 
 export interface saveButtonProp extends buttonProp {

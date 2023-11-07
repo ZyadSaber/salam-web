@@ -8,10 +8,11 @@
   "main": "src",
   "sideEffects": false,
   "dependencies": {
-    "@chakra-ui/react": "^2.5.1",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.8",
-    "@types/jest": "^27.5.2"
+    "antd": "^5.11.0",
+    "i18next": "^19.9.0",
+    "react": "^18.2.0",
+    "styled-components": "^6.0.7",
+    "@commons/global": "1.0.0"
   },
   "enableBabelTranspilation": true
 }

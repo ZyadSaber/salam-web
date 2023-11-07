@@ -4,13 +4,13 @@ import { iconType } from "./constants"
 import { iconButtonProp } from "./interface"
 
 const IconButton = ({
-    type,
+    iconName,
     backGround = "none",
     margin = "5px",
     ...prop
 }: iconButtonProp) => {
 
-    const icon = <i className={type ? iconType[type] : ""}></i>
+    const icon = <i className={iconName ? iconType[iconName] : ""}></i>
 
     return (
         <>

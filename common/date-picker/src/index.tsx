@@ -3,6 +3,7 @@ import { FormLabel, Flex } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { defaultDate } from "@commons/global";
 import { StyledDate } from "./styled"
+import { DatePickerProps } from "./interface"
 
 const DatePicker = ({
     label,
@@ -14,7 +15,7 @@ const DatePicker = ({
     onChange,
     required = false,
     ...props
-}: any) => {
+}: DatePickerProps) => {
 
     const handleChange = useCallback((event: { target: { value: string; }; }) => {
         onChange({ name: name, value: event.target.value })
@@ -40,3 +41,4 @@ const DatePicker = ({
 }
 
 export default memo(DatePicker)
+export * from "./interface"
