@@ -37,7 +37,7 @@ const InputNumber = ({
                     disabled={disabled}
                     onChange={handleChange}
                     width="100%"
-                    value={value}
+                    value={+value}
                     type = "number"
                     {...props}
                 />

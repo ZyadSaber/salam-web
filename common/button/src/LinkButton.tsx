@@ -12,7 +12,7 @@ const LinkButton = ({
 
     return (
         <>
-            <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", width: "100%" }}>
+            <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", width: "100%", background: "none" }}>
                 <Button
                     label={label}
                     {...props}

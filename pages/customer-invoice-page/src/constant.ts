@@ -10,6 +10,7 @@ export const initialRootState = {
   customer_invoice_after_discount: 0,
   customer_invoice_paid: 0,
   customer_invoice_credit: 0,
+  customer_invoice_design_fee: 0,
 };
 
 export const initialItemState = {

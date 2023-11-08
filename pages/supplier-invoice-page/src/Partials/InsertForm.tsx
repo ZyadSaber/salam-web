@@ -22,15 +22,17 @@ const InsertForm = ({
     const handleWidth = useCallback(({name, value}:onChangeType)=>{
         handleItemMultiInput({
             [name]:value,
-            supplier_invoice_item_size: +value * +state.supplier_invoice_item_height,
+            supplier_invoice_item_size: (+value * +state.supplier_invoice_item_height).toFixed(2),
+            supplier_invoice_item_total: (+value * +state.supplier_invoice_item_height * +state.supplier_invoice_item_quantity * +state.supplier_invoice_item_price).toFixed(2)
         })
-    },[handleItemMultiInput, state.supplier_invoice_item_height])
+    },[handleItemMultiInput, state.supplier_invoice_item_height, state.supplier_invoice_item_price, state.supplier_invoice_item_quantity])
     const handleHeight = useCallback(({name, value}:onChangeType)=>{
         handleItemMultiInput({
             [name]:value,
-            supplier_invoice_item_size: +state.supplier_invoice_item_width  * +value
+            supplier_invoice_item_size: (+value * +state.supplier_invoice_item_width).toFixed(2),
+            supplier_invoice_item_total: (+value * +state.supplier_invoice_item_width * +state.supplier_invoice_item_quantity * +state.supplier_invoice_item_price).toFixed(2)
         })
-    },[handleItemMultiInput, state.supplier_invoice_item_width])
+    },[handleItemMultiInput, state.supplier_invoice_item_price, state.supplier_invoice_item_quantity, state.supplier_invoice_item_width])
     const handleQuantity = useCallback(({name, value}:onChangeType)=>{
         handleItemMultiInput({
             [name]:value,

@@ -16,7 +16,7 @@
     "@commons/radio-box": "1.0.0",
     "@commons/select": "1.0.0",
     "@commons/table": "1.0.0",
-    "@pages/chart-js": "1.0.0",
+    "@pages/customer-invoice-page": "1.0.0",
     "@cubejs-client/core": "^0.31.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
