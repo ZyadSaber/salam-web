@@ -22,7 +22,7 @@ const InsertForm = ({
     ({ name, value }: onChangeType) => {
       handleItemMultiInput({
         [name]: value,
-        customer_invoice_item_size: (
+        customer_invoice_item_size: +(
           +value * +state.customer_invoice_item_height
         ).toFixed(2),
         customer_invoice_item_total: (
@@ -44,7 +44,7 @@ const InsertForm = ({
     ({ name, value }: onChangeType) => {
       handleItemMultiInput({
         [name]: value,
-        customer_invoice_item_size: (
+        customer_invoice_item_size: +(
           +value * +state.customer_invoice_item_width
         ).toFixed(2),
         customer_invoice_item_total: (

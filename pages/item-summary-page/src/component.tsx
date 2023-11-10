@@ -1,12 +1,11 @@
 import React, { memo, useCallback } from "react";
 import Flex from "@commons/flex";
-import { InputText } from "@commons/input-text";
 import { SelectWithApi } from "@commons/select";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
+import DatePicker from "@commons/date-picker";
 import { Button } from "@commons/button";
 import { columns } from "./constant";
-
 const ItemSummaryPage = () => {
     const { state, onChange } = useFormManager({ initialValues: { date_from: "", date_to: "", item_id: "" } })
     const {
@@ -34,15 +33,15 @@ const ItemSummaryPage = () => {
                         onChange={onChange}
                         api="QUERY_ITEMS_LIST"
                     />
-                    <InputText
+                    <DatePicker
                         name="date_from"
-                        type="date"
+                        value={state.date_from}
                         label="frm"
                         onChange={onChange}
                     />
-                    <InputText
+                    <DatePicker
                         name="date_to"
-                        type="date"
+                        value={state.date_to}
                         label="to"
                         onChange={onChange}
                     />

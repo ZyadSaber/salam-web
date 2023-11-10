@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
+import { InputNumber } from 'antd';
+import {inputNumberProp} from './interface';
 
-export const StyledInput = styled.input<any>`
-background: #fdfdfd;
-border: 0.5px solid #cbd5e0;
-height: 100%;
+export const StyledInput = styled(InputNumber)<inputNumberProp>`
 width: 100%;
-border-radius: 7px;
-padding: 0 16px;
 `

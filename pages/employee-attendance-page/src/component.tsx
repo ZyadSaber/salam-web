@@ -5,6 +5,7 @@ import { TextArea } from "@commons/input-text";
 import { useFormManager, useMutation } from "@commons/hooks";
 import { CheckBox } from "@commons/check-box";
 import Modal from "@commons/modal";
+import DatePicker from "@commons/date-picker";
 import { EmployeeAttendanceProps } from "./interface"
 
 const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendanceProps) => {
@@ -35,12 +36,11 @@ const EmployeeAttendance = ({ visible, handleCloseModal }: EmployeeAttendancePro
                 onClose={handleCloseModal}
                 onOK={handleSaveButton}
             >
-                <InputText
+                <DatePicker
                     label="dt"
                     name="date"
                     value={date}
                     onChange={onChange}
-                    type="date"
                     width="30%"
                 />
                 <SelectWithApi

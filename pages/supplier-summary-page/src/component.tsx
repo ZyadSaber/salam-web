@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from "react";
 import Flex from "@commons/flex";
-import InputText from "@commons/input-text/src/inputText";
 import { SelectWithApi } from "@commons/select";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
+import DatePicker from "@commons/date-picker";
 import { useFormManager } from "@commons/hooks";
 import { Button } from "@commons/button"
 import { columns } from "./constant";
@@ -35,15 +35,15 @@ const SupplierSummaryPage = () => {
                         onChange={onChange}
                         api="QUERY_SUPPLIER_LIST"
                     />
-                    <InputText
+                    <DatePicker
                         name="date_from"
-                        type="date"
+                        value={state.date_from}
                         label="frm"
                         onChange={onChange}
                     />
-                    <InputText
+                    <DatePicker
                         name="date_to"
-                        type="date"
+                        value={state.date_to}
                         label="to"
                         onChange={onChange}
                     />

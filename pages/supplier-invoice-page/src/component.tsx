@@ -221,6 +221,7 @@ const SupplierInvoice = () => {
             value={state.handlePaid}
             label="paid"
             onChange={handlePaid}
+            max={state.supplier_invoice_after_discount}
             width="15%"
           />
           <InputNumber

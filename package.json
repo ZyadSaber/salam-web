@@ -6,6 +6,8 @@
     "@chakra-ui/react": "^2.5.1",
     "@commons/button": "1.0.0",
     "@commons/hooks": "1.0.0",
+    "@commons/date-picker": "1.0.0",
+    "@commons/input-number": "1.0.0",
     "@commons/check-box": "1.0.0",
     "@commons/flex": "1.0.0",
     "@commons/global": "1.0.0",

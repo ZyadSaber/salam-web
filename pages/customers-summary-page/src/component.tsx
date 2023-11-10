@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from "react";
 import Flex from "@commons/flex";
-import InputText from "@commons/input-text/src/inputText";
 import { SelectWithApi } from "@commons/select";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
 import { SearchAndClearButton } from "@commons/button";
+import DatePicker from "@commons/date-picker";
 import { columns } from "./constant";
 
 const CustomersSummaryPage = () => {
@@ -35,16 +35,16 @@ const CustomersSummaryPage = () => {
                         onChange={onChange}
                         api="QUERY_CUSTOMERS_LIST"
                     />
-                    <InputText
+                    <DatePicker
                         name="date_from"
-                        type="date"
                         label="frm"
+                        value={state.date_from}
                         onChange={onChange}
                     />
-                    <InputText
+                    <DatePicker
                         name="date_to"
-                        type="date"
                         label="to"
+                        value={state.date_to}
                         onChange={onChange}
                     />
                     <SearchAndClearButton

@@ -1,4 +1,6 @@
-export interface inputNumberProp {
+import {InputNumberProps} from "antd"
+
+export interface inputNumberProp extends InputNumberProps {
   disabled?: boolean;
   value: number;
   name: string;
@@ -11,4 +13,5 @@ export interface inputNumberProp {
   step?: number;
   min?: number;
   max?: number;
+  required?: boolean;
 }

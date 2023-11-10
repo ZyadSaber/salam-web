@@ -1,11 +1,11 @@
 import React, { memo, useCallback } from "react";
-import { InputText } from "@commons/input-text";
 import InputNumber from "@commons/input-number";
 import { useMutation, useFormManager, useValidateForm } from "@commons/hooks";
 import { onChangeType } from "@commons/global";
 import { Table } from "@commons/table";
 import Flex from "@commons/flex";
 import { SelectWithApi } from "@commons/select";
+import DatePicker from "@commons/date-picker"
 import { Button } from "@commons/button";
 import InsertForm from "./Partials/InsertForm";
 import {
@@ -79,7 +79,7 @@ const CustomerInvoices = () => {
     state.customer_invoice_paid,
   ]);
 
-  const handleDiscountFee = useCallback(
+  const handleDesignFee = useCallback(
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
@@ -88,9 +88,9 @@ const CustomerInvoices = () => {
           +value -
           +state.customer_invoice_discount,
         customer_invoice_credit:
-          +state.customer_invoice_paid -
           +state.customer_invoice_total +
           +value -
+          +state.customer_invoice_paid -
           +state.customer_invoice_discount,
       });
     },
@@ -111,9 +111,9 @@ const CustomerInvoices = () => {
           +state.customer_invoice_design_fee -
           +value,
         customer_invoice_credit:
-          +state.customer_invoice_paid -
           +state.customer_invoice_total +
           state.customer_invoice_design_fee -
+          +state.customer_invoice_paid -
           +value,
       });
     },
@@ -129,17 +129,10 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_credit:
-          state.customer_invoice_total -
-          state.customer_invoice_discount -
-          +value,
+        customer_invoice_credit: state.customer_invoice_after_discount - +value,
       });
     },
-    [
-      handleMultiInput,
-      state.customer_invoice_discount,
-      state.customer_invoice_total,
-    ]
+    [handleMultiInput, state.customer_invoice_after_discount]
   );
 
   const handleSave = useCallback(() => {
@@ -195,12 +188,11 @@ const CustomerInvoices = () => {
             name="customer_id"
             fetchOnFirstRun
           />
-          <InputText
+          <DatePicker
             name="customer_invoice_date"
             value={state.customer_invoice_date}
             label="dt"
             onChange={onChange}
-            type="date"
           />
         </Flex>
         <InsertForm
@@ -231,7 +223,7 @@ const CustomerInvoices = () => {
           <InputNumber
             name="customer_invoice_design_fee"
             value={state.customer_invoice_design_fee}
-            onChange={handleDiscountFee}
+            onChange={handleDesignFee}
             label="dsgnfe"
             width="13%"
           />
@@ -253,6 +245,7 @@ const CustomerInvoices = () => {
             name="customer_invoice_paid"
             value={state.customer_invoice_paid}
             label="paid"
+            max={state.customer_invoice_after_discount}
             onChange={handlePaid}
             width="13%"
           />

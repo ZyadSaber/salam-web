@@ -4,6 +4,7 @@ import { RadioBoxOptions } from "../constant";
 import { SelectWithApi } from "@commons/select";
 import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
+import DatePicker from "@commons/date-picker";
 import { Button } from "@commons/button"
 
 //TODO: add this type
@@ -46,19 +47,17 @@ const FormView = ({ fetchTableData, state, onChange }: any) => {
                     fetchOnFirstRun
                     onChange={onChange}
                 />
-                <InputText
+                <DatePicker
                     name="date_from"
                     value={state.date_from}
                     label="dtfrm"
                     onChange={onChange}
-                    type="date"
                 />
-                <InputText
+                <DatePicker
                     name="date_to"
                     value={state.date_to}
                     label="dto"
                     onChange={onChange}
-                    type="date"
                 />
                 <Button
                     onClick={handleSearch}

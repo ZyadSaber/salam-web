@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from "react";
 import Flex from "@commons/flex";
-import InputText from "@commons/input-text/src/inputText";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
+import DatePicker from "@commons/date-picker";
 import { defaultDate } from "@commons/global";
 import { Button } from "@commons/button";
 import { columns } from "./constant";
@@ -28,17 +28,15 @@ const DailyTotalPage = () => {
         <>
             <Flex width="100%" flexDirection="column">
                 <Flex width="100%" >
-                    <InputText
+                    <DatePicker
                         name="date_from"
-                        type="date"
                         label="frm"
                         value={state.date_from}
                         onChange={onChange}
                     />
-                    <InputText
+                    <DatePicker
                         name="date_to"
                         value={state.date_to}
-                        type="date"
                         label="to"
                         onChange={onChange}
                     />

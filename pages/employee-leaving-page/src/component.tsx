@@ -4,6 +4,7 @@ import { SelectWithApi } from "@commons/select";
 import { TextArea } from "@commons/input-text";
 import { useMutation, useFormManager } from "@commons/hooks";
 import Modal from "@commons/modal";
+import DatePicker from "@commons/date-picker";
 import { EmployeeLeavingProps } from "./interface"
 
 const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) => {
@@ -34,12 +35,11 @@ const EmployeeLeaving = ({ visible, handleCloseModal }: EmployeeLeavingProps) =>
                 onClose={handleCloseModal}
                 onOK={handleSaveButton}
             >
-                <InputText
+                <DatePicker
                     label="dt"
                     name="date"
                     value={date}
                     onChange={onChange}
-                    type="date"
                     width="30%"
                 />
                 <SelectWithApi
