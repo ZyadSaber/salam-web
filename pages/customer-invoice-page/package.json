@@ -15,7 +15,7 @@
     "@commons/table": "1.0.0",
     "@commons/button": "1.0.0",
     "@commons/global": "1.0.0",
-    "@commons/date-picker": "^11.10.6"
+    "@commons/date-picker": "1.0.0"
   },
   "enableBabelTranspilation": true
 }
