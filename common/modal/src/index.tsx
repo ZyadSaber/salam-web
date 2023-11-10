@@ -45,7 +45,7 @@ const Modal = (
     </ModalHeader>
 
     <ModalBody>
-        <Flex width="100%" padding="0" wrap="wrap" height="100%">
+        <Flex width="100%" padding="0" wrap height="100%">
       {children}
       </Flex>
     </ModalBody>

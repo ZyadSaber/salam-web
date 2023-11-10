@@ -1,5 +1,5 @@
 {
-  "name": "@pages/chart-js",
+  "name": "@commons/chart-js",
   "version": "1.0.0",
   "private": true,
   "description": "",

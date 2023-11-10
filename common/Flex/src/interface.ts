@@ -1,7 +1,7 @@
-// import { ResponsiveValue } from "@chakra-ui/react";
+import { ReactNode } from 'react';
 
-export interface flexProp {
-  children?: any;
+export interface flexProps {
+  children?: ReactNode;
   justifyContent?: string;
   width?: string;
   height?: string;
@@ -12,7 +12,10 @@ export interface flexProp {
   borderWidth?: string;
   borderRadius?: string;
   backgroundColor?: string;
-  flexDirection?: any;
-  textAlign?: any;
+  flexDirection?: string;
+  textAlign?: string;
   hidden?: boolean;
+  wrap?: boolean;
+  gap?: string;
+  overflow?: string;
 }

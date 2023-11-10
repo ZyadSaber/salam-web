@@ -59,8 +59,9 @@ const LinkedPages = ({ row }: any) => {
                 width="100%"
                 flexDirection="column"
                 height="600px"
-                border="1px solid white"
+                bordered
                 margin="5px"
+                borderColor="white"
                 overflow={"scroll"}
             >
                 {

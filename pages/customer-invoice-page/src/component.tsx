@@ -5,7 +5,7 @@ import { onChangeType } from "@commons/global";
 import { Table } from "@commons/table";
 import Flex from "@commons/flex";
 import { SelectWithApi } from "@commons/select";
-import DatePicker from "@commons/date-picker"
+import DatePicker from "@commons/date-picker";
 import { Button } from "@commons/button";
 import InsertForm from "./Partials/InsertForm";
 import {
@@ -17,10 +17,26 @@ import {
 } from "./constant";
 
 const CustomerInvoices = () => {
-  const { state, onChange, resetForm, handleMultiInput, handleArrayChange } =
-    useFormManager({
-      initialValues: initialRootState,
-    });
+  const {
+    state: {
+      customer_invoice_items,
+      customer_invoice_design_fee,
+      customer_invoice_discount,
+      customer_invoice_paid,
+      customer_invoice_total,
+      customer_invoice_after_discount,
+      customer_invoice_item_total,
+      customer_id,
+      customer_invoice_date,
+      customer_invoice_credit,
+    },
+    onChange,
+    resetForm,
+    handleMultiInput,
+    handleArrayChange,
+  } = useFormManager({
+    initialValues: initialRootState,
+  });
 
   const {
     state: currentItemState,
@@ -42,41 +58,38 @@ const CustomerInvoices = () => {
       name: "customer_invoice_items",
       value: {
         ...currentItemState,
-        rowKey: state.customer_invoice_items.length + 1,
+        rowKey: customer_invoice_items.length + 1,
       },
     });
     let totals = 0;
-    state.customer_invoice_items.forEach((item: any) => {
+    customer_invoice_items.forEach((item: any) => {
       totals = totals + +item.customer_invoice_item_total;
     });
     const computedTotals =
       totals + currentItemState.customer_invoice_item_total;
     handleMultiInput({
-      customer_invoice_items: [
-        ...state.customer_invoice_items,
-        currentItemState,
-      ],
+      customer_invoice_items: [...customer_invoice_items, currentItemState],
       customer_invoice_total: computedTotals,
       customer_invoice_after_discount:
         computedTotals +
-        +state.customer_invoice_design_fee -
-        state.customer_invoice_discount,
+        customer_invoice_design_fee -
+        customer_invoice_discount,
       customer_invoice_credit:
         computedTotals +
-        +state.customer_invoice_design_fee -
-        state.customer_invoice_discount -
-        state.customer_invoice_paid,
+        customer_invoice_design_fee -
+        customer_invoice_discount -
+        customer_invoice_paid,
     });
     resetItemForm();
   }, [
     currentItemState,
+    customer_invoice_design_fee,
+    customer_invoice_discount,
+    customer_invoice_items,
+    customer_invoice_paid,
     handleArrayChange,
     handleMultiInput,
     resetItemForm,
-    state.customer_invoice_design_fee,
-    state.customer_invoice_discount,
-    state.customer_invoice_items,
-    state.customer_invoice_paid,
   ]);
 
   const handleDesignFee = useCallback(
@@ -84,21 +97,19 @@ const CustomerInvoices = () => {
       handleMultiInput({
         [name]: +value,
         customer_invoice_after_discount:
-          +state.customer_invoice_total +
-          +value -
-          +state.customer_invoice_discount,
+          customer_invoice_total + +value - customer_invoice_discount,
         customer_invoice_credit:
-          +state.customer_invoice_total +
+          customer_invoice_total +
           +value -
-          +state.customer_invoice_paid -
-          +state.customer_invoice_discount,
+          customer_invoice_paid -
+          customer_invoice_discount,
       });
     },
     [
+      customer_invoice_discount,
+      customer_invoice_paid,
+      customer_invoice_total,
       handleMultiInput,
-      state.customer_invoice_discount,
-      state.customer_invoice_paid,
-      state.customer_invoice_total,
     ]
   );
 
@@ -107,21 +118,19 @@ const CustomerInvoices = () => {
       handleMultiInput({
         [name]: +value,
         customer_invoice_after_discount:
-          +state.customer_invoice_total +
-          +state.customer_invoice_design_fee -
-          +value,
+          customer_invoice_total + customer_invoice_design_fee - +value,
         customer_invoice_credit:
-          +state.customer_invoice_total +
-          state.customer_invoice_design_fee -
-          +state.customer_invoice_paid -
+          customer_invoice_total +
+          customer_invoice_design_fee -
+          customer_invoice_paid -
           +value,
       });
     },
     [
+      customer_invoice_design_fee,
+      customer_invoice_paid,
+      customer_invoice_total,
       handleMultiInput,
-      state.customer_invoice_design_fee,
-      state.customer_invoice_paid,
-      state.customer_invoice_total,
     ]
   );
 
@@ -129,15 +138,38 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_credit: state.customer_invoice_after_discount - +value,
+        customer_invoice_credit: customer_invoice_after_discount - +value,
       });
     },
-    [handleMultiInput, state.customer_invoice_after_discount]
+    [customer_invoice_after_discount, handleMultiInput]
   );
 
   const handleSave = useCallback(() => {
-    setRow(state);
-  }, [setRow, state]);
+    setRow({
+      customer_invoice_items,
+      customer_invoice_design_fee,
+      customer_invoice_discount,
+      customer_invoice_total,
+      customer_invoice_paid,
+      customer_invoice_after_discount,
+      customer_invoice_item_total,
+      customer_id,
+      customer_invoice_date,
+      customer_invoice_credit,
+    });
+  }, [
+    customer_id,
+    customer_invoice_after_discount,
+    customer_invoice_credit,
+    customer_invoice_date,
+    customer_invoice_design_fee,
+    customer_invoice_discount,
+    customer_invoice_item_total,
+    customer_invoice_items,
+    customer_invoice_paid,
+    customer_invoice_total,
+    setRow,
+  ]);
 
   const additionalButtons = [
     {
@@ -147,20 +179,18 @@ const CustomerInvoices = () => {
   ];
 
   const handleDelete = (e: any) => {
-    const computedItems = state.customer_invoice_items.filter(
+    const computedItems = customer_invoice_items.filter(
       (f: any) => e.rowKey !== f.rowKey
     );
     const totalAfterDelete =
-      state.customer_invoice_total - state.customer_invoice_item_total;
+      customer_invoice_total - customer_invoice_item_total;
     handleMultiInput({
       customer_invoice_items: computedItems,
       customer_invoice_total: totalAfterDelete,
       customer_invoice_after_discount:
-        totalAfterDelete - state.customer_invoice_discount,
+        totalAfterDelete - customer_invoice_discount,
       customer_invoice_credit:
-        totalAfterDelete -
-        state.customer_invoice_discount -
-        state.customer_invoice_paid,
+        totalAfterDelete - customer_invoice_discount - customer_invoice_paid,
     });
   };
 
@@ -173,7 +203,18 @@ const CustomerInvoices = () => {
   const handleValidateInvoiceFelids = useValidateForm({
     validateFelids: rootValidate,
     functionToRun: handleSave,
-    stateToValidate: state,
+    stateToValidate: {
+      customer_invoice_items,
+      customer_invoice_design_fee,
+      customer_invoice_discount,
+      customer_invoice_paid,
+      customer_invoice_total,
+      customer_invoice_after_discount,
+      customer_invoice_item_total,
+      customer_id,
+      customer_invoice_date,
+      customer_invoice_credit,
+    },
   });
 
   return (
@@ -183,14 +224,14 @@ const CustomerInvoices = () => {
           <SelectWithApi
             api={"QUERY_CUSTOMERS_LIST"}
             onChange={onChange}
-            value={state.customer_id}
+            value={customer_id}
             label="cstmr"
             name="customer_id"
             fetchOnFirstRun
           />
           <DatePicker
             name="customer_invoice_date"
-            value={state.customer_invoice_date}
+            value={customer_invoice_date}
             label="dt"
             onChange={onChange}
           />
@@ -203,7 +244,7 @@ const CustomerInvoices = () => {
         />
         <Table
           columns={columns}
-          dataSource={state.customer_invoice_items}
+          dataSource={customer_invoice_items}
           actionColumn
           actionLabel="Delete"
           onAction={handleDelete}
@@ -216,20 +257,20 @@ const CustomerInvoices = () => {
           <InputNumber
             name="customer_invoice_total"
             disabled
-            value={state.customer_invoice_total}
+            value={customer_invoice_total}
             label="total"
             width="13%"
           />
           <InputNumber
             name="customer_invoice_design_fee"
-            value={state.customer_invoice_design_fee}
+            value={customer_invoice_design_fee}
             onChange={handleDesignFee}
             label="dsgnfe"
             width="13%"
           />
           <InputNumber
             name="customer_invoice_discount"
-            value={state.customer_invoice_discount}
+            value={customer_invoice_discount}
             label="dscnt"
             onChange={handleDiscount}
             width="13%"
@@ -237,22 +278,22 @@ const CustomerInvoices = () => {
           <InputNumber
             name="customer_invoice_after_discount"
             disabled
-            value={state.customer_invoice_after_discount}
+            value={customer_invoice_after_discount}
             label="tlaftrdsnt"
             width="13%"
           />
           <InputNumber
             name="customer_invoice_paid"
-            value={state.customer_invoice_paid}
+            value={customer_invoice_paid}
             label="paid"
-            max={state.customer_invoice_after_discount}
+            max={customer_invoice_after_discount}
             onChange={handlePaid}
             width="13%"
           />
           <InputNumber
             name="customer_invoice_credit"
             disabled
-            value={state.customer_invoice_credit}
+            value={customer_invoice_credit}
             label="crdt"
             width="13%"
           />

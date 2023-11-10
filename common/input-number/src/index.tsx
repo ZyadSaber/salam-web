@@ -54,3 +54,4 @@ const InputNumber = ({
 };
 
 export default memo(InputNumber);
+export * from "./interface"

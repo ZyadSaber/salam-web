@@ -18,7 +18,7 @@ const SearchAndClearButton = ({
         <>
             <Flex
                 width={width}
-                padding={0}
+                padding="0"
                 height={height}
                 margin={margin}
                 justifyContent="space-between"

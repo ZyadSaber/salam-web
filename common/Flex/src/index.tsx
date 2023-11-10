@@ -1,6 +1,6 @@
-import React, { memo, useEffect, useState } from "react";
-import { Flex as ChackraFlex } from "@chakra-ui/react"
-import { flexProp } from "./interface"
+import React, { memo } from "react";
+import {StyledFlex} from "./style"
+import { flexProps } from "./interface"
 
 const Flex = ({
     children,
@@ -19,34 +19,27 @@ const Flex = ({
     hidden = false,
     wrap,
     ...prop
-}: any) => {
-    const [border, setBorder] = useState("")
-    useEffect(() => {
-        if (bordered) {
-            setBorder(`${borderWidth} solid ${borderColor}`)
-        }
-    }, [borderColor, borderWidth, bordered])
+}: flexProps) => {
     return (
         <>
-            <ChackraFlex
+            <StyledFlex
                 width={width}
                 height={height}
                 padding={padding}
                 margin={margin}
-                background={backgroundColor}
+                backgroundColor={backgroundColor}
                 borderRadius={borderRadius}
                 flexDirection={flexDirection}
                 textAlign={textAlign}
                 justifyContent={justifyContent}
                 hidden={hidden}
-                //@ts-ignore
-                wrap={wrap ? "wrap" : ""}
                 {...prop}
             >
                 {children}
-            </ChackraFlex>
+            </StyledFlex>
         </>
     )
 }
 
-export default memo(Flex)
+export default memo(Flex);
+export * from "./interface"
