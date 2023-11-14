@@ -9,7 +9,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import SideBar from "@components/side-bar"
 import { PageRoutes } from "@commons/global";
 
-
 const App = () => {
 
   const { onOpen, onClose } = useDisclosure();

@@ -24,6 +24,7 @@
     "@components/invoice-details-with-edit-modal": "1.0.0",
     "@pages/customers-page": "1.0.0",
     "@components/side-bar": "1.0.0",
+    "@commons/loading-over-lay": "1.0.0",
     "@pages/accounts-summary-page": "1.0.0",
     "@pages/casher-payment-voucher-page": "1.0.0",
     "@pages/casher-receipt-voucher-page": "1.0.0",

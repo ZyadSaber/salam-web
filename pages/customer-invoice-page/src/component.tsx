@@ -249,7 +249,7 @@ const CustomerInvoices = () => {
           actionLabel="Delete"
           onAction={handleDelete}
           hideTools={false}
-          onAdd={handleValidateFelids}
+          onAdd={handleAdd}
           canAdd
           additionalButtons={additionalButtons}
         />

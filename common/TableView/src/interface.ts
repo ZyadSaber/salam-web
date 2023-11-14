@@ -3,6 +3,38 @@ export interface column {
   width?: number | string;
   dataIndex?: any;
 }
+
+export interface additionalButtonsType {
+  icon?: string;
+  label?: string;
+  onClick: () => void;
+  disabled?: boolean;
+  width?: string;
+}
+
+export interface tableControlButtonsProp{
+  hideTools?: boolean;
+  canAdd?: boolean;
+  canEdit?: boolean;
+  canDelete?: boolean;
+  canSave?: boolean;
+  canPrint?: boolean;
+  canExcel?: boolean;
+  onAdd?: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
+  onSave?: () => void;
+  onPrint?: () => void;
+  onExcel?: () => void;
+  addDisabled?: boolean;
+  editDisabled?: boolean;
+  deleteDisabled?: boolean;
+  saveDisabled?: boolean;
+  printDisabled?: boolean;
+  excelDisabled?: boolean;
+  additionalButtons?: additionalButtonsType[];
+}
+
 export interface TableProps {
   rowKey?: string | number;
   dataSource?: any[];
@@ -34,12 +66,15 @@ export interface TableProps {
   margin?: number | string;
   loading?: boolean;
   onDoubleClick?: (e: any) => void;
-}
-
-export interface additionalButtonsType {
-  icon: string;
-  onClick: () => void;
-  disabled?: boolean;
+  addDisabled?: boolean;
+  editDisabled?: boolean;
+  deleteDisabled?: boolean;
+  saveDisabled?: boolean;
+  printDisabled?: boolean;
+  excelDisabled?: boolean;
+  overflowY?: string;
+  actionWidth?: string;
+  fixedHeight?: string;
 }
 
 export interface TableWithApiProps extends TableProps {

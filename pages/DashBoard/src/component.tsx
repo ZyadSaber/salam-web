@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import { ChartWithApi } from "@pages/chart-js";
+import { ChartWithApi } from "@commons/chart-js";
 import Flex from "@commons/flex";
 import { TableWithApi } from "@commons/table";
 import InvoiceDetailsWithEditModal from "@components/invoice-details-with-edit-modal"

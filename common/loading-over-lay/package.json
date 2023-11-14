@@ -1,0 +1,16 @@
+{
+  "name": "@commons/loading-over-lay",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "salam",
+  "license": "ISC",
+  "main": "src",
+  "sideEffects": false,
+  "dependencies": {
+    "react": "^18.2.0",
+    "@emotion/styled": "^11.10.6",
+    "@commons/global": "1.0.0"
+  },
+  "enableBabelTranspilation": true
+}

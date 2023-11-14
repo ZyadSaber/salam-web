@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { pageTitleProps } from "./interface";
 import { useTranslation } from 'react-i18next';
+import { pageTitleProps } from "./interface";
 
 const Text = ({
     title,

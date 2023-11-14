@@ -1,27 +1,20 @@
-import React, { useState, useCallback, useRef } from "react";
-import { Button, IconButton } from "@commons/button";
+import React, { useState, useCallback, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import * as XLSX from "xlsx";
-import { useTranslation } from "react-i18next";
-import {
-  Table as ChakraTable,
-  Thead,
-  Tbody,
-  // Tfoot,
-  Text,
-  Box,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Skeleton,
-} from "@chakra-ui/react";
-import Flex from "@commons/flex";
-import { TableProps, additionalButtonsType } from "./interface";
+import LoadingOverLay from "@commons/loading-over-lay"
+import{useBoundingClientRect} from "@commons/hooks"
+import { Pagination } from 'antd';
+import TableControlButtons from "./partials/TableControlButtons"
+import generateFixedColumns from "./helpers/generateFixedColumns";
+import TableHeader from "./partials/TableHeader"
+import TableBody from "./partials/TableBody"
+import createExcelFunction from "./helpers/createExcelFunction"
+import {TableContainer, TableContentWrapper, StyledTable} from "./style"
+import { TableProps } from "./interface";
 
 const Table = ({
   dataSource,
   height = "300px",
+  fixedHeight="300px",
   rowKey = "rowKey",
   columns,
   hideTools = true,
@@ -35,6 +28,7 @@ const Table = ({
   actionColumn = false,
   onAction,
   actionLabel = "",
+  actionWidth,
   onSelectedRow,
   label,
   canPrint = false,
@@ -47,9 +41,15 @@ const Table = ({
   padding = "",
   loading = false,
   onDoubleClick,
+  addDisabled,
+  editDisabled,
+  deleteDisabled,
+  saveDisabled,
+  printDisabled,
+  excelDisabled,
+  overflowY
 }: TableProps) => {
   const { pathname } = useLocation();
-  const { t } = useTranslation();
   const [rowSelected, setRowSelected] = useState();
   const handleSelectedRow = useCallback(
     (item: any) => () => {
@@ -67,149 +67,92 @@ const Table = ({
     [onDoubleClick]
   );
 
-  const onExcel = useCallback(() => {
-    const pathName = pathname.replace("/", "");
-    const wb = XLSX.utils.book_new(),
-      //@ts-ignore
-      ws = XLSX.utils.json_to_sheet(dataSource);
-    XLSX.utils.book_append_sheet(wb, ws, pathName);
-    XLSX.writeFile(wb, `${pathName} ${new Date().toUTCString()}.xlsx`);
-  }, [dataSource, pathname]);
+  const pathName = pathname.replace("/", "");
+  const excelFun = createExcelFunction({
+    fileName: `${pathName} ${new Date().toUTCString()}.xlsx`,
+    dataSource: dataSource,
+    columns: columns
+  })
 
-  const componentRef = useRef();
+  const tableColumnsLength = columns.length
+
+  const [elementRef, rect] = useBoundingClientRect([
+    tableColumnsLength,
+    loading,
+  ]);
+  
+  const containerWidthNumber = rect?.width ?? 200;
+
+  const { doesAnyColumnHasInputType, adjustedColumns } = useMemo(
+    () =>
+      generateFixedColumns({
+        containerWidthNumber,
+        columnsFromProps: columns,
+        // hasSelectionColumn,
+        // showExpandColumn,
+        // isMobileBreakPoint
+      }),
+    [containerWidthNumber, columns]
+  );
 
   return (
     <>
-      <TableContainer width={width} padding={padding} margin={margin}>
-        {label && (
-          <Text
-            width="100%"
-            textAlign="center"
-            marginBottom="7px"
-            fontSize="md"
-            fontWeight="bold"
-          >
-            {t(label)}
-          </Text>
-        )}
-        <Flex
-          width="100%"
-          padding="0"
-          margin="5px 0"
-          justifyContent="center"
-          hidden={hideTools}
+      <TableContainer width={width} padding={padding} margin={margin} ref={elementRef}>
+        <LoadingOverLay visible={loading} />
+        <TableControlButtons
+          hideTools={hideTools}
+          canAdd={canAdd}
+          canEdit={canEdit}
+          canDelete={canDelete}
+          canSave={canSave}
+          canPrint={canPrint}
+          canExcel={canExcel}
+          onAdd={onAdd}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onSave={onSave}
+          onPrint={onPrint}
+          onExcel={excelFun}
+          addDisabled={addDisabled}
+          editDisabled={editDisabled || !rowSelected}
+          deleteDisabled={deleteDisabled || !rowSelected}
+          saveDisabled={saveDisabled}
+          printDisabled={printDisabled}
+          excelDisabled={excelDisabled}
+          additionalButtons={additionalButtons}
+        />
+        <TableContentWrapper
+          height={height}
+          overflowY={overflowY}
+          // fixedHeight={fixedHeight}
         >
-          <IconButton iconName="plus" onClick={onAdd} hidden={!canAdd} />
-          <IconButton
-            iconName="edit"
-            onClick={onEdit}
-            hidden={!canEdit}
-            disabled={!rowSelected}
+          <StyledTable cellSpacing={0}>
+          <TableHeader 
+          columns={adjustedColumns} 
+          // actionColumn={actionColumn}
+          // actionLabel={actionLabel}
+          // actionWidth={actionWidth}
           />
-          <IconButton
-            iconName="delete"
-            onClick={onDelete}
-            hidden={!canDelete}
-            disabled={!rowSelected}
+          <TableBody
+             columns={adjustedColumns} 
+             actionColumn={actionColumn}
+            //  actionLabel={actionLabel}
+            //  actionWidth={actionWidth}
+             dataSource={dataSource}
+             rowKey={rowKey}
+             handleSelectedRow={handleSelectedRow}
+             handleDouble={handleDouble}
+             rowSelected={rowSelected}
+            //  onAction={onAction}
           />
-          {additionalButtons &&
-            additionalButtons.map((button: additionalButtonsType) => {
-              return (
-                <IconButton
-                  iconName={button.icon}
-                  onClick={button.onClick}
-                  disabled={button.disabled}
-                  hidden={false}
-                />
-              );
-            })}
-          <IconButton
-            iconName="save"
-            onClick={onSave}
-            hidden={!canSave}
-            disabled={!canSave}
-          />
-          <IconButton
-            iconName="print"
-            onClick={onPrint}
-            hidden={!canPrint}
-            disabled={!canPrint}
-          />
-          <IconButton
-            iconName="excel"
-            onClick={onExcel}
-            hidden={!canExcel}
-            disabled={!canExcel}
-          />
-        </Flex>
-        <Skeleton isLoaded={!loading} fadeDuration={0}>
-          <Box overflowY="auto" height={height}>
-            <ChakraTable
-              //@ts-ignore
-              ref={componentRef}
-            >
-              <Thead top={0} position="sticky" bgColor="#3edae6">
-                <Tr>
-                  {columns.map((item: any) => {
-                    return (
-                      <Th maxWidth={item.width} minWidth={item.width}>
-                        {t(item.title)}
-                      </Th>
-                    );
-                  })}
-                  <Th hidden={!actionColumn}>{t("actn")}</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {dataSource?.map((item: any) => {
-                  return (
-                    <Tr
-                      key={item[rowKey]}
-                      onClick={handleSelectedRow(item)}
-                      onDoubleClick={handleDouble(item)}
-                      background={`${rowSelected === item ? "#dbffbf" : ""}`}
-                    >
-                      {columns.map((column: any) => {
-                        return (
-                          <Td maxWidth={column.width} minWidth={column.width}>
-                            {item[column.dataIndex]}
-                          </Td>
-                        );
-                      })}
-                      <Td hidden={!actionColumn}>
-                        <Button
-                          label={actionLabel}
-                          width="100%"
-                          onClick={() => {
-                            onAction(item);
-                          }}
-                        />
-                      </Td>
-                    </Tr>
-                  );
-                })}
-              </Tbody>
-
-              {/* <Tfoot>
-                        <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
-                        </Tr>
-                    </Tfoot> */}
-            </ChakraTable>
-            {(!Array.isArray(dataSource) || dataSource.length === 0) &&
-            !loading ? (
-              <Flex justifyContent="center" width="100%">
-                <Text as="b" fontSize="md" color="red">
-                  No Data
-                </Text>
-              </Flex>
-            ) : (
-              <></>
-            )}
-          </Box>
-        </Skeleton>
+          </StyledTable>
+          <Pagination
+      total={85}
+      showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+      defaultPageSize={20}
+      defaultCurrent={1}
+    />
+        </TableContentWrapper>
       </TableContainer>
     </>
   );
