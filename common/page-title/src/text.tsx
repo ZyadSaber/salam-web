@@ -1,23 +1,23 @@
 import React, { memo } from "react";
 import { useTranslation } from 'react-i18next';
+import { StyledHeading } from "./styles"
 import { pageTitleProps } from "./interface";
 
 const Text = ({
     title,
     width,
     padding,
-    margin = "10px"
+    margin = "10px",
+    color,
+    backGround,
+    fontWeight
 }: pageTitleProps) => {
     const { t } = useTranslation()
     return (
         <>
-            <h4 style={{
-                width: width,
-                margin: margin,
-                padding: padding
-            }}>
+            <StyledHeading width={width} margin={margin} padding={padding} color={color} backGround={backGround} fontWeight={fontWeight}>
                 {t(title)}
-            </h4>
+            </StyledHeading>
         </>
     )
 }

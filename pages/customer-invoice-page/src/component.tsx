@@ -250,6 +250,7 @@ const CustomerInvoices = () => {
           onAction={handleDelete}
           hideTools={false}
           onAdd={handleAdd}
+          actionWidth={110}
           canAdd
           additionalButtons={additionalButtons}
         />

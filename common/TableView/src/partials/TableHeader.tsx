@@ -1,28 +1,35 @@
-import React, {memo} from "react"
+import React, { memo } from "react"
 // import {BaseTitle} from "@commons/page-title"
 import HeadCellRenderer from "./HeadCellRenderer"
-import {StyledHeader, StyledTableRowCell } from "../style"
+import { StyledHeader, StyledTableRowCell } from "../style"
 
-const TableHeader = ({columns, actionColumn, actionLabel, actionWidth}:any)=>{
+const TableHeader = ({ columns, actionColumn, actionLabel, actionWidth }: any) => {
 
-    return(
+    return (
         <>
             <StyledHeader>
                 <tr>
-                {
-                    columns?.map((record: any)=>{
-                        return(
-                            <>
-                                <StyledTableRowCell>
-                                    <HeadCellRenderer
-                                     {...record}
-                                     />
+                    {
+                        columns?.map((record: any) => {
+                            return (
+                                <>
+                                    <StyledTableRowCell isHeadCell>
+                                        <HeadCellRenderer
+                                            {...record}
+                                        />
                                     </StyledTableRowCell>
-                            </>
-                        )
-                    })
-                }
-                {/* {actionColumn && <th style={{maxWidth: actionWidth, width: actionWidth}}><BaseTitle margin="2px 0" value={actionLabel} width="100%" /></th>} */}
+                                </>
+                            )
+                        })
+                    }
+                    {actionColumn &&
+                        <StyledTableRowCell isHeadCell>
+                            <HeadCellRenderer
+                                title={actionLabel}
+                                width={actionWidth}
+                            />
+                        </StyledTableRowCell>
+                    }
                 </tr>
             </StyledHeader>
         </>

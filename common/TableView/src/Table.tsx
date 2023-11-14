@@ -1,20 +1,22 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import LoadingOverLay from "@commons/loading-over-lay"
-import{useBoundingClientRect} from "@commons/hooks"
+import { useBoundingClientRect } from "@commons/hooks"
 import { Pagination } from 'antd';
+import { Text } from "@commons/page-title"
+import Flex from "@commons/flex"
 import TableControlButtons from "./partials/TableControlButtons"
 import generateFixedColumns from "./helpers/generateFixedColumns";
 import TableHeader from "./partials/TableHeader"
 import TableBody from "./partials/TableBody"
 import createExcelFunction from "./helpers/createExcelFunction"
-import {TableContainer, TableContentWrapper, StyledTable} from "./style"
+import { TableContainer, TableContentWrapper, StyledTable } from "./style"
 import { TableProps } from "./interface";
 
 const Table = ({
   dataSource,
   height = "300px",
-  fixedHeight="300px",
+  fixedHeight = "300px",
   rowKey = "rowKey",
   columns,
   hideTools = true,
@@ -48,7 +50,7 @@ const Table = ({
   printDisabled,
   excelDisabled,
   overflowY
-}: TableProps) => {
+}: any) => {
   const { pathname } = useLocation();
   const [rowSelected, setRowSelected] = useState();
   const handleSelectedRow = useCallback(
@@ -80,7 +82,7 @@ const Table = ({
     tableColumnsLength,
     loading,
   ]);
-  
+
   const containerWidthNumber = rect?.width ?? 200;
 
   const { doesAnyColumnHasInputType, adjustedColumns } = useMemo(
@@ -97,61 +99,64 @@ const Table = ({
 
   return (
     <>
+      <TableControlButtons
+        hideTools={hideTools}
+        canAdd={canAdd}
+        canEdit={canEdit}
+        canDelete={canDelete}
+        canSave={canSave}
+        canPrint={canPrint}
+        canExcel={canExcel}
+        onAdd={onAdd}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        onSave={onSave}
+        onPrint={onPrint}
+        onExcel={excelFun}
+        addDisabled={addDisabled}
+        editDisabled={editDisabled || !rowSelected}
+        deleteDisabled={deleteDisabled || !rowSelected}
+        saveDisabled={saveDisabled}
+        printDisabled={printDisabled}
+        excelDisabled={excelDisabled}
+        additionalButtons={additionalButtons}
+      />
       <TableContainer width={width} padding={padding} margin={margin} ref={elementRef}>
         <LoadingOverLay visible={loading} />
-        <TableControlButtons
-          hideTools={hideTools}
-          canAdd={canAdd}
-          canEdit={canEdit}
-          canDelete={canDelete}
-          canSave={canSave}
-          canPrint={canPrint}
-          canExcel={canExcel}
-          onAdd={onAdd}
-          onEdit={onEdit}
-          onDelete={onDelete}
-          onSave={onSave}
-          onPrint={onPrint}
-          onExcel={excelFun}
-          addDisabled={addDisabled}
-          editDisabled={editDisabled || !rowSelected}
-          deleteDisabled={deleteDisabled || !rowSelected}
-          saveDisabled={saveDisabled}
-          printDisabled={printDisabled}
-          excelDisabled={excelDisabled}
-          additionalButtons={additionalButtons}
-        />
         <TableContentWrapper
           height={height}
           overflowY={overflowY}
-          // fixedHeight={fixedHeight}
+          fixedHeight={fixedHeight}
         >
           <StyledTable cellSpacing={0}>
-          <TableHeader 
-          columns={adjustedColumns} 
-          // actionColumn={actionColumn}
-          // actionLabel={actionLabel}
-          // actionWidth={actionWidth}
-          />
-          <TableBody
-             columns={adjustedColumns} 
-             actionColumn={actionColumn}
-            //  actionLabel={actionLabel}
-            //  actionWidth={actionWidth}
-             dataSource={dataSource}
-             rowKey={rowKey}
-             handleSelectedRow={handleSelectedRow}
-             handleDouble={handleDouble}
-             rowSelected={rowSelected}
+            <TableHeader
+              columns={adjustedColumns}
+              actionColumn={actionColumn}
+              actionLabel={actionLabel}
+              actionWidth={actionWidth}
+            />
+
+            <TableBody
+              columns={adjustedColumns}
+              actionColumn={actionColumn}
+              //  actionLabel={actionLabel}
+              //  actionWidth={actionWidth}
+              dataSource={dataSource}
+              rowKey={rowKey}
+              handleSelectedRow={handleSelectedRow}
+              handleDouble={handleDouble}
+              rowSelected={rowSelected}
             //  onAction={onAction}
-          />
+            />
+
           </StyledTable>
-          <Pagination
+          {(!Array.isArray(dataSource) || dataSource.length === 0) && <Flex width="100%" justifyContent="center"><Text title="ntd" color="red" fontWeight="bold" /></Flex>}
+          {/* <Pagination
       total={85}
       showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
       defaultPageSize={20}
       defaultCurrent={1}
-    />
+    /> */}
         </TableContentWrapper>
       </TableContainer>
     </>

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import {primaryColors} from "@commons/global"
-import {BaseTitle} from "@commons/page-title"
+import { primaryColors } from "@commons/global";
+import { BaseTitle } from "@commons/page-title";
 
 const getCellWidth = (width: string | number) =>
   !isNaN(+width) ? `${width}px` : width;
@@ -22,25 +22,27 @@ export const TableContentWrapper = styled.div<any>`
   max-height: ${({ height }) => height};
   overflow-y: ${({ overflowY }) => overflowY};
   position: relative;
+  height: ${({ fixedHeight }) => fixedHeight};
 `;
 
 export const StyledHeader = styled.thead<any>`
   background-color: ${primaryColors.primary};
   color: ${primaryColors.white};
-`
+`;
 
 export const StyledTable = styled.table<any>`
   border-collapse: separate;
   table-layout: auto;
   border-spacing: 0;
   max-width: 100%;
-  ${({fixedHeight})=> fixedHeight && `height: ${fixedHeight}`}
+  ${({ fixedHeight }) => fixedHeight && `height: ${fixedHeight}`}
 `;
 
 export const StyledTableRowCell = styled.td<any>`
   position: relative;
   padding: 0;
   margin: 0;
+  border: 1px solid red;
   color: currentColor;
   font-size: ${({ fontSize }) => fontSize};
   ${({ isHeadCell, headBackground }) =>
@@ -78,7 +80,7 @@ export const ellipsisCss = css`
 `;
 
 export const CellContentWrapper = styled(BaseTitle)<any>`
-   display: flex;
+  display: flex;
   ${({ justify, align }) => `
     justify-content: ${justify || "cen ter"};
     align-items: ${align || "center"};
@@ -110,7 +112,7 @@ export const CellContentWrapper = styled(BaseTitle)<any>`
   transition: all 0.3s ease-in-out;
 `;
 CellContentWrapper.defaultProps = {
-  tag: "div"
+  tag: "div",
 };
 
 export const BodyRow = styled.tr<{

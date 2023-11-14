@@ -94,4 +94,4 @@ const BodyCellRenderer = ({
   );
 };
 
-export default memo(BodyCellRenderer) as typeof BodyCellRenderer;
+export default memo(BodyCellRenderer);
