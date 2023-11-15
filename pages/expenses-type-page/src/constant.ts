@@ -2,16 +2,16 @@ export const columns = [
   {
     title: "expnsid",
     dataIndex: "expense_type_id",
-    width: "23.3%",
+    width: "20%",
   },
   {
     title: "expnsnm",
     dataIndex: "expense_type_name",
-    width: "43.3%",
+    width: "50%",
   },
   {
     title: "nts",
     dataIndex: "expense_type_note",
-    width: "33.3%",
+    width: "29%",
   },
 ];

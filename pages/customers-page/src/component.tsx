@@ -18,6 +18,7 @@ const Customers = () => {
                 rowKey={"customer_id"}
                 ModalContent={ModalView}
                 fetchOnFirstRun
+                modalWidth='40%'
             />
         </>
     )

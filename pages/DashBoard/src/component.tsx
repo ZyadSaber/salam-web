@@ -65,13 +65,13 @@ const DashBoard = () => {
                         api="QUERY_INVOICES_CHART_DATA"
                         label="invcs"
                         mode="pie"
-                        width="100%"
+                        width="90%"
                     />
                     <ChartWithApi
                         api="QUERY_VAULT_CHART_DATA"
                         label="vault"
                         mode="pie"
-                        width="100%"
+                        width="90%"
                     />
                 </Flex>
             </Flex>

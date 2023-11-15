@@ -33,42 +33,42 @@ export const detailTableColumns = [
   {
     title: "itmnm",
     dataIndex: "item",
-    width: "15%",
+    width: "23%",
   },
   {
     title: "wdth",
     dataIndex: "width",
-    width: "5%",
+    width: "10%",
   },
   {
     title: "hght",
     dataIndex: "height",
-    width: "5%",
+    width: "10%",
   },
   {
     title: "sz",
     dataIndex: "size",
-    width: "5%",
+    width: "10%",
   },
   {
     title: "qnty",
     dataIndex: "quantity",
-    width: "5%",
+    width: "10%",
   },
   {
     title: "prc",
     dataIndex: "price",
-    width: "5%",
+    width: "10%",
   },
   {
     title: "total",
     dataIndex: "total",
-    width: "5%",
+    width: "10%",
   },
   {
     title: "nts",
     dataIndex: "notes",
-    width: "5%",
+    width: "15%",
   },
 ];
 

@@ -4,7 +4,6 @@ import { TableWithApi } from "@commons/table";
 import {columns} from "./constant"
 
 const InvoiceDetailsWithEditModal = ({visible, onClose, invoiceType, invoiceNumber, withEdit}:any) => {
-    const type = invoiceType === "C" ? "customer" : "supplier"
     return (
         <Modal
         visible={visible}
@@ -14,7 +13,7 @@ const InvoiceDetailsWithEditModal = ({visible, onClose, invoiceType, invoiceNumb
         >
             <TableWithApi
                 api="QUERY_INVOICE_DETAIL_TABLE_DATA"
-                rowKey={`${type}_invoice_id`}
+                rowKey="row_key"
                 params={{
                     invoice_type: invoiceType,
                     invoice_no: invoiceNumber

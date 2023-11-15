@@ -155,6 +155,14 @@ const SupplierInvoice = () => {
     stateToValidate: state,
   });
 
+  const actionButtons = [{
+    label: "delete",
+    onClick: handleDelete,
+    width: "100%",
+    margin: "0",
+    padding: "0"
+  }]
+
   return (
     <>
       <Flex flexDirection="column" width="100%">
@@ -185,8 +193,9 @@ const SupplierInvoice = () => {
         <Table
           columns={columns}
           dataSource={state.supplier_invoice_items}
-          // actionColumn
-          actionLabel="Delete"
+          actionColumn={actionButtons}
+          actionWidth={100}
+          actionLabel="dlt"
           rowKey="supplier_invoice_item_id"
           onAction={handleDelete}
           hideTools={false}

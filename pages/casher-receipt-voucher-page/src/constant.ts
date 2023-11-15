@@ -2,7 +2,7 @@ export const columns = [
   {
     title: "dt",
     dataIndex: "voucher_date",
-    width: "15%",
+    width: "14%",
   },
   {
     title: "amnt",
