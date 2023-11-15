@@ -42,7 +42,9 @@ const InvoicesSearch = () => {
                     onChange={onChange}
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
-                    <Flex width="40%">
+                    <Flex width="40%"
+                    flexDirection="column"
+                    >
                         <TableWithApi
                             ref={tableRef}
                             api="QUERY_INVOICE_MASTER_TABLE_DATA"
@@ -55,7 +57,7 @@ const InvoicesSearch = () => {
                             canDelete
                         />
                     </Flex>
-                    <Flex width="60%">
+                    <Flex width="60%" flexDirection="column">
                         <TableWithApi
                             ref={detailTableRef}
                             api="QUERY_INVOICE_DETAIL_TABLE_DATA"

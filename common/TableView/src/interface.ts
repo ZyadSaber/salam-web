@@ -73,7 +73,7 @@ export interface TableProps {
   printDisabled?: boolean;
   excelDisabled?: boolean;
   overflowY?: string;
-  actionWidth?: string;
+  actionWidth?: string | number;
   fixedHeight?: string;
 }
 

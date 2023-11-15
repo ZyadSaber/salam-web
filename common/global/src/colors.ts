@@ -9,6 +9,11 @@ export const primaryColors = {
   light: "#f8f9fa",
   dark: "#212529",
   white: "#fff",
+  white2: "#fafafa",
   transparent: "transparent",
   black: "#000",
+  inputBorderColor: "#d9d9d9",
+  lightGrey1: "#F7f3f3",
+  lightSky: "#edeef9",
+  lightBlue: "#6099ec"
 };

@@ -42,10 +42,10 @@ export const StyledTableRowCell = styled.td<any>`
   position: relative;
   padding: 0;
   margin: 0;
-  border: 1px solid red;
+  border: 0.1px solid ${primaryColors.inputBorderColor};
   color: currentColor;
   font-size: ${({ fontSize }) => fontSize};
-  ${({ isHeadCell, headBackground }) =>
+  ${({ isHeadCell }) =>
     isHeadCell &&
     `
     background-color: ${primaryColors.primary};
@@ -115,15 +115,9 @@ CellContentWrapper.defaultProps = {
   tag: "div",
 };
 
-export const BodyRow = styled.tr<{
-  // selectedRowBackgroundColor: ColorNamesType;
-  selected?: boolean;
-}>`
-  ${({ selected }) =>
-    !!selected &&
-    `
-    background-color: ${primaryColors.info};
-  `};
-  background-color: ${primaryColors.white} !important;
+export const BodyRow = styled.tr<any>`
+  ${({ selected, selectedRowBackgroundColor }) =>
+  //@ts-ignore
+    !!selected ? `background-color: ${primaryColors[selectedRowBackgroundColor]}` : `background-color: ${primaryColors.white2}`};
   transition: all 0.3s ease-in-out;
 `;

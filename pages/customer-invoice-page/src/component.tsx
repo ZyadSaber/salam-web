@@ -246,11 +246,11 @@ const CustomerInvoices = () => {
           columns={columns}
           dataSource={customer_invoice_items}
           actionColumn
-          actionLabel="Delete"
+          actionLabel="del"
           onAction={handleDelete}
           hideTools={false}
           onAdd={handleAdd}
-          actionWidth={110}
+          actionWidth={100}
           canAdd
           additionalButtons={additionalButtons}
         />

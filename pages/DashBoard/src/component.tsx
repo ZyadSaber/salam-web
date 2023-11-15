@@ -47,6 +47,7 @@ const DashBoard = () => {
                         columns={customerTableColumns}
                         fetchOnFirstRun
                         label='cstmrs'
+                        width="100%"
                         onDoubleClick={handleCustomerModal}
                     />
                     <TableWithApi
@@ -54,6 +55,7 @@ const DashBoard = () => {
                         rowKey='supplier_invoice_id'
                         columns={supplierTableColumns}
                         fetchOnFirstRun
+                        width="100%"
                         label='splrs'
                         onDoubleClick={handleSupplierModal}
                     />

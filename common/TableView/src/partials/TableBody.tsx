@@ -1,6 +1,7 @@
 import React, { memo, Fragment } from "react";
-import { Button } from "@commons/button";
-import HeadCellRenderer from "./HeadCellRenderer"
+import BodyCellRenderer from "./BodyCellRenderer";
+import Flex from "@commons/flex"
+import {Button} from "@commons/button"
 import { StyledTableRowCell, BodyRow } from "../style";
 
 const TableBody = ({
@@ -13,30 +14,58 @@ const TableBody = ({
   handleSelectedRow,
   handleDouble,
   rowSelected,
+  selectedRowBackgroundColor,
   onAction,
-  fixedHeight
+  clickedRowKey,
+  isRowChecked,
+  indexOfFirstItem,
+  fontSize
 }: any) => {
   return (
     <tbody>
-      {dataSource?.map((item: any) => {
+      {dataSource?.map((record: any, index: number) => {
+        const currentRecordIndex = (indexOfFirstItem || 0) + index;
+        const currentRowKey = record[rowKey] 
         return (
-          <Fragment
-            key={item[rowKey]}
-            //   background={`${rowSelected === item ? "#dbffbf" : ""}`}
-          >
+          <Fragment key={currentRowKey}>
             <BodyRow
-              onClick={handleSelectedRow(item)}
-              onDoubleClick={handleDouble(item)}
+            selectedRowBackgroundColor={selectedRowBackgroundColor}
+              onClick={handleSelectedRow(record, index, currentRowKey)}
+              onDoubleClick={handleDouble(record, index, currentRowKey)}
+              selected={isRowChecked || clickedRowKey === currentRowKey}
             >
-              {columns.map((column: any) => {
+              {columns.map((cellProps: any, currentColumnIndex: number) => {
+                const {
+                  // dataIndex,
+                  // align,
+                  // children,
+                  titleDataIndex
+                } = cellProps;
+
+                const sharedProps = {
+                  currentRecordIndex,
+                  currentRecord: record,
+                  fontSize,
+                  // showEditableInputs,
+                  // onInputChange,
+                  // recordInputsDisabled,
+                  titleDataIndex,
+                  // rowCellClassName
+                };
+
+                // const computedCellKey = `${dataIndex}-col-${currentColumnIndex}`;
+
                 return (
                   <StyledTableRowCell>
-                    <HeadCellRenderer width={columns.width} title={item[column.dataIndex]}/>
-                    
-
+                    <BodyCellRenderer {...sharedProps} cellProps={cellProps}/>
                   </StyledTableRowCell>
                 );
               })}
+              <StyledTableRowCell>
+                <Flex width="100%">
+                    <Button label="dd" height="auto" padding="0" margin="0"  width="100%" />
+                    </Flex>
+                  </StyledTableRowCell>
             </BodyRow>
           </Fragment>
         );

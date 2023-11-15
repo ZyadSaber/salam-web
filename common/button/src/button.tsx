@@ -16,7 +16,7 @@ const Button = ({
     padding = "5px",
     borderRadius = "5px",
     backGround,
-    fontWeight = "500",
+    fontWeight = "100",
     loading = false,
     border,
     icon,

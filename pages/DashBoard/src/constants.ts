@@ -2,37 +2,37 @@ export const customerTableColumns = [
   {
     title: "no",
     dataIndex: "customer_invoice_id",
-    width: "5%",
+    width: "8%",
   },
   {
     title: "nm",
     dataIndex: "invoice_holder_name",
-    width: "10%",
+    width: "37%",
   },
   {
     title: "total",
     dataIndex: "customer_invoice_total",
-    width: "5%",
+    width: "10%",
   },
   {
-    title: "discount",
+    title: "dscnt",
     dataIndex: "customer_invoice_discount",
-    width: "5%",
+    width: "10%",
   },
   {
-    title: "total after",
+    title: "tlaftrdsnt",
     dataIndex: "customer_invoice_after_discount",
-    width: "5%",
+    width: "13%",
   },
   {
     title: "paid",
     dataIndex: "customer_invoice_paid",
-    width: "5%",
+    width: "10%",
   },
   {
-    title: "credit",
+    title: "crdt",
     dataIndex: "customer_invoice_credit",
-    width: "5%",
+    width: "10%",
   },
 ];
 
@@ -40,36 +40,36 @@ export const supplierTableColumns = [
   {
     title: "no",
     dataIndex: "supplier_invoice_id",
-    width: "5%",
+    width: "8%",
   },
   {
     title: "nm",
     dataIndex: "invoice_holder_name",
-    width: "10%",
+    width: "37%",
   },
   {
     title: "total",
     dataIndex: "supplier_invoice_total",
-    width: "5%",
+    width: "10%",
   },
   {
-    title: "discount",
+    title: "dscnt",
     dataIndex: "supplier_invoice_discount",
-    width: "5%",
+    width: "10%",
   },
   {
-    title: "total after",
+    title: "tlaftrdsnt",
     dataIndex: "supplier_invoice_after_discount",
-    width: "5%",
+    width: "13%",
   },
   {
     title: "paid",
     dataIndex: "supplier_invoice_paid",
-    width: "5%",
+    width: "10%",
   },
   {
-    title: "credit",
+    title: "crdt",
     dataIndex: "supplier_invoice_credit",
-    width: "5%",
+    width: "10%",
   }
 ];

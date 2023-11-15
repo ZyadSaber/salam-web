@@ -10,22 +10,22 @@ export const mainTableColumns = [
   {
     title: "no",
     dataIndex: "invoice_id",
-    width: "14%",
+    width: "10%",
   },
   {
     title: "nm",
     dataIndex: "holder_name",
-    width: "20%",
+    width: "49%",
   },
   {
     title: "dt",
     dataIndex: "invoice_date",
-    width: "10%",
+    width: "20%",
   },
   {
     title: "total",
     dataIndex: "invoice_total",
-    width: "10%",
+    width: "19%",
   },
 ];
 

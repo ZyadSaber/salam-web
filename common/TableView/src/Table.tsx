@@ -1,16 +1,15 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import LoadingOverLay from "@commons/loading-over-lay"
-import { useBoundingClientRect } from "@commons/hooks"
-import { Pagination } from 'antd';
-import { Text } from "@commons/page-title"
-import Flex from "@commons/flex"
-import TableControlButtons from "./partials/TableControlButtons"
+import LoadingOverLay from "@commons/loading-over-lay";
+import { useBoundingClientRect } from "@commons/hooks";
+import { Text } from "@commons/page-title";
+import Flex from "@commons/flex";
+import TableControlButtons from "./partials/TableControlButtons";
 import generateFixedColumns from "./helpers/generateFixedColumns";
-import TableHeader from "./partials/TableHeader"
-import TableBody from "./partials/TableBody"
-import createExcelFunction from "./helpers/createExcelFunction"
-import { TableContainer, TableContentWrapper, StyledTable } from "./style"
+import TableHeader from "./partials/TableHeader";
+import TableBody from "./partials/TableBody";
+import createExcelFunction from "./helpers/createExcelFunction";
+import { TableContainer, TableContentWrapper, StyledTable } from "./style";
 import { TableProps } from "./interface";
 
 const Table = ({
@@ -49,8 +48,8 @@ const Table = ({
   saveDisabled,
   printDisabled,
   excelDisabled,
-  overflowY
-}: any) => {
+  overflowY,
+}: TableProps) => {
   const { pathname } = useLocation();
   const [rowSelected, setRowSelected] = useState();
   const handleSelectedRow = useCallback(
@@ -73,10 +72,10 @@ const Table = ({
   const excelFun = createExcelFunction({
     fileName: `${pathName} ${new Date().toUTCString()}.xlsx`,
     dataSource: dataSource,
-    columns: columns
-  })
+    columns: columns,
+  });
 
-  const tableColumnsLength = columns.length
+  const tableColumnsLength = columns.length;
 
   const [elementRef, rect] = useBoundingClientRect([
     tableColumnsLength,
@@ -85,43 +84,45 @@ const Table = ({
 
   const containerWidthNumber = rect?.width ?? 200;
 
-  const { doesAnyColumnHasInputType, adjustedColumns } = useMemo(
+  const { adjustedColumns } = useMemo(
     () =>
       generateFixedColumns({
         containerWidthNumber,
         columnsFromProps: columns,
-        // hasSelectionColumn,
-        // showExpandColumn,
-        // isMobileBreakPoint
       }),
     [containerWidthNumber, columns]
   );
 
   return (
     <>
-      <TableControlButtons
-        hideTools={hideTools}
-        canAdd={canAdd}
-        canEdit={canEdit}
-        canDelete={canDelete}
-        canSave={canSave}
-        canPrint={canPrint}
-        canExcel={canExcel}
-        onAdd={onAdd}
-        onEdit={onEdit}
-        onDelete={onDelete}
-        onSave={onSave}
-        onPrint={onPrint}
-        onExcel={excelFun}
-        addDisabled={addDisabled}
-        editDisabled={editDisabled || !rowSelected}
-        deleteDisabled={deleteDisabled || !rowSelected}
-        saveDisabled={saveDisabled}
-        printDisabled={printDisabled}
-        excelDisabled={excelDisabled}
-        additionalButtons={additionalButtons}
-      />
-      <TableContainer width={width} padding={padding} margin={margin} ref={elementRef}>
+     <TableControlButtons
+          hideTools={hideTools}
+          canAdd={canAdd}
+          canEdit={canEdit}
+          canDelete={canDelete}
+          canSave={canSave}
+          canPrint={canPrint}
+          canExcel={canExcel}
+          onAdd={onAdd}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onSave={onSave}
+          onPrint={onPrint}
+          onExcel={excelFun}
+          addDisabled={addDisabled}
+          editDisabled={editDisabled || !rowSelected}
+          deleteDisabled={deleteDisabled || !rowSelected}
+          saveDisabled={saveDisabled}
+          printDisabled={printDisabled}
+          excelDisabled={excelDisabled}
+          additionalButtons={additionalButtons}
+        />
+      <TableContainer
+        width={width}
+        padding={padding}
+        margin={margin}
+        ref={elementRef}
+      >
         <LoadingOverLay visible={loading} />
         <TableContentWrapper
           height={height}
@@ -146,17 +147,14 @@ const Table = ({
               handleSelectedRow={handleSelectedRow}
               handleDouble={handleDouble}
               rowSelected={rowSelected}
-            //  onAction={onAction}
+              //  onAction={onAction}
             />
-
           </StyledTable>
-          {(!Array.isArray(dataSource) || dataSource.length === 0) && <Flex width="100%" justifyContent="center"><Text title="ntd" color="red" fontWeight="bold" /></Flex>}
-          {/* <Pagination
-      total={85}
-      showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
-      defaultPageSize={20}
-      defaultCurrent={1}
-    /> */}
+          {(!Array.isArray(dataSource) || dataSource.length === 0) && (
+            <Flex width="100%" justifyContent="center" height="30%">
+              <Text title="ntd" color="red" fontWeight="bold" />
+            </Flex>
+          )}
         </TableContentWrapper>
       </TableContainer>
     </>
