@@ -52,7 +52,7 @@ export const StyledTableRowCell = styled.td<any>`
     position: sticky;
     top: 0;
     font-weight: bold;
-    z-index: 900;
+    z-index: 1;
   `};
   ${({ width }) =>
     width &&
@@ -117,7 +117,9 @@ CellContentWrapper.defaultProps = {
 
 export const BodyRow = styled.tr<any>`
   ${({ selected, selectedRowBackgroundColor }) =>
-  //@ts-ignore
-    !!selected ? `background-color: ${primaryColors[selectedRowBackgroundColor]}` : `background-color: ${primaryColors.white2}`};
+    !!selected
+      ? //@ts-ignore
+        `background-color: ${primaryColors[selectedRowBackgroundColor]}`
+      : `background-color: ${primaryColors.white2}`};
   transition: all 0.3s ease-in-out;
 `;

@@ -45,7 +45,10 @@ const CustomerInvoices = () => {
     handleSelectWithLabelChange,
     resetForm: resetItemForm,
   } = useFormManager({
-    initialValues: initialItemState,
+    initialValues: {
+      ...initialItemState,
+      rowKey: customer_invoice_items.length + 1
+    },
   });
 
   const { setRow } = useMutation({
@@ -56,10 +59,7 @@ const CustomerInvoices = () => {
   const handleAdd = useCallback(() => {
     handleArrayChange({
       name: "customer_invoice_items",
-      value: {
-        ...currentItemState,
-        rowKey: customer_invoice_items.length + 1,
-      },
+      value: currentItemState,
     });
     let totals = 0;
     customer_invoice_items.forEach((item: any) => {
@@ -217,6 +217,14 @@ const CustomerInvoices = () => {
     },
   });
 
+  const actionButtons = [{
+    label: "delete",
+    onClick: handleDelete,
+    width: "100%",
+    margin: "0",
+    padding: "0"
+  },]
+
   return (
     <>
       <Flex flexDirection="column" width="100%">
@@ -245,11 +253,10 @@ const CustomerInvoices = () => {
         <Table
           columns={columns}
           dataSource={customer_invoice_items}
-          actionColumn
+          actionColumn={actionButtons}
           actionLabel="del"
-          onAction={handleDelete}
           hideTools={false}
-          onAdd={handleAdd}
+          onAdd={handleValidateFelids}
           actionWidth={100}
           canAdd
           additionalButtons={additionalButtons}

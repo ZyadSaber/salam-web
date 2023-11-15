@@ -185,7 +185,7 @@ const SupplierInvoice = () => {
         <Table
           columns={columns}
           dataSource={state.supplier_invoice_items}
-          actionColumn
+          // actionColumn
           actionLabel="Delete"
           rowKey="supplier_invoice_item_id"
           onAction={handleDelete}

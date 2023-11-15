@@ -48,37 +48,37 @@ export const itemValidate = [
 export const columns = [
   {
     title: "prntnm",
-    width: "10%",
+    width: "20%",
     dataIndex: "print_name",
   },
   {
     title: "itmnm",
-    width: "10%",
+    width: "20%",
     dataIndex: "item_name",
   },
   {
     title: "wdth",
-    width: "10%",
+    width: "5%",
     dataIndex: "customer_invoice_item_width",
   },
   {
     title: "hght",
-    width: "10%",
+    width: "5%",
     dataIndex: "customer_invoice_item_height",
   },
   {
     title: "sz",
-    width: "10%",
+    width: "5%",
     dataIndex: "customer_invoice_item_size",
   },
   {
     title: "qnty",
-    width: "10%",
+    width: "5%",
     dataIndex: "customer_invoice_item_quantity",
   },
   {
     title: "prc",
-    width: "10%",
+    width: "7%",
     dataIndex: "customer_invoice_item_price",
   },
   {

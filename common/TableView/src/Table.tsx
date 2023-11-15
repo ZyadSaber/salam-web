@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import LoadingOverLay from "@commons/loading-over-lay";
 import { useBoundingClientRect } from "@commons/hooks";
@@ -26,8 +26,7 @@ const Table = ({
   onAdd,
   onEdit,
   onDelete,
-  actionColumn = false,
-  onAction,
+  actionColumn,
   actionLabel = "",
   actionWidth,
   onSelectedRow,
@@ -42,6 +41,7 @@ const Table = ({
   padding = "",
   loading = false,
   onDoubleClick,
+  selectedRowBackgroundColor = "lightBlue",
   addDisabled,
   editDisabled,
   deleteDisabled,
@@ -51,19 +51,28 @@ const Table = ({
   overflowY,
 }: TableProps) => {
   const { pathname } = useLocation();
-  const [rowSelected, setRowSelected] = useState();
-  const handleSelectedRow = useCallback(
-    (item: any) => () => {
-      if (onSelectedRow) onSelectedRow(item);
-      setRowSelected(item);
+  const [clickedRowKey, setClickedRow] = useState();
+
+  useLayoutEffect(() => {
+    if (loading) {
+      setClickedRow(undefined);
+    }
+  }, [loading]);
+
+  const onRowClick = useCallback(
+    //@ts-ignore
+    (currentRowKey, currentRecord, recordIndex) => () => {
+      setClickedRow(currentRowKey);
+      onSelectedRow?.(currentRecord, recordIndex);
     },
     [onSelectedRow]
   );
 
   const handleDouble = useCallback(
-    (item: any) => () => {
-      if (onDoubleClick) onDoubleClick(item);
-      setRowSelected(item);
+    //@ts-ignore
+    (currentRowKey, currentRecord, recordIndex) => () => {
+      setClickedRow(currentRowKey);
+      onDoubleClick?.(currentRecord, recordIndex);
     },
     [onDoubleClick]
   );
@@ -95,28 +104,28 @@ const Table = ({
 
   return (
     <>
-     <TableControlButtons
-          hideTools={hideTools}
-          canAdd={canAdd}
-          canEdit={canEdit}
-          canDelete={canDelete}
-          canSave={canSave}
-          canPrint={canPrint}
-          canExcel={canExcel}
-          onAdd={onAdd}
-          onEdit={onEdit}
-          onDelete={onDelete}
-          onSave={onSave}
-          onPrint={onPrint}
-          onExcel={excelFun}
-          addDisabled={addDisabled}
-          editDisabled={editDisabled || !rowSelected}
-          deleteDisabled={deleteDisabled || !rowSelected}
-          saveDisabled={saveDisabled}
-          printDisabled={printDisabled}
-          excelDisabled={excelDisabled}
-          additionalButtons={additionalButtons}
-        />
+      <TableControlButtons
+        hideTools={hideTools}
+        canAdd={canAdd}
+        canEdit={canEdit}
+        canDelete={canDelete}
+        canSave={canSave}
+        canPrint={canPrint}
+        canExcel={canExcel}
+        onAdd={onAdd}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        onSave={onSave}
+        onPrint={onPrint}
+        onExcel={excelFun}
+        addDisabled={addDisabled}
+        editDisabled={editDisabled || !clickedRowKey}
+        deleteDisabled={deleteDisabled || !clickedRowKey}
+        saveDisabled={saveDisabled}
+        printDisabled={printDisabled}
+        excelDisabled={excelDisabled}
+        additionalButtons={additionalButtons}
+      />
       <TableContainer
         width={width}
         padding={padding}
@@ -140,14 +149,12 @@ const Table = ({
             <TableBody
               columns={adjustedColumns}
               actionColumn={actionColumn}
-              //  actionLabel={actionLabel}
-              //  actionWidth={actionWidth}
               dataSource={dataSource}
               rowKey={rowKey}
-              handleSelectedRow={handleSelectedRow}
-              handleDouble={handleDouble}
-              rowSelected={rowSelected}
-              //  onAction={onAction}
+              handleSelectedRow={onRowClick}
+              onDoubleClick={handleDouble}
+              selectedRowBackgroundColor={selectedRowBackgroundColor}
+              clickedRowKey={clickedRowKey}
             />
           </StyledTable>
           {(!Array.isArray(dataSource) || dataSource.length === 0) && (

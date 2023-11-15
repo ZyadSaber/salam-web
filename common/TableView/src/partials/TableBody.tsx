@@ -1,21 +1,17 @@
 import React, { memo, Fragment } from "react";
 import BodyCellRenderer from "./BodyCellRenderer";
 import Flex from "@commons/flex"
-import {Button} from "@commons/button"
+import { Button, IconButton } from "@commons/button"
 import { StyledTableRowCell, BodyRow } from "../style";
 
 const TableBody = ({
   columns,
   actionColumn,
-  actionLabel,
-  actionWidth,
   dataSource,
   rowKey,
   handleSelectedRow,
-  handleDouble,
-  rowSelected,
+  onDoubleClick,
   selectedRowBackgroundColor,
-  onAction,
   clickedRowKey,
   isRowChecked,
   indexOfFirstItem,
@@ -25,20 +21,17 @@ const TableBody = ({
     <tbody>
       {dataSource?.map((record: any, index: number) => {
         const currentRecordIndex = (indexOfFirstItem || 0) + index;
-        const currentRowKey = record[rowKey] 
+        const currentRowKey = record[rowKey]
         return (
           <Fragment key={currentRowKey}>
             <BodyRow
-            selectedRowBackgroundColor={selectedRowBackgroundColor}
-              onClick={handleSelectedRow(record, index, currentRowKey)}
-              onDoubleClick={handleDouble(record, index, currentRowKey)}
+              selectedRowBackgroundColor={selectedRowBackgroundColor}
+              onClick={handleSelectedRow(currentRowKey, record, index)}
+              onDoubleClick={onDoubleClick(currentRowKey, record, index)}
               selected={isRowChecked || clickedRowKey === currentRowKey}
             >
-              {columns.map((cellProps: any, currentColumnIndex: number) => {
+              {columns.map((cellProps: any) => {
                 const {
-                  // dataIndex,
-                  // align,
-                  // children,
                   titleDataIndex
                 } = cellProps;
 
@@ -46,26 +39,25 @@ const TableBody = ({
                   currentRecordIndex,
                   currentRecord: record,
                   fontSize,
-                  // showEditableInputs,
-                  // onInputChange,
-                  // recordInputsDisabled,
                   titleDataIndex,
-                  // rowCellClassName
                 };
-
-                // const computedCellKey = `${dataIndex}-col-${currentColumnIndex}`;
 
                 return (
                   <StyledTableRowCell>
-                    <BodyCellRenderer {...sharedProps} cellProps={cellProps}/>
+                    <BodyCellRenderer {...sharedProps} cellProps={cellProps} />
                   </StyledTableRowCell>
                 );
               })}
-              <StyledTableRowCell>
+              {actionColumn && <StyledTableRowCell>
                 <Flex width="100%">
-                    <Button label="dd" height="auto" padding="0" margin="0"  width="100%" />
-                    </Flex>
-                  </StyledTableRowCell>
+                  {actionColumn.map((actionButton: any) => {
+                    if (actionButton.icon) {
+                      return (<IconButton {...actionButton} onClick={() => { actionButton.onClick(record, index) }} />)
+                    }
+                    return (<Button {...actionButton} onClick={() => { actionButton.onClick(record, index) }} />)
+                  })}
+                </Flex>
+              </StyledTableRowCell>}
             </BodyRow>
           </Fragment>
         );

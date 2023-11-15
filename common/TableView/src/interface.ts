@@ -10,9 +10,20 @@ export interface additionalButtonsType {
   onClick: () => void;
   disabled?: boolean;
   width?: string;
+  padding?: string;
+  margin?: string;
 }
 
-export interface tableControlButtonsProp{
+export interface actionButtonsType {
+  icon?: string;
+  label?: string;
+  onClick: (e: any, d?: number) => void;
+  disabled?: boolean;
+  width?: string;
+  padding?: string;
+  margin?: string;
+}
+export interface tableControlButtonsProp {
   hideTools?: boolean;
   canAdd?: boolean;
   canEdit?: boolean;
@@ -52,7 +63,7 @@ export interface TableProps {
   onDelete?: () => void;
   children?: any;
   Form?: any;
-  actionColumn?: boolean;
+  actionColumn?: actionButtonsType[];
   onAction?: any;
   actionLabel?: string;
   onSelectedRow?: any;
@@ -65,7 +76,7 @@ export interface TableProps {
   padding?: number | string;
   margin?: number | string;
   loading?: boolean;
-  onDoubleClick?: (e: any) => void;
+  onDoubleClick?: (e: any, t: any) => void;
   addDisabled?: boolean;
   editDisabled?: boolean;
   deleteDisabled?: boolean;
@@ -75,6 +86,7 @@ export interface TableProps {
   overflowY?: string;
   actionWidth?: string | number;
   fixedHeight?: string;
+  selectedRowBackgroundColor?: any;
 }
 
 export interface TableWithApiProps extends TableProps {
