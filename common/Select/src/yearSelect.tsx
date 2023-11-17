@@ -36,7 +36,7 @@ const YearSelect = ({
                 label={label}
                 width={width}
                 //@ts-ignore for now
-                Options={option()}
+                options={option()}
             />
         </>
     )

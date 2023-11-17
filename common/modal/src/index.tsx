@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { Button } from "@commons/button";
 import { BaseTitle } from "@commons/page-title"
-import Flex from "@commons/flex"
 import { ModalContainer, ModalContent, ModalHeader, ModalBody, ModalFooter } from "./style"
 
 interface ModalProp {
@@ -37,17 +36,15 @@ const Modal = (
     return (
         <>
             {visible &&
-                <ModalContainer hidden={!visible} onKeyUp={(e) => console.log(e.key)}>
+                <ModalContainer hidden={!visible} >
                     <ModalContent width={width} height={height}>
                         <ModalHeader>
-                            <BaseTitle value={label} />
-                            <Button label='&times;' backGround='none' margin='0' padding='0' data-dismiss="modal" onClick={onClose} />
+                            <BaseTitle>{label}</BaseTitle>
+                            <Button label='&times;' width='5%' backGround='none' margin='0' padding='0' data-dismiss="modal" onClick={onClose} fontWeight="19px" />
                         </ModalHeader>
 
                         <ModalBody>
-                            <Flex width="100%" padding="0" wrap height="100%">
                                 {children}
-                            </Flex>
                         </ModalBody>
 
                         {!noFooter &&

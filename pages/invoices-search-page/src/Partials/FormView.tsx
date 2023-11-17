@@ -2,7 +2,7 @@ import React, { memo, useCallback } from "react";
 import RadioBox from "@commons/radio-box";
 import { RadioBoxOptions } from "../constant";
 import { SelectWithApi } from "@commons/select";
-import { InputText } from "@commons/input-text";
+import InputNumber from "@commons/input-number";
 import Flex from "@commons/flex";
 import DatePicker from "@commons/date-picker";
 import { Button } from "@commons/button"
@@ -20,20 +20,19 @@ const FormView = ({ fetchTableData, state, onChange }: any) => {
 
     return (
         <>
-            <Flex bordered width="100%" wrap>
+            <Flex bordered width="100%" wrap gap="5px">
                 <RadioBox
                     name="invoice_type"
                     options={RadioBoxOptions}
                     value={state.invoice_type}
                     onChange={onChange}
                     label="invctyp"
-                    width="17%"
+                    width="auto"
                 />
-                <InputText
+                <InputNumber
                     name="invoice_no"
                     label="no"
                     onChange={onChange}
-                    type="number"
                     value={state.invoice_no}
                 />
                 <SelectWithApi

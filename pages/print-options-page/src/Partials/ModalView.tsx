@@ -4,6 +4,7 @@ import { useFormManager, useValidateForm } from '@commons/hooks';
 import { ModalViewProp } from "@commons/global"
 import { useTableControlsButtons } from "@commons/table";
 import { SaveButton } from "@commons/button";
+import Flex from "@commons/flex"
 
 const ModalView = ({
     onClose,
@@ -34,25 +35,26 @@ const ModalView = ({
     const { print_option_name, print_option_note } = state;
 
     return (
-        <>
+        <Flex width='100%' wrap gap='10px'>
             <InputText
                 name="print_option_name"
                 label='prntnm'
                 onChange={onChange}
                 value={print_option_name}
-                width="100%"
+                width="39%"
             />
             <InputText
                 name="print_option_note"
                 label='nts'
                 onChange={onChange}
                 value={print_option_note}
-                width="100%"
+                width="39%"
             />
             <SaveButton
                 onOK={handleValidateFelids}
+                width='19%'
             />
-        </>
+        </Flex>
     )
 };
 

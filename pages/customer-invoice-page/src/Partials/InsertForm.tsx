@@ -98,7 +98,7 @@ const InsertForm = ({
   return (
     <>
       <Flex width="100%" flexDirection="column" margin="0" padding="0">
-        <Flex margin="0" padding="0">
+        <Flex margin="0" padding="0" gap="5px">
           <SelectWithApi
             api={"QUERY_PRINT_OPTIONS_LIST"}
             onChange={handleSelectWithLabelChange}
@@ -108,6 +108,7 @@ const InsertForm = ({
             withLabel
             fetchOnFirstRun
             selectLabelName="print_name"
+            width="15%"
           />
           <SelectWithApi
             api={"QUERY_ITEMS_LIST"}
@@ -118,22 +119,23 @@ const InsertForm = ({
             withLabel
             fetchOnFirstRun
             selectLabelName="item_name"
+            width="15%"
           />
         </Flex>
-        <Flex margin="0" padding="0">
+        <Flex margin="0" padding="0" gap="5px">
           <InputNumber
             name="customer_invoice_item_width"
             value={state.customer_invoice_item_width}
             label="wdth"
             onChange={handleWidth}
-            width="14%"
+            width="13%"
           />
           <InputNumber
             name="customer_invoice_item_height"
             value={state.customer_invoice_item_height}
             label="hght"
             onChange={handleHeight}
-            width="14%"
+            width="13%"
           />
           <InputNumber
             name="customer_invoice_item_size"
@@ -141,21 +143,21 @@ const InsertForm = ({
             label="sz"
             onChange={onChange}
             disabled
-            width="14%"
+            width="13%"
           />
           <InputNumber
             name="customer_invoice_item_quantity"
             value={state.customer_invoice_item_quantity}
             label="qnty"
             onChange={handleQuantity}
-            width="14%"
+            width="13%"
           />
           <InputNumber
             name="customer_invoice_item_price"
             value={state.customer_invoice_item_price}
             label="prc"
             onChange={handlePrice}
-            width="14%"
+            width="13%"
           />
           <InputNumber
             name="customer_invoice_item_total"
@@ -163,14 +165,14 @@ const InsertForm = ({
             label="total"
             onChange={onChange}
             disabled
-            width="14%"
+            width="13%"
           />
           <InputText
             name="customer_invoice_item_notes"
             value={state.customer_invoice_item_notes}
             label="nts"
             onChange={onChange}
-            width="14%"
+            width="15%"
           />
         </Flex>
       </Flex>

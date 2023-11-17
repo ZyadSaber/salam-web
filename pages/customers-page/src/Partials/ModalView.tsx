@@ -31,13 +31,14 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
   const { customer_name, email, phone, address } = state;
 
   return (
-    <Flex flexDirection="column" padding="0" margin="0">
-      <Flex width="100%" padding="0" margin="0" wrap>
+    <Flex flexDirection="column" padding="0" margin="0" >
+      <Flex width="100%" padding="0" margin="0" wrap gap="5px">
         <InputText
           name="customer_name"
           label="Name"
           onChange={onChange}
           value={customer_name}
+          required
           width="47%"
         />
         <InputText

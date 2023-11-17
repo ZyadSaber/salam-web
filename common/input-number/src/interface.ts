@@ -1,6 +1,6 @@
 export interface inputNumberProp {
   disabled?: boolean;
-  value: number;
+  value: number | undefined;
   name: string;
   height?: number | string;
   label?: string;

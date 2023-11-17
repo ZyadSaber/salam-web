@@ -29,7 +29,6 @@ const ModalView = ({
         onClose()
     }, [onSaveAndInsertion, state, onClose])
 
-    console.log(state.page_name)
 
     return (
         <Flex margin={0} padding={0} gap={0} direction="column" width="100%"> 

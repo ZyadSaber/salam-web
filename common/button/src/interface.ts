@@ -20,6 +20,7 @@ export interface buttonProp extends ButtonProps {
   hidden?: boolean;
   loading?: boolean;
   icon?: React.ReactNode;
+  fontSize?: any
 }
 export interface linkButtonProp extends buttonProp {
   label: string;

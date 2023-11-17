@@ -7,16 +7,17 @@ const Flex = ({
     justifyContent,
     width,
     height,
-    padding = "10px",
+    padding,
     margin,
     bordered = false,
     backgroundColor,
     borderColor = "#3c8dcf",
-    borderWidth = "px",
+    borderWidth,
     borderRadius = "5px",
     flexDirection = "row",
-    textAlign = "",
+    textAlign,
     hidden = false,
+    gap,
     wrap,
     ...prop
 }: flexProps) => {
@@ -33,6 +34,8 @@ const Flex = ({
                 textAlign={textAlign}
                 justifyContent={justifyContent}
                 hidden={hidden}
+                wrap={wrap}
+                gap={gap}
                 {...prop}
             >
                 {children}

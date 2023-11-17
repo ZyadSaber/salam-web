@@ -4,25 +4,30 @@ import { FloatingLabelContainer, FloatingLabelLabel } from "./styled"
 import { floatingLabelProps } from "./interface";
 
 const FloatingLabel = ({
-    value,
+    hasContent,
     name,
     label = "",
-    onChange,
     height,
     width = "200px",
     padding,
-    margin = "10px",
-    children
+    margin,
+    children,
+    hidden,
+    top
 }: floatingLabelProps) => {
 
     const { t } = useTranslation();
     return (
         <>
             <FloatingLabelContainer
-
+            width={width}
+            height={height}
+            margin={margin}
+            padding={padding}
+            hidden={hidden}
             >
                 {children}
-                <FloatingLabelLabel htmlFor={name} hasContent={value !== '' && !value}>
+                <FloatingLabelLabel top={top} htmlFor={name} hasContent={hasContent}>
                     {t(label)}
                 </FloatingLabelLabel>
             </FloatingLabelContainer>

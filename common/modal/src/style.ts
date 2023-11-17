@@ -48,13 +48,13 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalBody = styled.div`
-  padding: 10px 32px;
+  margin: 10px 15px;
   overflow-y: auto;
   height: 100%;
 `;
 
 export const ModalFooter = styled.div`
-  padding: 15px 32px;
+  padding: 35px 32px;
   display: flex;
   align-items: center;
   justify-content: flex-end;

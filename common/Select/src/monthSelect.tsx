@@ -33,7 +33,7 @@ const MonthSelect = ({
                 label={label}
                 width={width}
                 //@ts-ignore for now
-                Options={options()}
+                options={options()}
             />
         </>
     )

@@ -1,6 +1,4 @@
 import React, { memo, useCallback } from "react";
-import { useTranslation } from 'react-i18next';
-import { FormLabel, Flex } from '@chakra-ui/react'
 import FloatingLabel from "@commons/floating-label"
 import { StyledInput } from "./styled"
 import { InputTextProps } from "./interface";
@@ -11,17 +9,16 @@ const InputText = ({
     name,
     label = "",
     onChange,
-    height = "65px",
+    height,
     width = "200px",
     type = "text",
     placeHolder,
     padding,
-    margin = "10px",
-    className = "",
+    margin,
+    className,
     required,
     ...props
 }: InputTextProps) => {
-    const { t } = useTranslation();
 
     const handleChange = useCallback((event: { target: { value: string; }; }) => {
         onChange({ name: name, value: event.target.value })
@@ -31,7 +28,11 @@ const InputText = ({
         <>
             <FloatingLabel
                 label={label}
-                value={value}
+                hasContent={value && value.toString()}
+                margin={margin}
+                padding={padding}
+                height={height}
+                width={width}
             >
                 <StyledInput
                     placeholder={placeHolder}
@@ -45,26 +46,6 @@ const InputText = ({
                     {...props}
                 />
             </FloatingLabel>
-            {/* <Flex
-                direction="column"
-                width={width}
-                padding={padding}
-                margin={margin}
-                height={height}
-            >
-                <FormLabel>{t(label)}</FormLabel>
-                <StyledInput
-                    placeholder={placeHolder}
-                    disabled={disabled}
-                    required={required}
-                    onChange={handleChange}
-                    width="100%"
-                    className={className}
-                    value={value}
-                    type={type}
-                    {...props}
-                />
-            </Flex> */}
         </>
     )
 }

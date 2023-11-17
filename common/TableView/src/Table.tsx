@@ -8,7 +8,8 @@ import TableControlButtons from "./partials/TableControlButtons";
 import generateFixedColumns from "./helpers/generateFixedColumns";
 import TableHeader from "./partials/TableHeader";
 import TableBody from "./partials/TableBody";
-import TablePagination from "./partials/TablePagination"
+import TablePagination from "./partials/TablePagination";
+import FloatingLabelsTotalCells from "./partials/FloatingLabelsTotalCells";
 import createExcelFunction from "./helpers/createExcelFunction";
 import { TableContainer, TableContentWrapper, StyledTable } from "./style";
 import { TableProps } from "./interface";
@@ -38,8 +39,8 @@ const Table = ({
   onSave,
   canSave = false,
   width = "100%",
-  margin = "",
-  padding = "",
+  margin,
+  padding,
   loading = false,
   onDoubleClick,
   selectedRowBackgroundColor = "lightBlue",
@@ -51,6 +52,8 @@ const Table = ({
   excelDisabled,
   overflowY,
   noPagination = true,
+  useFloatingLabelsTotalCells,
+  columnsTotals,
 }: TableProps) => {
   const { pathname } = useLocation();
   const [clickedRowKey, setClickedRow] = useState();
@@ -103,6 +106,22 @@ const Table = ({
       }),
     [containerWidthNumber, columns]
   );
+
+  const baseTotalsCellsComputedProps = useMemo(
+    () => ({
+      useFloatingLabelsTotalCells,
+      columnsTotals,
+    }),
+    [columnsTotals, useFloatingLabelsTotalCells]
+  );
+
+  const totalsCellsComputedProps = {
+    ...baseTotalsCellsComputedProps,
+    dataSource,
+    columns: adjustedColumns,
+    showActionColumn: !!actionLabel,
+    actionColumnWidth: actionWidth,
+  };
 
   return (
     <>
@@ -158,15 +177,21 @@ const Table = ({
               clickedRowKey={clickedRowKey}
             />
           </StyledTable>
+          {useFloatingLabelsTotalCells && (
+            <tfoot>
+              <FloatingLabelsTotalCells />
+            </tfoot>
+          )}
         </TableContentWrapper>
-        {Array.isArray(dataSource) && dataSource.length !== 0 && !noPagination &&
-          <TablePagination />
-        }
-        {(!Array.isArray(dataSource) || dataSource.length === 0) && !fixedHeight && (
-          <Flex width="100%" justifyContent="center" height="30%">
-            <Text title="ntd" color="red" fontWeight="bold" />
-          </Flex>
-        )}
+        {Array.isArray(dataSource) &&
+          dataSource.length !== 0 &&
+          !noPagination && <TablePagination />}
+        {(!Array.isArray(dataSource) || dataSource.length === 0) &&
+          !fixedHeight && (
+            <Flex width="100%" justifyContent="center" height="30%">
+              <Text title="ntd" color="red" fontWeight="bold" />
+            </Flex>
+          )}
         {loading && <LoadingOverLay visible={loading} />}
       </TableContainer>
     </>

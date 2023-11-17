@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { SaveButton } from "@commons/button";
 import { InputText } from "@commons/input-text";
 import { useFormManager, useValidateForm } from "@commons/hooks";
+import Flex from "@commons/flex"
 import { ModalViewProp } from "@commons/global";
 import { useTableControlsButtons } from "@commons/table";
 
@@ -29,25 +30,26 @@ const ModalView = ({
     const { expense_type_name, expense_type_note } = state;
 
     return (
-        <>
+        <Flex width='100%' wrap gap='10px'>
             <InputText
                 name="expense_type_name"
                 label='expnsnm'
-                width="100%"
+                width="49%"
                 onChange={onChange}
                 value={expense_type_name}
             />
             <InputText
                 name="expense_type_note"
                 label='nts'
-                width="100%"
+                width="49%"
                 onChange={onChange}
                 value={expense_type_note}
             />
             <SaveButton
                 onOK={handleValidateFelids}
+                width='15%'
             />
-        </>
+        </Flex>
     )
 };
 

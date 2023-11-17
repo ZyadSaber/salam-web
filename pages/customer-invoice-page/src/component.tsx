@@ -228,7 +228,7 @@ const CustomerInvoices = () => {
   return (
     <>
       <Flex flexDirection="column" width="100%">
-        <Flex margin="0" padding="0">
+        <Flex margin="0" padding="0" gap="5px">
           <SelectWithApi
             api={"QUERY_CUSTOMERS_LIST"}
             onChange={onChange}
@@ -236,12 +236,14 @@ const CustomerInvoices = () => {
             label="cstmr"
             name="customer_id"
             fetchOnFirstRun
+            width="15%"
           />
           <DatePicker
             name="customer_invoice_date"
             value={customer_invoice_date}
             label="dt"
             onChange={onChange}
+            width="15%"
           />
         </Flex>
         <InsertForm
@@ -310,8 +312,6 @@ const CustomerInvoices = () => {
           <Button
             label="sv"
             width="15%"
-            height="50%"
-            margin="30px 0"
             onClick={handleValidateInvoiceFelids}
           />
         </Flex>

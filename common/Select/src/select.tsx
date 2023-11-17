@@ -1,62 +1,55 @@
 import React, { memo } from "react";
-import { useTranslation } from 'react-i18next';
-import { FormLabel, Flex } from '@chakra-ui/react';
-import { StyledSelect, StyledOption } from "./styled"
-import { SelectProps } from "./interface";
+import FloatingLabel from "@commons/floating-label"
+import { StyledSelect } from "./styled"
+import { selectProps } from "./interface";
 
 const Select = ({
     height = "65px",
     width = "200px",
-    Options,
+    options,
     onChange,
     label,
-    value = 0,
+    value,
     name,
-    withLabel = false,
-    margin = "10px",
+    margin,
     padding,
-    placeholder = "Select",
-    selectLabelName = "label_select",
-}: SelectProps) => {
-    const { t } = useTranslation()
-    //@ts-ignore
-    const handleValue = (event) => {
-        if (Array.isArray(Options)) {
-            Options.forEach((option) => {
-                if (option.value === +event.target.value) {
-                    if (withLabel) {
-                        onChange({ value: option.value, selectLabelName: selectLabelName, label: option.label, name: name })
-                    } else {
-                        onChange({ value: option.value, name: name })
-                    }
-                }
-            })
-        }
+    onSearch,
+    hidden,
+    disabled,
+    loading,
+    mode
+}: selectProps) => {
+
+    const handleChange = (value: unknown | number, option : any) => {
+        onChange({name, value, option})
     }
 
     return (
-        <>
-            <Flex
-                direction="column"
-                width={width}
-                padding={padding}
-                margin={margin}
-                height={height}
-            >
-                <FormLabel fontSize='md' as="b" margin="0 0 5px">{t(label)}</FormLabel>
-                <StyledSelect
-                    placeholder={t(placeholder)}
-                    onChange={handleValue}
-                >
-                    <StyledOption>{t("Select")}</StyledOption>
-                    {Array.isArray(Options) && Options.length !== 0 ? Options.map((Option) => {
-                        return (
-                            <StyledOption key={Option.value} value={Option.value} selected={value === Option.value && true}> {t(Option.label)}</StyledOption>
-                        )
-                    }) : <StyledOption disabled>{t("No data")}</StyledOption>}
-                </StyledSelect>
-            </Flex>
-        </>
+        <FloatingLabel
+        label={label}
+        hasContent={value && value.toString()}
+        margin={margin}
+        padding={padding}
+        height={height}
+        width={width}
+        hidden={hidden}
+        top="7px"
+        >
+
+        <StyledSelect
+        options={options}
+        bordered={false}
+        allowClear
+        showSearch
+        onSearch={onSearch}
+        onChange={handleChange}
+        filterOption={false}
+        loading={loading}
+        disabled={loading || disabled}
+        mode={mode}
+        placeholder=""
+        />
+        </FloatingLabel>
     )
 }
 

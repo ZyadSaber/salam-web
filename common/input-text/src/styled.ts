@@ -1,12 +1,19 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
+import { primaryColors } from "@commons/global";
 
 export const StyledInput = styled.input<any>`
-background: #fdfdfd;
-border: 0.5px solid #cbd5e0;
-height: 100%;
-width: 100%;
-border-radius: 7px;
-padding: 0 16px;
-`
+  width: 100%;
+  padding: 5px 7px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 
-//`border:  ${required ? `0.5px solid red` : `0.5px solid #cbd5e0`};`
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  /* ${({ required }) =>
+    required && `background-color:  ${primaryColors.required}`}; */
+
+  &:focus {
+    outline: none !important;
+    border-color: #007bff;
+  }
+`;

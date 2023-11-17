@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import dayjs from "dayjs";
-import { FormLabel, Flex } from "@chakra-ui/react";
-import { useTranslation } from "react-i18next";
+import FloatingLabel from "@commons/floating-label";
 import { StyledDate } from "./styled";
 import { dateFormats } from "./constant";
 import { DatePickerProp } from "./interface";
@@ -13,14 +12,13 @@ const DatePicker = ({
   width = "200px",
   height,
   padding,
-  margin = "10px",
+  margin,
   name,
   onChange,
   required = false,
   showTime,
   ...props
 }: DatePickerProp) => {
-  const { t } = useTranslation();
   const currentValue = actualDate
     ? dayjs(actualDate, dateFormats[dateFormat])
     : undefined;
@@ -29,14 +27,15 @@ const DatePicker = ({
     onChange && onChange({ name: name, value: dateString });
   };
   return (
-    <Flex
-      direction="column"
-      width={width}
-      padding={padding}
-      margin={margin}
-      height={height}
+    <FloatingLabel
+    label={label}
+    width={width}
+    height={height}
+    padding={padding}
+    margin={margin}
+    hasContent={currentValue && currentValue?.toString()}
+    top="7px"
     >
-      <FormLabel>{t(label)}</FormLabel>
       <StyledDate
         defaultValue={currentValue}
         value={currentValue}
@@ -44,10 +43,11 @@ const DatePicker = ({
         showTime={showTime}
         width="100%"
         onChange={handleChange}
+        placeholder=""
         required={required}
         {...props}
       />
-    </Flex>
+    </FloatingLabel>
   );
 };
 export default memo(DatePicker);

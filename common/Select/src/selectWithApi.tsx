@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import Select from "./select";
 import { useFetch } from "@commons/hooks"
 import { SelectWithApiProps } from "./interface"
@@ -14,20 +14,27 @@ const SelectWithApi = ({
     padding,
     margin,
     params,
-    selectLabelName = "label_select"
+    selectLabelName = "label_select",
+    ...props
 }: SelectWithApiProps) => {
 
-    const { data } = useFetch({
+    const { data, runFetch, loading } = useFetch({
         link: api,
         fetchOnFirstRun: true,
         params: params,
         checkForParams: true
     })
 
+    const handleSearch = useCallback((search_word: string|number|unknown)=>{
+        // runFetch({
+        //     search_word
+        // })
+    }, [])
+
     return (
         <>
             <Select
-                Options={data}
+                options={data}
                 onChange={onChange}
                 label={label}
                 value={value}
@@ -37,6 +44,9 @@ const SelectWithApi = ({
                 margin={margin}
                 padding={padding}
                 selectLabelName={selectLabelName}
+                onSearch={handleSearch}
+                loading={loading}
+                {...props}
             />
         </>
     )

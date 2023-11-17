@@ -1,8 +1,7 @@
 export interface floatingLabelProps {
-  value?: string | number;
+  hasContent?: string | number;
   name?: string;
   label?: string;
-  onChange?: any;
   disabled?: boolean;
   width?: number | string;
   type?: string;
@@ -14,4 +13,6 @@ export interface floatingLabelProps {
   required?: boolean;
   height?: number | string;
   children?: any;
+  hidden?: boolean;
+  top?: number | string;
 }

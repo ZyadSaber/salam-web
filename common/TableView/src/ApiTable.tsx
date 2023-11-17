@@ -79,7 +79,7 @@ const TableWithApi = ({
         getCurrentDataSource: () => foundDataSource,
     }));
 
-    useEffectTimeOut(runFetch, 30000)
+    // useEffectTimeOut(runFetch, 30000)
 
     return (
         <>

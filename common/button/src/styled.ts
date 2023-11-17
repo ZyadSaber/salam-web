@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Button} from 'antd';
-import {buttonProp} from "./interface"
+import { Button } from "antd";
+import { buttonProp } from "./interface";
 
 export const StyledButton = styled(Button)<buttonProp>`
   margin: ${({ margin }) => margin};
@@ -11,4 +11,5 @@ export const StyledButton = styled(Button)<buttonProp>`
   border-radius: ${({ borderRadius }) => borderRadius};
   font-weight: ${({ fontWeight }) => fontWeight};
   border: ${({ border }) => border};
+  font-size: ${({ fontSize }) => fontSize};
 `;

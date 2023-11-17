@@ -10,17 +10,18 @@ const Button = ({
     onDoubleClick,
     disabled,
     hidden,
-    margin = "10px 0",
-    width = "20%",
+    margin = "5px",
+    width = "5%",
     height,
-    padding = "5px",
+    padding,
     borderRadius = "5px",
     backGround,
     fontWeight = "100",
     loading = false,
     border,
     icon,
-    type = "primary"
+    type = "primary",
+    fontSize
 }: buttonProp) => {
     const { t } = useTranslation()
     return (
@@ -40,6 +41,7 @@ const Button = ({
                 borderRadius={borderRadius}
                 backGround={backGround ? backGround : primaryColors.primary}
                 fontWeight={fontWeight}
+                fontSize={fontSize}
                 border={border}
             >
                     {t(label)}

@@ -15,5 +15,6 @@ export const primaryColors = {
   inputBorderColor: "#d9d9d9",
   lightGrey1: "#F7f3f3",
   lightSky: "#edeef9",
-  lightBlue: "#6099ec"
+  lightBlue: "#6099ec",
+  required: "#cc4e5c"
 };
