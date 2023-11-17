@@ -1,37 +1,37 @@
 export const columns = [
   {
-    title: "page_name",
+    title: "nm",
     dataIndex: "page_name",
     width: "20%",
   },
   {
-    title: "page_link",
+    title: "pglnk",
     dataIndex: "page_link",
     width: "17%",
   },
   {
-    title: "page_disabled",
+    title: "pgdsbld",
     dataIndex: "page_disabled",
-    width: "17%",
+    width: "7%",
   },
   {
-    title: "run_in_modal",
+    title: "rninmdl",
     dataIndex: "run_in_modal",
-    width: "17%",
+    width: "7%",
   },
   {
-    title: "parent_name",
+    title: "prntnm",
     dataIndex: "page_parent_name",
     width: "15%",
   },
   {
-    title: "created_at",
+    title: "crtdat",
     dataIndex: "created_at",
-    width: "20%",
+    width: "15%",
   },
   {
-    title: "updated_at",
+    title: "updtdat",
     dataIndex: "updated_at",
-    width: "20%",
+    width: "15%",
   },
 ];

@@ -258,6 +258,8 @@ const CustomerInvoices = () => {
           hideTools={false}
           onAdd={handleValidateFelids}
           actionWidth={100}
+          fixedHeight="250px"
+          noPagination
           canAdd
           additionalButtons={additionalButtons}
         />

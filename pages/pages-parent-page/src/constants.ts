@@ -2,7 +2,7 @@ export const columns = [
   {
     title: "page_parent_id",
     dataIndex: "page_parent_id",
-    width: "10%",
+    width: "9%",
   },
   {
     title: "parent_name",

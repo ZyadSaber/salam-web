@@ -68,7 +68,7 @@ export const detailTableColumns = [
   {
     title: "nts",
     dataIndex: "notes",
-    width: "15%",
+    width: "14%",
   },
 ];
 

@@ -1,0 +1,12 @@
+{
+  "name": "@commons/floating-label",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "salam",
+  "license": "ISC",
+  "dependencies": {},
+  "main": "src",
+  "sideEffects": false,
+  "enableBabelTranspilation": true
+}

@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { useTranslation } from 'react-i18next';
 import { FormLabel, Flex } from '@chakra-ui/react'
+import FloatingLabel from "@commons/floating-label"
 import { StyledInput } from "./styled"
 import { InputTextProps } from "./interface";
 
@@ -28,7 +29,23 @@ const InputText = ({
 
     return (
         <>
-            <Flex
+            <FloatingLabel
+                label={label}
+                value={value}
+            >
+                <StyledInput
+                    placeholder={placeHolder}
+                    disabled={disabled}
+                    required={required}
+                    onChange={handleChange}
+                    width="100%"
+                    className={className}
+                    value={value}
+                    type={type}
+                    {...props}
+                />
+            </FloatingLabel>
+            {/* <Flex
                 direction="column"
                 width={width}
                 padding={padding}
@@ -47,7 +64,7 @@ const InputText = ({
                     type={type}
                     {...props}
                 />
-            </Flex>
+            </Flex> */}
         </>
     )
 }

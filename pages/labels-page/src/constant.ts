@@ -2,7 +2,7 @@ export const columns = [
   {
     title: "language_code",
     dataIndex: "language_code",
-    width: "20%",
+    width: "18%",
   },
   {
     title: "english_name",

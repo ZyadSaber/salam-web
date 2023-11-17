@@ -2,7 +2,7 @@ export const columns = [
   {
     title: "nm",
     dataIndex: "customer_name",
-    width: "24%",
+    width: "23%",
   },
   {
     title: "eml",

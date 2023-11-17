@@ -11,11 +11,12 @@ const LabelsPage = () => {
                 postApi={"POST_LABELS_TABLE_DATA"}
                 columns={columns}
                 hideTools={false}
-                canEdit={true}
-                canAdd={true}
-                canDelete={true}
+                canEdit
+                canAdd
+                canDelete
                 canExcel
-                rowKey={"language_id"}
+                height="500px"
+                rowKey="language_code"
                 ModalContent={ModalView}
                 fetchOnFirstRun
             />

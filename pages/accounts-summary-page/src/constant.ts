@@ -21,26 +21,26 @@ export const columns = [
   {
     title: "id",
     dataIndex: "rowKey",
-    width: "5%",
+    width: "8%",
   },
   {
     title: "nm",
     dataIndex: "record_name",
-    width: "10%",
+    width: "30%",
   },
   {
     title: "crdt",
     dataIndex: "credit",
-    width: "10%",
+    width: "20%",
   },
   {
     title: "dbt",
     dataIndex: "debit",
-    width: "10%",
+    width: "20%",
   },
   {
     title: "total",
     dataIndex: "total",
-    width: "10%",
+    width: "20%",
   },
 ];

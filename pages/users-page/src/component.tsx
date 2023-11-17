@@ -24,7 +24,7 @@ const UsersPage = () => {
                     canAdd={true}
                     canDelete={true}
                     canExcel
-                    rowKey={"user_id"}
+                    rowKey={"id"}
                     ModalContent={ModalView}
                     onClick={setRow}
                     fetchOnFirstRun

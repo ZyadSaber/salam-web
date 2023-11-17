@@ -7,8 +7,8 @@ import React,
     forwardRef,
     useMemo
 } from "react";
-import PdfViewer, {usePdfViewerControl} from "@commons/pdf-viewer";
-import { useFetch } from "@commons/hooks"
+import PdfViewer, { usePdfViewerControl } from "@commons/pdf-viewer";
+import { useFetch, useEffectTimeOut } from "@commons/hooks"
 import Modal from "@commons/modal";
 import ConfirmationModal from "@commons/confirmation-modal"
 import Table from "./Table";
@@ -35,7 +35,7 @@ const TableWithApi = ({
 ) => {
     const { data, runFetch, loading, setData, resetData } = useFetch({ link: api, fetchOnFirstRun: fetchOnFirstRun, params: params, checkForParams: checkForParams })
     const { onSaveAndInsertion } = useTableControlsButtons({ api: postApi, runFetch: runFetch })
-    const {PDFRef, handleOpenModal} = usePdfViewerControl()
+    const { PDFRef, handleOpenModal } = usePdfViewerControl()
     const [selectedRow, setSelectedRow] = useState({})
     const [modal, setModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
@@ -55,8 +55,8 @@ const TableWithApi = ({
         setModal(false)
     }, [])
 
-    const handleCloseConfirmModal = useCallback(() => {setConfirmModal(false)},[])
-    const handleOpenConfirmModal = useCallback(() => {setConfirmModal(true)},[])
+    const handleCloseConfirmModal = useCallback(() => { setConfirmModal(false) }, [])
+    const handleOpenConfirmModal = useCallback(() => { setConfirmModal(true) }, [])
 
     const handleSelectedRow = (row: any) => {
         setSelectedRow(row)
@@ -66,11 +66,11 @@ const TableWithApi = ({
     const foundDataSource = useMemo(
         () => data?.data,
         [data?.data]
-      );
+    );
 
-      const handlePrint = useCallback(() => {
-        selectedRow && handleOpenModal() 
-      },[handleOpenModal, selectedRow])
+    const handlePrint = useCallback(() => {
+        selectedRow && handleOpenModal()
+    }, [handleOpenModal, selectedRow])
 
     useImperativeHandle(ref, () => ({
         runFetch,
@@ -78,6 +78,8 @@ const TableWithApi = ({
         resetTableData: resetData,
         getCurrentDataSource: () => foundDataSource,
     }));
+
+    useEffectTimeOut(runFetch, 30000)
 
     return (
         <>

@@ -8,6 +8,7 @@ import TableControlButtons from "./partials/TableControlButtons";
 import generateFixedColumns from "./helpers/generateFixedColumns";
 import TableHeader from "./partials/TableHeader";
 import TableBody from "./partials/TableBody";
+import TablePagination from "./partials/TablePagination"
 import createExcelFunction from "./helpers/createExcelFunction";
 import { TableContainer, TableContentWrapper, StyledTable } from "./style";
 import { TableProps } from "./interface";
@@ -15,7 +16,7 @@ import { TableProps } from "./interface";
 const Table = ({
   dataSource,
   height = "300px",
-  fixedHeight = "300px",
+  fixedHeight,
   rowKey = "rowKey",
   columns,
   hideTools = true,
@@ -49,6 +50,7 @@ const Table = ({
   printDisabled,
   excelDisabled,
   overflowY,
+  noPagination = true,
 }: TableProps) => {
   const { pathname } = useLocation();
   const [clickedRowKey, setClickedRow] = useState();
@@ -104,35 +106,34 @@ const Table = ({
 
   return (
     <>
-      <TableControlButtons
-        hideTools={hideTools}
-        canAdd={canAdd}
-        canEdit={canEdit}
-        canDelete={canDelete}
-        canSave={canSave}
-        canPrint={canPrint}
-        canExcel={canExcel}
-        onAdd={onAdd}
-        onEdit={onEdit}
-        onDelete={onDelete}
-        onSave={onSave}
-        onPrint={onPrint}
-        onExcel={excelFun}
-        addDisabled={addDisabled}
-        editDisabled={editDisabled || !clickedRowKey}
-        deleteDisabled={deleteDisabled || !clickedRowKey}
-        saveDisabled={saveDisabled}
-        printDisabled={printDisabled}
-        excelDisabled={excelDisabled}
-        additionalButtons={additionalButtons}
-      />
       <TableContainer
         width={width}
         padding={padding}
         margin={margin}
         ref={elementRef}
       >
-        <LoadingOverLay visible={loading} />
+        <TableControlButtons
+          hideTools={hideTools}
+          canAdd={canAdd}
+          canEdit={canEdit}
+          canDelete={canDelete}
+          canSave={canSave}
+          canPrint={canPrint}
+          canExcel={canExcel}
+          onAdd={onAdd}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onSave={onSave}
+          onPrint={onPrint}
+          onExcel={excelFun}
+          addDisabled={addDisabled}
+          editDisabled={editDisabled || !clickedRowKey}
+          deleteDisabled={deleteDisabled || !clickedRowKey}
+          saveDisabled={saveDisabled}
+          printDisabled={printDisabled}
+          excelDisabled={excelDisabled}
+          additionalButtons={additionalButtons}
+        />
         <TableContentWrapper
           height={height}
           overflowY={overflowY}
@@ -157,12 +158,16 @@ const Table = ({
               clickedRowKey={clickedRowKey}
             />
           </StyledTable>
-          {(!Array.isArray(dataSource) || dataSource.length === 0) && (
-            <Flex width="100%" justifyContent="center" height="30%">
-              <Text title="ntd" color="red" fontWeight="bold" />
-            </Flex>
-          )}
         </TableContentWrapper>
+        {Array.isArray(dataSource) && dataSource.length !== 0 && !noPagination &&
+          <TablePagination />
+        }
+        {(!Array.isArray(dataSource) || dataSource.length === 0) && !fixedHeight && (
+          <Flex width="100%" justifyContent="center" height="30%">
+            <Text title="ntd" color="red" fontWeight="bold" />
+          </Flex>
+        )}
+        {loading && <LoadingOverLay visible={loading} />}
       </TableContainer>
     </>
   );

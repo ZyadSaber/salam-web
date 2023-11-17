@@ -87,6 +87,7 @@ export interface TableProps {
   actionWidth?: string | number;
   fixedHeight?: string;
   selectedRowBackgroundColor?: any;
+  noPagination?: boolean;
 }
 
 export interface TableWithApiProps extends TableProps {

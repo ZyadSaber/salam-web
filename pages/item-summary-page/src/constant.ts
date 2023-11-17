@@ -5,33 +5,33 @@ export const columns = [
     width: "10%",
   },
   {
-    title: "invoice_id",
+    title: "id",
     dataIndex: "invoice_id",
-    width: "5%",
+    width: "7%",
   },
   {
-    title: "holder_name",
+    title: "hldrnm",
     dataIndex: "holder_name",
-    width: "15%",
+    width: "20%",
   },
   {
-    title: "item_name",
+    title: "itmnm",
     dataIndex: "item_name",
-    width: "15%",
+    width: "20%",
   },
   {
-    title: "item_in",
+    title: "itmin",
     dataIndex: "item_in",
     width: "13%",
   },
   {
-    title: "item_out",
+    title: "itmot",
     dataIndex: "item_out",
     width: "13%",
   },
   {
     title: "blnc",
     dataIndex: "balance",
-    width: "13%",
+    width: "15%",
   },
 ];

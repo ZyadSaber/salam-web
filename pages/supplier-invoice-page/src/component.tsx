@@ -202,6 +202,8 @@ const SupplierInvoice = () => {
           onAdd={handleValidateFelids}
           canAdd={true}
           additionalButtons={additionalButtons}
+          fixedHeight="250px"
+          noPagination
         />
         <Flex width="100%" justifyContent="space-around">
           <InputNumber

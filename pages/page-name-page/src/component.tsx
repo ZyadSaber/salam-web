@@ -15,9 +15,10 @@ const PageName = () => {
                 canAdd={true}
                 canDelete={true}
                 canExcel
-                rowKey={"customer_id"}
+                rowKey={"page_id"}
                 ModalContent={ModalView}
                 fetchOnFirstRun
+                height="400px"
             />
         </>
     )

@@ -7,35 +7,35 @@ import { supplierTableColumns, customerTableColumns } from "./constants"
 
 const DashBoard = () => {
 
-    const [{invoiceType,invoiceNumber, visible}, setModalProp] = useState({
-        invoiceType:"",
+    const [{ invoiceType, invoiceNumber, visible }, setModalProp] = useState({
+        invoiceType: "",
         invoiceNumber: 0,
         visible: false
     })
 
-    const handleClose = useCallback(()=>{
+    const handleClose = useCallback(() => {
         setModalProp({
-            invoiceType:"",
+            invoiceType: "",
             invoiceNumber: 0,
             visible: false
         })
-    },[]);
+    }, []);
 
-    const handleCustomerModal = useCallback((e:any)=>{
+    const handleCustomerModal = useCallback((e: any) => {
         setModalProp({
-            invoiceType:"C",
+            invoiceType: "C",
             invoiceNumber: e.customer_invoice_id,
             visible: true
         })
-    },[])
+    }, [])
 
-    const handleSupplierModal = useCallback((e:any)=>{
+    const handleSupplierModal = useCallback((e: any) => {
         setModalProp({
-            invoiceType:"S",
+            invoiceType: "S",
             invoiceNumber: e.supplier_invoice_id,
             visible: true
         })
-    },[])
+    }, [])
 
     return (
         <>
@@ -48,7 +48,9 @@ const DashBoard = () => {
                         fetchOnFirstRun
                         label='cstmrs'
                         width="100%"
+                        fixedHeight='300px'
                         onDoubleClick={handleCustomerModal}
+                        noPagination
                     />
                     <TableWithApi
                         api='QUERY_SUPPLIERS_INVOICES_FOR_TODAY'
@@ -56,8 +58,10 @@ const DashBoard = () => {
                         columns={supplierTableColumns}
                         fetchOnFirstRun
                         width="100%"
+                        fixedHeight='300px'
                         label='splrs'
                         onDoubleClick={handleSupplierModal}
+                        noPagination
                     />
                 </Flex>
                 <Flex width='25%' flexDirection="column">
@@ -67,15 +71,15 @@ const DashBoard = () => {
                         mode="pie"
                         width="90%"
                     />
-                    <ChartWithApi
+                    {/* <ChartWithApi
                         api="QUERY_VAULT_CHART_DATA"
                         label="vault"
                         mode="pie"
                         width="90%"
-                    />
+                    /> */}
                 </Flex>
             </Flex>
-            <InvoiceDetailsWithEditModal 
+            <InvoiceDetailsWithEditModal
                 invoiceType={invoiceType}
                 invoiceNumber={invoiceNumber}
                 visible={visible}

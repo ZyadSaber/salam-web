@@ -37,6 +37,6 @@ export const columns = [
   {
     title: "nts",
     dataIndex: "notes",
-    width: "19%",
+    width: "18%",
   },
 ];
