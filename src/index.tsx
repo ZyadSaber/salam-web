@@ -21,7 +21,7 @@ i18next
       caches: ['cookie'],
     },
     backend: {
-      loadPath: 'http://144.24.209.19:9090/language_data/language_display?p_language={{lng}}',
+      loadPath: 'http://192.168.1.250:5000/language_data/language_display?p_language={{lng}}',
     },
   })
 

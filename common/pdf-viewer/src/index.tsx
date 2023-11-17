@@ -26,7 +26,7 @@ const PdfViewer = ({
             // getCurrentDataSource: data
         }));
 
-        const computedUrl =`http://144.24.209.19:9090/system_pdf_generate/${reportName}?${new URLSearchParams(params)}`
+        const computedUrl =`http://192.168.1.250:5000/system_pdf_generate/${reportName}?${new URLSearchParams(params)}`
 
     return(
         <Modal

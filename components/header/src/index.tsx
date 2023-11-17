@@ -91,7 +91,7 @@ const Header = ({ onOpen }: MobileProps) => {
                                     <Avatar
                                         size={'sm'}
                                         src={
-                                            'http://144.24.209.19:9090/application_logo/primary_logo'
+                                            'http://192.168.1.250:5000/application_logo/primary_logo'
                                         }
                                     />
                                     <VStack

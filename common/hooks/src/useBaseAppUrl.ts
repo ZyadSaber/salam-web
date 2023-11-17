@@ -6,7 +6,7 @@ interface prop{
 
 const useBaseAppUrl = ({link}:prop)=>{
 
-    const url = `http://144.24.209.19:9090/api/${API_ID[link]}`
+    const url = `http://192.168.1.250:5000/api/${API_ID[link]}`
 
     return url
 }
