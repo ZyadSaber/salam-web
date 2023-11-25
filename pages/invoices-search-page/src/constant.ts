@@ -1,31 +1,58 @@
+import { defaultDate } from "@commons/global";
+
 export const initialFormValues = {
   invoice_type: "C",
   invoice_no: "",
   person_id: "",
-  date_from: "",
-  date_to: "",
+  date_from: defaultDate,
+  date_to: defaultDate,
 };
 
 export const mainTableColumns = [
   {
     title: "no",
     dataIndex: "invoice_id",
-    width: "10%",
+    width: "7%",
   },
   {
     title: "nm",
     dataIndex: "holder_name",
-    width: "49%",
+    width: "18%",
   },
   {
     title: "dt",
     dataIndex: "invoice_date",
-    width: "20%",
+    width: "14.5%",
   },
   {
     title: "total",
-    dataIndex: "invoice_total",
-    width: "19%",
+    dataIndex: "invoice_total_before_discount",
+    width: "12.5%",
+    calculateAmount: true,
+  },
+  {
+    title: "dscnt",
+    dataIndex: "invoice_discount",
+    calculateAmount: true,
+    width: "8%",
+  },
+  {
+    title: "tlaftrdsnt",
+    dataIndex: "invoice_total_after_discount",
+    calculateAmount: true,
+    width: "12.5%",
+  },
+  {
+    title: "dbt",
+    dataIndex: "invoice_paid",
+    calculateAmount: true,
+    width: "12.5%",
+  },
+  {
+    title: "crdt",
+    dataIndex: "invoice_credit",
+    calculateAmount: true,
+    width: "12.5%",
   },
 ];
 

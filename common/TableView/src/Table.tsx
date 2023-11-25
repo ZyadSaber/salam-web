@@ -53,7 +53,6 @@ const Table = ({
   overflowY,
   noPagination = true,
   useFloatingLabelsTotalCells,
-  columnsTotals,
 }: TableProps) => {
   const { pathname } = useLocation();
   const [clickedRowKey, setClickedRow] = useState();
@@ -106,22 +105,6 @@ const Table = ({
       }),
     [containerWidthNumber, columns]
   );
-
-  const baseTotalsCellsComputedProps = useMemo(
-    () => ({
-      useFloatingLabelsTotalCells,
-      columnsTotals,
-    }),
-    [columnsTotals, useFloatingLabelsTotalCells]
-  );
-
-  const totalsCellsComputedProps = {
-    ...baseTotalsCellsComputedProps,
-    dataSource,
-    columns: adjustedColumns,
-    showActionColumn: !!actionLabel,
-    actionColumnWidth: actionWidth,
-  };
 
   return (
     <>
@@ -177,9 +160,10 @@ const Table = ({
               clickedRowKey={clickedRowKey}
             />
           </StyledTable>
-          {useFloatingLabelsTotalCells && (
+          { Array.isArray(dataSource) &&
+          dataSource.length !== 0 && useFloatingLabelsTotalCells && (
             <tfoot>
-              <FloatingLabelsTotalCells />
+              <FloatingLabelsTotalCells dataSource={dataSource} columns={adjustedColumns} />
             </tfoot>
           )}
         </TableContentWrapper>
@@ -188,7 +172,7 @@ const Table = ({
           !noPagination && <TablePagination />}
         {(!Array.isArray(dataSource) || dataSource.length === 0) &&
           !fixedHeight && (
-            <Flex width="100%" justifyContent="center" height="30%">
+            <Flex width="100%" justifyContent="center">
               <Text title="ntd" color="red" fontWeight="bold" />
             </Flex>
           )}

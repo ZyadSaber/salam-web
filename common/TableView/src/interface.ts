@@ -89,7 +89,6 @@ export interface TableProps {
   selectedRowBackgroundColor?: any;
   noPagination?: boolean;
   useFloatingLabelsTotalCells?: boolean;
-  columnsTotals?: any
 }
 
 export interface TableWithApiProps extends TableProps {

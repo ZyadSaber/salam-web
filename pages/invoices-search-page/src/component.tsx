@@ -42,7 +42,7 @@ const InvoicesSearch = () => {
                     onChange={onChange}
                 />
                 <Flex width="100%" margin="0" padding="0" justifyContent="space-between">
-                    <Flex width="40%"
+                    <Flex width="49%"
                     flexDirection="column"
                     >
                         <TableWithApi
@@ -52,12 +52,13 @@ const InvoicesSearch = () => {
                             columns={mainTableColumns}
                             rowKey="invoice_id"
                             onClick={handleSelectedRow}
-                            height="400px"
+                            height="unset"
                             hideTools={false}
                             canDelete
+                            useFloatingLabelsTotalCells
                         />
                     </Flex>
-                    <Flex width="60%" flexDirection="column">
+                    <Flex width="50%" flexDirection="column">
                         <TableWithApi
                             ref={detailTableRef}
                             api="QUERY_INVOICE_DETAIL_TABLE_DATA"

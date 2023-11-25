@@ -11,12 +11,8 @@ import { Button } from "@commons/button"
 const FormView = ({ fetchTableData, state, onChange }: any) => {
 
     const handleSearch = useCallback(() => {
-        fetchTableData({
-            invoice_type: state.invoice_type,
-            invoice_no: state.invoice_no,
-            holder_number: state.holder_number,
-        })
-    }, [fetchTableData, state.holder_number, state.invoice_no, state.invoice_type])
+        fetchTableData(state)
+    }, [fetchTableData, state])
 
     return (
         <>

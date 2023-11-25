@@ -1,7 +1,7 @@
 import React, { memo, Fragment } from "react";
-import BodyCellRenderer from "./BodyCellRenderer";
 import Flex from "@commons/flex"
 import { Button, IconButton } from "@commons/button"
+import BodyCellRenderer from "./BodyCellRenderer";
 import { StyledTableRowCell, BodyRow } from "../style";
 
 const TableBody = ({
