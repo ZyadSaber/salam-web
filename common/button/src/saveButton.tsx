@@ -4,7 +4,7 @@ import { saveButtonProp } from "./interface"
 
 const SaveButton = ({
     onOK,
-    width = "40%",
+    width = "20%",
     label = "sv",
     ...props
 }: saveButtonProp) => {

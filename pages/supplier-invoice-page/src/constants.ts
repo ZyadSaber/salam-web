@@ -1,7 +1,7 @@
 import { defaultDate } from "@commons/global";
 
 export const initialRootState = {
-  supplier_id: 0,
+  supplier_id: "",
   supplier_name: "",
   supplier_invoice_date: defaultDate,
   supplier_invoice_items: [],
@@ -14,7 +14,7 @@ export const initialRootState = {
 }
 
 export const initialItemState = {
-  supplier_invoice_item_id: 0,
+  supplier_invoice_item_id: "",
   supplier_invoice_item_width: 0,
   supplier_invoice_item_height: 0,
   supplier_invoice_item_size: 0,
@@ -45,7 +45,7 @@ export const rootValidate = [
 export const columns = [
   {
     title: "itmnm",
-    width: "30%",
+    width: "27%",
     dataIndex: "item_name",
   },
   {

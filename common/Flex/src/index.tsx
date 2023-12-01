@@ -15,10 +15,11 @@ const Flex = ({
     borderWidth,
     borderRadius = "5px",
     flexDirection = "row",
-    textAlign,
+    align,
     hidden = false,
     gap,
     wrap,
+    minHeight,
     ...prop
 }: flexProps) => {
     return (
@@ -26,12 +27,13 @@ const Flex = ({
             <StyledFlex
                 width={width}
                 height={height}
+                minHeight={minHeight}
                 padding={padding}
                 margin={margin}
                 backgroundColor={backgroundColor}
                 borderRadius={borderRadius}
                 flexDirection={flexDirection}
-                textAlign={textAlign}
+                align={align}
                 justifyContent={justifyContent}
                 hidden={hidden}
                 wrap={wrap}

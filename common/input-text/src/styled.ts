@@ -17,3 +17,17 @@ export const StyledInput = styled.input<any>`
     border-color: #007bff;
   }
 `;
+export const StyledTextArea= styled.textarea`
+ width: 100%;
+  padding: 5px 7px;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+ &:focus {
+    outline: none !important;
+    border-color: #007bff;
+  }
+`

@@ -31,7 +31,6 @@ const SupplierInvoice = () => {
   const {
     state: currentItemState,
     onChange: currentItemChange,
-    handleSelectWithLabelChange,
     resetForm: resetItemForm,
     handleMultiInput: handleItemMultiInput,
   } = useFormManager({
@@ -155,102 +154,109 @@ const SupplierInvoice = () => {
     stateToValidate: state,
   });
 
-  const actionButtons = [{
-    label: "delete",
-    onClick: handleDelete,
-    width: "100%",
-    margin: "0",
-    padding: "0"
-  }]
+  const actionButtons = [
+    {
+      label: "delete",
+      onClick: handleDelete,
+      width: "100%",
+      margin: "0",
+      padding: "0",
+    },
+  ];
 
   return (
-    <>
-      <Flex flexDirection="column" width="100%">
-        <Flex margin="0" padding="0">
-          <SelectWithApi
-            api="QUERY_SUPPLIER_LIST"
-            onChange={mainStateHandleSelectWithLabelChange}
-            value={state.supplier_id}
-            label="splr"
-            name="supplier_id"
-            fetchOnFirstRun
-            withLabel
-            selectLabelName="supplier_name"
-          />
-          <DatePicker
-            name="supplier_invoice_date"
-            value={state.supplier_invoice_date}
-            label="dt"
-            onChange={onChange}
-          />
-        </Flex>
-        <InsertForm
-          state={currentItemState}
-          onChange={currentItemChange}
-          handleSelectWithLabelChange={handleSelectWithLabelChange}
-          handleItemMultiInput={handleItemMultiInput}
+    <Flex flexDirection="column" width="100%">
+      <Flex margin="0" padding="0" gap="5px">
+        <SelectWithApi
+          api="QUERY_SUPPLIER_LIST"
+          onChange={mainStateHandleSelectWithLabelChange}
+          value={state.supplier_id}
+          label="splr"
+          name="supplier_id"
+          fetchOnFirstRun
+          withLabel
+          selectLabelName="supplier_name"
+          width="15%"
         />
-        <Table
-          columns={columns}
-          dataSource={state.supplier_invoice_items}
-          actionColumn={actionButtons}
-          actionWidth={100}
-          actionLabel="dlt"
-          rowKey="supplier_invoice_item_id"
-          onAction={handleDelete}
-          hideTools={false}
-          onAdd={handleValidateFelids}
-          canAdd={true}
-          additionalButtons={additionalButtons}
-          fixedHeight="250px"
-          noPagination
+        <DatePicker
+          name="supplier_invoice_date"
+          value={state.supplier_invoice_date}
+          label="dt"
+          onChange={onChange}
+          width="15%"
         />
-        <Flex width="100%" justifyContent="space-around">
-          <InputNumber
-            name="supplier_invoice_total"
-            disabled
-            value={state.supplier_invoice_total}
-            label="total"
-            width="15%"
-          />
-          <InputNumber
-            name="supplier_invoice_discount"
-            value={state.supplier_invoice_discount}
-            label="dscnt"
-            onChange={handleDiscount}
-            width="15%"
-          />
-          <InputNumber
-            name="supplier_invoice_after_discount"
-            disabled
-            value={state.supplier_invoice_after_discount}
-            label="tlaftrdsnt"
-            width="15%"
-          />
-          <InputNumber
-            name="supplier_invoice_paid"
-            value={state.handlePaid}
-            label="paid"
-            onChange={handlePaid}
-            max={state.supplier_invoice_after_discount}
-            width="15%"
-          />
-          <InputNumber
-            name="supplier_invoice_credit"
-            disabled
-            value={state.supplier_invoice_credit}
-            label="crdt"
-            width="15%"
-          />
-          <Button
-            label="sv"
-            width="15%"
-            margin="30px 0"
-            onClick={handleValidateInvoiceFelids}
-          />
-        </Flex>
       </Flex>
-    </>
+      <InsertForm
+        state={currentItemState}
+        onChange={currentItemChange}
+        handleItemMultiInput={handleItemMultiInput}
+      />
+      <Table
+        columns={columns}
+        dataSource={state.supplier_invoice_items}
+        actionColumn={actionButtons}
+        actionWidth={100}
+        actionLabel="dlt"
+        rowKey="supplier_invoice_item_id"
+        onAction={handleDelete}
+        hideTools={false}
+        onAdd={handleValidateFelids}
+        canAdd={true}
+        additionalButtons={additionalButtons}
+        fixedHeight="250px"
+        noPagination
+      />
+      <Flex
+        width="100%"
+        justifyContent="space-around"
+        wrap
+        gap="10px"
+        align="center"
+      >
+        <InputNumber
+          name="supplier_invoice_total"
+          disabled
+          value={state.supplier_invoice_total}
+          label="total"
+          width="15%"
+        />
+        <InputNumber
+          name="supplier_invoice_discount"
+          value={state.supplier_invoice_discount}
+          label="dscnt"
+          onChange={handleDiscount}
+          width="15%"
+        />
+        <InputNumber
+          name="supplier_invoice_after_discount"
+          disabled
+          value={state.supplier_invoice_after_discount}
+          label="tlaftrdsnt"
+          width="15%"
+        />
+        <InputNumber
+          name="supplier_invoice_paid"
+          value={state.handlePaid}
+          label="paid"
+          onChange={handlePaid}
+          max={state.supplier_invoice_after_discount}
+          width="15%"
+        />
+        <InputNumber
+          name="supplier_invoice_credit"
+          disabled
+          value={state.supplier_invoice_credit}
+          label="crdt"
+          width="15%"
+        />
+        <Button
+          label="sv"
+          width="15%"
+          margin="30px 0"
+          onClick={handleValidateInvoiceFelids}
+        />
+      </Flex>
+    </Flex>
   );
 };
 

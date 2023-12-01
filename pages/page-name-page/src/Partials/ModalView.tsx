@@ -5,7 +5,7 @@ import { ModalViewProp } from "@commons/global"
 import { useTableControlsButtons } from "@commons/table";
 import { SaveButton } from "@commons/button";
 import { CheckBox } from "@commons/check-box";
-import { Flex } from '@chakra-ui/react';
+import Flex from '@commons/flex';
 import { SelectWithApi } from '@commons/select';
 
 const ModalView = ({
@@ -31,7 +31,7 @@ const ModalView = ({
 
 
     return (
-        <Flex margin={0} padding={0} gap={0} direction="column" width="100%"> 
+        <Flex flexDirection="column" width="100%"> 
         <Flex width="100%">
             <InputText
                 name="page_name"

@@ -9,4 +9,6 @@ export const iconType: typeObject = {
   print: "fa-solid fa-print",
   search: "fa-solid fa-magnifying-glass",
   clear: "fa-solid fa-broom",
+  signOut: "fa-solid fa-arrow-right-from-bracket",
+  menu: "fa-solid fa-bars"
 };

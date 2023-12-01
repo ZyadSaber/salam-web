@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { API_ID } from "@commons/global";
 import { 
   useCurrentAuthorization, 
-  // usePrevious
+  usePrevious
  } from "@commons/hooks";
 import { useToast } from "@chakra-ui/react";
 // import {objectIs} from "@commons/helpers"
@@ -34,7 +34,8 @@ const useFetch = ({
   const toast = useToast();
   const useAuthorization = useCurrentAuthorization();
   const baseNextParams = params || {};
-  // const previousParams = usePrevious(baseNextParams);
+  const [actualParams, setActualParams] = useState(baseNextParams)
+  const previousParams = usePrevious(actualParams);
 
   // const hasParamsChanged = useCallback(
   //   () => !objectIs(previousParams, baseNextParams),
@@ -82,14 +83,14 @@ const useFetch = ({
   // }, [fetchOnFirstRun, authorization, params, checkForParams, getData]);
 
   useEffect(() => {
-    if (useAuthorization && !checkForParams) {
+    if (useAuthorization && !checkForParams && fetchOnFirstRun) {
       generateBasicRequest({params: baseNextParams, authorization: useAuthorization});
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [useAuthorization, checkForParams]);
 
   useEffect(() => {
-    if (useAuthorization && checkForParams) {
+    if (useAuthorization && checkForParams && fetchOnFirstRun) {
       generateBasicRequest({params: baseNextParams, authorization: useAuthorization});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,7 +108,12 @@ const useFetch = ({
   }, []);
   
   const runFetch = (e?:any)=>{
-    generateBasicRequest({params: e, authorization: useAuthorization})
+    if(e){
+      setActualParams(e)
+      generateBasicRequest({params: e, authorization: useAuthorization})
+    }else{
+      generateBasicRequest({params: previousParams, authorization: useAuthorization})
+    }
   }
 
   return {

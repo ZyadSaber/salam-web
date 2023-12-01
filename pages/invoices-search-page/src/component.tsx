@@ -56,6 +56,7 @@ const InvoicesSearch = () => {
                             hideTools={false}
                             canDelete
                             useFloatingLabelsTotalCells
+                            fetchOnFirstRun
                         />
                     </Flex>
                     <Flex width="50%" flexDirection="column">

@@ -12,3 +12,4 @@ export { default as useCurrentAuthorization } from "./useCurrentAuthorization";
 export { default as useValidateForm } from "./useValidateForm";
 export { default as useBoundingClientRect } from "./useBoundingClientRect";
 export { default as useEffectTimeOut } from "./useEffectTimeOut";
+export { default as useLanguageId } from "./useLanguageId";

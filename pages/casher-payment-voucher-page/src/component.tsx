@@ -3,7 +3,7 @@ import Flex from "@commons/flex";
 import DatePicker from "@commons/date-picker";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
-import { Button } from "@commons/button";
+import { SearchAndClearButton } from "@commons/button";
 import ModalView from "./Partials/modalView";
 import { columns } from "./constant";
 
@@ -12,6 +12,7 @@ const CasherPaymentVoucher = () => {
     initialValues: { date_from: "", date_to: "" },
   });
   const { tableRef, fetchTableData } = useCreateTableActionRef();
+
   const handleSearch = useCallback(() => {
     fetchTableData({
       date_from: state.date_from,
@@ -20,25 +21,24 @@ const CasherPaymentVoucher = () => {
   }, [fetchTableData, state.date_from, state.date_to]);
   return (
     <>
-      <Flex width="100%" flexDirection="column">
-        <Flex width="100%">
-          <DatePicker name="date_from" label="frm" onChange={onChange} />
-          <DatePicker name="date_to" label="to" onChange={onChange} />
-          <Button onClick={handleSearch} label="srch" width="10%" />
-        </Flex>
-        <TableWithApi
-          ref={tableRef}
-          api={"QUERY_CASHER_PAYMENT_VOUCHER_TABLE_DATA"}
-          postApi={"POST_CASHER_PAYMENT_VOUCHER_TABLE_DATA"}
-          columns={columns}
-          hideTools={false}
-          canEdit={true}
-          canAdd={true}
-          canDelete={true}
-          rowKey={"payment_voucher_id"}
-          ModalContent={ModalView}
-        />
+      <Flex width="100%" wrap align="center" gap="5px">
+        <DatePicker name="date_from" label="frm" onChange={onChange} />
+        <DatePicker name="date_to" label="to" onChange={onChange} />
+        <SearchAndClearButton noClear onSearch={handleSearch} />
       </Flex>
+
+      <TableWithApi
+        ref={tableRef}
+        api={"QUERY_CASHER_PAYMENT_VOUCHER_TABLE_DATA"}
+        postApi={"POST_CASHER_PAYMENT_VOUCHER_TABLE_DATA"}
+        columns={columns}
+        hideTools={false}
+        canEdit={true}
+        canAdd={true}
+        canDelete={true}
+        rowKey={"voucher_id"}
+        ModalContent={ModalView}
+      />
     </>
   );
 };

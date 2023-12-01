@@ -32,7 +32,7 @@ const InputNumber = ({
         height={height}
         padding={padding}
         margin={margin}
-        hasContent={value  && value.toString()}
+        hasContent={value?.toString()}
         top="7px"
       >
         <StyledInput

@@ -13,9 +13,10 @@ export interface flexProps {
   borderRadius?: string;
   backgroundColor?: string;
   flexDirection?: string;
-  textAlign?: string;
+  align?: string;
   hidden?: boolean;
   wrap?: boolean;
   gap?: string;
   overflow?: string;
+  minHeight?: string;
 }

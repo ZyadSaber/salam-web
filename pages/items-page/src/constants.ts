@@ -1,13 +1,18 @@
 export const columns = [
   {
+    title: "id",
+    dataIndex: "item_id",
+    width: "5%",
+  },
+  {
     title: "itmnm",
     dataIndex: "item_name",
     width: "20%",
   },
   {
     title: "prc",
-    dataIndex: "price",
-    width: "15%",
+    dataIndex: "item_price",
+    width: "10%",
   },
   {
     title: "unt",
@@ -20,12 +25,12 @@ export const columns = [
     width: "20%",
   },
   {
-    title: "created_at",
+    title: "crtdat",
     dataIndex: "created_at",
     width: "15%",
   },
   {
-    title: "updated_at",
+    title: "updtdat",
     dataIndex: "updated_at",
     width: "15%",
   },

@@ -52,8 +52,8 @@ const API_ID = {
   QUERY_CUSTOMERS_LIST: "basic_data/customers/customers_list",
   //http://144.24.209.19:9090/api/basic_data/items/items_list
   QUERY_ITEMS_LIST: "basic_data/items/items_list",
-  //http://144.24.209.19:9090/api/basic_data/print_options/print_options_lins
-  QUERY_PRINT_OPTIONS_LIST: "basic_data/print_options/print_options_lins",
+  //http://144.24.209.19:9090/api/basic_data/print_options/print_options_list
+  QUERY_PRINT_OPTIONS_LIST: "basic_data/print_options/print_options_list",
   //http://144.24.209.19:9090/api/v1/employeesData/employee_sheet?employee_id=4
   QUERY_EMPLOYEE_SHEET_SALARY: "employeesData/employee_sheet",
   //http://144.24.209.19:9090/api/income_and_expenses/casher_receipt_voucher/main_table?date_from=2023-04-01&date_to=2023-04-30
@@ -118,7 +118,11 @@ const API_ID = {
   //http://144.24.209.19:9090/api/invoices/customer_invoice/customer_invoice_dml
   POST_CUSTOMER_INVOICES: "invoices/customer_invoice/customer_invoice_dml",
   //http://144.24.209.19:9090/api/invoices/supplier_invoice/supplier_invoice_dml
-  POST_SUPPLIER_INVOICES: "invoices/supplier_invoice/supplier_invoice_dml"
+  POST_SUPPLIER_INVOICES: "invoices/supplier_invoice/supplier_invoice_dml",
+  //http://144.24.209.19:9090/api/language_data/language_display?p_language={{lng}}
+  QUERY_APP_LANGUAGE_DISPLAY: "language_data/language_display",
+   //http://144.24.209.19:9090/api/invoices/customer_invoice/customer_items_invoice_dml
+  QUERY_CUSTOMER_ITEMS_INVOICE_DATA: "invoices/customer_invoice/customer_items_invoice_dml"
 };
 
 export default API_ID;

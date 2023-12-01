@@ -33,7 +33,7 @@ const ModalView = ({
         stateToValidate:state
     })
 
-    const { supplier_name, email, phone, address } = state;
+    const { supplier_name, phone, address } = state;
 
     return (
         <Flex width='100%' wrap gap='10px'>
@@ -42,13 +42,6 @@ const ModalView = ({
                 label='Name'
                 onChange={onChange}
                 value={supplier_name}
-                width="49%"
-            />
-            <InputText
-                name="email"
-                label='Email'
-                onChange={onChange}
-                value={email}
                 width="49%"
             />
             <InputText

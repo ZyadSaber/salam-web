@@ -25,6 +25,7 @@ export interface buttonProp extends ButtonProps {
 export interface linkButtonProp extends buttonProp {
   label: string;
   pathTo: string;
+  iconName?: string;
 }
 
 export interface searchClearProp extends buttonProp {
@@ -35,7 +36,7 @@ export interface searchClearProp extends buttonProp {
 }
 
 export interface iconButtonProp extends buttonProp {
-  iconName: string;
+  iconName?: string;
 }
 
 export interface saveButtonProp extends buttonProp {

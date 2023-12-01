@@ -28,7 +28,7 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
     stateToValidate: state,
   });
 
-  const { customer_name, email, phone, address } = state;
+  const { customer_name, phone, address } = state;
 
   return (
     <Flex flexDirection="column" padding="0" margin="0" >
@@ -39,13 +39,6 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
           onChange={onChange}
           value={customer_name}
           required
-          width="47%"
-        />
-        <InputText
-          name="email"
-          label="Email"
-          onChange={onChange}
-          value={email}
           width="47%"
         />
         <InputText

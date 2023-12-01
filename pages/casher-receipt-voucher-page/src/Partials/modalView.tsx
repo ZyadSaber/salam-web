@@ -8,10 +8,21 @@ import DatePicker from "@commons/date-picker";
 import { SelectWithApi } from "@commons/select";
 import { useFormManager, useValidateForm } from "@commons/hooks";
 import { SaveButton } from "@commons/button";
+import Flex from "@commons/flex";
 import { voucherOptions } from "../constant";
 
 const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
-  const { state, onChange } = useFormManager({
+  const {
+    state: {
+      voucher_date,
+      voucher_amount,
+      voucher_type,
+      query_status,
+      voucher_id,
+      notes,
+    },
+    onChange,
+  } = useFormManager({
     initialValues: {
       ...selectedRow,
       voucher_date: defaultDate || selectedRow.voucher_date,
@@ -24,9 +35,25 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
   });
 
   const handleSave = useCallback(() => {
-    onSaveAndInsertion(state);
+    onSaveAndInsertion({
+      voucher_date,
+      voucher_amount,
+      voucher_type,
+      query_status,
+      voucher_id,
+      notes,
+    });
     onClose();
-  }, [onSaveAndInsertion, state, onClose]);
+  }, [
+    onSaveAndInsertion,
+    voucher_date,
+    voucher_amount,
+    voucher_type,
+    query_status,
+    voucher_id,
+    notes,
+    onClose,
+  ]);
 
   const handleValidateFelids = useValidateForm({
     validateFelids: [
@@ -36,56 +63,63 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
       "voucher_id",
     ],
     functionToRun: handleSave,
-    stateToValidate: state,
+    stateToValidate: {
+      voucher_date,
+      voucher_amount,
+      voucher_type,
+      query_status,
+      voucher_id,
+      notes,
+    },
   });
 
   return (
     <>
-      <>
+      <Flex width="100%" gap="5px" wrap>
         <DatePicker
           name="voucher_date"
           onChange={onChange}
-          value={state.voucher_date}
+          value={voucher_date}
           label="dt"
-          width="47%"
+          width="49.5%"
         />
         <InputNumber
           name="voucher_amount"
           onChange={onChange}
-          value={state?.voucher_amount}
+          value={voucher_amount}
           label="amnt"
-          width="47%"
+          width="49.5%"
         />
         <RadioBox
           name="voucher_type"
           onChange={onChange}
-          value={state?.voucher_type}
+          value={voucher_type}
           label="vchr"
-          width="47%"
+          width="49.5%"
           options={voucherOptions}
-          hidden={state.query_status === "u"}
+          hidden={query_status === "u"}
         />
         <SelectWithApi
           name="voucher_id"
           api="QUERY_CUSTOMER_AND_SUPPLIER_LIST"
           label="nm"
           params={{
-            invoice_type: state.voucher_type,
+            invoice_type: voucher_type,
           }}
-          value={state?.voucher_id}
+          value={voucher_id}
           fetchOnFirstRun
-          width="47%"
+          width="49.5%"
           onChange={onChange}
         />
         <TextArea
           width="100%"
           name="notes"
           onChange={onChange}
-          value={state?.notes}
+          value={notes}
           label="nts"
         />
-        <SaveButton onClick={handleValidateFelids} />
-      </>
+      </Flex>
+      <SaveButton onClick={handleValidateFelids} />
     </>
   );
 };

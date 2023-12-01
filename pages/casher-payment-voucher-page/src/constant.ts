@@ -2,26 +2,36 @@ export const columns = [
   {
     title: "dt",
     dataIndex: "voucher_date",
-    width: "14%",
+    width: "7%",
   },
   {
     title: "amnt",
     dataIndex: "voucher_amount",
-    width: "20%",
+    width: "9%",
   },
   {
     title: "vchrnm",
     dataIndex: "voucher_type_name",
-    width: "10%",
+    width: "15%",
   },
   {
     title: "hldrnm",
     dataIndex: "voucher_name",
-    width: "40%",
+    width: "20%",
   },
   {
     title: "nts",
     dataIndex: "notes",
+    width: "15%",
+  },
+  {
+    title: "crtdat",
+    dataIndex: "created_at",
+    width: "15%",
+  },
+  {
+    title: "updtdat",
+    dataIndex: "updated_at",
     width: "15%",
   },
 ];

@@ -17,9 +17,10 @@ export const StyledFlex = styled.div<flexProps>`
     backgroundColor && `background-color: ${backgroundColor};`}
     ${({ flexDirection }) =>
     flexDirection && `flex-direction: ${flexDirection};`}
-    ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
+    ${({ align }) => align && `align-items: ${align};`}
     ${({ hidden }) => hidden && `display: none;`}
      ${({ wrap }) => wrap && `flex-wrap: wrap;`} 
     ${({ gap }) => gap && `gap: ${gap};`};
     overflow-y: auto;
+    ${({ minHeight }) => minHeight && `min-height: ${minHeight};`};
     `;

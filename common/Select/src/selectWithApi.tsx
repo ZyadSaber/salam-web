@@ -18,7 +18,7 @@ const SelectWithApi = ({
     ...props
 }: SelectWithApiProps) => {
 
-    const { data, runFetch, loading } = useFetch({
+    const { data, loading } = useFetch({
         link: api,
         fetchOnFirstRun: true,
         params: params,

@@ -1,20 +1,23 @@
 import React, { memo } from 'react';
-import Button from "./button"
+import IconButton from "./iconButton"
 import { NavLink } from 'react-router-dom';
 import { linkButtonProp } from "./interface";
 
 
 const LinkButton = ({
-    label = "",
-    pathTo = "",
+    label,
+    pathTo,
+    iconName,
     ...props
 }: linkButtonProp) => {
 
     return (
         <>
             <NavLink to={`/${pathTo}`} style={{ textDecoration: "none", width: "100%", background: "none" }}>
-                <Button
+                <IconButton
                     label={label}
+                    iconName={iconName}
+                    borderRadius={undefined}
                     {...props}
                 />
             </NavLink>

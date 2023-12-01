@@ -28,7 +28,7 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
     functionToRun: handleSave,
     stateToValidate: state,
   });
-  const { item_name, item_unit, item_description, price } = state;
+  const { item_name, item_unit, item_description, item_price } = state;
   return (
     <Flex width="100%" gap="10px" wrap>
       <InputText
@@ -40,9 +40,9 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
       />
       <InputNumber
         onChange={onChange}
-        name="price"
+        name="item_price"
         label="prc"
-        value={price}
+        value={item_price}
         width="49%"
       />
       <InputText

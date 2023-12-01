@@ -12,4 +12,5 @@ export const StyledButton = styled(Button)<buttonProp>`
   font-weight: ${({ fontWeight }) => fontWeight};
   border: ${({ border }) => border};
   font-size: ${({ fontSize }) => fontSize};
+  ${({color})=>color && `color: ${color}`}
 `;

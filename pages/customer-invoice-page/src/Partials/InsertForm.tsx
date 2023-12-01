@@ -4,20 +4,13 @@ import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
 import InputNumber from "@commons/input-number";
 import { onChangeType } from "@commons/global";
-
-interface InsertFormProp {
-  onChange: any;
-  state: any;
-  handleItemMultiInput: any;
-  handleSelectWithLabelChange: any;
-}
+import {insertFormProp} from "../interface"
 
 const InsertForm = ({
   onChange,
   state,
   handleItemMultiInput,
-  handleSelectWithLabelChange,
-}: InsertFormProp) => {
+}: insertFormProp) => {
   const handleWidth = useCallback(
     ({ name, value }: onChangeType) => {
       handleItemMultiInput({
@@ -95,13 +88,23 @@ const InsertForm = ({
     ]
   );
 
+  const handlePrintIdChange = useCallback(({name, value, option}: any)=>handleItemMultiInput({
+    [name]: value,
+    print_name: option.label
+  }),[handleItemMultiInput])
+
+  const handleItemIdChange = useCallback(({name, value, option}: any)=>handleItemMultiInput({
+    [name]: value,
+    item_name: option.label
+  }),[handleItemMultiInput])
+
   return (
     <>
       <Flex width="100%" flexDirection="column" margin="0" padding="0">
         <Flex margin="0" padding="0" gap="5px">
           <SelectWithApi
             api={"QUERY_PRINT_OPTIONS_LIST"}
-            onChange={handleSelectWithLabelChange}
+            onChange={handlePrintIdChange}
             value={state.customer_invoice_print_option_id}
             label="prntnm"
             name="customer_invoice_print_option_id"
@@ -112,7 +115,7 @@ const InsertForm = ({
           />
           <SelectWithApi
             api={"QUERY_ITEMS_LIST"}
-            onChange={handleSelectWithLabelChange}
+            onChange={handleItemIdChange}
             value={state.customer_invoice_item_id}
             label="itmnm"
             name="customer_invoice_item_id"

@@ -10,7 +10,7 @@ const Button = ({
     onDoubleClick,
     disabled,
     hidden,
-    margin = "5px",
+    margin,
     width = "5%",
     height,
     padding,
@@ -21,13 +21,13 @@ const Button = ({
     border,
     icon,
     type = "primary",
-    fontSize
+    fontSize,
+    color
 }: buttonProp) => {
     const { t } = useTranslation()
     return (
         <>
-            <StyledButton
-                hidden={hidden}
+          {!hidden &&<StyledButton
                 disabled={disabled || loading}
                 onClick={onClick}
                 onDoubleClick={onDoubleClick}
@@ -43,9 +43,10 @@ const Button = ({
                 fontWeight={fontWeight}
                 fontSize={fontSize}
                 border={border}
+                color={color}
             >
                     {t(label)}
-            </StyledButton>
+            </StyledButton>}
         </>
     )
 }

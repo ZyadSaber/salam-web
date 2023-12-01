@@ -1,5 +1,6 @@
 export const primaryColors = {
   primary: "#0d6efd",
+  lightBlue1: "#007dff",
   secondary: "#6c757d",
   lightGray: "rgba(0, 0, 0, 0.5)",
   success: "#198754",

@@ -42,7 +42,6 @@ const CustomerInvoices = () => {
     state: currentItemState,
     onChange: currentItemChange,
     handleMultiInput: handleItemMultiInput,
-    handleSelectWithLabelChange,
     resetForm: resetItemForm,
   } = useFormManager({
     initialValues: {
@@ -226,7 +225,6 @@ const CustomerInvoices = () => {
   }]
 
   return (
-    <>
       <Flex flexDirection="column" width="100%">
         <Flex margin="0" padding="0" gap="5px">
           <SelectWithApi
@@ -250,7 +248,6 @@ const CustomerInvoices = () => {
           state={currentItemState}
           onChange={currentItemChange}
           handleItemMultiInput={handleItemMultiInput}
-          handleSelectWithLabelChange={handleSelectWithLabelChange}
         />
         <Table
           columns={columns}
@@ -316,7 +313,6 @@ const CustomerInvoices = () => {
           />
         </Flex>
       </Flex>
-    </>
   );
 };
 

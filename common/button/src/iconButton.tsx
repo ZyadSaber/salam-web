@@ -5,8 +5,8 @@ import { iconButtonProp } from "./interface"
 
 const IconButton = ({
     iconName,
-    backGround = "none",
-    margin = "5px",
+    backGround,
+    margin,
     ...prop
 }: iconButtonProp) => {
 

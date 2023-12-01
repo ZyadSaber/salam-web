@@ -1,99 +1,92 @@
-import React, { memo } from "react";
+import React, { memo, useState, useCallback } from "react";
+import { LinkButton, IconButton } from "@commons/button";
+import { useFetch, useCurrentUserName } from "@commons/hooks";
+import { primaryColors } from "@commons/global";
+import Flex from "@commons/flex";
 import {
-    Box,
-    CloseButton,
-    Flex,
-    useColorModeValue,
-    Text,
-    Accordion,
-    BoxProps,
-    AccordionItem,
-    AccordionPanel,
-    AccordionIcon,
-    AccordionButton,
-} from '@chakra-ui/react';
-import { useTranslation } from 'react-i18next';
-import { LinkButton } from "@commons/button";
-// import EmployeeAttendance from "@pages/employee-attendance-page"
-// import EmployeeLeaving from "@pages/employee-leaving-page";
-//@ts-ignore
-// import { NavLink } from 'react-router-dom';
-import { useLocalStorage, useFetch, useCurrentUserName } from "@commons/hooks";
+  Nav,
+  AccordionItem,
+  AccordionLabel,
+  AccordionPanel,
+  StyledComponent,
+} from "./styled";
 
-interface SidebarProps extends BoxProps {
-    onClose: () => void;
-}
+const SideBar = () => {
+  const [visible, setVisible] = useState(true);
+  const [activeIndex, setActiveIndex] = useState<number | undefined>(0);
+  const user_name = useCurrentUserName();
+  const{ lightSky, black } = primaryColors;
+  const { data } = useFetch({
+    link: "QUERY_SIDE_PAGES_DATA",
+    fetchOnFirstRun: true,
+    params: {
+      user_name,
+    },
+  });
 
-const SideBar = ({ onClose, ...rest }: SidebarProps) => {
-    const { t } = useTranslation()
-    const { appName } = useLocalStorage()
-    const user_name = useCurrentUserName()
+  const handleToggle = useCallback(
+    (index: number) => {
+      if (index === activeIndex) {
+        setActiveIndex(undefined);
+      } else {
+        setActiveIndex(index);
+      }
+    },
+    [activeIndex]
+  );
 
-    // const [modalProps, setModalProps] = useState<any>({
-    // })
-    // const handleClickModal = (modal: string) => {
-    //     setModalProps({ [modal]: true })
-    // }
-    // const handleCloseModal = () => {
-    //     setModalProps({})
-    // }
+  const handleMenuButton = useCallback(() => setVisible(!visible), [visible]);
 
-    const { data } = useFetch({
-        link: "QUERY_SIDE_PAGES_DATA",
-        fetchOnFirstRun: true,
-        params: {
-            user_name
-        },
-    })
+  return (
+    <Nav collapsed={!visible}>
+      <IconButton
+        width="90%"
+        label={visible ? "menu" : undefined}
+        onClick={handleMenuButton}
+        borderRadius="5px"
+        iconName="menu"
+        margin="10px"
+      />
+      {data?.map(
+        ({ page_parent_id, page_parent_name, app_pages, icon }: any, index: any) => (
+          <AccordionItem key={page_parent_id}>
+            <AccordionLabel>
+              <IconButton
+                margin="0"
+                width="100%"
+                label={visible ? page_parent_name : undefined}
+                onClick={() => handleToggle(index)}
+                borderRadius="5px"
+                iconName={icon}
+              />
+            </AccordionLabel>
+            <AccordionPanel visible={activeIndex === index}>
+              <Flex width="100%" flexDirection="column" gap="10px" padding="0">
+                {app_pages.map((page: any) => {
+                  return page.run_in_modal === "N" ? (
+                    <StyledComponent>
+                      <LinkButton
+                        key={page.page_id}
+                        label={visible ? page.page_name : undefined}
+                        pathTo={page.page_link}
+                        width="100%"
+                        type="primary"
+                        backGround={lightSky}
+                        color={black}
+                      />
+                    </StyledComponent>
+                  ) : (
+                    <></>
+                  );
+                })}
+              </Flex>
+            </AccordionPanel>
+          </AccordionItem>
+        )
+      )}
+    </Nav>
+  );
+};
 
-    return (
-        <>
-            <Box
-                transition="3s ease"
-                bg={useColorModeValue('white', 'gray.900')}
-                borderRight="1px"
-                borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-                w={{ base: 'full', md: 60 }}
-                pos="fixed"
-                h="full"
-                {...rest}
-            >
-                <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-                    <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-                        {t(appName)}
-                    </Text>
-                    <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
-                </Flex>
-                <Accordion width="100%" allowToggle defaultIndex={[1]}>
-                    <AccordionItem>
-                        <LinkButton label="home" pathTo="home" width="100%" margin="5% 0" />
-                    </AccordionItem>
-
-                    {
-                        Array.isArray(data) && data?.map((event: any) => {
-                            return (
-                                <AccordionItem key={event.page_parent_id}>
-                                    <AccordionButton _expanded={{ bg: 'cyan.400', color: 'black' }} borderRadius="0 0 5px 5px">
-                                        <Box as="span" flex='1' textAlign='left' >
-                                            {t(event.page_parent_name)}
-                                        </Box>
-                                        <AccordionIcon />
-                                    </AccordionButton>
-                                    <AccordionPanel>
-                                        {event.app_pages.map((page: any) => {
-                                            return page.run_in_modal === "N" ? (
-                                                <LinkButton key={page.page_id} label={page.page_name} pathTo={page.page_link} width="100%" margin="5% 0" />
-                                            ) : <></>
-                                        })}
-                                    </AccordionPanel>
-                                </AccordionItem>
-                            )
-                        })
-                    }
-                </Accordion>
-            </Box>
-        </>
-    )
-}
-
-export default memo(SideBar)
+export default memo(SideBar);
+export * from "./interface";

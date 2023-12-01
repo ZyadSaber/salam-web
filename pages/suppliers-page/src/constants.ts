@@ -1,31 +1,31 @@
 export const columns = [
   {
-    title: "nm",
-    dataIndex: "supplier_name",
-    width: "24%",
+    title: "id",
+    dataIndex: "supplier_id",
+    width: "5%",
   },
   {
-    title: "eml",
-    dataIndex: "email",
-    width: "15%",
+    title: "nm",
+    dataIndex: "supplier_name",
+    width: "30%",
   },
   {
     title: "phn",
     dataIndex: "phone",
-    width: "15%",
+    width: "17%",
   },
   {
     title: "adrs",
     dataIndex: "address",
-    width: "15%",
+    width: "14%",
   },
   {
-    title: "created_at",
+    title: "crtdat",
     dataIndex: "created_at",
     width: "15%",
   },
   {
-    title: "updated_at",
+    title: "updtdat",
     dataIndex: "updated_at",
     width: "15%",
   },

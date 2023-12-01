@@ -22,29 +22,32 @@ const SearchAndClearButton = ({
                 height={height}
                 margin={margin}
                 justifyContent="space-between"
+                align="center"
+                gap="10px"
             >
                 <IconButton
                     hidden={noSearch}
                     disabled={disabled}
                     iconName="search"
                     label="search"
-                    height="100%"
                     onClick={onSearch}
-                    width="70%"
-                    padding="0"
+                    width="100%"
+                    padding="0 10px"
                     backGround={primaryColors.primary}
                     margin="0"
+                    borderRadius="5px"
                 />
 
                 <IconButton
                     hidden={noClear}
                     iconName="clear"
-                    height="100%"
                     onClick={onClear}
-                    width="25%"
-                    padding="0"
-                    backGround={primaryColors.white}
+                    width="30%"
+                    padding="0 10px"
+                    backGround="transparent"
+                    color={primaryColors.lightBlue}
                     margin="0"
+                    borderRadius="5px"
                 />
             </Flex>
         </>

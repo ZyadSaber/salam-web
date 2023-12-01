@@ -1,45 +1,44 @@
 import React, { memo, useCallback } from "react";
-import { Textarea, FormLabel, Flex } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
+import FloatingLabel from "@commons/floating-label";
+import { StyledTextArea } from "./styled";
 import { TextAreaProps } from "./interface";
 
 const TextArea = ({
-    name,
-    label = "name",
-    placeHolder,
-    width = "30%",
-    height = "100px",
-    padding,
-    margin = "10px",
-    onChange,
-    value,
-    disabled,
+  name,
+  label = "name",
+  placeHolder,
+  width,
+  height,
+  padding,
+  margin,
+  onChange,
+  value,
+  disabled,
 }: TextAreaProps) => {
-    const { t } = useTranslation()
-    const handleChange = useCallback((event: { target: { value: string; }; }) => {
-        onChange({ name: name, value: event.target.value })
-    }, [name, onChange])
+  const handleChange = useCallback(
+    (event: { target: { value: string } }) => {
+      onChange({ name: name, value: event.target.value });
+    },
+    [name, onChange]
+  );
 
-    return (
-        <>
-            <Flex
-                direction="column"
-                width={width}
-                padding={padding}
-                margin={margin}
-                height={height}
-            >
-                <FormLabel>{t(label)}</FormLabel>
-                <Textarea
-                    value={value}
-                    onChange={handleChange}
-                    placeholder={placeHolder}
-                    isDisabled={disabled}
-                    height="100%"
-                />
-            </Flex>
-        </>
-    )
-}
+  return (
+    <FloatingLabel
+      label={label}
+      hasContent={value?.toString()}
+      margin={margin}
+      padding={padding}
+      height={height}
+      width={width}
+    >
+      <StyledTextArea
+        placeholder={placeHolder}
+        onChange={handleChange}
+        value={value}
+        disabled={disabled}
+      />
+    </FloatingLabel>
+  );
+};
 
 export default memo(TextArea);
