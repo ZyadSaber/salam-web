@@ -10,19 +10,19 @@ export const initialRootState = {
   supplier_invoice_discount: 0,
   supplier_invoice_after_discount: 0,
   supplier_invoice_paid: 0,
-  supplier_invoice_credit: 0
-}
+  supplier_invoice_credit: 0,
+};
 
 export const initialItemState = {
-  supplier_invoice_item_id: "",
-  supplier_invoice_item_width: 0,
-  supplier_invoice_item_height: 0,
-  supplier_invoice_item_size: 0,
-  supplier_invoice_item_quantity: 0,
-  supplier_invoice_item_price: 0,
-  supplier_invoice_item_total: 0,
-  supplier_invoice_item_notes: "",
-}
+  item_id: "",
+  width: 0,
+  height: 0,
+  size: 0,
+  quantity: 0,
+  price: 0,
+  total: 0,
+  notes: "",
+};
 
 export const itemValidate = [
   "supplier_invoice_item_id",
@@ -32,7 +32,7 @@ export const itemValidate = [
   "supplier_invoice_item_quantity",
   "supplier_invoice_item_price",
   "supplier_invoice_item_total",
-]
+];
 
 export const rootValidate = [
   "supplier_id",
@@ -40,7 +40,7 @@ export const rootValidate = [
   "supplier_invoice_items",
   "supplier_invoice_total",
   "supplier_invoice_after_discount",
-]
+];
 
 export const columns = [
   {

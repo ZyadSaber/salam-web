@@ -1,0 +1,11 @@
+{
+  "name": "@components/insert-invoice-form",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "salam",
+  "license": "ISC",
+  "main": "src",
+  "sideEffects": false,
+  "enableBabelTranspilation": true
+}

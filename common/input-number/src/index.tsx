@@ -20,7 +20,7 @@ const InputNumber = ({
 }: inputNumberProp) => {
   const handleChange = useCallback(
     (_: any) => {
-      onChange({ name: name, value: _.toFixed(fixedBy) });
+      onChange({ name: name, value: +_.toFixed(fixedBy) });
     },
     [fixedBy, name, onChange]
   );

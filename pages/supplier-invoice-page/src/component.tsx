@@ -7,6 +7,7 @@ import { SelectWithApi } from "@commons/select";
 import { Button } from "@commons/button";
 import Flex from "@commons/flex";
 import InputNumber from "@commons/input-number";
+import InsertInvoiceForm from "@components/insert-invoice-form"
 import {
   columns,
   initialRootState,
@@ -14,7 +15,6 @@ import {
   rootValidate,
   itemValidate,
 } from "./constants";
-import InsertForm from "./Partials/InsertForm";
 
 const SupplierInvoice = () => {
   const {
@@ -54,23 +54,32 @@ const SupplierInvoice = () => {
   ];
 
   const handleAdd = useCallback(() => {
+    const computedItemState = {
+      supplier_invoice_item_id: currentItemState.item_id,
+      item_name: currentItemState.item_name,
+      supplier_invoice_item_width: currentItemState.width,
+      supplier_invoice_item_height: currentItemState.height,
+      supplier_invoice_item_size: currentItemState.size,
+      supplier_invoice_item_quantity: currentItemState.quantity,
+      supplier_invoice_item_price: currentItemState.price,
+      supplier_invoice_item_total: currentItemState.total,
+      supplier_invoice_item_notes: currentItemState.notes,
+      rowKey: state.supplier_invoice_items.length + 1
+    }
     handleArrayChange({
       name: "supplier_invoice_items",
-      value: {
-        ...currentItemState,
-        rowKey: state.supplier_invoice_items.length + 1,
-      },
+      value: computedItemState
     });
     let totals = 0;
     state.supplier_invoice_items.forEach((item: any) => {
       totals = totals + +item.supplier_invoice_item_total;
     });
     const computedTotals =
-      totals + currentItemState.supplier_invoice_item_total;
+      totals + computedItemState.supplier_invoice_item_total;
     handleMultiInput({
       supplier_invoice_items: [
         ...state.supplier_invoice_items,
-        currentItemState,
+        computedItemState,
       ],
       supplier_invoice_total: computedTotals,
       supplier_invoice_after_discount:
@@ -81,15 +90,7 @@ const SupplierInvoice = () => {
         state.supplier_invoice_paid,
     });
     resetItemForm();
-  }, [
-    currentItemState,
-    handleArrayChange,
-    handleMultiInput,
-    resetItemForm,
-    state.supplier_invoice_discount,
-    state.supplier_invoice_items,
-    state.supplier_invoice_paid,
-  ]);
+  }, [currentItemState, handleArrayChange, handleMultiInput, resetItemForm, state.supplier_invoice_discount, state.supplier_invoice_items, state.supplier_invoice_paid]);
 
   const handleDiscount = useCallback(
     ({ name, value }: onChangeType) => {
@@ -186,10 +187,11 @@ const SupplierInvoice = () => {
           width="15%"
         />
       </Flex>
-      <InsertForm
-        state={currentItemState}
+      <InsertInvoiceForm
+        hidePrintOptions
+        values={currentItemState}
         onChange={currentItemChange}
-        handleItemMultiInput={handleItemMultiInput}
+        handleIMultiInput={handleItemMultiInput}
       />
       <Table
         columns={columns}
@@ -198,7 +200,6 @@ const SupplierInvoice = () => {
         actionWidth={100}
         actionLabel="dlt"
         rowKey="supplier_invoice_item_id"
-        onAction={handleDelete}
         hideTools={false}
         onAdd={handleValidateFelids}
         canAdd={true}
