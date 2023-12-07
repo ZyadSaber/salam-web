@@ -14,16 +14,6 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalContent = styled.div<{ width: string; height?: string }>`
-  /* position: relative;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    background-color: white;
-    border-radius: 15px; */
-  /* max-height: 90vh;
-	max-width: 500px; */
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   margin-left: auto;
@@ -40,7 +30,7 @@ export const ModalContent = styled.div<{ width: string; height?: string }>`
 `;
 
 export const ModalHeader = styled.div`
-  padding: 15px 32px;
+  padding: 10px 20px;
   border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
@@ -49,12 +39,11 @@ export const ModalHeader = styled.div`
 
 export const ModalBody = styled.div`
   margin: 10px 15px;
-  overflow-y: auto;
   height: 100%;
 `;
 
 export const ModalFooter = styled.div`
-  padding: 35px 32px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: flex-end;

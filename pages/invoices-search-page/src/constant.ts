@@ -12,7 +12,7 @@ export const mainTableColumns = [
   {
     title: "no",
     dataIndex: "invoice_id",
-    width: "6%",
+    width: "5.5%",
   },
   {
     title: "nm",
@@ -60,7 +60,7 @@ export const detailTableColumns = [
   {
     title: "itmnm",
     dataIndex: "item",
-    width: "20%",
+    width: "19%",
   },
   {
     title: "wdth",

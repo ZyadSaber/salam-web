@@ -48,41 +48,44 @@ const SideBar = () => {
         margin="10px"
       />
       {data?.map(
-        ({ page_parent_id, page_parent_name, app_pages, icon }: any, index: any) => (
-          <AccordionItem key={page_parent_id}>
-            <AccordionLabel>
-              <IconButton
-                margin="0"
-                width="100%"
-                label={visible ? page_parent_name : undefined}
-                onClick={() => handleToggle(index)}
-                borderRadius="5px"
-                iconName={icon}
-              />
-            </AccordionLabel>
-            <AccordionPanel visible={activeIndex === index}>
-              <Flex width="100%" flexDirection="column" gap="10px" padding="0">
-                {app_pages.map((page: any) => {
-                  return page.run_in_modal === "N" ? (
-                    <StyledComponent>
-                      <LinkButton
-                        key={page.page_id}
-                        label={visible ? page.page_name : undefined}
-                        pathTo={page.page_link}
-                        width="100%"
-                        type="primary"
-                        backGround={lightSky}
-                        color={black}
-                      />
-                    </StyledComponent>
-                  ) : (
-                    <></>
-                  );
-                })}
-              </Flex>
-            </AccordionPanel>
-          </AccordionItem>
-        )
+        ({ page_parent_id, page_parent_name, app_pages, page_icon }: any, index: any) => {
+          return(
+            <AccordionItem key={page_parent_id}>
+              <AccordionLabel>
+                <IconButton
+                  margin="0"
+                  width="100%"
+                  label={visible ? page_parent_name : undefined}
+                  onClick={() => handleToggle(index)}
+                  borderRadius="5px"
+                  iconName={page_icon}
+                />
+              </AccordionLabel>
+              <AccordionPanel visible={activeIndex === index}>
+                <Flex width="100%" flexDirection="column" gap="10px" padding="0">
+                  {app_pages.map((page: any) => {
+                    return page.run_in_modal === "N" ? (
+                      <StyledComponent>
+                        <LinkButton
+                          key={page.page_id}
+                          label={visible ? page.page_name : undefined}
+                          pathTo={page.page_link}
+                          iconName={page.page_icon}
+                          width="100%"
+                          type="primary"
+                          backGround={lightSky}
+                          color={black}
+                        />
+                      </StyledComponent>
+                    ) : (
+                      <></>
+                    );
+                  })}
+                </Flex>
+              </AccordionPanel>
+            </AccordionItem>
+          )
+        }
       )}
     </Nav>
   );

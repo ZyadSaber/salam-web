@@ -23,7 +23,6 @@ const Flex = ({
     ...prop
 }: flexProps) => {
     return (
-        <>
             <StyledFlex
                 width={width}
                 height={height}
@@ -37,12 +36,12 @@ const Flex = ({
                 justifyContent={justifyContent}
                 hidden={hidden}
                 wrap={wrap}
+                // bordered={bordered}
                 gap={gap}
                 {...prop}
             >
                 {children}
             </StyledFlex>
-        </>
     )
 }
 

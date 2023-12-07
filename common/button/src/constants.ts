@@ -10,5 +10,7 @@ export const iconType: typeObject = {
   search: "fa-solid fa-magnifying-glass",
   clear: "fa-solid fa-broom",
   signOut: "fa-solid fa-arrow-right-from-bracket",
-  menu: "fa-solid fa-bars"
+  menu: "fa-solid fa-bars",
+  test: "fa-solid fa-vial fa-fw",
+  close: "fa-regular fa-circle-xmark"
 };

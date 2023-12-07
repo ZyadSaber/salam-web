@@ -4,7 +4,7 @@ import { InputText } from "@commons/input-text";
 import Flex from "@commons/flex";
 import InputNumber from "@commons/input-number";
 import { onChangeType } from "@commons/global";
-import {insertFormProp} from "../interface"
+import { insertFormProp } from "../interface";
 
 const InsertForm = ({
   onChange,
@@ -18,7 +18,7 @@ const InsertForm = ({
         customer_invoice_item_size: +(
           +value * +state.customer_invoice_item_height
         ).toFixed(2),
-        customer_invoice_item_total: (
+        customer_invoice_item_total: +(
           +value *
           +state.customer_invoice_item_height *
           +state.customer_invoice_item_quantity *
@@ -40,7 +40,7 @@ const InsertForm = ({
         customer_invoice_item_size: +(
           +value * +state.customer_invoice_item_width
         ).toFixed(2),
-        customer_invoice_item_total: (
+        customer_invoice_item_total: +(
           +value *
           +state.customer_invoice_item_width *
           +state.customer_invoice_item_quantity *
@@ -59,10 +59,11 @@ const InsertForm = ({
     ({ name, value }: onChangeType) => {
       handleItemMultiInput({
         [name]: value,
-        customer_invoice_item_total:
+        customer_invoice_item_total: +(
           +value *
           +state.customer_invoice_item_price *
-          +state.customer_invoice_item_size,
+          +state.customer_invoice_item_size
+        ).toFixed(2),
       });
     },
     [
@@ -75,10 +76,11 @@ const InsertForm = ({
     ({ name, value }: onChangeType) => {
       handleItemMultiInput({
         [name]: value,
-        customer_invoice_item_total:
+        customer_invoice_item_total: +(
           +state.customer_invoice_item_quantity *
           +value *
-          +state.customer_invoice_item_size,
+          +state.customer_invoice_item_size
+        ).toFixed(2),
       });
     },
     [
@@ -88,15 +90,24 @@ const InsertForm = ({
     ]
   );
 
-  const handlePrintIdChange = useCallback(({name, value, option}: any)=>handleItemMultiInput({
-    [name]: value,
-    print_name: option.label
-  }),[handleItemMultiInput])
+  const handlePrintIdChange = useCallback(
+    ({ name, value, option }: any) =>
+      handleItemMultiInput({
+        [name]: value,
+        print_name: option.label,
+      }),
+    [handleItemMultiInput]
+  );
 
-  const handleItemIdChange = useCallback(({name, value, option}: any)=>handleItemMultiInput({
-    [name]: value,
-    item_name: option.label
-  }),[handleItemMultiInput])
+  const handleItemIdChange = useCallback(
+    ({ name, value, option }: any) =>
+      handleItemMultiInput({
+        [name]: value,
+        item_name: option.label,
+        customer_invoice_item_price: option.item_price,
+      }),
+    [handleItemMultiInput]
+  );
 
   return (
     <>

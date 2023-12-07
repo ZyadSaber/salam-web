@@ -3,19 +3,34 @@ import { SelectWithApi } from "@commons/select";
 import InputNumber from "@commons/input-number";
 import { InputText } from "@commons/input-text";
 import { useFormManager, useValidateForm } from "@commons/hooks";
-import { ModalViewProp } from "@commons/global";
+// import { ModalViewProp } from "@commons/global";
 import { useTableControlsButtons } from "@commons/table";
-import { SaveButton } from "@commons/button";
 import Flex from "@commons/flex";
 import { onChangeType } from "@commons/global";
+import Modal from "@commons/modal";
 
-const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
+const ModalView = ({
+  onClose,
+  selectedRow,
+  refreshTable,
+  visible,
+  invoiceType,
+  invoice_id
+}: any) => {
   const { state, onChange, handleMultiInput } = useFormManager({
     initialValues: {
       ...selectedRow,
+      width: selectedRow.width || 0,
+      height: selectedRow.height || 0,
+      size: selectedRow.size || 0,
+      quantity: selectedRow.quantity || 0,
+      price: selectedRow.price || 0,
+      total: selectedRow.total || 0,
+      invoice_type: invoiceType,
+      invoice_id
     },
   });
-  console.log(state);
+
   const { onSaveAndInsertion } = useTableControlsButtons({
     api: "QUERY_CUSTOMER_ITEMS_INVOICE_DATA",
     runFetch: refreshTable,
@@ -42,13 +57,8 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: value,
-        customer_invoice_item_size: +(+value * +height).toFixed(2),
-        customer_invoice_item_total: (
-          +value *
-          +height *
-          +quantity *
-          +price
-        ).toFixed(2),
+        size: +(+value * +height).toFixed(2),
+        total: (+value * +height * +quantity * +price).toFixed(2),
       });
     },
     [handleMultiInput, height, price, quantity]
@@ -63,11 +73,6 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
     },
     [handleMultiInput, price, quantity, width]
   );
-  const handleValidateFelids = useValidateForm({
-    validateFelids: ["customer_name"],
-    functionToRun: handleSave,
-    stateToValidate: state,
-  });
   const handleQuantity = useCallback(
     ({ name, value }: onChangeType) => {
       handleMultiInput({
@@ -86,9 +91,19 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
     },
     [handleMultiInput, quantity, size]
   );
+  const handleValidateFelids = useValidateForm({
+    validateFelids: ["customer_name"],
+    functionToRun: handleSave,
+    stateToValidate: state,
+  });
 
   return (
-    <>
+    <Modal
+      visible={visible}
+      onOK={handleValidateFelids}
+      onClose={onClose}
+      label="dtls"
+    >
       <Flex width="100%" wrap align="center" gap="5px">
         <SelectWithApi
           api="QUERY_PRINT_OPTIONS_LIST"
@@ -97,6 +112,7 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
           onChange={onChange}
           label="prntnm"
           width="24%"
+          hidden={invoiceType === "S"}
         />
         <SelectWithApi
           api="QUERY_ITEMS_LIST"
@@ -162,10 +178,7 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
           width="100%"
         />
       </Flex>
-      <Flex width="100%" padding="10px" justifyContent="center" wrap>
-        <SaveButton onClick={handleValidateFelids} width="20%" />
-      </Flex>
-    </>
+    </Modal>
   );
 };
 

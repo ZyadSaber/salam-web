@@ -46,7 +46,7 @@ const CustomerInvoices = () => {
   } = useFormManager({
     initialValues: {
       ...initialItemState,
-      rowKey: customer_invoice_items.length + 1
+      rowKey: customer_invoice_items.length + 1,
     },
   });
 
@@ -65,19 +65,21 @@ const CustomerInvoices = () => {
       totals = totals + +item.customer_invoice_item_total;
     });
     const computedTotals =
-      totals + currentItemState.customer_invoice_item_total;
+      +totals + +currentItemState.customer_invoice_item_total;
     handleMultiInput({
       customer_invoice_items: [...customer_invoice_items, currentItemState],
-      customer_invoice_total: computedTotals,
-      customer_invoice_after_discount:
+      customer_invoice_total: +(computedTotals.toFixed(2)),
+      customer_invoice_after_discount: (
         computedTotals +
         customer_invoice_design_fee -
-        customer_invoice_discount,
-      customer_invoice_credit:
+        customer_invoice_discount
+      ).toFixed(2),
+      customer_invoice_credit: (
         computedTotals +
         customer_invoice_design_fee -
         customer_invoice_discount -
-        customer_invoice_paid,
+        customer_invoice_paid
+      ).toFixed(2),
     });
     resetItemForm();
   }, [
@@ -95,13 +97,17 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_after_discount:
-          customer_invoice_total + +value - customer_invoice_discount,
-        customer_invoice_credit:
-          customer_invoice_total +
+        customer_invoice_after_discount: (
+          +customer_invoice_total +
           +value -
-          customer_invoice_paid -
-          customer_invoice_discount,
+          +customer_invoice_discount
+        ).toFixed(2),
+        customer_invoice_credit: (
+          +customer_invoice_total +
+          +value -
+          +customer_invoice_paid -
+          +customer_invoice_discount
+        ).toFixed(2),
       });
     },
     [
@@ -116,13 +122,17 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_after_discount:
-          customer_invoice_total + customer_invoice_design_fee - +value,
-        customer_invoice_credit:
-          customer_invoice_total +
-          customer_invoice_design_fee -
-          customer_invoice_paid -
-          +value,
+        customer_invoice_after_discount: (
+          +customer_invoice_total +
+          +customer_invoice_design_fee -
+          +value
+        ).toFixed(2),
+        customer_invoice_credit: (
+          +customer_invoice_total +
+          +customer_invoice_design_fee -
+          +customer_invoice_paid -
+          +value
+        ).toFixed(2),
       });
     },
     [
@@ -137,7 +147,7 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_credit: customer_invoice_after_discount - +value,
+        customer_invoice_credit: (+customer_invoice_after_discount - +value).toFixed(2)
       });
     },
     [customer_invoice_after_discount, handleMultiInput]
@@ -216,103 +226,101 @@ const CustomerInvoices = () => {
     },
   });
 
-  const actionButtons = [{
-    label: "delete",
-    onClick: handleDelete,
-    width: "100%",
-    margin: "0",
-    padding: "0"
-  }]
+  const actionButtons = [
+    {
+      label: "delete",
+      onClick: handleDelete,
+      width: "80%",
+      margin: "10px",
+      padding: "0",
+    },
+  ];
 
   return (
-      <Flex flexDirection="column" width="100%">
-        <Flex margin="0" padding="0" gap="5px">
-          <SelectWithApi
-            api={"QUERY_CUSTOMERS_LIST"}
-            onChange={onChange}
-            value={customer_id}
-            label="cstmr"
-            name="customer_id"
-            fetchOnFirstRun
-            width="15%"
-          />
-          <DatePicker
-            name="customer_invoice_date"
-            value={customer_invoice_date}
-            label="dt"
-            onChange={onChange}
-            width="15%"
-          />
-        </Flex>
-        <InsertForm
-          state={currentItemState}
-          onChange={currentItemChange}
-          handleItemMultiInput={handleItemMultiInput}
+    <Flex flexDirection="column" width="100%">
+      <Flex margin="0" padding="0" gap="5px">
+        <SelectWithApi
+          api={"QUERY_CUSTOMERS_LIST"}
+          onChange={onChange}
+          value={customer_id}
+          label="cstmr"
+          name="customer_id"
+          fetchOnFirstRun
+          width="15%"
         />
-        <Table
-          columns={columns}
-          dataSource={customer_invoice_items}
-          actionColumn={actionButtons}
-          actionLabel="del"
-          hideTools={false}
-          onAdd={handleValidateFelids}
-          actionWidth={100}
-          fixedHeight="250px"
-          noPagination
-          canAdd
-          additionalButtons={additionalButtons}
+        <DatePicker
+          name="customer_invoice_date"
+          value={customer_invoice_date}
+          label="dt"
+          onChange={onChange}
+          width="15%"
         />
-        <Flex width="100%" justifyContent="space-around">
-          <InputNumber
-            name="customer_invoice_total"
-            disabled
-            value={customer_invoice_total}
-            label="total"
-            width="13%"
-          />
-          <InputNumber
-            name="customer_invoice_design_fee"
-            value={customer_invoice_design_fee}
-            onChange={handleDesignFee}
-            label="dsgnfe"
-            width="13%"
-          />
-          <InputNumber
-            name="customer_invoice_discount"
-            value={customer_invoice_discount}
-            label="dscnt"
-            onChange={handleDiscount}
-            width="13%"
-          />
-          <InputNumber
-            name="customer_invoice_after_discount"
-            disabled
-            value={customer_invoice_after_discount}
-            label="tlaftrdsnt"
-            width="13%"
-          />
-          <InputNumber
-            name="customer_invoice_paid"
-            value={customer_invoice_paid}
-            label="paid"
-            max={customer_invoice_after_discount}
-            onChange={handlePaid}
-            width="13%"
-          />
-          <InputNumber
-            name="customer_invoice_credit"
-            disabled
-            value={customer_invoice_credit}
-            label="crdt"
-            width="13%"
-          />
-          <Button
-            label="sv"
-            width="15%"
-            onClick={handleValidateInvoiceFelids}
-          />
-        </Flex>
       </Flex>
+      <InsertForm
+        state={currentItemState}
+        onChange={currentItemChange}
+        handleItemMultiInput={handleItemMultiInput}
+      />
+      <Table
+        columns={columns}
+        dataSource={customer_invoice_items}
+        actionColumn={actionButtons}
+        actionLabel="del"
+        hideTools={false}
+        onAdd={handleValidateFelids}
+        actionWidth={100}
+        fixedHeight="250px"
+        noPagination
+        canAdd
+        additionalButtons={additionalButtons}
+      />
+      <Flex width="100%" justifyContent="space-around">
+        <InputNumber
+          name="customer_invoice_total"
+          disabled
+          value={customer_invoice_total}
+          label="total"
+          width="13%"
+        />
+        <InputNumber
+          name="customer_invoice_design_fee"
+          value={customer_invoice_design_fee}
+          onChange={handleDesignFee}
+          label="dsgnfe"
+          width="13%"
+        />
+        <InputNumber
+          name="customer_invoice_discount"
+          value={customer_invoice_discount}
+          label="dscnt"
+          onChange={handleDiscount}
+          width="13%"
+        />
+        <InputNumber
+          name="customer_invoice_after_discount"
+          disabled
+          value={customer_invoice_after_discount}
+          label="tlaftrdsnt"
+          width="13%"
+        />
+        <InputNumber
+          name="customer_invoice_paid"
+          value={customer_invoice_paid}
+          label="paid"
+          max={customer_invoice_after_discount}
+          onChange={handlePaid}
+          width="13%"
+        />
+        <InputNumber
+          name="customer_invoice_credit"
+          disabled
+          value={customer_invoice_credit}
+          label="crdt"
+          width="13%"
+        />
+        <Button label="sv" width="15%" onClick={handleValidateInvoiceFelids} />
+      </Flex>
+    </Flex>
   );
 };
 

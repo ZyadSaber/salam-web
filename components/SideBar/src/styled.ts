@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { primaryColors } from "@commons/global";
 
 export const Nav = styled.nav<any>`
-  min-width: ${({ collapsed }) => (collapsed ? "5%" : "13%")};
-  height: 100%;
+  min-width: ${({ collapsed }) => (collapsed ? "5%" : "15%")};
+  max-height: 100%;
   transition: all 0.3s ease;
   background-color: ${primaryColors.light};
   border-right: 1px solid ${primaryColors.black};
   text-align: center;
-  overflow-x: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const AccordionItem = styled.div`

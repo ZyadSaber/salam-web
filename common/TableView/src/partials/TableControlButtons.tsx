@@ -32,7 +32,7 @@ const TableControlButtons = ({
       width="100%"
       padding="0"
       margin="5px 0"
-      bordered
+      // bordered
       borderColor="red"
       justifyContent="center"
       hidden={hideTools}

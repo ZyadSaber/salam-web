@@ -37,6 +37,7 @@ export interface searchClearProp extends buttonProp {
 
 export interface iconButtonProp extends buttonProp {
   iconName?: string;
+  iconClassName?: string
 }
 
 export interface saveButtonProp extends buttonProp {

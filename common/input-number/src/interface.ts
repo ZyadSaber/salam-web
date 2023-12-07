@@ -13,4 +13,5 @@ export interface inputNumberProp {
   max?: number;
   required?: boolean;
   children?: any;
+  fixedBy?: number
 }

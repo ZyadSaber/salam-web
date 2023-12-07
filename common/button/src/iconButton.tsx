@@ -5,12 +5,13 @@ import { iconButtonProp } from "./interface"
 
 const IconButton = ({
     iconName,
+    iconClassName,
     backGround,
     margin,
     ...prop
 }: iconButtonProp) => {
 
-    const icon = <i className={iconName ? iconType[iconName] : ""}></i>
+    const icon = <i className={iconName ? iconType[iconName] : iconClassName ? iconClassName : "" }></i>
 
     return (
         <>

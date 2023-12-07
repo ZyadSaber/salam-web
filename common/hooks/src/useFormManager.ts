@@ -39,7 +39,8 @@ const useFormManager = ({ initialValues }: useFormManagerProps) => {
   const onChange = useCallback(
     (eventData: any) => {
       const { name, value } = eventData;
-      setState({ ...state, [name]: value });
+      const computedValue = typeof value === "number" ? +value.toFixed(2) : value;
+      setState({ ...state, [name]: computedValue });
     },
     [state]
   );

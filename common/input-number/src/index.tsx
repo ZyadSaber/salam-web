@@ -15,13 +15,14 @@ const InputNumber = ({
   margin,
   max,
   min = 0,
+  fixedBy = 2,
   ...props
 }: inputNumberProp) => {
   const handleChange = useCallback(
     (_: any) => {
-      onChange({ name: name, value: _ });
+      onChange({ name: name, value: _.toFixed(fixedBy) });
     },
-    [name, onChange]
+    [fixedBy, name, onChange]
   );
 
   return (
@@ -44,6 +45,7 @@ const InputNumber = ({
           margin={margin}
           max={max}
           min={min}
+          fixedBy={fixedBy}
           {...props}
         />
       </FloatingLabel>
