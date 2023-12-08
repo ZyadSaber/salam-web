@@ -10,6 +10,16 @@ export const columns = [
     width: "13%",
   },
   {
+    title: "dt",
+    dataIndex: "record_id",
+    width: "11.5%",
+  },
+  {
+    title: "dt",
+    dataIndex: "record_type",
+    width: "13%",
+  },
+  {
     title: "crdt",
     dataIndex: "credit",
     width: "15%",
@@ -23,10 +33,5 @@ export const columns = [
     title: "blnc",
     dataIndex: "balance",
     width: "15%",
-  },
-  {
-    title: "dscrptn",
-    dataIndex: "description",
-    width: "25%",
   },
 ];

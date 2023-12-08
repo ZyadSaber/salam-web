@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { useTableControlsButtons } from "@commons/table";
-import { ModalViewProp, defaultDate } from "@commons/global";
+import { ModalViewProp, defaultDateAndTime } from "@commons/global";
 import RadioBox from "@commons/radio-box";
 import { TextArea } from "@commons/input-text";
 import DatePicker from "@commons/date-picker";
@@ -16,7 +16,7 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
     initialValues: {
       ...selectedRow,
       voucher_type: selectedRow.voucher_type || "S",
-      voucher_date: defaultDate || selectedRow.voucher_date,
+      voucher_date: defaultDateAndTime || selectedRow.voucher_date,
     },
   });
   const { onSaveAndInsertion } = useTableControlsButtons({
@@ -49,6 +49,8 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
           value={state.voucher_date}
           label="dt"
           width="49.5%"
+          dateFormat="fullDateWithTime"
+          showTime
         />
         <InputNumber
           name="voucher_amount"

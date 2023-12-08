@@ -201,7 +201,7 @@ const SupplierInvoice = () => {
         dataSource={state.supplier_invoice_items}
         actionColumn={actionButtons}
         actionWidth={100}
-        actionLabel="dlt"
+        actionLabel="actn"
         rowKey="supplier_invoice_item_id"
         hideTools={false}
         onAdd={handleValidateFelids}

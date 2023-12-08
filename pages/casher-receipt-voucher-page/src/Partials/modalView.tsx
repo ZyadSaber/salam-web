@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { useTableControlsButtons } from "@commons/table";
-import { ModalViewProp, defaultDate } from "@commons/global";
+import { ModalViewProp, defaultDateAndTime } from "@commons/global";
 import RadioBox from "@commons/radio-box";
 import { TextArea } from "@commons/input-text";
 import InputNumber from "@commons/input-number";
@@ -25,7 +25,7 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
   } = useFormManager({
     initialValues: {
       ...selectedRow,
-      voucher_date: defaultDate || selectedRow.voucher_date,
+      voucher_date: defaultDateAndTime || selectedRow.voucher_date,
       voucher_type: selectedRow.voucher_type || "C",
     },
   });
@@ -82,6 +82,8 @@ const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
           value={voucher_date}
           label="dt"
           width="49.5%"
+          dateFormat="fullDateWithTime"
+          showTime
         />
         <InputNumber
           name="voucher_amount"

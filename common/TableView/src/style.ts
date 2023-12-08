@@ -11,7 +11,6 @@ export const TableContainer = styled.div<any>`
   padding: 0;
   box-sizing: border-box;
   width: ${({ width }) => width};
-  overflow-x: auto;
   ${({ margin }) => margin && `margin: ${margin}`};
   ${({ padding }) => padding && `padding: ${padding}`};
   ${({ order }) => order && `order: ${order}`};
@@ -23,6 +22,7 @@ export const TableContentWrapper = styled.div<any>`
   overflow-y: ${({ overflowY }) => overflowY};
   position: relative;
   height: ${({ fixedHeight }) => fixedHeight};
+  overflow-x: auto;
 `;
 
 export const StyledHeader = styled.thead<any>`
