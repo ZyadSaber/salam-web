@@ -13,10 +13,10 @@ const InsertInvoiceForm = ({
   onChange,
   handleIMultiInput,
   values,
-  hidePrintOptions
+  hidePrintOptions,
 }: any) => {
-
   const {
+    print_id,
     item_id,
     width,
     height,
@@ -24,14 +24,27 @@ const InsertInvoiceForm = ({
     quantity,
     price,
     total,
-    notes
+    notes,
   } = values;
 
-  const handleItemIdChange = useCallback(({ name, value, option }: any) => handleIMultiInput({
-    [name]: value,
-    item_name: option.label,
-    price: option.item_price
-  }), [handleIMultiInput]);
+  const handlePrintIdChange = useCallback(
+    ({ name, value, option }: any) =>
+      handleIMultiInput({
+        [name]: value,
+        print_name: option.label,
+      }),
+    [handleIMultiInput]
+  );
+
+  const handleItemIdChange = useCallback(
+    ({ name, value, option }: any) =>
+      handleIMultiInput({
+        [name]: value,
+        item_name: option.label,
+        price: +option.item_price,
+      }),
+    [handleIMultiInput]
+  );
 
   const handleWidth = useCallback(
     ({ name, value }: onChangeType) => {
@@ -59,7 +72,7 @@ const InsertInvoiceForm = ({
     ({ name, value }: onChangeType) => {
       handleIMultiInput({
         [name]: value,
-        total: value * price * size
+        total: value * price * size,
       });
     },
     [handleIMultiInput, price, size]
@@ -69,7 +82,7 @@ const InsertInvoiceForm = ({
     ({ name, value }: onChangeType) => {
       handleIMultiInput({
         [name]: value,
-        total: quantity * +value * size
+        total: quantity * +value * size,
       });
     },
     [handleIMultiInput, quantity, size]
@@ -79,14 +92,14 @@ const InsertInvoiceForm = ({
     <Flex width="100%" flexDirection="column">
       <Flex margin="0" padding="0" gap="5px">
         <SelectWithApi
-          api="QUERY_ITEMS_LIST"
-          onChange={handleItemIdChange}
-          value={item_id}
-          label="itmnm"
-          name="item_id"
+          api={"QUERY_PRINT_OPTIONS_LIST"}
+          onChange={handlePrintIdChange}
+          value={print_id}
+          label="prntnm"
+          name="print_id"
           fetchOnFirstRun
-          width="15%"
           hidden={hidePrintOptions}
+          width="15%"
         />
         <SelectWithApi
           api="QUERY_ITEMS_LIST"

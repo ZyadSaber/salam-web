@@ -30,7 +30,7 @@ const Customers = () => {
   }, [fetchTableData, customer_name, phone, address]);
   return (
     <>
-      <Flex width="100%" wrap bordered gap="5px">
+      <Flex width="100%" wrap bordered gap="5px" align="center">
         <InputText
           width="15%"
           name="customer_name"

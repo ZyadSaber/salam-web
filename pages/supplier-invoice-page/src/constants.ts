@@ -1,9 +1,9 @@
-import { defaultDate } from "@commons/global";
+import { defaultDateAndTime } from "@commons/global";
 
 export const initialRootState = {
   supplier_id: "",
   supplier_name: "",
-  supplier_invoice_date: defaultDate,
+  supplier_invoice_date: defaultDateAndTime,
   supplier_invoice_items: [],
   query_status: "n",
   supplier_invoice_total: 0,

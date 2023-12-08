@@ -7,7 +7,7 @@ import Flex from "@commons/flex";
 import { SelectWithApi } from "@commons/select";
 import DatePicker from "@commons/date-picker";
 import { Button } from "@commons/button";
-import InsertForm from "./Partials/InsertForm";
+import InsertInvoiceForm from "@components/insert-invoice-form";
 import {
   columns,
   initialRootState,
@@ -33,7 +33,6 @@ const CustomerInvoices = () => {
     onChange,
     resetForm,
     handleMultiInput,
-    handleArrayChange,
   } = useFormManager({
     initialValues: initialRootState,
   });
@@ -44,10 +43,7 @@ const CustomerInvoices = () => {
     handleMultiInput: handleItemMultiInput,
     resetForm: resetItemForm,
   } = useFormManager({
-    initialValues: {
-      ...initialItemState,
-      rowKey: customer_invoice_items.length + 1,
-    },
+    initialValues: initialItemState,
   });
 
   const { setRow } = useMutation({
@@ -56,19 +52,29 @@ const CustomerInvoices = () => {
   });
 
   const handleAdd = useCallback(() => {
-    handleArrayChange({
-      name: "customer_invoice_items",
-      value: currentItemState,
-    });
+    const computedItemState = {
+      customer_invoice_print_option_id: currentItemState.print_id,
+      print_name: currentItemState.print_name,
+      customer_invoice_item_id: currentItemState.item_id,
+      item_name: currentItemState.item_name,
+      customer_invoice_item_width: currentItemState.width,
+      customer_invoice_item_height: currentItemState.height,
+      customer_invoice_item_size: currentItemState.size,
+      customer_invoice_item_quantity: currentItemState.quantity,
+      customer_invoice_item_price: currentItemState.price,
+      customer_invoice_item_total: currentItemState.total,
+      customer_invoice_item_notes: currentItemState.notes,
+      rowKey: customer_invoice_items.length + 1,
+    };
     let totals = 0;
     customer_invoice_items.forEach((item: any) => {
       totals = totals + +item.customer_invoice_item_total;
     });
     const computedTotals =
-      +totals + +currentItemState.customer_invoice_item_total;
+      +totals + +computedItemState.customer_invoice_item_total;
     handleMultiInput({
-      customer_invoice_items: [...customer_invoice_items, currentItemState],
-      customer_invoice_total: +(computedTotals.toFixed(2)),
+      customer_invoice_items: [...customer_invoice_items, computedItemState],
+      customer_invoice_total: +computedTotals.toFixed(2),
       customer_invoice_after_discount: (
         computedTotals +
         customer_invoice_design_fee -
@@ -83,12 +89,21 @@ const CustomerInvoices = () => {
     });
     resetItemForm();
   }, [
-    currentItemState,
+    currentItemState.height,
+    currentItemState.item_id,
+    currentItemState.item_name,
+    currentItemState.notes,
+    currentItemState.price,
+    currentItemState.print_id,
+    currentItemState.print_name,
+    currentItemState.quantity,
+    currentItemState.size,
+    currentItemState.total,
+    currentItemState.width,
     customer_invoice_design_fee,
     customer_invoice_discount,
     customer_invoice_items,
     customer_invoice_paid,
-    handleArrayChange,
     handleMultiInput,
     resetItemForm,
   ]);
@@ -97,12 +112,12 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_after_discount: (
+        customer_invoice_after_discount: +(
           +customer_invoice_total +
           +value -
           +customer_invoice_discount
         ).toFixed(2),
-        customer_invoice_credit: (
+        customer_invoice_credit: +(
           +customer_invoice_total +
           +value -
           +customer_invoice_paid -
@@ -122,12 +137,12 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_after_discount: (
+        customer_invoice_after_discount: +(
           +customer_invoice_total +
           +customer_invoice_design_fee -
           +value
         ).toFixed(2),
-        customer_invoice_credit: (
+        customer_invoice_credit: +(
           +customer_invoice_total +
           +customer_invoice_design_fee -
           +customer_invoice_paid -
@@ -147,7 +162,9 @@ const CustomerInvoices = () => {
     ({ name, value }: onChangeType) => {
       handleMultiInput({
         [name]: +value,
-        customer_invoice_credit: (+customer_invoice_after_discount - +value).toFixed(2)
+        customer_invoice_credit: +(
+          +customer_invoice_after_discount - +value
+        ).toFixed(2),
       });
     },
     [customer_invoice_after_discount, handleMultiInput]
@@ -192,7 +209,7 @@ const CustomerInvoices = () => {
       (f: any) => e.rowKey !== f.rowKey
     );
     const totalAfterDelete =
-      customer_invoice_total - customer_invoice_item_total;
+      customer_invoice_total - e.customer_invoice_item_total;
     handleMultiInput({
       customer_invoice_items: computedItems,
       customer_invoice_total: totalAfterDelete,
@@ -231,8 +248,6 @@ const CustomerInvoices = () => {
       label: "delete",
       onClick: handleDelete,
       width: "80%",
-      margin: "10px",
-      padding: "0",
     },
   ];
 
@@ -254,12 +269,14 @@ const CustomerInvoices = () => {
           label="dt"
           onChange={onChange}
           width="15%"
+          dateFormat="fullDateWithTime"
+          showTime
         />
       </Flex>
-      <InsertForm
-        state={currentItemState}
+      <InsertInvoiceForm
+        values={currentItemState}
         onChange={currentItemChange}
-        handleItemMultiInput={handleItemMultiInput}
+        handleIMultiInput={handleItemMultiInput}
       />
       <Table
         columns={columns}
@@ -274,7 +291,7 @@ const CustomerInvoices = () => {
         canAdd
         additionalButtons={additionalButtons}
       />
-      <Flex width="100%" justifyContent="space-around">
+      <Flex width="100%" justifyContent="space-around" align="center">
         <InputNumber
           name="customer_invoice_total"
           disabled

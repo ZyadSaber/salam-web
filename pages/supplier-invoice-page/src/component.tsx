@@ -129,8 +129,9 @@ const SupplierInvoice = () => {
     const computedItems = state.supplier_invoice_items.filter(
       (f: any) => e.rowKey !== f.rowKey
     );
+
     const totalAfterDelete =
-      state.supplier_invoice_total - state.supplier_invoice_item_total;
+      state.supplier_invoice_total - e.supplier_invoice_item_total;
     handleMultiInput({
       supplier_invoice_items: computedItems,
       supplier_invoice_total: totalAfterDelete,
@@ -185,6 +186,8 @@ const SupplierInvoice = () => {
           label="dt"
           onChange={onChange}
           width="15%"
+          dateFormat="fullDateWithTime"
+          showTime
         />
       </Flex>
       <InsertInvoiceForm

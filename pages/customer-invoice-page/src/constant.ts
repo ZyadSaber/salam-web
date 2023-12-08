@@ -1,8 +1,10 @@
-import { defaultDate } from "@commons/global";
+import { defaultDateAndTime } from "@commons/global";
+
+console.log(defaultDateAndTime)
 
 export const initialRootState = {
   customer_id: "",
-  customer_invoice_date: defaultDate,
+  customer_invoice_date: defaultDateAndTime,
   customer_invoice_items: [],
   query_status: "n",
   customer_invoice_total: 0,
@@ -14,35 +16,35 @@ export const initialRootState = {
 };
 
 export const initialItemState = {
-  customer_invoice_print_option_id: "",
-  customer_invoice_item_id: "",
-  customer_invoice_item_width: 0,
-  customer_invoice_item_height: 0,
-  customer_invoice_item_size: 0,
-  customer_invoice_item_quantity: 0,
-  customer_invoice_item_price: 0,
-  customer_invoice_item_total: 0,
-  customer_invoice_item_notes: "",
+  print_id: "",
+  item_id: "",
+  width: 0,
+  height: 0,
+  size: 0,
+  quantity: 0,
+  price: 0,
+  total: 0,
+  notes: "",
   item_name: "",
   print_name: "",
 };
 
 export const rootValidate = [
-  "customer_id",
-  "customer_invoice_date",
-  "customer_invoice_items",
-  "customer_invoice_total",
-  "customer_invoice_after_discount",
+  // "customer_id",
+  // "customer_invoice_date",
+  // "customer_invoice_items",
+  // "customer_invoice_total",
+  // "customer_invoice_after_discount",
 ];
 
 export const itemValidate = [
-  "customer_invoice_item_id",
-  "customer_invoice_item_width",
-  "customer_invoice_item_height",
-  "customer_invoice_item_size",
-  "customer_invoice_item_quantity",
-  "customer_invoice_item_price",
-  "customer_invoice_item_total",
+  // "customer_invoice_item_id",
+  // "customer_invoice_item_width",
+  // "customer_invoice_item_height",
+  // "customer_invoice_item_size",
+  // "customer_invoice_item_quantity",
+  // "customer_invoice_item_price",
+  // "customer_invoice_item_total",
 ];
 
 export const columns = [

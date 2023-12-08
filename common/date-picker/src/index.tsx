@@ -23,7 +23,8 @@ const DatePicker = ({
     ? dayjs(actualDate, dateFormats[dateFormat])
     : undefined;
 
-  const handleChange = (_: DatePickerProp["value"], dateString: string) => {
+  const handleChange = (_: unknown, dateString: string) => {
+    console.log(dateString)
     onChange && onChange({ name: name, value: dateString });
   };
   return (
@@ -40,7 +41,8 @@ const DatePicker = ({
         defaultValue={currentValue}
         value={currentValue}
         format={dateFormats[dateFormat]}
-        showTime={showTime}
+        //@ts-ignore
+        showTime={showTime && {format: 'HH:mm'} }
         width="100%"
         onChange={handleChange}
         placeholder=""
