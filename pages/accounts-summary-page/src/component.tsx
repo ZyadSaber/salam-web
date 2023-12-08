@@ -3,7 +3,7 @@ import RadioBox from "@commons/radio-box";
 import { useFormManager } from "@commons/hooks";
 import Flex from "@commons/flex";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
-import { Button } from "@commons/button"
+import { SearchAndClearButton } from "@commons/button"
 import { voucherOptions, columns } from "./constant"
 
 const AccountsSummary = () => {
@@ -21,18 +21,18 @@ const AccountsSummary = () => {
     }, [fetchTableData, state.type])
     return (
         <>
-            <Flex bordered width="100%" wrap>
+            <Flex bordered width="100%" wrap gap="5px" align="center">
                 <RadioBox
                     name="type"
                     onChange={onChange}
                     value={state?.type}
                     label="type"
                     options={voucherOptions}
+                    width="auto"
                 />
-                <Button
-                    onClick={handleSearch}
-                    label="search"
-                    width="10%"
+                <SearchAndClearButton
+                    onSearch={handleSearch}
+                    noClear
                 />
             </Flex>
             <TableWithApi

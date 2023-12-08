@@ -41,6 +41,6 @@ export const columns = [
   {
     title: "total",
     dataIndex: "total",
-    width: "20%",
+    width: "19%",
   },
 ];

@@ -4,7 +4,7 @@ import { SelectWithApi } from "@commons/select";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import { useFormManager } from "@commons/hooks";
 import DatePicker from "@commons/date-picker";
-import { Button } from "@commons/button";
+import { SearchAndClearButton } from "@commons/button";
 import { columns } from "./constant";
 const ItemSummaryPage = () => {
     const { state, onChange } = useFormManager({ initialValues: { date_from: "", date_to: "", item_id: "" } })
@@ -23,8 +23,7 @@ const ItemSummaryPage = () => {
     }, [fetchTableData, state.date_from, state.date_to, state.item_id])
     return (
         <>
-            <Flex width="100%" flexDirection="column">
-                <Flex width="100%" >
+                <Flex bordered width="100%" wrap gap="5px" align="center">
                     <SelectWithApi
                         label="itm"
                         fetchOnFirstRun
@@ -45,10 +44,9 @@ const ItemSummaryPage = () => {
                         label="to"
                         onChange={onChange}
                     />
-                    <Button
-                        onClick={handleSearch}
-                        label="search"
-                        width="10%"
+                    <SearchAndClearButton
+                        onSearch={handleSearch}
+                        noClear
                     />
                 </Flex>
                 <TableWithApi
@@ -59,7 +57,6 @@ const ItemSummaryPage = () => {
                     canExcel
                     rowKey={"rowKey"}
                 />
-            </Flex>
         </>
     )
 }

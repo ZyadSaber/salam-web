@@ -2,12 +2,12 @@ export const columns = [
   {
     title: "dt",
     dataIndex: "date",
-    width: "10%",
+    width: "15%",
   },
   {
     title: "id",
     dataIndex: "invoice_id",
-    width: "7%",
+    width: "10%",
   },
   {
     title: "hldrnm",
@@ -22,16 +22,16 @@ export const columns = [
   {
     title: "itmin",
     dataIndex: "item_in",
-    width: "13%",
+    width: "10%",
   },
   {
     title: "itmot",
     dataIndex: "item_out",
-    width: "13%",
+    width: "10%",
   },
   {
     title: "blnc",
     dataIndex: "balance",
-    width: "15%",
+    width: "10%",
   },
 ];
