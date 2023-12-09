@@ -2,10 +2,9 @@ import React, { memo } from "react";
 import dayjs from "dayjs";
 import FloatingLabel from "@commons/floating-label";
 import { StyledDate } from "./styled";
-import { dateFormats } from "./constant";
 import { DatePickerProp } from "./interface";
 
-const DatePicker = ({
+const TimePicker = ({
   dateFormat = "fullDate",
   label,
   value: actualDate,
@@ -19,13 +18,15 @@ const DatePicker = ({
   showTime,
   ...props
 }: DatePickerProp) => {
+
   const currentValue = actualDate
-    ? dayjs(actualDate, dateFormats[dateFormat])
+    ? dayjs(actualDate, "hh:mm")
     : undefined;
 
   const handleChange = (_: unknown, dateString: string) => {
     onChange && onChange({ name: name, value: dateString });
   };
+
   return (
     <FloatingLabel
     label={label}
@@ -39,9 +40,7 @@ const DatePicker = ({
       <StyledDate
         defaultValue={currentValue}
         value={currentValue}
-        format={dateFormats[dateFormat]}
-        //@ts-ignore
-        showTime={showTime && {format: 'HH:mm'} }
+        format="HH:mm"
         width="100%"
         onChange={handleChange}
         placeholder=""
@@ -51,5 +50,5 @@ const DatePicker = ({
     </FloatingLabel>
   );
 };
-export default memo(DatePicker);
+export default memo(TimePicker);
 export * from "./interface";

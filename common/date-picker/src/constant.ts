@@ -5,4 +5,5 @@ export const dateFormats = {
     fullDateWithTime: "YYYY-MM-DD HH:mm",
     fullDateWithTimeDN: "YYYY-MM-DD hh:mm a",
     fullDateWithTimeNoSecond: "YYYY-MM-DD HH:mm",
+    hoursAndMinutes: "HH:mm a"
 }

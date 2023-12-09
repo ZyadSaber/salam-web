@@ -20,6 +20,7 @@
     "@commons/radio-box": "1.0.0",
     "@commons/select": "1.0.0",
     "@commons/table": "1.0.0",
+    "@commons/time-picker": "1.0.0",
     "@components/header": "1.0.0",
     "@components/invoice-details-with-edit-modal": "1.0.0",
     "@pages/customers-page": "1.0.0",

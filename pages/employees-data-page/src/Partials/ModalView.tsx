@@ -1,17 +1,19 @@
 import React, { memo, useCallback } from 'react';
 import { useTableControlsButtons } from "@commons/table";
+import Flex from "@commons/flex";
 import { ModalViewProp } from "@commons/global"
 import { useFormManager } from "@commons/hooks";
 import { InputText } from "@commons/input-text";
 import InputNumber from "@commons/input-number"
 import { SaveButton } from "@commons/button"
+import DatePicker from "@commons/date-picker";
+import TimePicker from "@commons/time-picker";
 
 const ModalView = ({
     onClose,
     selectedRow,
     refreshTable
 }: ModalViewProp) => {
-
 
     const {
         onChange,
@@ -31,7 +33,7 @@ const ModalView = ({
     }, [state, onSaveAndInsertion, onClose])
 
     return (
-        <>
+        <Flex width='100%' wrap gap='10px'>
             <InputText
                 name='employee_name'
                 value={state.employee_name}
@@ -39,13 +41,15 @@ const ModalView = ({
                 label='nm'
                 width="30%"
             />
-            <InputText
+            <DatePicker
                 name='date_of_hiring'
                 value={state.date_of_hiring}
                 onChange={onChange}
                 label='dtfhrng'
                 width="30%"
-                type='date'
+                // dateFormat="hoursAndMinutes"
+                showTime
+                picker="time"
             />
             <InputNumber
                 name='employee_phone'
@@ -89,26 +93,26 @@ const ModalView = ({
                 label='slry'
                 width="22%"
             />
-            <InputText
+            <TimePicker
                 name='employee_attendance_time'
                 value={state.employee_attendance_time}
                 onChange={onChange}
                 label='atndnctm'
                 width="22%"
-                type='time'
+                // type='time'
             />
-            <InputText
+            <TimePicker
                 name='employee_leaving_time'
                 value={state.employee_leaving_time}
                 onChange={onChange}
                 label='lvngtm'
                 width="22%"
-                type='time'
+                // type='time'
             />
             <SaveButton
                 onOK={handleSave}
             />
-        </>
+        </Flex>
     )
 };
 
