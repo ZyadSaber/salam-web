@@ -1,5 +1,3 @@
-// import { ResponsiveValue } from "@chakra-ui/react";
-
 export interface flexProp {
   children?: any;
   justifyContent?: string;

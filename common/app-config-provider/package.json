@@ -1,0 +1,16 @@
+{
+  "name": "@commons/app-config-provider",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "author": "salam",
+  "license": "ISC",
+  "main": "src",
+  "sideEffects": false,
+  "dependencies": {
+    "react": "^18.2.0",
+    "antd": "^5.11.0",
+    "@emotion/styled": "^11.10.6"
+  },
+  "enableBabelTranspilation": true
+}

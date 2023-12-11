@@ -4,7 +4,6 @@ import {
   useCurrentAuthorization, 
   usePrevious
  } from "@commons/hooks";
-import { useToast } from "@chakra-ui/react";
 // import {objectIs} from "@commons/helpers"
 
 interface useFetchProp {
@@ -31,7 +30,7 @@ const useFetch = ({
   
   const [data, setData] = useState<any>(undefined);
   const [loading, setLoading] = useState(false);
-  const toast = useToast();
+  // const toast = useToast();
   const useAuthorization = useCurrentAuthorization();
   const baseNextParams = params || {};
   const [actualParams, setActualParams] = useState(baseNextParams)
@@ -63,17 +62,10 @@ const useFetch = ({
         setData(apiData);
         onResponse && onResponse(apiData);
         if (apiData && apiData?.response) {
-          toast({
-            position: "top-right",
-            title: "error",
-            description: `${JSON.stringify(apiData?.response)}`,
-            status: "error",
-            duration: 5000,
-            isClosable: true,
-          });
+          window.alert(`${JSON.stringify(apiData?.response)}`)
         }
     },
-    [onResponse, toast, url]
+    [onResponse, url]
   );
 
     // useEffect(() => {

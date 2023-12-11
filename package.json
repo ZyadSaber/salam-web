@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "^2.5.1",
     "@commons/button": "1.0.0",
     "@commons/helpers": "1.0.0",
     "@commons/pdf-viewer": "1.0.0",
@@ -21,13 +20,14 @@
     "@commons/select": "1.0.0",
     "@commons/table": "1.0.0",
     "@commons/time-picker": "1.0.0",
-    "@components/header": "1.0.0",
-    "@components/invoice-details-with-edit-modal": "1.0.0",
-    "@pages/customers-page": "1.0.0",
-    "@components/side-bar": "1.0.0",
     "@commons/loading-over-lay": "1.0.0",
     "@commons/floating-label": "1.0.0",
+    "@commons/app-config-provider": "1.0.0",
+    "@components/header": "1.0.0",
+    "@components/invoice-details-with-edit-modal": "1.0.0",
+    "@components/side-bar": "1.0.0",
     "@components/insert-invoice-form": "1.0.0",
+    "@pages/customers-page": "1.0.0",
     "@pages/accounts-summary-page": "1.0.0",
     "@pages/casher-payment-voucher-page": "1.0.0",
     "@pages/casher-receipt-voucher-page": "1.0.0",
@@ -91,8 +91,7 @@
     "test": "craco test",
     "eject": "craco eject",
     "generate": "plop",
-    "bootstrap": "lerna bootstrap",
-    "new-ip": "node ./scripts/new-server-address"
+    "bootstrap": "lerna bootstrap"
   },
   "eslintConfig": {
     "extends": [

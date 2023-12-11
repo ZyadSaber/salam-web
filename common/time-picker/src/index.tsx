@@ -5,7 +5,6 @@ import { StyledDate } from "./styled";
 import { DatePickerProp } from "./interface";
 
 const TimePicker = ({
-  dateFormat = "fullDate",
   label,
   value: actualDate,
   width = "200px",

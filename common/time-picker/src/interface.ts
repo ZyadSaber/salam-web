@@ -1,8 +1,6 @@
 import type { TimePickerProps } from "antd";
-import { dateFormats } from "./constant";
 
 export type DatePickerProp = TimePickerProps & {
-  dateFormat?: keyof typeof dateFormats;
   format?: string;
   actualDate?: string;
   customDataMessage?: string;
