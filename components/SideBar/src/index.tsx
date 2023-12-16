@@ -2,6 +2,10 @@ import React, { memo, useState, useCallback } from "react";
 import { LinkButton, IconButton } from "@commons/button";
 import { useFetch, useCurrentUserName } from "@commons/hooks";
 import { primaryColors } from "@commons/global";
+import {
+  useSideBarIndex,
+  useSetAuthConfigData,
+} from "@commons/app-config-provider";
 import Flex from "@commons/flex";
 import {
   Nav,
@@ -13,9 +17,10 @@ import {
 
 const SideBar = () => {
   const [visible, setVisible] = useState(true);
-  const [activeIndex, setActiveIndex] = useState<number | undefined>(0);
+  const setAuthConfigValues = useSetAuthConfigData();
   const user_name = useCurrentUserName();
-  const{ lightSky, black } = primaryColors;
+  const activeIndex = useSideBarIndex();
+  const { lightSky, black } = primaryColors;
   const { data } = useFetch({
     link: "QUERY_SIDE_PAGES_DATA",
     fetchOnFirstRun: true,
@@ -26,13 +31,11 @@ const SideBar = () => {
 
   const handleToggle = useCallback(
     (index: number) => {
-      if (index === activeIndex) {
-        setActiveIndex(undefined);
-      } else {
-        setActiveIndex(index);
-      }
+      setAuthConfigValues({
+        sideBlock: index,
+      });
     },
-    [activeIndex]
+    [setAuthConfigValues]
   );
 
   const handleMenuButton = useCallback(() => setVisible(!visible), [visible]);
@@ -48,8 +51,11 @@ const SideBar = () => {
         margin="10px"
       />
       {data?.map(
-        ({ page_parent_id, page_parent_name, app_pages, page_icon }: any, index: any) => {
-          return(
+        (
+          { page_parent_id, page_parent_name, app_pages, page_icon }: any,
+          index: any
+        ) => {
+          return (
             <AccordionItem key={page_parent_id}>
               <AccordionLabel>
                 <IconButton
@@ -62,7 +68,12 @@ const SideBar = () => {
                 />
               </AccordionLabel>
               <AccordionPanel visible={activeIndex === index}>
-                <Flex width="100%" flexDirection="column" gap="10px" padding="0">
+                <Flex
+                  width="100%"
+                  flexDirection="column"
+                  gap="10px"
+                  padding="0"
+                >
                   {app_pages.map((page: any) => {
                     return page.run_in_modal === "N" ? (
                       <StyledComponent>
@@ -78,13 +89,23 @@ const SideBar = () => {
                         />
                       </StyledComponent>
                     ) : (
-                      <></>
+                      <IconButton
+                        key={page.page_id}
+                        label={visible ? page.page_name : undefined}
+                        iconName={page.page_icon}
+                        width="100%"
+                        type="primary"
+                        backGround={lightSky}
+                        borderRadius="5px"
+                        color={black}
+                        onClick={() => {}}
+                      />
                     );
                   })}
                 </Flex>
               </AccordionPanel>
             </AccordionItem>
-          )
+          );
         }
       )}
     </Nav>

@@ -1,63 +1,57 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback } from "react";
 import { InputText } from "@commons/input-text";
-import { useFormManager } from '@commons/hooks';
-import { ModalViewProp } from "@commons/global"
+import { useFormManager, useValidateForm } from "@commons/hooks";
+import { ModalViewProp } from "@commons/global";
 import { useTableControlsButtons } from "@commons/table";
 import { SaveButton } from "@commons/button";
 import { CheckBox } from "@commons/check-box";
-import Flex from '@commons/flex';
+import Flex from "@commons/flex";
 
-const ModalView = ({
-    onClose,
-    selectedRow,
-    refreshTable
-}: ModalViewProp) => {
-    const {
-        state,
-        onChange,
-    }
-        = useFormManager({
-            initialValues: {
-                ...selectedRow
-            }
-        })
-    const { onSaveAndInsertion } = useTableControlsButtons({ api: "POST_PAGES_PARENT_DATA_TABLE", runFetch: refreshTable })
+const ModalView = ({ onClose, selectedRow, refreshTable }: ModalViewProp) => {
+  const { state, onChange } = useFormManager({
+    initialValues: {
+      ...selectedRow,
+    },
+  });
+  const { onSaveAndInsertion } = useTableControlsButtons({
+    api: "POST_PAGES_PARENT_DATA_TABLE",
+    runFetch: refreshTable,
+  });
 
-    const handleSave = useCallback(() => {
-        onSaveAndInsertion(state)
-        onClose()
-    }, [onSaveAndInsertion, state, onClose])
+  const handleSave = useCallback(() => {
+    onSaveAndInsertion(state);
+    onClose();
+  }, [onSaveAndInsertion, state, onClose]);
 
-    return (
-        <Flex flexDirection="column" width="100%"> 
-        <Flex width="100%">
-            <InputText
-                name="page_parent_id"
-                label='page_parent_id'
-                onChange={onChange}
-                value={state.page_parent_id}
-                width="20%"
-                disabled
-            />
-            <InputText
-                name="page_parent_name"
-                label='page_parent_name'
-                onChange={onChange}
-                value={state.page_parent_name}
-                width="60%"
-            />
-            <CheckBox
-                name="hidden"
-                label='hidden'
-                onChange={onChange}
-                value={state.hidden}
-            />
-            </Flex>
-            <SaveButton
-                onClick={handleSave}
-            />
-        </Flex>
-    )
+  const handleValidateFelids = useValidateForm({
+    validateFelids: ["page_parent_name", "hidden"],
+    functionToRun: handleSave,
+    stateToValidate: state,
+  });
+
+  const { page_parent_name, hidden } = state;
+
+  return (
+    <Flex width="100%" padding="0" margin="0" wrap gap="5px">
+      <InputText
+        name="page_parent_id"
+        label="page_parent_id"
+        onChange={onChange}
+        value={state.page_parent_id}
+        width="20%"
+        disabled
+      />
+      <InputText
+        label="pgprnt"
+        name="page_parent_name"
+        onChange={onChange}
+        value={page_parent_name}
+        width="40%"
+      />
+      <CheckBox name="hidden" label="hdn" onChange={onChange} value={hidden} />
+      <SaveButton onClick={handleValidateFelids} />
+    </Flex>
+  );
 };
 
-export default memo(ModalView)
+export default memo(ModalView);

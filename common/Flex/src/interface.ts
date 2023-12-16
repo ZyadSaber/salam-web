@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export interface flexProps {
   children?: ReactNode;
@@ -19,4 +19,6 @@ export interface flexProps {
   gap?: string;
   overflow?: string;
   minHeight?: string;
+  overFlowX?: string;
+  overFlowY?: string;
 }

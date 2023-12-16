@@ -1,10 +1,10 @@
 import React, { memo, useCallback } from "react";
-import ModalView from "./Partials/ModalView";
 import { TableWithApi, useCreateTableActionRef } from "@commons/table";
 import Flex from "@commons/flex";
 import { InputText } from "@commons/input-text";
 import { useFormManager } from "@commons/hooks";
 import { SearchAndClearButton } from "@commons/button";
+import ModalView from "./Partials/ModalView";
 import { columns } from "./constants";
 
 const Customers = () => {
@@ -15,7 +15,7 @@ const Customers = () => {
     initialValues: {
       customer_name: "",
       phone: "",
-      address: ""
+      address: "",
     },
   });
 
@@ -25,9 +25,10 @@ const Customers = () => {
     fetchTableData({
       customer_name,
       phone,
-      address
+      address,
     });
   }, [fetchTableData, customer_name, phone, address]);
+
   return (
     <>
       <Flex width="100%" wrap bordered gap="5px" align="center">
@@ -54,6 +55,7 @@ const Customers = () => {
         />
         <SearchAndClearButton noClear onSearch={handleSearch} />
       </Flex>
+
       <TableWithApi
         ref={tableRef}
         api={"QUERY_CUSTOMER_TABLE_DATA"}

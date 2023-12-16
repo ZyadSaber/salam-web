@@ -108,7 +108,6 @@ const Table = ({
 
   return (
     <>
-    <button hidden>dd</button>
       <TableContainer
         width={width}
         padding={padding}
@@ -161,12 +160,16 @@ const Table = ({
               clickedRowKey={clickedRowKey}
             />
           </StyledTable>
-          { Array.isArray(dataSource) &&
-          dataSource.length !== 0 && useFloatingLabelsTotalCells && (
-            <tfoot>
-              <FloatingLabelsTotalCells dataSource={dataSource} columns={adjustedColumns} />
-            </tfoot>
-          )}
+          {Array.isArray(dataSource) &&
+            dataSource.length !== 0 &&
+            useFloatingLabelsTotalCells && (
+              <tfoot>
+                <FloatingLabelsTotalCells
+                  dataSource={dataSource}
+                  columns={adjustedColumns}
+                />
+              </tfoot>
+            )}
         </TableContentWrapper>
         {Array.isArray(dataSource) &&
           dataSource.length !== 0 &&

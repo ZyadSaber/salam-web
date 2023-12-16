@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
 import { flexProps } from "./interface";
 export const StyledFlex = styled.div<flexProps>`
-
-   display: flex;
+  display: flex;
   ${({ justifyContent }) =>
     justifyContent && `justify-content: ${justifyContent};`}
   ${({ width }) => width && `width: ${width};`}
@@ -19,8 +18,9 @@ export const StyledFlex = styled.div<flexProps>`
     flexDirection && `flex-direction: ${flexDirection};`}
     ${({ align }) => align && `align-items: ${align};`}
     ${({ hidden }) => hidden && `display: none;`}
-     ${({ wrap }) => wrap && `flex-wrap: wrap;`} 
+     ${({ wrap }) => wrap && `flex-wrap: wrap;`}
     ${({ gap }) => gap && `gap: ${gap};`};
-    overflow-y: auto;
-    ${({ minHeight }) => minHeight && `min-height: ${minHeight};`};
-    `;
+  ${({ overFlowY }) => overFlowY && `overflow-y: ${overFlowY};`};
+  ${({ overFlowX }) => overFlowX && `overflow-y: ${overFlowX};`};
+  ${({ minHeight }) => minHeight && `min-height: ${minHeight};`};
+`;

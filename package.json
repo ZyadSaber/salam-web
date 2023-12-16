@@ -52,7 +52,6 @@
     "@pages/supplier-summary-page": "1.0.0",
     "@pages/suppliers-page": "1.0.0",
     "@pages/users-page": "1.0.0",
-    "@pages/users-roles-page": "1.0.0",
     "@cubejs-client/core": "^0.31.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

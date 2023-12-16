@@ -1,10 +1,11 @@
-import { useContext } from "react";
-import {Store} from "../context/store"
+import useAppConfig from "./useAppConfig";
 
-const useSideBarIndex = ()=>{
-    const {sideBlock} = useContext(Store)
+const useSideBarIndex = () => {
+  const {
+    state: { sideBlock },
+  } = useAppConfig();
 
-    return sideBlock
-}
+  return sideBlock;
+};
 
-export default useSideBarIndex
+export default useSideBarIndex;

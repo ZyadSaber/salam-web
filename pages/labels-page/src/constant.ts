@@ -1,17 +1,27 @@
 export const columns = [
   {
-    title: "language_code",
+    title: "cod",
     dataIndex: "language_code",
-    width: "18%",
+    width: "14.5%",
   },
   {
-    title: "english_name",
+    title: "englshnm",
     dataIndex: "english_name",
-    width: "40%",
+    width: "29%",
   },
   {
-    title: "arabic_name",
+    title: "arbcnm",
     dataIndex: "arabic_name",
-    width: "40%",
+    width: "29%",
+  },
+  {
+    title: "crtdat",
+    dataIndex: "created_at",
+    width: "12%",
+  },
+  {
+    title: "updtdat",
+    dataIndex: "updated_at",
+    width: "12%",
   },
 ];

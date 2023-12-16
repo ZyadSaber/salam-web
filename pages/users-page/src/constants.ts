@@ -1,27 +1,32 @@
 export const columns = [
   {
-    title: "user_name",
-    dataIndex: "user_name",
-    width: "23%",
+    title: "id",
+    dataIndex: "id",
+    width: "5%",
   },
   {
-    title: "first_name",
+    title: "usrnm",
+    dataIndex: "user_name",
+    width: "20%",
+  },
+  {
+    title: "frstnm",
     dataIndex: "first_name",
     width: "20%",
   },
   {
-    title: "last_name",
+    title: "scndnm",
     dataIndex: "last_name",
     width: "20%",
   },
   {
-    title: "created_at",
+    title: "crtdat",
     dataIndex: "created_at",
-    width: "17%",
+    width: "15%",
   },
   {
-    title: "updated_at",
+    title: "updtdat",
     dataIndex: "updated_at",
-    width: "17%",
+    width: "15%",
   },
 ];

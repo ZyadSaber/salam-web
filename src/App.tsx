@@ -9,12 +9,12 @@ import AppConfigProvider from "@commons/app-config-provider";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      {PageRoutes.map(({ Path, Component }) => {
-        return (
-          <Route exact path={Path} key={Path.toString()}>
-            {!Array.isArray(Path) ? (
-              <AppConfigProvider>
+    <AppConfigProvider>
+      <BrowserRouter>
+        {PageRoutes.map(({ Path, Component }) => {
+          return (
+            <Route exact path={Path} key={Path.toString()}>
+              {!Array.isArray(Path) ? (
                 <Flex height="100vh" flexDirection="column" bordered>
                   <Header />
                   <Main>
@@ -24,14 +24,14 @@ const App = () => {
                     </Content>
                   </Main>
                 </Flex>
-              </AppConfigProvider>
-            ) : (
-              <Component />
-            )}
-          </Route>
-        );
-      })}
-    </BrowserRouter>
+              ) : (
+                <Component />
+              )}
+            </Route>
+          );
+        })}
+      </BrowserRouter>
+    </AppConfigProvider>
   );
 };
 

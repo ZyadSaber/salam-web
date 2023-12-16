@@ -1,26 +1,26 @@
 export const columns = [
   {
-    title: "page_parent_id",
+    title: "id",
     dataIndex: "page_parent_id",
-    width: "9%",
+    width: "5%",
   },
   {
-    title: "parent_name",
+    title: "pgprnt",
     dataIndex: "page_parent_name",
-    width: "35%",
+    width: "40%",
   },
   {
-    title: "hidden",
+    title: "hdn",
     dataIndex: "hidden",
-    width: "15%",
+    width: "12%",
   },
   {
-    title: "created_at",
+    title: "crtdat",
     dataIndex: "created_at",
     width: "20%",
   },
   {
-    title: "updated_at",
+    title: "updtdat",
     dataIndex: "updated_at",
     width: "20%",
   },

@@ -12,7 +12,7 @@ export const columns = [
   {
     title: "pgdsbld",
     dataIndex: "page_disabled",
-    width: "7%",
+    width: "6%",
   },
   {
     title: "rninmdl",

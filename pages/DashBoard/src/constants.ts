@@ -7,7 +7,7 @@ export const customerTableColumns = [
   {
     title: "nm",
     dataIndex: "invoice_holder_name",
-    width: "37%",
+    width: "33%",
   },
   {
     title: "total",
@@ -45,7 +45,7 @@ export const supplierTableColumns = [
   {
     title: "nm",
     dataIndex: "invoice_holder_name",
-    width: "37%",
+    width: "33%",
   },
   {
     title: "total",
@@ -71,5 +71,5 @@ export const supplierTableColumns = [
     title: "crdt",
     dataIndex: "supplier_invoice_credit",
     width: "10%",
-  }
+  },
 ];
